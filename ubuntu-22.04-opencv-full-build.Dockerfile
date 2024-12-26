@@ -91,7 +91,7 @@ RUN set -xeu && \
     	-D WITH_CUDA=OFF \
     	-D WITH_CUFFT=OFF \
     	-D WITH_EIGEN=ON \
-    	-D WITH_FFMPEG=OFF \
+    	-D WITH_FFMPEG=ON \
 		-D WITH_FREETYPE=OFF \
     	-D WITH_GDAL=OFF \
     	-D WITH_GDCM=OFF \
@@ -143,7 +143,7 @@ RUN set -xeu && \
     	-D WITH_XINE=OFF && \
     make -C /root/build -j`nproc` install
 
-ENV OPENCV_LINK_LIBS=opencv_gapi,opencv_highgui,opencv_objdetect,opencv_dnn,opencv_videostab,opencv_calib3d,opencv_features2d,opencv_stitching,opencv_flann,opencv_videoio,opencv_rgbd,opencv_video,opencv_imgcodecs,opencv_imgproc,opencv_core,ade,liblibjpeg-turbo,liblibpng,liblibopenjp2,ippiw,ippicv,liblibprotobuf,zlib
+ENV OPENCV_LINK_LIBS=opencv_gapi,opencv_highgui,opencv_objdetect,opencv_dnn,opencv_videostab,opencv_calib3d,opencv_features2d,opencv_stitching,opencv_flann,opencv_videoio,opencv_rgbd,opencv_video,opencv_imgcodecs,opencv_imgproc,opencv_core,ade,libavformat,libavcodec,libavutil,libswscale,liblibjpeg-turbo,liblibpng,liblibopenjp2,ippiw,ippicv,liblibprotobuf,zlib
 ENV OPENCV_LINK_PATHS=/opt/opencv/lib,/opt/opencv/lib/opencv4/3rdparty,/usr/lib/x86_64-linux-gnu
 ENV OPENCV_INCLUDE_PATHS=/opt/opencv/include,/opt/opencv/include/opencv4
 
@@ -151,6 +151,14 @@ ENV OPENCV_INCLUDE_PATHS=/opt/opencv/include,/opt/opencv/include/opencv4
 RUN set -xu && \
 	cd /root/oko/backend && \
 	cargo test; exit 0
+
+RUN set -xeu && \
+	ls /opt/opencv/lib && \
+	ls /opt/opencv/lib/opencv4/3rdparty && \
+	ls /usr/lib/x86_64-linux-gnu && \
+	ls /opt/opencv/include && \
+	ls /opt/opencv/include/opencv4 && \
+	ls /usr/include/x86_64-linux-gnu
 
 RUN set -xeu && \
 	cd /root/oko/backend && \
