@@ -1,0 +1,1696 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ubuntu-22.04-opencv-full-build.Dockerfile
+#1 transferring dockerfile: 6.31kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/rust:1.83-bookworm
+#3 ...
+
+#4 [internal] load metadata for docker.io/library/node:22.12
+#4 DONE 0.7s
+
+#3 [internal] load metadata for docker.io/library/rust:1.83-bookworm
+#3 DONE 0.7s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [frontend 1/3] FROM docker.io/library/node:22.12@sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc
+#6 DONE 0.0s
+
+#7 [backend 1/5] FROM docker.io/library/ubuntu:22.04
+#7 DONE 0.0s
+
+#8 [test  1/10] FROM docker.io/library/rust:1.83-bookworm@sha256:a45bf1f5d9af0a23b26703b3500d70af1abff7f984a7abef5a104b42c02a292b
+#8 DONE 0.0s
+
+#9 [test  3/10] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y clang libclang-dev     cmake     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libssl-dev
+#9 CACHED
+
+#10 [frontend 3/3] RUN set -xeu && 	npm --prefix=/root/oko/frontend ci && 	npm --prefix=/root/oko/frontend run build && 	mkdir -p /root/oko/backend/static && 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
+#10 CACHED
+
+#11 [backend 2/5] RUN set -xeu &&     apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y &&     apt-get autoremove -y --purge &&     apt-get -y autoclean
+#11 CACHED
+
+#12 [backend 3/5] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev     cmake python3-numpy libatlas-base-dev libceres-dev libeigen3-dev liblapacke-dev libprotobuf-dev protobuf-compiler nvidia-cuda-dev libtesseract-dev     libwebp-dev libpng-dev libtiff-dev libopenexr-dev libgdal-dev libopenjp2-7-dev libopenjpip-server libopenjpip-dec-server libopenjp2-tools libhdf5-dev     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgphoto2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libva-dev libdc1394-dev     libfreetype6-dev libharfbuzz-dev qtbase5-dev libogre-1.12-dev 	git libssl-dev
+#12 CACHED
+
+#13 [backend 4/5] RUN set -xeu &&     mkdir -p /root/dist &&     curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-4.8.0/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+#13 CACHED
+
+#14 [backend 5/5] RUN set -xeu &&     mkdir -p /root/build &&     cmake -B /root/build -S "/root/dist/opencv-4.8.0" -D OPENCV_EXTRA_MODULES_PATH="/root/dist/opencv_contrib-4.8.0/modules" -D CMAKE_INSTALL_PREFIX=/opt/opencv     	-D BUILD_CUDA_STUBS=OFF     	-D BUILD_DOCS=OFF     	-D BUILD_EXAMPLES=OFF     	-D BUILD_IPP_IW=ON     	-D BUILD_ITT=OFF     	-D BUILD_JASPER=ON     	-D BUILD_JAVA=OFF     	-D BUILD_JPEG=ON     	-D BUILD_OPENEXR=OFF     	-D BUILD_PERF_TESTS=OFF     	-D BUILD_PNG=ON     	-D BUILD_PROTOBUF=ON     	-D BUILD_SHARED_LIBS=OFF     	-D BUILD_TBB=OFF     	-D BUILD_TESTS=OFF     	-D BUILD_TIFF=OFF     	-D BUILD_WEBP=OFF     	-D BUILD_WITH_DYNAMIC_IPP=OFF     	-D BUILD_ZLIB=ON 		-D BUILD_opencv_freetype=OFF     	-D BUILD_opencv_apps=OFF     	-D BUILD_opencv_python2=OFF     	-D BUILD_opencv_python3=OFF     	-D CMAKE_BUILD_TYPE=Release     	-D ENABLE_CONFIG_VERIFICATION=OFF     	-D CV_ENABLE_INTRINSICS=ON     	-D ENABLE_PIC=ON     	-D INSTALL_CREATE_DISTRIB=OFF     	-D INSTALL_PYTHON_EXAMPLES=OFF     	-D INSTALL_C_EXAMPLES=OFF     	-D INSTALL_TESTS=OFF     	-D OPENCV_ENABLE_NONFREE=ON     	-D OPENCV_FORCE_3RDPARTY_BUILD=ON     	-D OPENCV_GENERATE_PKGCONFIG=OFF     	-D PROTOBUF_UPDATE_FILES=OFF     	-D WITH_1394=OFF     	-D WITH_ADE=ON     	-D WITH_ARAVIS=OFF     	-D WITH_CLP=OFF     	-D WITH_CUBLAS=OFF     	-D WITH_CUDA=OFF     	-D WITH_CUFFT=OFF     	-D WITH_EIGEN=ON     	-D WITH_FFMPEG=ON 		-D WITH_FREETYPE=OFF     	-D WITH_GDAL=OFF     	-D WITH_GDCM=OFF     	-D WITH_GIGEAPI=OFF     	-D WITH_GPHOTO2=OFF     	-D WITH_GSTREAMER=OFF     	-D WITH_GSTREAMER_0_10=OFF     	-D WITH_GTK=OFF     	-D WITH_GTK_2_X=OFF     	-D WITH_HALIDE=OFF     	-D WITH_IMGCODEC_HDcR=OFF     	-D WITH_IMGCODEC_PXM=OFF     	-D WITH_IMGCODEC_SUNRASTER=OFF     	-D WITH_INF_ENGINE=OFF     	-D WITH_IPP=ON     	-D WITH_ITT=OFF     	-D WITH_JASPER=ON     	-D WITH_JPEG=ON     	-D WITH_LAPACK=OFF     	-D WITH_LIBV4L=OFF     	-D WITH_MATLAB=OFF     	-D WITH_MFX=OFF     	-D WITH_NVCUVID=OFF     	-D WITH_OPENCL=ON     	-D WITH_OPENCLAMDBLAS=ON     	-D WITH_OPENCLAMDFFT=ON     	-D WITH_OPENCL_SVM=ON     	-D WITH_OPENEXR=OFF     	-D WITH_OPENGL=OFF     	-D WITH_OPENMP=OFF     	-D WITH_OPENNI2=OFF     	-D WITH_OPENNI=OFF     	-D WITH_OPENVX=OFF     	-D WITH_PNG=ON     	-D WITH_PROTOBUF=ON     	-D WITH_PTHREADS_PF=ON     	-D WITH_PVAPI=OFF     	-D WITH_QT=OFF     	-D WITH_QUIRC=OFF     	-D WITH_TBB=OFF     	-D WITH_TIFF=OFF     	-D WITH_UNICAP=OFF     	-D WITH_V4L=ON     	-D WITH_VA=ON     	-D WITH_VA_INTEL=ON     	-D WITH_VTK=OFF     	-D WITH_WEBP=OFF     	-D WITH_XIMEA=OFF     	-D WITH_XINE=OFF &&     make -C /root/build -j`nproc` install
+#14 CACHED
+
+#15 [frontend 2/3] RUN set -xeu && 	git clone https://github.com/piotrpdev/oko.git /root/oko
+#15 CACHED
+
+#16 [test  2/10] RUN set -xeu &&     apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y &&     apt-get autoremove -y --purge &&     apt-get -y autoclean
+#16 CACHED
+
+#17 [test  4/10] COPY --from=backend /opt/opencv /opt/opencv
+#17 CACHED
+
+#18 [test  5/10] COPY --from=frontend /root/oko /root/oko
+#18 CACHED
+
+#19 [test  6/10] RUN set -xeu && 	ls /opt/opencv/lib && 	ls /opt/opencv/lib/opencv4/3rdparty && 	ls /usr/lib/x86_64-linux-gnu && 	ls /opt/opencv/include && 	ls /opt/opencv/include/opencv4 && 	ls /usr/include/x86_64-linux-gnu
+#19 0.215 + ls /opt/opencv/lib
+#19 0.217 cmake
+#19 0.217 libopencv_alphamat.a
+#19 0.217 libopencv_aruco.a
+#19 0.217 libopencv_bgsegm.a
+#19 0.217 libopencv_bioinspired.a
+#19 0.217 libopencv_calib3d.a
+#19 0.217 libopencv_ccalib.a
+#19 0.217 libopencv_core.a
+#19 0.217 libopencv_datasets.a
+#19 0.217 libopencv_dnn.a
+#19 0.217 libopencv_dnn_objdetect.a
+#19 0.217 libopencv_dnn_superres.a
+#19 0.217 libopencv_dpm.a
+#19 0.217 libopencv_face.a
+#19 0.217 libopencv_features2d.a
+#19 0.217 libopencv_flann.a
+#19 0.217 libopencv_fuzzy.a
+#19 0.217 libopencv_gapi.a
+#19 0.217 libopencv_hdf.a
+#19 0.217 libopencv_hfs.a
+#19 0.217 libopencv_highgui.a
+#19 0.217 libopencv_img_hash.a
+#19 0.217 libopencv_imgcodecs.a
+#19 0.217 libopencv_imgproc.a
+#19 0.217 libopencv_intensity_transform.a
+#19 0.217 libopencv_line_descriptor.a
+#19 0.217 libopencv_mcc.a
+#19 0.217 libopencv_ml.a
+#19 0.217 libopencv_objdetect.a
+#19 0.217 libopencv_optflow.a
+#19 0.217 libopencv_ovis.a
+#19 0.217 libopencv_phase_unwrapping.a
+#19 0.217 libopencv_photo.a
+#19 0.217 libopencv_plot.a
+#19 0.217 libopencv_quality.a
+#19 0.217 libopencv_rapid.a
+#19 0.217 libopencv_reg.a
+#19 0.217 libopencv_rgbd.a
+#19 0.217 libopencv_saliency.a
+#19 0.217 libopencv_sfm.a
+#19 0.217 libopencv_shape.a
+#19 0.217 libopencv_stereo.a
+#19 0.217 libopencv_stitching.a
+#19 0.217 libopencv_structured_light.a
+#19 0.217 libopencv_superres.a
+#19 0.217 libopencv_surface_matching.a
+#19 0.217 libopencv_text.a
+#19 0.217 libopencv_tracking.a
+#19 0.217 libopencv_video.a
+#19 0.217 libopencv_videoio.a
+#19 0.217 libopencv_videostab.a
+#19 0.217 libopencv_wechat_qrcode.a
+#19 0.217 libopencv_xfeatures2d.a
+#19 0.217 libopencv_ximgproc.a
+#19 0.217 libopencv_xobjdetect.a
+#19 0.217 libopencv_xphoto.a
+#19 0.217 opencv4
+#19 0.217 + ls /opt/opencv/lib/opencv4/3rdparty
+#19 0.218 libade.a
+#19 0.218 libcorrespondence.a
+#19 0.218 libippicv.a
+#19 0.218 libippiw.a
+#19 0.218 liblibjpeg-turbo.a
+#19 0.218 liblibopenjp2.a
+#19 0.218 liblibpng.a
+#19 0.218 liblibprotobuf.a
+#19 0.218 libmultiview.a
+#19 0.218 libnumeric.a
+#19 0.218 libsimple_pipeline.a
+#19 0.218 libzlib.a
+#19 0.218 + ls /usr/lib/x86_64-linux-gnu
+#19 0.223 ImageMagick-6.9.11
+#19 0.223 Mcrt1.o
+#19 0.223 Scrt1.o
+#19 0.223 apr-util-1
+#19 0.223 audit
+#19 0.223 bfd-plugins
+#19 0.223 cmake
+#19 0.223 crt1.o
+#19 0.223 crti.o
+#19 0.223 crtn.o
+#19 0.223 diet
+#19 0.223 dri
+#19 0.223 e2fsprogs
+#19 0.223 engines-3
+#19 0.223 gconv
+#19 0.223 gcrt1.o
+#19 0.223 gdk-pixbuf-2.0
+#19 0.223 gio
+#19 0.223 girepository-1.0
+#19 0.223 glib-2.0
+#19 0.223 gprofng
+#19 0.223 grcrt1.o
+#19 0.223 icu
+#19 0.223 krb5
+#19 0.223 ld-linux-x86-64.so.2
+#19 0.223 ldscripts
+#19 0.223 libBrokenLocale.a
+#19 0.223 libBrokenLocale.so
+#19 0.223 libBrokenLocale.so.1
+#19 0.223 libGL.so.1
+#19 0.223 libGL.so.1.7.0
+#19 0.223 libGLX.so.0
+#19 0.223 libGLX.so.0.0.0
+#19 0.223 libGLX_indirect.so.0
+#19 0.223 libGLX_mesa.so.0
+#19 0.223 libGLX_mesa.so.0.0.0
+#19 0.223 libGLdispatch.so.0
+#19 0.223 libGLdispatch.so.0.0.0
+#19 0.223 libICE.a
+#19 0.223 libICE.so
+#19 0.223 libICE.so.6
+#19 0.223 libICE.so.6.3.0
+#19 0.223 libIex-3_1.so
+#19 0.223 libIex-3_1.so.30
+#19 0.223 libIex-3_1.so.30.5.1
+#19 0.223 libIex.so
+#19 0.223 libIlmThread-3_1.so
+#19 0.223 libIlmThread-3_1.so.30
+#19 0.223 libIlmThread-3_1.so.30.5.1
+#19 0.223 libIlmThread.so
+#19 0.223 libImath-3_1.so
+#19 0.223 libImath-3_1.so.29
+#19 0.223 libImath-3_1.so.29.5.0
+#19 0.223 libImath.so
+#19 0.223 libLLVM-14.0.6.so.1
+#19 0.223 libLLVM-14.so
+#19 0.223 libLLVM-14.so.1
+#19 0.223 libLLVM-15.so
+#19 0.223 libLLVM-15.so.1
+#19 0.223 libLerc.a
+#19 0.223 libLerc.so
+#19 0.223 libLerc.so.4
+#19 0.223 libMagickCore-6.Q16.a
+#19 0.223 libMagickCore-6.Q16.la
+#19 0.223 libMagickCore-6.Q16.so
+#19 0.223 libMagickCore-6.Q16.so.6
+#19 0.223 libMagickCore-6.Q16.so.6.0.0
+#19 0.223 libMagickWand-6.Q16.a
+#19 0.223 libMagickWand-6.Q16.la
+#19 0.223 libMagickWand-6.Q16.so
+#19 0.223 libMagickWand-6.Q16.so.6
+#19 0.223 libMagickWand-6.Q16.so.6.0.0
+#19 0.223 libOpenCL.so.1
+#19 0.223 libOpenCL.so.1.0.0
+#19 0.223 libOpenEXR-3_1.so
+#19 0.223 libOpenEXR-3_1.so.30
+#19 0.223 libOpenEXR-3_1.so.30.5.1
+#19 0.223 libOpenEXR.so
+#19 0.223 libOpenEXRCore-3_1.so
+#19 0.223 libOpenEXRCore-3_1.so.30
+#19 0.223 libOpenEXRCore-3_1.so.30.5.1
+#19 0.223 libOpenEXRCore.so
+#19 0.223 libOpenEXRUtil-3_1.so
+#19 0.223 libOpenEXRUtil-3_1.so.30
+#19 0.223 libOpenEXRUtil-3_1.so.30.5.1
+#19 0.223 libOpenEXRUtil.so
+#19 0.223 libSM.a
+#19 0.223 libSM.so
+#19 0.223 libSM.so.6
+#19 0.223 libSM.so.6.0.1
+#19 0.223 libSvtAv1Enc.so.1
+#19 0.223 libSvtAv1Enc.so.1.4.1
+#19 0.223 libX11-xcb.so.1
+#19 0.223 libX11-xcb.so.1.0.0
+#19 0.223 libX11.a
+#19 0.223 libX11.so
+#19 0.223 libX11.so.6
+#19 0.223 libX11.so.6.4.0
+#19 0.223 libXau.a
+#19 0.223 libXau.so
+#19 0.223 libXau.so.6
+#19 0.223 libXau.so.6.0.0
+#19 0.223 libXdmcp.a
+#19 0.223 libXdmcp.so
+#19 0.223 libXdmcp.so.6
+#19 0.223 libXdmcp.so.6.0.0
+#19 0.223 libXext.a
+#19 0.223 libXext.so
+#19 0.223 libXext.so.6
+#19 0.223 libXext.so.6.4.0
+#19 0.223 libXfixes.so.3
+#19 0.223 libXfixes.so.3.1.0
+#19 0.223 libXrender.a
+#19 0.223 libXrender.so
+#19 0.223 libXrender.so.1
+#19 0.223 libXrender.so.1.3.0
+#19 0.223 libXt.a
+#19 0.223 libXt.so
+#19 0.223 libXt.so.6
+#19 0.223 libXt.so.6.0.0
+#19 0.223 libXxf86vm.so.1
+#19 0.223 libXxf86vm.so.1.0.0
+#19 0.223 libaacs.so.0
+#19 0.223 libaacs.so.0.7.2
+#19 0.223 libacl.so.1
+#19 0.223 libacl.so.1.1.2301
+#19 0.223 libanl.a
+#19 0.223 libanl.so
+#19 0.223 libanl.so.1
+#19 0.223 libaom.so.3
+#19 0.223 libaom.so.3.6.0
+#19 0.223 libapr-1.so.0
+#19 0.223 libapr-1.so.0.7.2
+#19 0.223 libaprutil-1.so.0
+#19 0.223 libaprutil-1.so.0.6.3
+#19 0.223 libapt-pkg.so.6.0
+#19 0.223 libapt-pkg.so.6.0.0
+#19 0.223 libapt-private.so.0.0
+#19 0.223 libapt-private.so.0.0.0
+#19 0.223 libarchive.so.13
+#19 0.223 libarchive.so.13.6.2
+#19 0.223 libasan.so.8
+#19 0.223 libasan.so.8.0.0
+#19 0.223 libassuan.so.0
+#19 0.223 libassuan.so.0.8.5
+#19 0.223 libatomic.so.1
+#19 0.223 libatomic.so.1.2.0
+#19 0.223 libattr.so.1
+#19 0.223 libattr.so.1.1.2501
+#19 0.223 libaudit.so.1
+#19 0.223 libaudit.so.1.0.0
+#19 0.223 libavcodec.a
+#19 0.223 libavcodec.so
+#19 0.223 libavcodec.so.59
+#19 0.223 libavcodec.so.59.37.100
+#19 0.223 libavformat.a
+#19 0.223 libavformat.so
+#19 0.223 libavformat.so.59
+#19 0.223 libavformat.so.59.27.100
+#19 0.223 libavutil.a
+#19 0.223 libavutil.so
+#19 0.223 libavutil.so.57
+#19 0.223 libavutil.so.57.28.100
+#19 0.223 libbdplus.so.0
+#19 0.223 libbdplus.so.0.2.0
+#19 0.223 libbfd-2.40-system.so
+#19 0.223 libblkid.a
+#19 0.223 libblkid.so
+#19 0.223 libblkid.so.1
+#19 0.223 libblkid.so.1.1.0
+#19 0.223 libbluray.so.2
+#19 0.223 libbluray.so.2.4.3
+#19 0.223 libbrotlicommon.a
+#19 0.223 libbrotlicommon.so
+#19 0.223 libbrotlicommon.so.1
+#19 0.223 libbrotlicommon.so.1.0.9
+#19 0.223 libbrotlidec.a
+#19 0.223 libbrotlidec.so
+#19 0.223 libbrotlidec.so.1
+#19 0.223 libbrotlidec.so.1.0.9
+#19 0.223 libbrotlienc.a
+#19 0.223 libbrotlienc.so
+#19 0.223 libbrotlienc.so.1
+#19 0.223 libbrotlienc.so.1.0.9
+#19 0.223 libbsd.so.0
+#19 0.223 libbsd.so.0.11.7
+#19 0.223 libbz2.a
+#19 0.223 libbz2.so
+#19 0.223 libbz2.so.1
+#19 0.223 libbz2.so.1.0
+#19 0.223 libbz2.so.1.0.4
+#19 0.223 libc.a
+#19 0.223 libc.so
+#19 0.223 libc.so.6
+#19 0.223 libc_malloc_debug.so
+#19 0.223 libc_malloc_debug.so.0
+#19 0.223 libc_nonshared.a
+#19 0.223 libcairo-gobject.a
+#19 0.223 libcairo-gobject.so
+#19 0.223 libcairo-gobject.so.2
+#19 0.223 libcairo-gobject.so.2.11600.0
+#19 0.223 libcairo-script-interpreter.a
+#19 0.223 libcairo-script-interpreter.so
+#19 0.223 libcairo-script-interpreter.so.2
+#19 0.223 libcairo-script-interpreter.so.2.11600.0
+#19 0.223 libcairo.a
+#19 0.223 libcairo.so
+#19 0.223 libcairo.so.2
+#19 0.223 libcairo.so.2.11600.0
+#19 0.223 libcap-ng.so.0
+#19 0.223 libcap-ng.so.0.0.0
+#19 0.223 libcap.so.2
+#19 0.223 libcap.so.2.66
+#19 0.223 libcbor.so.0.8
+#19 0.223 libcbor.so.0.8.0
+#19 0.223 libcc1.so.0
+#19 0.223 libcc1.so.0.0.0
+#19 0.223 libchromaprint.so.1
+#19 0.223 libchromaprint.so.1.5.1
+#19 0.223 libcjson.so.1
+#19 0.223 libcjson.so.1.7.15
+#19 0.223 libclang-14.so
+#19 0.223 libclang-14.so.1
+#19 0.223 libclang-14.so.13
+#19 0.223 libclang-14.so.14.0.6
+#19 0.223 libclang-cpp.so.14
+#19 0.223 libcodec2.so.1.0
+#19 0.223 libcom_err.a
+#19 0.223 libcom_err.so
+#19 0.223 libcom_err.so.2
+#19 0.223 libcom_err.so.2.1
+#19 0.223 libcrypt.a
+#19 0.223 libcrypt.so
+#19 0.223 libcrypt.so.1
+#19 0.223 libcrypt.so.1.1.0
+#19 0.223 libcrypto.a
+#19 0.223 libcrypto.so
+#19 0.223 libcrypto.so.3
+#19 0.223 libctf-nobfd.so.0
+#19 0.223 libctf-nobfd.so.0.0.0
+#19 0.223 libctf.so.0
+#19 0.223 libctf.so.0.0.0
+#19 0.223 libcurl-gnutls.so.3
+#19 0.223 libcurl-gnutls.so.4
+#19 0.223 libcurl-gnutls.so.4.8.0
+#19 0.223 libcurl-nss.so.3
+#19 0.223 libcurl-nss.so.4
+#19 0.223 libcurl-nss.so.4.8.0
+#19 0.223 libcurl.a
+#19 0.223 libcurl.so
+#19 0.223 libcurl.so.4
+#19 0.223 libcurl.so.4.8.0
+#19 0.223 libcurses.a
+#19 0.223 libcurses.so
+#19 0.223 libdatrie.so.1
+#19 0.223 libdatrie.so.1.4.0
+#19 0.223 libdav1d.so.6
+#19 0.223 libdav1d.so.6.6.0
+#19 0.223 libdb-5.3.a
+#19 0.223 libdb-5.3.so
+#19 0.223 libdb.a
+#19 0.223 libdb.so
+#19 0.223 libde265.so.0
+#19 0.223 libde265.so.0.1.4
+#19 0.223 libdebconfclient.so.0
+#19 0.223 libdebconfclient.so.0.0.0
+#19 0.223 libdeflate.a
+#19 0.223 libdeflate.so
+#19 0.223 libdeflate.so.0
+#19 0.223 libdjvulibre.a
+#19 0.223 libdjvulibre.so
+#19 0.223 libdjvulibre.so.21
+#19 0.223 libdjvulibre.so.21.7.0
+#19 0.223 libdl.a
+#19 0.223 libdl.so.2
+#19 0.223 libdrm.so.2
+#19 0.223 libdrm.so.2.4.0
+#19 0.223 libdrm_amdgpu.so.1
+#19 0.223 libdrm_amdgpu.so.1.0.0
+#19 0.223 libdrm_intel.so.1
+#19 0.223 libdrm_intel.so.1.0.0
+#19 0.223 libdrm_nouveau.so.2
+#19 0.223 libdrm_nouveau.so.2.0.0
+#19 0.223 libdrm_radeon.so.1
+#19 0.223 libdrm_radeon.so.1.0.1
+#19 0.223 libdrop_ambient.so.0
+#19 0.223 libdrop_ambient.so.0.0.0
+#19 0.223 libe2p.so.2
+#19 0.223 libe2p.so.2.3
+#19 0.223 libedit.so.2
+#19 0.223 libedit.so.2.0.70
+#19 0.223 libelf-0.188.so
+#19 0.223 libelf.so.1
+#19 0.223 libevent-2.1.so.7
+#19 0.223 libevent-2.1.so.7.0.1
+#19 0.223 libevent.a
+#19 0.223 libevent.so
+#19 0.223 libevent_core-2.1.so.7
+#19 0.223 libevent_core-2.1.so.7.0.1
+#19 0.223 libevent_core.a
+#19 0.223 libevent_core.so
+#19 0.223 libevent_extra-2.1.so.7
+#19 0.223 libevent_extra-2.1.so.7.0.1
+#19 0.223 libevent_extra.a
+#19 0.223 libevent_extra.so
+#19 0.223 libevent_openssl-2.1.so.7
+#19 0.223 libevent_openssl-2.1.so.7.0.1
+#19 0.223 libevent_openssl.a
+#19 0.223 libevent_openssl.so
+#19 0.223 libevent_pthreads-2.1.so.7
+#19 0.223 libevent_pthreads-2.1.so.7.0.1
+#19 0.223 libevent_pthreads.a
+#19 0.223 libevent_pthreads.so
+#19 0.223 libexif.a
+#19 0.223 libexif.so
+#19 0.223 libexif.so.12
+#19 0.223 libexif.so.12.3.4
+#19 0.223 libexpat.a
+#19 0.223 libexpat.so
+#19 0.223 libexpat.so.1
+#19 0.223 libexpat.so.1.8.10
+#19 0.223 libexpatw.a
+#19 0.223 libexpatw.so
+#19 0.223 libexpatw.so.1
+#19 0.223 libexpatw.so.1.8.10
+#19 0.223 libexslt.so
+#19 0.223 libexslt.so.0
+#19 0.223 libexslt.so.0.8.20
+#19 0.223 libext2fs.so.2
+#19 0.223 libext2fs.so.2.4
+#19 0.223 libffi.a
+#19 0.223 libffi.so
+#19 0.223 libffi.so.8
+#19 0.223 libffi.so.8.1.2
+#19 0.223 libffi_pic.a
+#19 0.223 libfftw3.so.3
+#19 0.223 libfftw3.so.3.6.10
+#19 0.223 libfftw3_omp.so.3
+#19 0.223 libfftw3_omp.so.3.6.10
+#19 0.223 libfftw3_threads.so.3
+#19 0.223 libfftw3_threads.so.3.6.10
+#19 0.223 libfido2.so.1
+#19 0.223 libfido2.so.1.12.0
+#19 0.223 libfontconfig.a
+#19 0.223 libfontconfig.so
+#19 0.223 libfontconfig.so.1
+#19 0.223 libfontconfig.so.1.12.0
+#19 0.223 libform.a
+#19 0.223 libform.so
+#19 0.223 libform.so.6
+#19 0.223 libform.so.6.4
+#19 0.223 libformw.a
+#19 0.223 libformw.so
+#19 0.223 libformw.so.6
+#19 0.223 libformw.so.6.4
+#19 0.223 libfreebl3.chk
+#19 0.223 libfreebl3.so
+#19 0.223 libfreeblpriv3.chk
+#19 0.223 libfreeblpriv3.so
+#19 0.223 libfreetype.a
+#19 0.223 libfreetype.so
+#19 0.223 libfreetype.so.6
+#19 0.223 libfreetype.so.6.18.3
+#19 0.223 libfribidi.so.0
+#19 0.223 libfribidi.so.0.4.0
+#19 0.223 libg.a
+#19 0.223 libgc.so.1
+#19 0.223 libgc.so.1.5.1
+#19 0.223 libgcc_s.so.1
+#19 0.223 libgccpp.so.1
+#19 0.223 libgccpp.so.1.5.0
+#19 0.223 libgcrypt.so.20
+#19 0.223 libgcrypt.so.20.4.1
+#19 0.223 libgctba.so.1
+#19 0.223 libgctba.so.1.5.0
+#19 0.223 libgdbm.a
+#19 0.223 libgdbm.so
+#19 0.223 libgdbm.so.6
+#19 0.223 libgdbm.so.6.0.0
+#19 0.223 libgdbm_compat.so.4
+#19 0.223 libgdbm_compat.so.4.0.0
+#19 0.223 libgdk_pixbuf-2.0.so
+#19 0.223 libgdk_pixbuf-2.0.so.0
+#19 0.223 libgdk_pixbuf-2.0.so.0.4200.10
+#19 0.223 libgio-2.0.a
+#19 0.223 libgio-2.0.so
+#19 0.223 libgio-2.0.so.0
+#19 0.223 libgio-2.0.so.0.7400.6
+#19 0.223 libgirepository-1.0.so.1
+#19 0.223 libgirepository-1.0.so.1.0.0
+#19 0.223 libglapi.so.0
+#19 0.223 libglapi.so.0.0.0
+#19 0.223 libglib-2.0.a
+#19 0.223 libglib-2.0.so
+#19 0.223 libglib-2.0.so.0
+#19 0.223 libglib-2.0.so.0.7400.6
+#19 0.223 libgme.so.0
+#19 0.223 libgme.so.0.6.3
+#19 0.223 libgmodule-2.0.a
+#19 0.223 libgmodule-2.0.so
+#19 0.223 libgmodule-2.0.so.0
+#19 0.223 libgmodule-2.0.so.0.7400.6
+#19 0.223 libgmp.a
+#19 0.223 libgmp.so
+#19 0.223 libgmp.so.10
+#19 0.223 libgmp.so.10.4.1
+#19 0.223 libgmpxx.a
+#19 0.223 libgmpxx.so
+#19 0.223 libgmpxx.so.4
+#19 0.223 libgmpxx.so.4.6.1
+#19 0.223 libgnutls.so.30
+#19 0.223 libgnutls.so.30.34.3
+#19 0.223 libgobject-2.0.a
+#19 0.223 libgobject-2.0.so
+#19 0.223 libgobject-2.0.so.0
+#19 0.223 libgobject-2.0.so.0.7400.6
+#19 0.223 libgomp.so.1
+#19 0.223 libgomp.so.1.0.0
+#19 0.223 libgpg-error.so.0
+#19 0.223 libgpg-error.so.0.33.1
+#19 0.223 libgprofng.so.0
+#19 0.223 libgprofng.so.0.0.0
+#19 0.223 libgraphite2.so.2.0.0
+#19 0.223 libgraphite2.so.3
+#19 0.223 libgraphite2.so.3.2.1
+#19 0.223 libgsm.so.1
+#19 0.223 libgsm.so.1.0.19
+#19 0.223 libgssapi_krb5.so
+#19 0.223 libgssapi_krb5.so.2
+#19 0.223 libgssapi_krb5.so.2.2
+#19 0.223 libgssrpc.so
+#19 0.223 libgssrpc.so.4
+#19 0.223 libgssrpc.so.4.2
+#19 0.223 libgthread-2.0.a
+#19 0.223 libgthread-2.0.so
+#19 0.223 libgthread-2.0.so.0
+#19 0.223 libgthread-2.0.so.0.7400.6
+#19 0.223 libharfbuzz.so.0
+#19 0.223 libharfbuzz.so.0.60000.0
+#19 0.223 libheif.so.1
+#19 0.223 libheif.so.1.15.1
+#19 0.223 libhistory.a
+#19 0.223 libhistory.so
+#19 0.223 libhistory.so.8
+#19 0.223 libhistory.so.8.2
+#19 0.223 libhogweed.so.6
+#19 0.223 libhogweed.so.6.6
+#19 0.223 libhwy.so.1
+#19 0.223 libhwy.so.1.0.3
+#19 0.223 libhwy_contrib.so.1
+#19 0.223 libhwy_contrib.so.1.0.3
+#19 0.223 libhwy_test.so.1
+#19 0.223 libhwy_test.so.1.0.3
+#19 0.223 libicudata.a
+#19 0.223 libicudata.so
+#19 0.223 libicudata.so.72
+#19 0.223 libicudata.so.72.1
+#19 0.223 libicui18n.a
+#19 0.223 libicui18n.so
+#19 0.223 libicui18n.so.72
+#19 0.223 libicui18n.so.72.1
+#19 0.223 libicuio.a
+#19 0.223 libicuio.so
+#19 0.223 libicuio.so.72
+#19 0.223 libicuio.so.72.1
+#19 0.223 libicutest.a
+#19 0.223 libicutest.so
+#19 0.223 libicutest.so.72
+#19 0.223 libicutest.so.72.1
+#19 0.223 libicutu.a
+#19 0.223 libicutu.so
+#19 0.223 libicutu.so.72
+#19 0.223 libicutu.so.72.1
+#19 0.223 libicuuc.a
+#19 0.223 libicuuc.so
+#19 0.223 libicuuc.so.72
+#19 0.223 libicuuc.so.72.1
+#19 0.223 libidn2.so.0
+#19 0.223 libidn2.so.0.3.8
+#19 0.223 libigdgmm.so.12
+#19 0.223 libigdgmm.so.12.3.0
+#19 0.223 libisl.so.23
+#19 0.223 libisl.so.23.2.0
+#19 0.223 libitm.so.1
+#19 0.223 libitm.so.1.0.0
+#19 0.223 libjansson.so.4
+#19 0.223 libjansson.so.4.14.0
+#19 0.223 libjbig.a
+#19 0.223 libjbig.so
+#19 0.223 libjbig.so.0
+#19 0.223 libjpeg.a
+#19 0.223 libjpeg.so
+#19 0.223 libjpeg.so.62
+#19 0.223 libjpeg.so.62.3.0
+#19 0.223 libjsoncpp.so.1.9.5
+#19 0.223 libjsoncpp.so.25
+#19 0.223 libjxl.so.0.7
+#19 0.223 libjxl.so.0.7.0
+#19 0.223 libjxl_threads.so.0.7
+#19 0.223 libjxl_threads.so.0.7.0
+#19 0.223 libk5crypto.so
+#19 0.223 libk5crypto.so.3
+#19 0.223 libk5crypto.so.3.1
+#19 0.223 libkadm5clnt.so
+#19 0.223 libkadm5clnt_mit.so
+#19 0.223 libkadm5clnt_mit.so.12
+#19 0.223 libkadm5clnt_mit.so.12.0
+#19 0.223 libkadm5srv.so
+#19 0.223 libkadm5srv_mit.so
+#19 0.223 libkadm5srv_mit.so.12
+#19 0.223 libkadm5srv_mit.so.12.0
+#19 0.223 libkdb5.so
+#19 0.223 libkdb5.so.10
+#19 0.223 libkdb5.so.10.0
+#19 0.223 libkeyutils.so.1
+#19 0.223 libkeyutils.so.1.10
+#19 0.223 libkrb5.so
+#19 0.223 libkrb5.so.3
+#19 0.223 libkrb5.so.3.3
+#19 0.223 libkrb5support.so
+#19 0.223 libkrb5support.so.0
+#19 0.223 libkrb5support.so.0.1
+#19 0.223 libksba.so.8
+#19 0.223 libksba.so.8.14.3
+#19 0.223 liblber-2.5.so.0
+#19 0.223 liblber-2.5.so.0.1.8
+#19 0.223 liblcms2.so
+#19 0.223 liblcms2.so.2
+#19 0.223 liblcms2.so.2.0.14
+#19 0.223 libldap-2.5.so.0
+#19 0.223 libldap-2.5.so.0.1.8
+#19 0.223 liblqr-1.so
+#19 0.223 liblqr-1.so.0
+#19 0.223 liblqr-1.so.0.3.2
+#19 0.223 liblsan.so.0
+#19 0.223 liblsan.so.0.0.0
+#19 0.223 libltdl.a
+#19 0.223 libltdl.so
+#19 0.223 libltdl.so.7
+#19 0.223 libltdl.so.7.3.2
+#19 0.223 liblz4.so.1
+#19 0.223 liblz4.so.1.9.4
+#19 0.223 liblzma.a
+#19 0.223 liblzma.so
+#19 0.223 liblzma.so.5
+#19 0.223 liblzma.so.5.4.1
+#19 0.223 liblzo2.so.2
+#19 0.223 liblzo2.so.2.0.0
+#19 0.223 libm-2.36.a
+#19 0.223 libm.a
+#19 0.223 libm.so
+#19 0.223 libm.so.6
+#19 0.223 libmagic.so.1
+#19 0.223 libmagic.so.1.0.0
+#19 0.223 libmariadb.a
+#19 0.223 libmariadb.so
+#19 0.223 libmariadb.so.3
+#19 0.223 libmariadb3
+#19 0.223 libmariadbclient.a
+#19 0.223 libmariadbclient.so
+#19 0.223 libmaxminddb.a
+#19 0.223 libmaxminddb.so
+#19 0.223 libmaxminddb.so.0
+#19 0.223 libmaxminddb.so.0.0.7
+#19 0.223 libmbedcrypto.so.2.28.3
+#19 0.223 libmbedcrypto.so.7
+#19 0.223 libmcheck.a
+#19 0.223 libmd.so.0
+#19 0.223 libmd.so.0.0.5
+#19 0.223 libmemusage.so
+#19 0.223 libmenu.a
+#19 0.223 libmenu.so
+#19 0.223 libmenu.so.6
+#19 0.223 libmenu.so.6.4
+#19 0.223 libmenuw.a
+#19 0.223 libmenuw.so
+#19 0.223 libmenuw.so.6
+#19 0.223 libmenuw.so.6.4
+#19 0.223 libmfx-tracer.so.1
+#19 0.223 libmfx-tracer.so.1.35
+#19 0.223 libmfx.so.1
+#19 0.223 libmfx.so.1.35
+#19 0.223 libmfxhw64.so.1
+#19 0.223 libmfxhw64.so.1.35
+#19 0.223 libmount.so
+#19 0.223 libmount.so.1
+#19 0.223 libmount.so.1.1.0
+#19 0.223 libmp3lame.so.0
+#19 0.223 libmp3lame.so.0.0.0
+#19 0.223 libmpc.so.3
+#19 0.223 libmpc.so.3.3.1
+#19 0.223 libmpfr.so.6
+#19 0.223 libmpfr.so.6.2.0
+#19 0.223 libmpg123.so.0
+#19 0.223 libmpg123.so.0.47.0
+#19 0.223 libmvec.a
+#19 0.223 libmvec.so
+#19 0.223 libmvec.so.1
+#19 0.223 libmysqlclient.a
+#19 0.223 libmysqlclient.so
+#19 0.223 libmysqlclient_r.a
+#19 0.223 libmysqlclient_r.so
+#19 0.223 libmysqlservices.a
+#19 0.223 libncurses++.a
+#19 0.223 libncurses++w.a
+#19 0.223 libncurses.a
+#19 0.223 libncurses.so
+#19 0.223 libncurses.so.6
+#19 0.223 libncurses.so.6.4
+#19 0.223 libncursesw.a
+#19 0.223 libncursesw.so
+#19 0.223 libncursesw.so.6
+#19 0.223 libncursesw.so.6.4
+#19 0.223 libnettle.so.8
+#19 0.223 libnettle.so.8.6
+#19 0.223 libnghttp2.so.14
+#19 0.223 libnghttp2.so.14.24.1
+#19 0.223 libnorm.so.1
+#19 0.223 libnpth.so.0
+#19 0.223 libnpth.so.0.1.2
+#19 0.223 libnsl.a
+#19 0.223 libnsl.so
+#19 0.223 libnsl.so.1
+#19 0.223 libnsl.so.2
+#19 0.223 libnsl.so.2.0.1
+#19 0.223 libnspr4.so
+#19 0.223 libnss3.so
+#19 0.223 libnss_compat.so
+#19 0.223 libnss_compat.so.2
+#19 0.223 libnss_dns.so.2
+#19 0.223 libnss_files.so.2
+#19 0.223 libnss_hesiod.so
+#19 0.223 libnss_hesiod.so.2
+#19 0.223 libnssckbi.so
+#19 0.223 libnssdbm3.chk
+#19 0.223 libnssdbm3.so
+#19 0.223 libnssutil3.so
+#19 0.223 libnuma.so.1
+#19 0.223 libnuma.so.1.0.0
+#19 0.223 libobjc.so.4
+#19 0.223 libobjc.so.4.0.0
+#19 0.223 libobjc_gc.so.4
+#19 0.223 libobjc_gc.so.4.0.0
+#19 0.223 libogg.so.0
+#19 0.223 libogg.so.0.8.5
+#19 0.223 libopcodes-2.40-system.so
+#19 0.223 libopenjp2.a
+#19 0.223 libopenjp2.so
+#19 0.223 libopenjp2.so.2.5.0
+#19 0.223 libopenjp2.so.7
+#19 0.223 libopenjpip_server.a
+#19 0.223 libopenmpt.so.0
+#19 0.223 libopenmpt.so.0.3.3
+#19 0.223 libopus.so.0
+#19 0.223 libopus.so.0.8.0
+#19 0.223 libp11-kit.so.0
+#19 0.223 libp11-kit.so.0.3.0
+#19 0.223 libpam.so.0
+#19 0.223 libpam.so.0.85.1
+#19 0.223 libpam_misc.so.0
+#19 0.223 libpam_misc.so.0.82.1
+#19 0.223 libpamc.so.0
+#19 0.223 libpamc.so.0.82.1
+#19 0.223 libpanel.a
+#19 0.223 libpanel.so
+#19 0.223 libpanel.so.6
+#19 0.223 libpanel.so.6.4
+#19 0.223 libpanelw.a
+#19 0.223 libpanelw.so
+#19 0.223 libpanelw.so.6
+#19 0.223 libpanelw.so.6.4
+#19 0.223 libpango-1.0.so.0
+#19 0.223 libpango-1.0.so.0.5000.12
+#19 0.223 libpangocairo-1.0.so.0
+#19 0.223 libpangocairo-1.0.so.0.5000.12
+#19 0.223 libpangoft2-1.0.so.0
+#19 0.223 libpangoft2-1.0.so.0.5000.12
+#19 0.223 libpciaccess.so.0
+#19 0.223 libpciaccess.so.0.11.1
+#19 0.223 libpcprofile.so
+#19 0.223 libpcre2-16.a
+#19 0.223 libpcre2-16.so
+#19 0.223 libpcre2-16.so.0
+#19 0.223 libpcre2-16.so.0.11.2
+#19 0.223 libpcre2-32.a
+#19 0.223 libpcre2-32.so
+#19 0.223 libpcre2-32.so.0
+#19 0.223 libpcre2-32.so.0.11.2
+#19 0.223 libpcre2-8.a
+#19 0.223 libpcre2-8.so
+#19 0.223 libpcre2-8.so.0
+#19 0.223 libpcre2-8.so.0.11.2
+#19 0.223 libpcre2-posix.a
+#19 0.223 libpcre2-posix.so
+#19 0.223 libpcre2-posix.so.3
+#19 0.223 libpcre2-posix.so.3.0.4
+#19 0.223 libperl.so.5.36
+#19 0.223 libperl.so.5.36.0
+#19 0.223 libpfm.so.4
+#19 0.223 libpfm.so.4.13.0
+#19 0.223 libpgm-5.3.so.0
+#19 0.223 libpgm-5.3.so.0.0.128
+#19 0.223 libpipeline.so.1
+#19 0.223 libpipeline.so.1.5.7
+#19 0.223 libpixman-1.a
+#19 0.223 libpixman-1.so
+#19 0.223 libpixman-1.so.0
+#19 0.223 libpixman-1.so.0.42.2
+#19 0.223 libpkgconf.so.3
+#19 0.223 libpkgconf.so.3.0.0
+#19 0.223 libplc4.so
+#19 0.223 libplds4.so
+#19 0.223 libpng.a
+#19 0.223 libpng.so
+#19 0.223 libpng16.a
+#19 0.223 libpng16.so
+#19 0.223 libpng16.so.16
+#19 0.223 libpng16.so.16.39.0
+#19 0.223 libpq.a
+#19 0.223 libpq.so
+#19 0.223 libpq.so.5
+#19 0.223 libpq.so.5.15
+#19 0.223 libproc2.so.0
+#19 0.223 libproc2.so.0.0.1
+#19 0.223 libpsl.so.5
+#19 0.223 libpsl.so.5.3.4
+#19 0.223 libpsx.so.2
+#19 0.223 libpsx.so.2.66
+#19 0.223 libpthread.a
+#19 0.223 libpthread.so.0
+#19 0.223 libpthread_nonshared.a
+#19 0.223 libquadmath.so.0
+#19 0.223 libquadmath.so.0.0.0
+#19 0.223 librabbitmq.so.4
+#19 0.223 librabbitmq.so.4.5.0
+#19 0.223 librav1e.so.0
+#19 0.223 librav1e.so.0.5.1
+#19 0.223 libreadline.a
+#19 0.223 libreadline.so
+#19 0.223 libreadline.so.8
+#19 0.223 libreadline.so.8.2
+#19 0.223 libresolv.a
+#19 0.223 libresolv.so
+#19 0.223 libresolv.so.2
+#19 0.223 librhash.so.0
+#19 0.223 librist.so.4
+#19 0.223 librist.so.4.2.0
+#19 0.223 librsvg-2.so
+#19 0.223 librsvg-2.so.2
+#19 0.223 librsvg-2.so.2.48.0
+#19 0.223 librt.a
+#19 0.223 librt.so.1
+#19 0.223 librtmp.so.1
+#19 0.223 libsasl2.so.2
+#19 0.223 libsasl2.so.2.0.25
+#19 0.223 libseccomp.so.2
+#19 0.223 libseccomp.so.2.5.4
+#19 0.223 libselinux.a
+#19 0.223 libselinux.so
+#19 0.223 libselinux.so.1
+#19 0.223 libsemanage.so.2
+#19 0.223 libsensors.so.5
+#19 0.223 libsensors.so.5.0.0
+#19 0.223 libsepol.a
+#19 0.223 libsepol.so
+#19 0.223 libsepol.so.2
+#19 0.223 libserf-1.so.1
+#19 0.223 libserf-1.so.1.3.0
+#19 0.223 libsframe.so.0
+#19 0.223 libsframe.so.0.0.0
+#19 0.223 libshine.so.3
+#19 0.223 libshine.so.3.0.1
+#19 0.223 libsmartcols.so.1
+#19 0.223 libsmartcols.so.1.1.0
+#19 0.223 libsmime3.so
+#19 0.223 libsnappy.so.1
+#19 0.223 libsnappy.so.1.1.9
+#19 0.223 libsodium.so.23
+#19 0.223 libsodium.so.23.3.0
+#19 0.223 libsoftokn3.chk
+#19 0.223 libsoftokn3.so
+#19 0.223 libsoxr.so.0
+#19 0.223 libsoxr.so.0.1.2
+#19 0.223 libspeex.so.1
+#19 0.223 libspeex.so.1.5.2
+#19 0.223 libsqlite3.a
+#19 0.223 libsqlite3.so
+#19 0.223 libsqlite3.so.0
+#19 0.223 libsqlite3.so.0.8.6
+#19 0.223 libsrt-gnutls.so.1.5
+#19 0.223 libsrt-gnutls.so.1.5.1
+#19 0.223 libss.so.2
+#19 0.223 libss.so.2.0
+#19 0.223 libssh-gcrypt.so.4
+#19 0.223 libssh-gcrypt.so.4.9.6
+#19 0.223 libssh2.so.1
+#19 0.223 libssh2.so.1.0.1
+#19 0.223 libssl.a
+#19 0.223 libssl.so
+#19 0.223 libssl.so.3
+#19 0.223 libssl3.so
+#19 0.223 libstdc++.so.6
+#19 0.223 libstdc++.so.6.0.30
+#19 0.223 libsvn_auth_gnome_keyring-1.so.1
+#19 0.223 libsvn_auth_gnome_keyring-1.so.1.0.0
+#19 0.223 libsvn_auth_kwallet-1.so.1
+#19 0.223 libsvn_auth_kwallet-1.so.1.0.0
+#19 0.223 libsvn_client-1.so.1
+#19 0.223 libsvn_client-1.so.1.0.0
+#19 0.223 libsvn_delta-1.so.1
+#19 0.223 libsvn_delta-1.so.1.0.0
+#19 0.223 libsvn_diff-1.so.1
+#19 0.223 libsvn_diff-1.so.1.0.0
+#19 0.223 libsvn_fs-1.so.1
+#19 0.223 libsvn_fs-1.so.1.0.0
+#19 0.223 libsvn_fs_base-1.so.1
+#19 0.223 libsvn_fs_base-1.so.1.0.0
+#19 0.223 libsvn_fs_fs-1.so.1
+#19 0.223 libsvn_fs_fs-1.so.1.0.0
+#19 0.223 libsvn_fs_util-1.so.1
+#19 0.223 libsvn_fs_util-1.so.1.0.0
+#19 0.223 libsvn_fs_x-1.so.1
+#19 0.223 libsvn_fs_x-1.so.1.0.0
+#19 0.223 libsvn_ra-1.so.1
+#19 0.223 libsvn_ra-1.so.1.0.0
+#19 0.223 libsvn_ra_local-1.so.1
+#19 0.223 libsvn_ra_local-1.so.1.0.0
+#19 0.223 libsvn_ra_serf-1.so.1
+#19 0.223 libsvn_ra_serf-1.so.1.0.0
+#19 0.223 libsvn_ra_svn-1.so.1
+#19 0.223 libsvn_ra_svn-1.so.1.0.0
+#19 0.223 libsvn_repos-1.so.1
+#19 0.223 libsvn_repos-1.so.1.0.0
+#19 0.223 libsvn_subr-1.so.1
+#19 0.223 libsvn_subr-1.so.1.0.0
+#19 0.223 libsvn_wc-1.so.1
+#19 0.223 libsvn_wc-1.so.1.0.0
+#19 0.223 libswresample.a
+#19 0.223 libswresample.so
+#19 0.223 libswresample.so.4
+#19 0.223 libswresample.so.4.7.100
+#19 0.223 libswscale.a
+#19 0.223 libswscale.so
+#19 0.223 libswscale.so.6
+#19 0.223 libswscale.so.6.7.100
+#19 0.223 libsystemd.so.0
+#19 0.223 libsystemd.so.0.35.0
+#19 0.223 libtasn1.so.6
+#19 0.223 libtasn1.so.6.6.3
+#19 0.223 libtermcap.a
+#19 0.223 libtermcap.so
+#19 0.223 libthai.so.0
+#19 0.223 libthai.so.0.3.1
+#19 0.223 libtheora.so.0
+#19 0.223 libtheora.so.0.3.10
+#19 0.223 libtheoradec.so.1
+#19 0.223 libtheoradec.so.1.1.4
+#19 0.223 libtheoraenc.so.1
+#19 0.223 libtheoraenc.so.1.1.2
+#19 0.223 libthread_db.so
+#19 0.223 libthread_db.so.1
+#19 0.223 libtic.a
+#19 0.223 libtic.so
+#19 0.223 libtic.so.6
+#19 0.223 libtic.so.6.4
+#19 0.223 libtiff.a
+#19 0.223 libtiff.so
+#19 0.223 libtiff.so.6
+#19 0.223 libtiff.so.6.0.0
+#19 0.223 libtiffxx.a
+#19 0.223 libtiffxx.so
+#19 0.223 libtiffxx.so.6
+#19 0.223 libtiffxx.so.6.0.0
+#19 0.223 libtinfo.a
+#19 0.223 libtinfo.so
+#19 0.223 libtinfo.so.6
+#19 0.223 libtinfo.so.6.4
+#19 0.223 libtirpc.a
+#19 0.223 libtirpc.so
+#19 0.223 libtirpc.so.3
+#19 0.223 libtirpc.so.3.0.0
+#19 0.223 libtsan.so.2
+#19 0.223 libtsan.so.2.0.0
+#19 0.223 libtwolame.so.0
+#19 0.223 libtwolame.so.0.0.0
+#19 0.223 libubsan.so.1
+#19 0.223 libubsan.so.1.0.0
+#19 0.223 libudev.so.1
+#19 0.223 libudev.so.1.7.5
+#19 0.223 libudfread.so.0
+#19 0.223 libudfread.so.0.1.0
+#19 0.223 libunistring.so.2
+#19 0.223 libunistring.so.2.2.0
+#19 0.223 libutf8proc.so.2
+#19 0.223 libutf8proc.so.2.6.0
+#19 0.223 libutil.a
+#19 0.223 libutil.so.1
+#19 0.223 libuuid.a
+#19 0.223 libuuid.so
+#19 0.223 libuuid.so.1
+#19 0.223 libuuid.so.1.3.0
+#19 0.223 libuv.so.1
+#19 0.223 libuv.so.1.0.0
+#19 0.223 libva-drm.so.2
+#19 0.223 libva-drm.so.2.1700.0
+#19 0.223 libva-x11.so.2
+#19 0.223 libva-x11.so.2.1700.0
+#19 0.223 libva.so.2
+#19 0.223 libva.so.2.1700.0
+#19 0.223 libvdpau.so.1
+#19 0.223 libvdpau.so.1.0.0
+#19 0.223 libvorbis.so.0
+#19 0.223 libvorbis.so.0.4.9
+#19 0.223 libvorbisenc.so.2
+#19 0.223 libvorbisenc.so.2.0.12
+#19 0.223 libvorbisfile.so.3
+#19 0.223 libvorbisfile.so.3.3.8
+#19 0.223 libvpx.so.7
+#19 0.223 libvpx.so.7.1
+#19 0.223 libvpx.so.7.1.0
+#19 0.223 libwebp.a
+#19 0.223 libwebp.so
+#19 0.223 libwebp.so.7
+#19 0.223 libwebp.so.7.1.5
+#19 0.223 libwebpdemux.a
+#19 0.223 libwebpdemux.so
+#19 0.223 libwebpdemux.so.2
+#19 0.223 libwebpdemux.so.2.0.11
+#19 0.223 libwebpmux.a
+#19 0.223 libwebpmux.so
+#19 0.223 libwebpmux.so.3
+#19 0.223 libwebpmux.so.3.0.10
+#19 0.223 libwmf
+#19 0.223 libwmf-0.2.so
+#19 0.223 libwmf-0.2.so.7
+#19 0.223 libwmf-0.2.so.7.1.4
+#19 0.223 libwmf.a
+#19 0.223 libwmf.so
+#19 0.223 libwmflite-0.2.so
+#19 0.223 libwmflite-0.2.so.7
+#19 0.223 libwmflite-0.2.so.7.0.5
+#19 0.223 libwmflite.a
+#19 0.223 libwmflite.so
+#19 0.223 libx264.so.164
+#19 0.223 libx265.so.199
+#19 0.223 libxcb-dri2.so.0
+#19 0.223 libxcb-dri2.so.0.0.0
+#19 0.223 libxcb-dri3.so.0
+#19 0.223 libxcb-dri3.so.0.1.0
+#19 0.223 libxcb-glx.so.0
+#19 0.223 libxcb-glx.so.0.0.0
+#19 0.223 libxcb-present.so.0
+#19 0.223 libxcb-present.so.0.0.0
+#19 0.223 libxcb-randr.so.0
+#19 0.223 libxcb-randr.so.0.1.0
+#19 0.223 libxcb-render.a
+#19 0.223 libxcb-render.so
+#19 0.223 libxcb-render.so.0
+#19 0.223 libxcb-render.so.0.0.0
+#19 0.223 libxcb-shm.a
+#19 0.223 libxcb-shm.so
+#19 0.223 libxcb-shm.so.0
+#19 0.223 libxcb-shm.so.0.0.0
+#19 0.223 libxcb-sync.so.1
+#19 0.223 libxcb-sync.so.1.0.0
+#19 0.223 libxcb-xfixes.so.0
+#19 0.223 libxcb-xfixes.so.0.0.0
+#19 0.223 libxcb.a
+#19 0.223 libxcb.so
+#19 0.223 libxcb.so.1
+#19 0.223 libxcb.so.1.1.0
+#19 0.223 libxml2.a
+#19 0.223 libxml2.so
+#19 0.223 libxml2.so.2
+#19 0.223 libxml2.so.2.9.14
+#19 0.223 libxshmfence.so.1
+#19 0.223 libxshmfence.so.1.0.0
+#19 0.223 libxslt.so
+#19 0.223 libxslt.so.1
+#19 0.223 libxslt.so.1.1.35
+#19 0.223 libxvidcore.so.4
+#19 0.223 libxvidcore.so.4.3
+#19 0.223 libxxhash.so.0
+#19 0.223 libxxhash.so.0.8.1
+#19 0.223 libyaml-0.so.2
+#19 0.223 libyaml-0.so.2.0.9
+#19 0.223 libyaml.a
+#19 0.223 libyaml.so
+#19 0.223 libz.a
+#19 0.223 libz.so
+#19 0.223 libz.so.1
+#19 0.223 libz.so.1.2.13
+#19 0.223 libz3.so
+#19 0.223 libz3.so.4
+#19 0.223 libzmq.so.5
+#19 0.223 libzmq.so.5.2.4
+#19 0.223 libzstd.a
+#19 0.223 libzstd.so
+#19 0.223 libzstd.so.1
+#19 0.223 libzstd.so.1.5.4
+#19 0.223 libzvbi-chains.so.0
+#19 0.223 libzvbi-chains.so.0.0.0
+#19 0.223 libzvbi.so.0
+#19 0.223 libzvbi.so.0.13.2
+#19 0.223 mfx
+#19 0.223 mit-krb5
+#19 0.223 nss
+#19 0.223 openjpeg-2.1
+#19 0.223 openjpeg-2.5
+#19 0.223 ossl-modules
+#19 0.223 perl
+#19 0.223 perl-base
+#19 0.223 pkgconfig
+#19 0.223 rcrt1.o
+#19 0.223 sasl2
+#19 0.223 security
+#19 0.223 vdpau
+#19 0.223 xml2Conf.sh
+#19 0.223 xsltConf.sh
+#19 0.223 + ls /opt/opencv/include
+#19 0.224 opencv4
+#19 0.224 + ls /opt/opencv/include/opencv4
+#19 0.226 opencv2
+#19 0.226 + ls /usr/include/x86_64-linux-gnu
+#19 0.228 ImageMagick-6
+#19 0.228 a.out.h
+#19 0.228 asm
+#19 0.228 bits
+#19 0.228 c++
+#19 0.228 curl
+#19 0.228 expat_config.h
+#19 0.228 ffi.h
+#19 0.228 ffitarget.h
+#19 0.228 fpu_control.h
+#19 0.228 gmp.h
+#19 0.228 gnu
+#19 0.228 ieee754.h
+#19 0.228 jconfig.h
+#19 0.228 libavcodec
+#19 0.228 libavformat
+#19 0.228 libavutil
+#19 0.228 libswresample
+#19 0.228 libswscale
+#19 0.228 libxslt
+#19 0.228 maxminddb.h
+#19 0.228 maxminddb_config.h
+#19 0.228 openssl
+#19 0.228 sys
+#19 0.228 tiff.h
+#19 0.228 tiffconf.h
+#19 0.228 tiffio.h
+#19 0.228 tiffio.hxx
+#19 0.228 tiffvers.h
+#19 DONE 0.2s
+
+#20 [test  7/10] RUN set -xeu && 	cd /root/oko/backend && 	cargo build
+#20 0.289 + cd /root/oko/backend
+#20 0.289 + cargo build
+#20 0.418     Updating crates.io index
+#20 3.592  Downloading crates ...
+#20 3.664   Downloaded atoi v2.0.0
+#20 3.670   Downloaded argon2 v0.5.3
+#20 3.674   Downloaded autocfg v1.4.0
+#20 3.680   Downloaded allocator-api2 v0.2.21
+#20 3.683   Downloaded axum v0.7.9
+#20 3.693   Downloaded aho-corasick v1.1.3
+#20 3.700   Downloaded async-trait v0.1.83
+#20 3.705   Downloaded lock_api v0.4.12
+#20 3.707   Downloaded ahash v0.8.11
+#20 3.718   Downloaded tokio v1.42.0
+#20 3.774   Downloaded tokio-native-tls v0.3.1
+#20 3.778   Downloaded tower v0.5.2
+#20 3.794   Downloaded crc v3.2.1
+#20 3.798   Downloaded futures-core v0.3.31
+#20 3.800   Downloaded futures-channel v0.3.31
+#20 3.802   Downloaded futures-executor v0.3.31
+#20 3.804   Downloaded futures v0.3.31
+#20 3.812   Downloaded unicode-ident v1.0.14
+#20 3.816   Downloaded writeable v0.5.5
+#20 3.821   Downloaded utf-8 v0.7.6
+#20 3.825   Downloaded rust-embed-impl v8.5.0
+#20 3.828   Downloaded matchers v0.1.0
+#20 3.832   Downloaded num-conv v0.1.0
+#20 3.835   Downloaded ryu v1.0.18
+#20 3.841   Downloaded serde_derive v1.0.216
+#20 3.847   Downloaded serde_json v1.0.133
+#20 3.858   Downloaded signature v2.2.0
+#20 3.861   Downloaded rand v0.8.5
+#20 3.867   Downloaded sqlformat v0.2.6
+#20 3.870   Downloaded time-core v0.1.2
+#20 3.872   Downloaded stable_deref_trait v1.2.0
+#20 3.874   Downloaded regex-syntax v0.8.5
+#20 3.885   Downloaded subtle v2.6.1
+#20 3.887   Downloaded sha2 v0.10.8
+#20 3.890   Downloaded shlex v1.3.0
+#20 3.893   Downloaded spin v0.9.8
+#20 3.896   Downloaded serde_path_to_error v0.1.16
+#20 3.898   Downloaded socket2 v0.5.8
+#20 3.900   Downloaded semver v1.0.23
+#20 3.904   Downloaded scopeguard v1.2.0
+#20 3.905   Downloaded thiserror v2.0.6
+#20 3.913   Downloaded sync_wrapper v1.0.2
+#20 3.914   Downloaded thiserror v1.0.69
+#20 3.921   Downloaded synstructure v0.13.1
+#20 3.923   Downloaded openssl v0.10.68
+#20 3.934   Downloaded same-file v1.0.6
+#20 3.936   Downloaded tempfile v3.14.0
+#20 3.940   Downloaded sqlx v0.8.2
+#20 3.957   Downloaded smallvec v1.13.2
+#20 3.960   Downloaded rust-embed v8.5.0
+#20 3.969   Downloaded slab v0.4.9
+#20 3.971   Downloaded signal-hook-registry v1.4.2
+#20 3.972   Downloaded serde_urlencoded v0.7.1
+#20 3.974   Downloaded syn v2.0.90
+#20 3.987   Downloaded tinyvec v1.8.0
+#20 3.991   Downloaded time-macros v0.2.19
+#20 3.993   Downloaded thread_local v1.1.8
+#20 3.995   Downloaded sqlx-mysql v0.8.2
+#20 4.002   Downloaded regex-automata v0.4.9
+#20 4.022   Downloaded sharded-slab v0.1.7
+#20 4.026   Downloaded sha1 v0.10.6
+#20 4.028   Downloaded serde v1.0.216
+#20 4.032   Downloaded tinystr v0.7.6
+#20 4.035   Downloaded sqlx-core v0.8.2
+#20 4.044   Downloaded opencv v0.93.5
+#20 4.092   Downloaded time v0.3.37
+#20 4.102   Downloaded thiserror-impl v2.0.6
+#20 4.103   Downloaded stringprep v0.1.5
+#20 4.105   Downloaded sqlx-macros-core v0.8.2
+#20 4.108   Downloaded memchr v2.7.4
+#20 4.114   Downloaded rustix v0.38.42
+#20 4.148   Downloaded thiserror-impl v1.0.69
+#20 4.149   Downloaded sqlx-sqlite v0.8.2
+#20 4.155   Downloaded sqlx-postgres v0.8.2
+#20 4.164   Downloaded libsqlite3-sys v0.30.1
+#20 4.249   Downloaded sqlx-macros v0.8.2
+#20 4.249   Downloaded rustversion v1.0.18
+#20 4.253   Downloaded rust-embed-utils v8.5.0
+#20 4.253   Downloaded tinyvec_macros v0.1.1
+#20 4.254   Downloaded regex v1.11.1
+#20 4.272   Downloaded regex-syntax v0.6.29
+#20 4.279   Downloaded spki v0.7.3
+#20 4.281   Downloaded regex-automata v0.1.10
+#20 4.287   Downloaded linux-raw-sys v0.4.14
+#20 4.340   Downloaded rsa v0.9.7
+#20 4.346   Downloaded rand_core v0.6.4
+#20 4.347   Downloaded rand_chacha v0.3.1
+#20 4.349   Downloaded quote v1.0.37
+#20 4.352   Downloaded openssl-sys v0.9.104
+#20 4.358   Downloaded opencv-binding-generator v0.93.0
+#20 4.371   Downloaded mio v1.0.3
+#20 4.379   Downloaded rmp-serde v1.3.0
+#20 4.381   Downloaded rmp v0.8.14
+#20 4.386   Downloaded ppv-lite86 v0.2.20
+#20 4.387   Downloaded powerfmt v0.2.0
+#20 4.388   Downloaded pkg-config v0.3.31
+#20 4.390   Downloaded pkcs8 v0.10.2
+#20 4.394   Downloaded pin-utils v0.1.0
+#20 4.395   Downloaded pem-rfc7468 v0.7.0
+#20 4.397   Downloaded paste v1.0.15
+#20 4.401   Downloaded parking_lot_core v0.9.10
+#20 4.404   Downloaded parking_lot v0.12.3
+#20 4.406   Downloaded parking v2.2.1
+#20 4.408   Downloaded openssl-macros v0.1.1
+#20 4.409   Downloaded once_cell v1.20.2
+#20 4.412   Downloaded minimal-lexical v0.2.1
+#20 4.417   Downloaded proc-macro2 v1.0.92
+#20 4.420   Downloaded pkcs1 v0.7.5
+#20 4.423   Downloaded pin-project-lite v0.2.15
+#20 4.430   Downloaded percent-encoding v2.3.1
+#20 4.431   Downloaded password-auth v1.0.0
+#20 4.432   Downloaded num-traits v0.2.19
+#20 4.435   Downloaded num-integer v0.1.46
+#20 4.437   Downloaded num-bigint-dig v0.8.4
+#20 4.443   Downloaded nom v7.1.3
+#20 4.449   Downloaded zerocopy v0.7.35
+#20 4.473   Downloaded unicode_categories v0.1.1
+#20 4.475   Downloaded libc v0.2.168
+#20 4.508   Downloaded password-hash v0.5.0
+#20 4.510   Downloaded openssl-probe v0.1.5
+#20 4.512   Downloaded num-iter v0.1.45
+#20 4.513   Downloaded mime_guess v2.0.5
+#20 4.515   Downloaded mime v0.3.17
+#20 4.516   Downloaded yoke v0.7.5
+#20 4.518   Downloaded unicode-properties v0.1.3
+#20 4.520   Downloaded typenum v1.17.0
+#20 4.523   Downloaded native-tls v0.2.12
+#20 4.526   Downloaded md-5 v0.10.6
+#20 4.528   Downloaded matchit v0.7.3
+#20 4.530   Downloaded zeroize v1.8.1
+#20 4.532   Downloaded zerocopy-derive v0.7.35
+#20 4.537   Downloaded whoami v1.5.2
+#20 4.540   Downloaded walkdir v2.5.0
+#20 4.542   Downloaded version_check v0.9.5
+#20 4.543   Downloaded utf8_iter v1.0.4
+#20 4.544   Downloaded utf16_iter v1.0.5
+#20 4.546   Downloaded url v2.5.4
+#20 4.549   Downloaded idna v1.0.3
+#20 4.553   Downloaded icu_properties_data v1.5.0
+#20 4.567   Downloaded hyper v1.5.1
+#20 4.575   Downloaded hkdf v0.12.4
+#20 4.577   Downloaded hashbrown v0.15.2
+#20 4.584   Downloaded hashbrown v0.14.5
+#20 4.590   Downloaded futures-util v0.3.31
+#20 4.606   Downloaded log v0.4.22
+#20 4.609   Downloaded zerovec-derive v0.10.3
+#20 4.611   Downloaded zerovec v0.10.4
+#20 4.618   Downloaded write16 v1.0.0
+#20 4.619   Downloaded litemap v0.7.4
+#20 4.621   Downloaded libm v0.2.11
+#20 4.633   Downloaded indexmap v2.7.0
+#20 4.638   Downloaded icu_provider v1.5.0
+#20 4.641   Downloaded icu_properties v1.5.1
+#20 4.644   Downloaded icu_normalizer_data v1.5.0
+#20 4.646   Downloaded icu_normalizer v1.5.0
+#20 4.650   Downloaded icu_locid_transform_data v1.5.0
+#20 4.652   Downloaded icu_locid_transform v1.5.0
+#20 4.655   Downloaded http v1.2.0
+#20 4.659   Downloaded zerofrom-derive v0.1.5
+#20 4.661   Downloaded zerofrom v0.1.5
+#20 4.661   Downloaded yoke-derive v0.7.5
+#20 4.662   Downloaded vcpkg v0.2.15
+#20 4.733   Downloaded unicode-normalization v0.1.24
+#20 4.737   Downloaded unicase v2.8.0
+#20 4.739   Downloaded tracing-attributes v0.1.28
+#20 4.741   Downloaded tower-service v0.3.3
+#20 4.742   Downloaded jobserver v0.1.32
+#20 4.745   Downloaded httparse v1.9.5
+#20 4.747   Downloaded http-range-header v0.4.2
+#20 4.749   Downloaded home v0.5.9
+#20 4.750   Downloaded hmac v0.12.1
+#20 4.752   Downloaded hex v0.4.3
+#20 4.754   Downloaded heck v0.5.0
+#20 4.756   Downloaded hashlink v0.9.1
+#20 4.757   Downloaded generic-array v0.14.7
+#20 4.759   Downloaded futures-intrusive v0.5.0
+#20 4.765   Downloaded urlencoding v2.1.3
+#20 4.766   Downloaded unicode-bidi v0.3.17
+#20 4.769   Downloaded tungstenite v0.24.0
+#20 4.773   Downloaded tracing-subscriber v0.3.19
+#20 4.783   Downloaded tracing-core v0.1.33
+#20 4.786   Downloaded tracing v0.1.41
+#20 4.791   Downloaded tower-sessions-sqlx-store v0.14.2
+#20 4.792   Downloaded tower-sessions-memory-store v0.13.0
+#20 4.793   Downloaded tower-layer v0.3.3
+#20 4.794   Downloaded lazy_static v1.5.0
+#20 4.796   Downloaded itoa v1.0.14
+#20 4.798   Downloaded icu_provider_macros v1.5.0
+#20 4.799   Downloaded icu_locid v1.5.0
+#20 4.805   Downloaded iana-time-zone v0.1.61
+#20 4.808   Downloaded hyper-util v0.1.10
+#20 4.813   Downloaded httpdate v1.0.3
+#20 4.814   Downloaded tower-sessions-core v0.13.0
+#20 4.815   Downloaded tower-sessions v0.13.0
+#20 4.818   Downloaded tower-http v0.6.2
+#20 4.828   Downloaded tower-cookies v0.10.0
+#20 4.830   Downloaded http-body-util v0.1.2
+#20 4.832   Downloaded http-body v1.0.1
+#20 4.833   Downloaded glob v0.3.1
+#20 4.835   Downloaded futures-task v0.3.31
+#20 4.836   Downloaded futures-sink v0.3.31
+#20 4.837   Downloaded futures-macro v0.3.31
+#20 4.838   Downloaded futures-io v0.3.31
+#20 4.839   Downloaded idna_adapter v1.2.0
+#20 4.840   Downloaded icu_collections v1.5.0
+#20 4.848   Downloaded getrandom v0.2.15
+#20 4.851   Downloaded form_urlencoded v1.2.1
+#20 4.852   Downloaded flume v0.11.1
+#20 4.857   Downloaded event-listener v5.3.1
+#20 4.859   Downloaded errno v0.3.10
+#20 4.861   Downloaded either v1.13.0
+#20 4.862   Downloaded foreign-types-shared v0.1.1
+#20 4.863   Downloaded foreign-types v0.3.2
+#20 4.864   Downloaded fnv v1.0.7
+#20 4.865   Downloaded fastrand v2.3.0
+#20 4.866   Downloaded equivalent v1.0.1
+#20 4.867   Downloaded dunce v1.0.5
+#20 4.868   Downloaded dotenvy v0.15.7
+#20 4.872   Downloaded displaydoc v0.2.5
+#20 4.875   Downloaded digest v0.10.7
+#20 4.877   Downloaded deranged v0.3.11
+#20 4.879   Downloaded der v0.7.9
+#20 4.885   Downloaded data-encoding v2.6.0
+#20 4.886   Downloaded crypto-common v0.1.6
+#20 4.887   Downloaded crossbeam-utils v0.8.20
+#20 4.891   Downloaded crossbeam-queue v0.3.11
+#20 4.892   Downloaded crc-catalog v2.4.0
+#20 4.893   Downloaded byteorder v1.5.0
+#20 4.895   Downloaded blake2 v0.10.6
+#20 4.898   Downloaded base64ct v1.6.0
+#20 4.901   Downloaded axum-embed v0.1.0
+#20 4.909   Downloaded cookie v0.18.1
+#20 4.912   Downloaded concurrent-queue v2.5.0
+#20 4.914   Downloaded chrono v0.4.39
+#20 4.922   Downloaded cfg-if v1.0.0
+#20 4.924   Downloaded tokio-util v0.7.13
+#20 4.932   Downloaded tokio-tungstenite v0.24.0
+#20 4.935   Downloaded tokio-stream v0.1.17
+#20 4.940   Downloaded tokio-macros v2.4.0
+#20 4.941   Downloaded const-oid v0.9.6
+#20 4.944   Downloaded clang v2.0.0
+#20 4.947   Downloaded cc v1.2.3
+#20 4.951   Downloaded bitflags v2.6.0
+#20 4.956   Downloaded base64 v0.22.1
+#20 4.961   Downloaded axum-login v0.16.0
+#20 4.962   Downloaded axum-core v0.4.5
+#20 4.965   Downloaded cpufeatures v0.2.16
+#20 4.967   Downloaded clang-sys v1.8.1
+#20 4.969   Downloaded bytes v1.9.0
+#20 4.974   Downloaded block-buffer v0.10.4
+#20 5.060    Compiling proc-macro2 v1.0.92
+#20 5.060    Compiling unicode-ident v1.0.14
+#20 5.060    Compiling autocfg v1.4.0
+#20 5.060    Compiling libc v0.2.168
+#20 5.060    Compiling cfg-if v1.0.0
+#20 5.060    Compiling version_check v0.9.5
+#20 5.061    Compiling memchr v2.7.4
+#20 5.061    Compiling futures-core v0.3.31
+#20 5.077    Compiling pin-project-lite v0.2.15
+#20 5.091    Compiling typenum v1.17.0
+#20 5.102    Compiling itoa v1.0.14
+#20 5.107    Compiling bytes v1.9.0
+#20 5.111    Compiling pin-utils v0.1.0
+#20 5.119    Compiling futures-task v0.3.31
+#20 5.124    Compiling futures-io v0.3.31
+#20 5.131    Compiling once_cell v1.20.2
+#20 5.131    Compiling serde v1.0.216
+#20 5.142    Compiling cpufeatures v0.2.16
+#20 5.147    Compiling futures-sink v0.3.31
+#20 5.148    Compiling stable_deref_trait v1.2.0
+#20 5.148    Compiling percent-encoding v2.3.1
+#20 5.148    Compiling scopeguard v1.2.0
+#20 5.149    Compiling byteorder v1.5.0
+#20 5.149    Compiling subtle v2.6.1
+#20 5.149    Compiling writeable v0.5.5
+#20 5.149    Compiling parking_lot_core v0.9.10
+#20 5.149    Compiling litemap v0.7.4
+#20 5.150    Compiling smallvec v1.13.2
+#20 5.150    Compiling log v0.4.22
+#20 5.150    Compiling powerfmt v0.2.0
+#20 5.150    Compiling icu_locid_transform_data v1.5.0
+#20 5.150    Compiling thiserror v1.0.69
+#20 5.151    Compiling time-core v0.1.2
+#20 5.151    Compiling num-conv v0.1.0
+#20 5.151    Compiling fnv v1.0.7
+#20 5.151    Compiling icu_properties_data v1.5.0
+#20 5.151    Compiling ryu v1.0.18
+#20 5.152    Compiling utf16_iter v1.0.5
+#20 5.152    Compiling icu_normalizer_data v1.5.0
+#20 5.152    Compiling write16 v1.0.0
+#20 5.152    Compiling utf8_iter v1.0.4
+#20 5.152    Compiling serde_json v1.0.133
+#20 5.153    Compiling shlex v1.3.0
+#20 5.165    Compiling crossbeam-utils v0.8.20
+#20 5.172    Compiling paste v1.0.15
+#20 5.179    Compiling allocator-api2 v0.2.21
+#20 5.179    Compiling vcpkg v0.2.15
+#20 5.274    Compiling tower-service v0.3.3
+#20 5.340    Compiling tracing-core v0.1.33
+#20 5.345    Compiling form_urlencoded v1.2.1
+#20 5.353    Compiling futures-channel v0.3.31
+#20 5.360    Compiling pkg-config v0.3.31
+#20 5.376    Compiling mime v0.3.17
+#20 5.380    Compiling tower-layer v0.3.3
+#20 5.381    Compiling rustversion v1.0.18
+#20 5.401    Compiling sync_wrapper v1.0.2
+#20 5.416    Compiling minimal-lexical v0.2.1
+#20 5.416    Compiling crc-catalog v2.4.0
+#20 5.449    Compiling generic-array v0.14.7
+#20 5.449    Compiling time-macros v0.2.19
+#20 5.450    Compiling http v1.2.0
+#20 5.450    Compiling ahash v0.8.11
+#20 5.458    Compiling unicode_categories v0.1.1
+#20 5.472    Compiling parking v2.2.1
+#20 5.477    Compiling hashbrown v0.15.2
+#20 5.479    Compiling zerocopy v0.7.35
+#20 5.503    Compiling equivalent v1.0.1
+#20 5.517    Compiling httparse v1.9.5
+#20 5.517    Compiling glob v0.3.1
+#20 5.518    Compiling hex v0.4.3
+#20 5.518    Compiling base64 v0.22.1
+#20 5.540    Compiling slab v0.4.9
+#20 5.549    Compiling lock_api v0.4.12
+#20 5.562    Compiling num-traits v0.2.19
+#20 5.584    Compiling crc v3.2.1
+#20 5.591    Compiling deranged v0.3.11
+#20 5.609    Compiling rustix v0.38.42
+#20 5.625    Compiling aho-corasick v1.1.3
+#20 5.638    Compiling bitflags v2.6.0
+#20 5.654    Compiling regex-syntax v0.8.5
+#20 5.655    Compiling same-file v1.0.6
+#20 5.655    Compiling linux-raw-sys v0.4.14
+#20 5.655    Compiling cookie v0.18.1
+#20 5.655    Compiling unicase v2.8.0
+#20 5.718    Compiling nom v7.1.3
+#20 5.726    Compiling semver v1.0.23
+#20 5.734    Compiling fastrand v2.3.0
+#20 5.742    Compiling httpdate v1.0.3
+#20 5.750    Compiling data-encoding v2.6.0
+#20 5.786    Compiling dotenvy v0.15.7
+#20 5.786    Compiling heck v0.5.0
+#20 5.795    Compiling dunce v1.0.5
+#20 5.808    Compiling utf-8 v0.7.6
+#20 5.818    Compiling quote v1.0.37
+#20 5.823    Compiling clang-sys v1.8.1
+#20 5.837    Compiling walkdir v2.5.0
+#20 5.861    Compiling base64ct v1.6.0
+#20 5.861    Compiling regex-syntax v0.6.29
+#20 5.879    Compiling iana-time-zone v0.1.61
+#20 5.902    Compiling lazy_static v1.5.0
+#20 5.915    Compiling matchit v0.7.3
+#20 5.923    Compiling thiserror v2.0.6
+#20 5.931    Compiling thread_local v1.1.8
+#20 5.942    Compiling urlencoding v2.1.3
+#20 5.968    Compiling syn v2.0.90
+#20 5.968    Compiling indexmap v2.7.0
+#20 5.976    Compiling mime_guess v2.0.5
+#20 5.977    Compiling http-range-header v0.4.2
+#20 5.994    Compiling oko v0.1.2 (/root/oko/backend)
+#20 6.058    Compiling socket2 v0.5.8
+#20 6.058    Compiling mio v1.0.3
+#20 6.058    Compiling signal-hook-registry v1.4.2
+#20 6.080    Compiling getrandom v0.2.15
+#20 6.080    Compiling http-body v1.0.1
+#20 6.080    Compiling jobserver v0.1.32
+#20 6.107    Compiling concurrent-queue v2.5.0
+#20 6.108    Compiling crossbeam-queue v0.3.11
+#20 6.136    Compiling futures-util v0.3.31
+#20 6.137    Compiling hashbrown v0.14.5
+#20 6.162    Compiling sharded-slab v0.1.7
+#20 6.202    Compiling rand_core v0.6.4
+#20 6.224    Compiling event-listener v5.3.1
+#20 6.246    Compiling spin v0.9.8
+#20 6.247    Compiling cc v1.2.3
+#20 6.269    Compiling parking_lot v0.12.3
+#20 6.298    Compiling tokio v1.42.0
+#20 6.312    Compiling password-hash v0.5.0
+#20 6.376    Compiling flume v0.11.1
+#20 6.418    Compiling futures-intrusive v0.5.0
+#20 6.593    Compiling atoi v2.0.0
+#20 6.593    Compiling rmp v0.8.14
+#20 6.593    Compiling chrono v0.4.39
+#20 6.611    Compiling time v0.3.37
+#20 6.651    Compiling clang v2.0.0
+#20 6.661    Compiling hashlink v0.9.1
+#20 6.722    Compiling block-buffer v0.10.4
+#20 6.722    Compiling crypto-common v0.1.6
+#20 6.781    Compiling digest v0.10.7
+#20 6.890    Compiling sha2 v0.10.8
+#20 6.890    Compiling hmac v0.12.1
+#20 6.890    Compiling sha1 v0.10.6
+#20 6.890    Compiling blake2 v0.10.6
+#20 6.937    Compiling sqlformat v0.2.6
+#20 6.948    Compiling regex-automata v0.4.9
+#20 7.053    Compiling argon2 v0.5.3
+#20 7.088    Compiling rust-embed-utils v8.5.0
+#20 7.098    Compiling libsqlite3-sys v0.30.1
+#20 7.143    Compiling regex-automata v0.1.10
+#20 7.258    Compiling password-auth v1.0.0
+#20 7.274    Compiling tempfile v3.14.0
+#20 7.601    Compiling matchers v0.1.0
+#20 7.877    Compiling futures-executor v0.3.31
+#20 7.936    Compiling regex v1.11.1
+#20 8.303    Compiling synstructure v0.13.1
+#20 8.483    Compiling opencv-binding-generator v0.93.0
+#20 8.579    Compiling tokio-stream v0.1.17
+#20 8.629    Compiling serde_derive v1.0.216
+#20 8.629    Compiling zerofrom-derive v0.1.5
+#20 8.629    Compiling yoke-derive v0.7.5
+#20 8.629    Compiling zerovec-derive v0.10.3
+#20 8.639    Compiling displaydoc v0.2.5
+#20 8.643    Compiling futures-macro v0.3.31
+#20 8.648    Compiling zerocopy-derive v0.7.35
+#20 8.652    Compiling icu_provider_macros v1.5.0
+#20 8.657    Compiling tokio-macros v2.4.0
+#20 8.661    Compiling thiserror-impl v1.0.69
+#20 8.662    Compiling tracing-attributes v0.1.28
+#20 8.664    Compiling async-trait v0.1.83
+#20 8.668    Compiling rust-embed-impl v8.5.0
+#20 8.669    Compiling thiserror-impl v2.0.6
+#20 9.205    Compiling rust-embed v8.5.0
+#20 9.432    Compiling zerofrom v0.1.5
+#20 9.455    Compiling tracing v0.1.41
+#20 9.484    Compiling yoke v0.7.5
+#20 9.570    Compiling zerovec v0.10.4
+#20 9.581    Compiling tracing-subscriber v0.3.19
+#20 9.615    Compiling ppv-lite86 v0.2.20
+#20 9.839    Compiling rand_chacha v0.3.1
+#20 9.980    Compiling rand v0.8.5
+#20 10.12    Compiling tinystr v0.7.6
+#20 10.12    Compiling icu_collections v1.5.0
+#20 10.24    Compiling icu_locid v1.5.0
+#20 10.29    Compiling opencv v0.93.5
+#20 10.38    Compiling tungstenite v0.24.0
+#20 10.56    Compiling icu_provider v1.5.0
+#20 10.76    Compiling icu_locid_transform v1.5.0
+#20 10.78    Compiling http-body-util v0.1.2
+#20 10.78    Compiling futures v0.3.31
+#20 10.89    Compiling axum-core v0.4.5
+#20 11.09    Compiling icu_properties v1.5.1
+#20 11.60    Compiling hyper v1.5.1
+#20 11.60    Compiling tokio-tungstenite v0.24.0
+#20 11.60    Compiling tower v0.5.2
+#20 11.60    Compiling tokio-util v0.7.13
+#20 11.78    Compiling either v1.13.0
+#20 11.78    Compiling serde_urlencoded v0.7.1
+#20 11.90    Compiling tower-http v0.6.2
+#20 11.94    Compiling serde_path_to_error v0.1.16
+#20 11.95    Compiling rmp-serde v1.3.0
+#20 11.99    Compiling axum-embed v0.1.0
+#20 12.07    Compiling hyper-util v0.1.10
+#20 12.15    Compiling icu_normalizer v1.5.0
+#20 12.43    Compiling idna_adapter v1.2.0
+#20 12.50    Compiling idna v1.0.3
+#20 12.55    Compiling axum v0.7.9
+#20 12.66    Compiling url v2.5.4
+#20 12.94    Compiling sqlx-core v0.8.2
+#20 13.32    Compiling tower-sessions-core v0.13.0
+#20 13.53    Compiling tower-cookies v0.10.0
+#20 13.62    Compiling tower-sessions-memory-store v0.13.0
+#20 13.73    Compiling tower-sessions v0.13.0
+#20 14.26    Compiling sqlx-sqlite v0.8.2
+#20 14.66    Compiling axum-login v0.16.0
+#20 15.29    Compiling sqlx-macros-core v0.8.2
+#20 16.09    Compiling sqlx-macros v0.8.2
+#20 17.32    Compiling sqlx v0.8.2
+#20 17.41    Compiling tower-sessions-sqlx-store v0.14.2
+#20 34.27 error: linking with `cc` failed: exit status: 1
+#20 34.27   |
+#20 34.27   = note: LC_ALL="C" PATH="/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin:/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" VSLANG="1033" "cc" "-m64" "/tmp/rustc1b33Fl/symbols.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.016q7egpqml8qdh87kdyjhuqf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04fvp96bb87v885hxxosmlzt1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04ou3ijbyggwajeuvaroh3mj5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04rp1kt9pv1m2kdjb4n93oghx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.05n7w932wq311hlhgvoagv6vx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08a5jeev1gnhk89a83dryrtb8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08qvlu3kf2ph1lo8e3humafex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09tcwcdo9sa36ryxrp88zzm8j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09vxg5sopybbnbujee10qy4wk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0c34gslzf1bnkia441ymhtdny.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fhq7021elhgz6ffd5qy53waj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fynzp34uk12cd6bg4t6p16oq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nvrmh3xb7vmw0azfn44jvtho.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nya7zbiqrb9e20697bmppp1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0ozicw79097lohdfbmnmpunai.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0rjjvixkg2ve961lfc0yz8eas.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s6djh7ky584nay3cjgpnwj8l.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s8jefb966pex59nsun49s07a.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0wq5zhx651kyr5msnehovc9c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0zfcr801c9t1vssc53o5nqoou.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11jy0yhndeml9thvce7cs8jlv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11ydb6xcbxsj3020rem7w9laa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1283aimnzajst5lo7awybobex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.12scmmcqo9jkx1pfetd2clgfr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13896ttkesp9ojy1kc7vncsgf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13mywzmjayiaofwtka1grpj60.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.157vd7cgii3k7qfpeglo0l84i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.16gmm6amptul6e0ahe5kxogl4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bbwnl5by3pkwz005mfi9jxhx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bnvhucf3hqkesqtupjnyx49w.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1eqbxw5uqpq3qhzukaekpmd5r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1es0xkm9ty6atkwg1hc7ctus4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1f2bg2riqo7lvv4g83vyio1y7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1g9i1wjbvr0qg3ryj836s2zr3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1groc22v44stxha5yh9qvty71.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1hn6prgv7g54dif96uoqndp91.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ijrxyeuirlhl6uhlwicutnfs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1pjdsc93it0vus47u8hmretkg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1r4mp2hd2mjtc5naho5uur95c.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1xp0xe3veat5epa3s57iquv9s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ypwxphtmtker9jxeo5drqwhq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.23b40gtnwwlebx95agmdefyu3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.26rfpafuk4nqc2y6e5419yvvw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.29bk1eudmhtdfqlhe493zinjc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ag2e1n3c0v0emp8eztrjga84.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2agjzvraicew15etlbcna3y73.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2bf6nu6qpdh2gr825f0t32cft.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2fepoa2buqzj7dasupqvyf5c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2h1jjuz78gp7x42zg9nvfirxm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2stczcyfk2tn17d7psx84s457.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xpu21ze2221h5aab01nlll99.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xxzdzviick8vl1dply9bvirx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ze6iehqmp8tnbjp8vfg4udgu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31mtikmtwvzaj3ucrsuimv8fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31z1m09myt8yqapedzq1aohh5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.32oxzb88nllfhe6405spwrc17.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3445v60f3832ay7w4avascua3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.35imc5zlwtjn6bitb6iwy9m6g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.37ami1eka6g7wktj3xaz2jvy5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bmvc0lghmkciqj211mogxznb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bq6d4e610macumcc68a5s6st.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ijxn27bwpajgzmm22zjnbmoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3k9xbz8ofhca43eng5cc7r0ro.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3mw2ra2qz9mrnpqdaf7er4kqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3n096oxzyax1hs8udcuv16i4d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ptx1dy7mw88iybtjt9zzl4e6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r2a9ppxf9jn98hi2djuk681m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r7wza1xwxm6bh1ldgn8n0vf7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3wzshgvi2pozl98haf7f44b32.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xn5rvp9oawra8zxpz234uo35.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xz82vose6kao6k0xu1o77e1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.41vr64uuaytrghkul0cj3k119.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.43erw4n1mfglxtewunkzfmqal.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.461iux3gun64tizu4sf00zpkn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.467pctattetzy1na4yosqq7ym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.46gq9l5f8iglhcicu2mtvq3iz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.47bd8l5vz0a29v01fdjwnh8na.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4ac9auaste3htnxogzg0bz8x2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4aihpuu8eppecttffjrbdvvjs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4angiz8mu028uawlhuk922gvu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4drpz6gy2m0jzixhynd6ymo5n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4its1g4wq63ml96xq6350pdug.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4kblb0uy0ymevsz3oqk5lc8bq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mh64hysbtw1oppe4pniv8eos.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mx1qpiwu4rhie6x85ah6v4cv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4om1tlzbfldx5azke6d79uwcv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4wvzt9bgtzsx8fdcja5uurvur.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4xa4bsdnjkkgnqo05n1b7jx4k.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57pqjicfonldtsnajzmpkps01.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57vdv75hv42clx8k58ofljafm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59aochvel1jryjmqcbhfarjz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59cwp3vt96d993k4rugei5x6v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59t4a4f5f9hyc1489co2lalv2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5a54cqckzl688k5mj41konsci.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5c3kayrwa4mo4927cw1l2t7jj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5fkda9y0y0mmrpow0cgmrbl9i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5h0ugqnd1o80l3hgja0gqh5q6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5imh4cvuvl0ijk55yzt9syqvg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5o043j47ow6dwvod8xzzg11ez.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5ol54fmwkhtgp8riip897gt3p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5tyjbyif9fi374kc2jo7g9iec.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5xxcdcjflz8z3sixm5znb9kwc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5z1ml6j346z8bouq3aqc6f9yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.60hcyb2115giv3il0ouiojn2p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hb3fai2h3gu45eq9snx4vh0j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hu8wf7t32sawyoi8f88j6hbn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6jdfohuih7e4wi87echnsovri.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6kty3teiia56hgdsxrs05z3qe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6lbiezvw5shp3oo8gfgiswk4t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6pnmais4z45pu2sf4yhc3wmu7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6r8f016jrxtawmsjsbnli1xry.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6rxj441ekf105wcbrrx4a3or0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6v0wc4z876uqblx46cbdpt311.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6vsujpiq9kwvzveybizpyz6mu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6x149fxjtxm3x34dfnk09wga6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6z7ky7lmzhdh0g27uj1pflmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.72hkvcceghvcxctrg0z48bqj9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.74c6chokmcqguiqvfxm1309n5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ccui9prznp1hftn0b1pqhdjz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7d32aulymafeh0xr0943e1301.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7exiuxqgn408so8fxzqg1ufp9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ss6ejxbjsy0rmgycnn7haed2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7tor34v33m5057rr0yodw1yb2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7u2zullwat47sqtskuwhm2z4s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7vut0hisd5oc48rq1y0h8q7wc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7xiok8b15mm56sfqst01ctp19.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7zxd5pg37vjsakq0u1x70zogd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8121mkzosl9giexqfww71oykr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81b88fs9pq11gjylqisx8ow9r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81jdkz9d41rnuqs4doco0w1wj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.82xkosshxxpu7m6qxtt2kcxcz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8515k15qr6utsoks0sn5armxo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.861s16j3skxjircw4vkzfmakv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.86zx8bf9v8bq82r4p1k448qp8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8bahydptclyq52z4xlsywniv5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8c0uqn5vqsyb8287k32zpub52.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8e3xs6ghzih8bf0lvj6vq65w2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8eubbozsec7ulbe28y0wk82c6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8fbd0hx9m6wuaxon2z9c3xb0v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8hnzf3li00g13ct5u2un7ce68.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8ik3x4cssbbz1u5znei9m84zw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8kic30ja11yzej7l1orxzjo5q.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8muldt87b7xrwcndnpx7nzhmm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8p0faa00gf91jrf1l4k94scql.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8pq6fds5938y2xkn15y9z6f8d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8s7na78be35ltinjvk3cohujv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8vy45igmh1pvud7v7oy6mhy3h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8w5kjxzqnhk5ljrij20dldf4e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8weesy6mrvsi9kvlp5qkok8yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8wrht89a70xk4qvy6bep718c0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8yt1saweia39dr5g04gp23u9x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.90ly7kx5l1dvhtd5ccardbwd5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.934wgc5oq915bakjibazfws9h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.93dd860rd0gk0a8r52phu76rv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.957cnxdpzo94x3dwpvzufwrdi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9bkzq13ufczemz9iz7mxaelzo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9cwh4mdwdd5rr4oq74svaplc4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9d7fbu60q8h3vx94aauah2cef.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9e5xycuswvn76r4mkc2qhtaox.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9fqz9aex2cykedgod6vqkqjqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9hirpp638kfaylkzmqlmjrjir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ik04s3yxlaa5qhj78niybor7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9izv8s442u3kn23czjaxhu05p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9k43jhjnr4zop9vitet2aciax.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9lwi7yi1sx39l46jq059oviwd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9n2j5zk045q655w4p2blc2h7m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9pkf3xk1mzb574yr0qphguf6b.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9qm4la5i88foiukczph7zsskk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ucdzxo6444ukm1b6ydqkfrfv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wb29v1xr8jks8ewr6owxduh4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9whj7iw3pmv1u2nktys67irk6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wtobv1sjql3eh40iycf9jisr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9zu765z79rl4off6iye4skwdb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a2pvb4y3t1l5l3oifmn36pr98.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a459iyg6zvx30kspo7ddkwtlx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ab18we530luqo5nhnran6ms5g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.adt80t82i8cmvtjb27ie1isz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.any2zjybvhi5a4jdnaqk9fxwz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aqswhg7yqrsiz3uq6bn8hiexr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.arfr2xuz8em98afudy58ckmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aryicow6ciyu0vkjrf5an77hm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.as2z8nvec3ba6bwdbxb9qlhs2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.auk0lzf8rlus2094zoe60dtlm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.awvaiwywb8xkkrqtdsn6rzcse.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.azr435lptdn9h20fkfisf1lya.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b0mmgdh8vsan5jjqvm86tfgk8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b5m1jthnvkragr2he6x6xx7t5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b6ubwk0fg8iaumaucps4vwheq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b75kwuqcgdj3215ua4sx0qblk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bb3fyqi28z30jav0s3g8wmaoy.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bcse6cbtck49u5l6k2h4uuq7v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bdak5ozv54xp0u04g716tmoeo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bf3dtdqt8s5ngvt3jzsnkbmau.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bh99fln9jm0d3q2zwk673buky.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bhglfb6w3wdd7214e4gv2sq48.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bju0wg406soheyts0g01ctcuc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bll1efdq78vr34urq478f6fen.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.blzd52ziyawhzxdk88bgdusqj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bwf8b05owpq5zjclzzvsnlpl0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1i1frasyoljcuqva0k91tamd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1qyctt8drd86bgclt30omquf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c3z1nvs724aric5llowvgtej4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c5wtumxcek8r2mex1bhsilnr8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c85yur536sln2e44ff9j9jta5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.caevaz21osh722lnuig9hg73s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.calft56htrgxn2cx8g6g1g79e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cet0yg9jvf9lmq21599i571aa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ci254dmscg01thqk3eb618khe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cpa19xwmalr504ze571ahw1rq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ctcdlm9tjabgd59ajr3aotyt3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cw67k837uncly6vuq8npdhczc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cx8degvnug98bhtmec83g3o8h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cyiwgszenfxbw7rodbypjtcok.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.czmlf2vexd2lq2sf8ot1ge6su.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d0ard9p869u4ciyhsdgn01qag.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d1jko68kc9w5hbx21vbu6mae7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d212que96907cqvc4kls01mdw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d3fq07k7l47kcxzn6adbvcg7u.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d4nla79e74fc02zjo5j9rerwi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d5xquviwfr601p9y54jep1lzq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9ibl0xkl388f2d382ztda4mb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9nqzbgljuonyii16na9fwjoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dip92rz20emo13ojtfpceq3it.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dj6rnts8zfcmlmo0doytqg8j2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.djcl806mtodlqth4jl26rueh1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dmgvu9m9eel9mflmvokk4pcym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dnqt4tzqup9xccl66fd1458wa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.duel9k5wbr9j8woygaxgctwzk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dviptdb0qn0p33v2xcfjuozrr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dw1cyflsc5jqixgw7nzkd2bq3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dwshm7z3rkp89yzmdlb3fyowm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dxv1ompeko0hvrhkgq3w2w2vn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dydgv8q845sjuiiq9f4n90m82.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e1wmvn0ddxovncuuf275nk19n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e249y9n26bm94gv9hkd6zs69o.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e2oke7zwlpw5cwrr2h20z6dwx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6mqvyldgjfiijbksq0xw0eir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6y1s1sm3o18bb7j9z6rvm2tb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e7fkpintc3f5mlgf6v8d5o6wr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e9mgszqodkbq0vugkird1nlop.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eb7c8nl13om0nytzxn1uozida.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ebfjtcnb2spckwy3pe3tlrqaj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eca7u8bcblml44dn031l7w4yn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ef47jp9giqt9dghconv6lye6i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eflay77q9d6qzgzg49xz3yf26.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egm0kibrp6zj7ghwejct8g99t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egw5at1kmpeyfkwavlg8vk1li.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ej1inixejyh22lrqsjspy726f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.elfwc9h0ajvk4v28v4mpqco0z.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.enucj1db3dob1v7e7a54tufjq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.epm4oxv9mymyvrxxvl3j9aijp.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.equ99n48gtrfauddt4e8ufe0f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.expg4jxxnv8qkyse0buqicg7e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezefkqmx37jnvng3dle0dblp2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezghj14raqm70bdc2e3kmnfva.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.f4kjc2agih4k8mfjphp5yn7fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b97jk9snrb3aqhvt32o0cmg4a.rcgu.o" "-Wl,--as-needed" "-Wl,-Bstatic" "/root/oko/backend/target/debug/deps/liboko-d085f20ff695da7b.rlib" "/root/oko/backend/target/debug/deps/libthiserror-c66d33be974f0ed8.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_sqlx_store-142e879a95655e8b.rlib" "/root/oko/backend/target/debug/deps/librmp_serde-97c2139225db4a59.rlib" "/root/oko/backend/target/debug/deps/librmp-6fba7706383d21b7.rlib" "/root/oko/backend/target/debug/deps/libtokio_util-0826acae9f9e98eb.rlib" "/root/oko/backend/target/debug/deps/libopencv-f4b48d339f1ac47d.rlib" "/root/oko/backend/target/debug/deps/libaxum_embed-df70f01061bb6c6c.rlib" "/root/oko/backend/target/debug/deps/libmime_guess-9966a2f15bddff45.rlib" "/root/oko/backend/target/debug/deps/libunicase-33f63275c5ec20a7.rlib" "/root/oko/backend/target/debug/deps/librust_embed-077c17df0c762aa4.rlib" "/root/oko/backend/target/debug/deps/librust_embed_utils-bfba60d99e1379a3.rlib" "/root/oko/backend/target/debug/deps/libwalkdir-1dd1923acd2c1bf5.rlib" "/root/oko/backend/target/debug/deps/libsame_file-5669399e58eccd84.rlib" "/root/oko/backend/target/debug/deps/libchrono-0c69c30e597c30c5.rlib" "/root/oko/backend/target/debug/deps/libiana_time_zone-327d1375b89fcc29.rlib" "/root/oko/backend/target/debug/deps/libpassword_auth-50bf88d060a774ef.rlib" "/root/oko/backend/target/debug/deps/libargon2-65998d232abcc12a.rlib" "/root/oko/backend/target/debug/deps/libblake2-4d9793752d0045d8.rlib" "/root/oko/backend/target/debug/deps/libpassword_hash-595990a932105b4e.rlib" "/root/oko/backend/target/debug/deps/libbase64ct-2f46f2f3eac5030a.rlib" "/root/oko/backend/target/debug/deps/libaxum_login-18a68e8ca480ea22.rlib" "/root/oko/backend/target/debug/deps/liburlencoding-1a69519d397122b9.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions-7ba41afccdabfff7.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_memory_store-25bafd7aecdf94a5.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_core-1e1874fb20ed1827.rlib" "/root/oko/backend/target/debug/deps/libfutures-f20ea04d87799095.rlib" "/root/oko/backend/target/debug/deps/libtower_cookies-2bb2de5f3b53eb83.rlib" "/root/oko/backend/target/debug/deps/libcookie-879afa3fd8d16189.rlib" "/root/oko/backend/target/debug/deps/libhmac-e37626be7e18ba2e.rlib" "/root/oko/backend/target/debug/deps/libaxum-6358e8a919252857.rlib" "/root/oko/backend/target/debug/deps/libserde_path_to_error-c257ff30b24324e2.rlib" "/root/oko/backend/target/debug/deps/libmatchit-321cc0d9d7dffff2.rlib" "/root/oko/backend/target/debug/deps/libbase64-1d5853d8a2dd9229.rlib" "/root/oko/backend/target/debug/deps/libtokio_tungstenite-cb72b48a81d61e67.rlib" "/root/oko/backend/target/debug/deps/libtungstenite-ef770446e2902466.rlib" "/root/oko/backend/target/debug/deps/libdata_encoding-8027432d1fb711ac.rlib" "/root/oko/backend/target/debug/deps/librand-81548f7851c41b9f.rlib" "/root/oko/backend/target/debug/deps/librand_chacha-40f8b3be9da65899.rlib" "/root/oko/backend/target/debug/deps/libppv_lite86-f9830d514bd3ec1b.rlib" "/root/oko/backend/target/debug/deps/librand_core-1f8e996801df326c.rlib" "/root/oko/backend/target/debug/deps/libgetrandom-21e7353a01032e9e.rlib" "/root/oko/backend/target/debug/deps/libutf8-6651985623c0c0fd.rlib" "/root/oko/backend/target/debug/deps/libsha1-8d33f3e64f5c707e.rlib" "/root/oko/backend/target/debug/deps/libhyper_util-407dbeabc07b88ab.rlib" "/root/oko/backend/target/debug/deps/libhyper-99da9edb86472c35.rlib" "/root/oko/backend/target/debug/deps/libhttparse-63cb856626cec0ca.rlib" "/root/oko/backend/target/debug/deps/libhttpdate-b9f758d21a0e98fe.rlib" "/root/oko/backend/target/debug/deps/libaxum_core-0766d02a83e3e4cd.rlib" "/root/oko/backend/target/debug/deps/libmime-566b615028bbb9d4.rlib" "/root/oko/backend/target/debug/deps/libhttp_body_util-0c817cb750c3b634.rlib" "/root/oko/backend/target/debug/deps/libhttp_body-f06908e32c21ec5d.rlib" "/root/oko/backend/target/debug/deps/libhttp-2ee8c6cbda2c6611.rlib" "/root/oko/backend/target/debug/deps/libfnv-b4bd047f342dff07.rlib" "/root/oko/backend/target/debug/deps/libtower-1ad294ccee315712.rlib" "/root/oko/backend/target/debug/deps/libsync_wrapper-a3ffac47f9bf7e9f.rlib" "/root/oko/backend/target/debug/deps/libtower_layer-dccf07d8b52ea2c9.rlib" "/root/oko/backend/target/debug/deps/libtower_service-153488c259ad6c35.rlib" "/root/oko/backend/target/debug/deps/libsqlx-3c2213808edcd0e0.rlib" "/root/oko/backend/target/debug/deps/libsqlx_sqlite-e6171b4c1950b635.rlib" "/root/oko/backend/target/debug/deps/libfutures_executor-e0db1dc0dfaa4ea2.rlib" "/root/oko/backend/target/debug/deps/libflume-b640a8267536f580.rlib" "/root/oko/backend/target/debug/deps/libspin-75079d5b2e6a47dc.rlib" "/root/oko/backend/target/debug/deps/libserde_urlencoded-2bc72e475108536a.rlib" "/root/oko/backend/target/debug/deps/libfutures_channel-c27f4a4ff696df8c.rlib" "/root/oko/backend/target/debug/deps/libfutures_intrusive-1f7782457614c229.rlib" "/root/oko/backend/target/debug/deps/libparking_lot-747a562481fc66ba.rlib" "/root/oko/backend/target/debug/deps/libparking_lot_core-4c138976f69a6857.rlib" "/root/oko/backend/target/debug/deps/liblock_api-becb7191e8eb27c7.rlib" "/root/oko/backend/target/debug/deps/libscopeguard-d59b845c07f126eb.rlib" "/root/oko/backend/target/debug/deps/liblibsqlite3_sys-b7f57a9d47547458.rlib" "/root/oko/backend/target/debug/deps/libatoi-1075fcf1bc4544fb.rlib" "/root/oko/backend/target/debug/deps/libnum_traits-696d2cc76a84ef40.rlib" "/root/oko/backend/target/debug/deps/libsqlx_core-7fad43ab9f849695.rlib" "/root/oko/backend/target/debug/deps/libthiserror-aaacfd6c558ac3da.rlib" "/root/oko/backend/target/debug/deps/libindexmap-10fc62c8bb74c388.rlib" "/root/oko/backend/target/debug/deps/libequivalent-4d5cfde55792e26d.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-62cdb64ce3ed52bb.rlib" "/root/oko/backend/target/debug/deps/libsha2-951ef62d915d5e36.rlib" "/root/oko/backend/target/debug/deps/libcpufeatures-9ef920896d0c969a.rlib" "/root/oko/backend/target/debug/deps/libdigest-b1c0eb6bc8249099.rlib" "/root/oko/backend/target/debug/deps/libsubtle-6cca911e25116a21.rlib" "/root/oko/backend/target/debug/deps/libblock_buffer-b33225e8228c539f.rlib" "/root/oko/backend/target/debug/deps/libcrypto_common-51e69f872257e8d4.rlib" "/root/oko/backend/target/debug/deps/libgeneric_array-96b5f8b414fbdd75.rlib" "/root/oko/backend/target/debug/deps/libtypenum-f8bcce2b4da82a7e.rlib" "/root/oko/backend/target/debug/deps/libsqlformat-e9cc6dccf9917618.rlib" "/root/oko/backend/target/debug/deps/libunicode_categories-756b6a6cc7c9e938.rlib" "/root/oko/backend/target/debug/deps/libnom-768e1a78634ba60f.rlib" "/root/oko/backend/target/debug/deps/libtokio-b3977c968839c0c3.rlib" "/root/oko/backend/target/debug/deps/libsignal_hook_registry-92d753f0bfdc0b99.rlib" "/root/oko/backend/target/debug/deps/libsocket2-cca1afe887309ed0.rlib" "/root/oko/backend/target/debug/deps/libmio-c1a951770e75a1cc.rlib" "/root/oko/backend/target/debug/deps/liblibc-48c07cb418e82d02.rlib" "/root/oko/backend/target/debug/deps/libbytes-4283fbd60d33408b.rlib" "/root/oko/backend/target/debug/deps/libhashlink-d681ac00d88f5181.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-bf1cc23bd6fc7fb4.rlib" "/root/oko/backend/target/debug/deps/libahash-72e73853b738809b.rlib" "/root/oko/backend/target/debug/deps/libzerocopy-976541d733ed1b5d.rlib" "/root/oko/backend/target/debug/deps/libbyteorder-f47bc0e1adee4793.rlib" "/root/oko/backend/target/debug/deps/liballocator_api2-88d7b7890afadc02.rlib" "/root/oko/backend/target/debug/deps/libtime-52818a4d74cc562c.rlib" "/root/oko/backend/target/debug/deps/libtime_core-920e11b901147e65.rlib" "/root/oko/backend/target/debug/deps/libnum_conv-4bd030b5826783c5.rlib" "/root/oko/backend/target/debug/deps/libderanged-72dc4cb961bc501d.rlib" "/root/oko/backend/target/debug/deps/libpowerfmt-776ac6678c847955.rlib" "/root/oko/backend/target/debug/deps/libserde_json-f2f96f018157924c.rlib" "/root/oko/backend/target/debug/deps/libitoa-e8776415c5fe0047.rlib" "/root/oko/backend/target/debug/deps/libryu-bba83beca99dd7c0.rlib" "/root/oko/backend/target/debug/deps/liburl-73fa154b853c3e03.rlib" "/root/oko/backend/target/debug/deps/libidna-275ef50a4ad7b0af.rlib" "/root/oko/backend/target/debug/deps/libidna_adapter-58a2201cbba197ea.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer-1f68cbb86994a223.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer_data-762e61f43eae08c2.rlib" "/root/oko/backend/target/debug/deps/libwrite16-85fd16f27fd45657.rlib" "/root/oko/backend/target/debug/deps/libutf8_iter-fbf995b92c341ba3.rlib" "/root/oko/backend/target/debug/deps/libutf16_iter-83f8708e12b6535a.rlib" "/root/oko/backend/target/debug/deps/libsmallvec-09a1a6c0c4f8c0ff.rlib" "/root/oko/backend/target/debug/deps/libicu_properties-4f0aacaa4e006cbc.rlib" "/root/oko/backend/target/debug/deps/libicu_properties_data-52a01acc947e4a6d.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform-86a31a2ba3bc49f3.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform_data-38f8208716c2d35a.rlib" "/root/oko/backend/target/debug/deps/libicu_collections-45f06e0f98da5aa7.rlib" "/root/oko/backend/target/debug/deps/libicu_provider-b33241e03fcb0d1b.rlib" "/root/oko/backend/target/debug/deps/libicu_locid-57927dd1321264dd.rlib" "/root/oko/backend/target/debug/deps/liblitemap-a0ca3b3971bb4be7.rlib" "/root/oko/backend/target/debug/deps/libtinystr-e701c31b6408cdbc.rlib" "/root/oko/backend/target/debug/deps/libzerovec-140d18236b1b859b.rlib" "/root/oko/backend/target/debug/deps/libwriteable-c63e282ed55b92df.rlib" "/root/oko/backend/target/debug/deps/libyoke-c3686be1c83072a7.rlib" "/root/oko/backend/target/debug/deps/libzerofrom-942a239d4238ad4a.rlib" "/root/oko/backend/target/debug/deps/libstable_deref_trait-3602560bab1848e8.rlib" "/root/oko/backend/target/debug/deps/libform_urlencoded-533db7122d3ddfc5.rlib" "/root/oko/backend/target/debug/deps/libpercent_encoding-88cba40a7181d984.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_queue-af3456d1d6211d1b.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_utils-f7ce83001347108b.rlib" "/root/oko/backend/target/debug/deps/libeither-fb8c12a6e9c19835.rlib" "/root/oko/backend/target/debug/deps/libserde-74db0e160148834d.rlib" "/root/oko/backend/target/debug/deps/libevent_listener-8e428c2b0618c26c.rlib" "/root/oko/backend/target/debug/deps/libparking-27e917f18806e974.rlib" "/root/oko/backend/target/debug/deps/libfutures_util-158a7b373e403896.rlib" "/root/oko/backend/target/debug/deps/libmemchr-a61794c77f52d343.rlib" "/root/oko/backend/target/debug/deps/libfutures_io-b77a2fbaad2c9353.rlib" "/root/oko/backend/target/debug/deps/libslab-083dd68e0bc19c95.rlib" "/root/oko/backend/target/debug/deps/libfutures_sink-140504a081023950.rlib" "/root/oko/backend/target/debug/deps/libfutures_task-b8cf8cc4fcc89c75.rlib" "/root/oko/backend/target/debug/deps/libpin_utils-6bd6355de79f98af.rlib" "/root/oko/backend/target/debug/deps/libfutures_core-6acc1f6b4df0dd33.rlib" "/root/oko/backend/target/debug/deps/libtracing_subscriber-87f3e8b9b19e7a4b.rlib" "/root/oko/backend/target/debug/deps/libsharded_slab-0b982918e941cef5.rlib" "/root/oko/backend/target/debug/deps/liblazy_static-977f75dcedc2f7be.rlib" "/root/oko/backend/target/debug/deps/libmatchers-81da137eb49309ea.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-abfc5f66ec152c0c.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-97b3d5521ce4fbed.rlib" "/root/oko/backend/target/debug/deps/libregex-65269ff0a2daa12f.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-755b4f61f7b258ee.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-aa292c4420fe077c.rlib" "/root/oko/backend/target/debug/deps/libtracing-e70a33f22576c382.rlib" "/root/oko/backend/target/debug/deps/liblog-2579a5a2dbce8c4d.rlib" "/root/oko/backend/target/debug/deps/libpin_project_lite-be51d264b86b6c5b.rlib" "/root/oko/backend/target/debug/deps/libthread_local-2878fc2c0308edf0.rlib" "/root/oko/backend/target/debug/deps/libcfg_if-8217498f8667ada9.rlib" "/root/oko/backend/target/debug/deps/libtracing_core-9b2ef5bfdc695f2a.rlib" "/root/oko/backend/target/debug/deps/libonce_cell-6f631f2a5f71cecc.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-ca74a2d9c5166d9f.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-e31ab23316ed5080.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-27dc4aa955912662.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-bd0d6cccce077b99.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-8d001680935b5e3c.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-ba8ce71964f984f4.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-99a73526abcec14b.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_detect-63ac0d22cff92579.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libhashbrown-9057355c92c922d5.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_alloc-358be9bc1f6bab04.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libminiz_oxide-aca15549d5bff974.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libadler-8251d2cef7072448.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-7d50b86011c66411.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-51ea098fce5006bf.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-5a14e0d0b712e731.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-8b83dbf3a7b8f999.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_core-c6fd227bdc7b39ff.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-959d3389fa3da8a5.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-abe05db089cc2c62.rlib" "-Wl,-Bdynamic" "-lstdc++" "-lopencv_gapi" "-lopencv_highgui" "-lopencv_objdetect" "-lopencv_dnn" "-lopencv_videostab" "-lopencv_calib3d" "-lopencv_features2d" "-lopencv_stitching" "-lopencv_flann" "-lopencv_videoio" "-lopencv_rgbd" "-lopencv_video" "-lopencv_imgcodecs" "-lopencv_imgproc" "-lopencv_core" "-lade" "-lavformat" "-lavcodec" "-lavutil" "-lswscale" "-llibjpeg-turbo" "-llibpng" "-llibopenjp2" "-lippiw" "-lippicv" "-llibprotobuf" "-lzlib" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/root/oko/backend/target/debug/build/opencv-9a33646d3a9efdb0/out" "-L" "/opt/opencv/lib" "-L" "/opt/opencv/lib/opencv4/3rdparty" "-L" "/usr/lib/x86_64-linux-gnu" "-L" "/root/oko/backend/target/debug/build/libsqlite3-sys-d37f842dacb8056d/out" "-L" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-nodefaultlibs"
+#20 34.27   = note: /usr/bin/ld: /opt/opencv/lib/libopencv_videoio.a(cap_ffmpeg.cpp.o): in function `CvVideoWriter_FFMPEG::open(char const*, int, double, int, int, cv::VideoWriterParameters const&)':
+#20 34.27           cap_ffmpeg.cpp:(.text._ZN20CvVideoWriter_FFMPEG4openEPKcidiiRKN2cv21VideoWriterParametersE+0x1937): undefined reference to `avcodec_get_context_defaults3'
+#20 34.27           collect2: error: ld returned 1 exit status
+#20 34.27           
+#20 34.27   = note: some `extern` functions couldn't be found; some native libraries may need to be installed or have their path specified
+#20 34.27   = note: use the `-l` flag to specify native libraries to link
+#20 34.27   = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib)
+#20 34.27 
+#20 34.30 error: could not compile `oko` (bin "oko") due to 1 previous error
+#20 ERROR: process "/bin/sh -c set -xeu && \tcd /root/oko/backend && \tcargo build" did not complete successfully: exit code: 101
+------
+ > [test  7/10] RUN set -xeu && 	cd /root/oko/backend && 	cargo build:
+34.27   = note: LC_ALL="C" PATH="/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin:/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" VSLANG="1033" "cc" "-m64" "/tmp/rustc1b33Fl/symbols.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.016q7egpqml8qdh87kdyjhuqf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04fvp96bb87v885hxxosmlzt1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04ou3ijbyggwajeuvaroh3mj5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04rp1kt9pv1m2kdjb4n93oghx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.05n7w932wq311hlhgvoagv6vx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08a5jeev1gnhk89a83dryrtb8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08qvlu3kf2ph1lo8e3humafex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09tcwcdo9sa36ryxrp88zzm8j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09vxg5sopybbnbujee10qy4wk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0c34gslzf1bnkia441ymhtdny.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fhq7021elhgz6ffd5qy53waj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fynzp34uk12cd6bg4t6p16oq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nvrmh3xb7vmw0azfn44jvtho.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nya7zbiqrb9e20697bmppp1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0ozicw79097lohdfbmnmpunai.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0rjjvixkg2ve961lfc0yz8eas.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s6djh7ky584nay3cjgpnwj8l.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s8jefb966pex59nsun49s07a.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0wq5zhx651kyr5msnehovc9c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0zfcr801c9t1vssc53o5nqoou.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11jy0yhndeml9thvce7cs8jlv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11ydb6xcbxsj3020rem7w9laa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1283aimnzajst5lo7awybobex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.12scmmcqo9jkx1pfetd2clgfr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13896ttkesp9ojy1kc7vncsgf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13mywzmjayiaofwtka1grpj60.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.157vd7cgii3k7qfpeglo0l84i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.16gmm6amptul6e0ahe5kxogl4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bbwnl5by3pkwz005mfi9jxhx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bnvhucf3hqkesqtupjnyx49w.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1eqbxw5uqpq3qhzukaekpmd5r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1es0xkm9ty6atkwg1hc7ctus4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1f2bg2riqo7lvv4g83vyio1y7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1g9i1wjbvr0qg3ryj836s2zr3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1groc22v44stxha5yh9qvty71.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1hn6prgv7g54dif96uoqndp91.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ijrxyeuirlhl6uhlwicutnfs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1pjdsc93it0vus47u8hmretkg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1r4mp2hd2mjtc5naho5uur95c.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1xp0xe3veat5epa3s57iquv9s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ypwxphtmtker9jxeo5drqwhq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.23b40gtnwwlebx95agmdefyu3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.26rfpafuk4nqc2y6e5419yvvw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.29bk1eudmhtdfqlhe493zinjc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ag2e1n3c0v0emp8eztrjga84.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2agjzvraicew15etlbcna3y73.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2bf6nu6qpdh2gr825f0t32cft.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2fepoa2buqzj7dasupqvyf5c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2h1jjuz78gp7x42zg9nvfirxm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2stczcyfk2tn17d7psx84s457.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xpu21ze2221h5aab01nlll99.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xxzdzviick8vl1dply9bvirx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ze6iehqmp8tnbjp8vfg4udgu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31mtikmtwvzaj3ucrsuimv8fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31z1m09myt8yqapedzq1aohh5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.32oxzb88nllfhe6405spwrc17.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3445v60f3832ay7w4avascua3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.35imc5zlwtjn6bitb6iwy9m6g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.37ami1eka6g7wktj3xaz2jvy5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bmvc0lghmkciqj211mogxznb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bq6d4e610macumcc68a5s6st.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ijxn27bwpajgzmm22zjnbmoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3k9xbz8ofhca43eng5cc7r0ro.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3mw2ra2qz9mrnpqdaf7er4kqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3n096oxzyax1hs8udcuv16i4d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ptx1dy7mw88iybtjt9zzl4e6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r2a9ppxf9jn98hi2djuk681m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r7wza1xwxm6bh1ldgn8n0vf7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3wzshgvi2pozl98haf7f44b32.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xn5rvp9oawra8zxpz234uo35.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xz82vose6kao6k0xu1o77e1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.41vr64uuaytrghkul0cj3k119.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.43erw4n1mfglxtewunkzfmqal.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.461iux3gun64tizu4sf00zpkn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.467pctattetzy1na4yosqq7ym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.46gq9l5f8iglhcicu2mtvq3iz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.47bd8l5vz0a29v01fdjwnh8na.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4ac9auaste3htnxogzg0bz8x2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4aihpuu8eppecttffjrbdvvjs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4angiz8mu028uawlhuk922gvu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4drpz6gy2m0jzixhynd6ymo5n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4its1g4wq63ml96xq6350pdug.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4kblb0uy0ymevsz3oqk5lc8bq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mh64hysbtw1oppe4pniv8eos.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mx1qpiwu4rhie6x85ah6v4cv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4om1tlzbfldx5azke6d79uwcv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4wvzt9bgtzsx8fdcja5uurvur.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4xa4bsdnjkkgnqo05n1b7jx4k.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57pqjicfonldtsnajzmpkps01.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57vdv75hv42clx8k58ofljafm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59aochvel1jryjmqcbhfarjz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59cwp3vt96d993k4rugei5x6v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59t4a4f5f9hyc1489co2lalv2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5a54cqckzl688k5mj41konsci.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5c3kayrwa4mo4927cw1l2t7jj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5fkda9y0y0mmrpow0cgmrbl9i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5h0ugqnd1o80l3hgja0gqh5q6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5imh4cvuvl0ijk55yzt9syqvg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5o043j47ow6dwvod8xzzg11ez.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5ol54fmwkhtgp8riip897gt3p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5tyjbyif9fi374kc2jo7g9iec.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5xxcdcjflz8z3sixm5znb9kwc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5z1ml6j346z8bouq3aqc6f9yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.60hcyb2115giv3il0ouiojn2p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hb3fai2h3gu45eq9snx4vh0j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hu8wf7t32sawyoi8f88j6hbn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6jdfohuih7e4wi87echnsovri.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6kty3teiia56hgdsxrs05z3qe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6lbiezvw5shp3oo8gfgiswk4t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6pnmais4z45pu2sf4yhc3wmu7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6r8f016jrxtawmsjsbnli1xry.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6rxj441ekf105wcbrrx4a3or0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6v0wc4z876uqblx46cbdpt311.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6vsujpiq9kwvzveybizpyz6mu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6x149fxjtxm3x34dfnk09wga6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6z7ky7lmzhdh0g27uj1pflmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.72hkvcceghvcxctrg0z48bqj9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.74c6chokmcqguiqvfxm1309n5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ccui9prznp1hftn0b1pqhdjz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7d32aulymafeh0xr0943e1301.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7exiuxqgn408so8fxzqg1ufp9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ss6ejxbjsy0rmgycnn7haed2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7tor34v33m5057rr0yodw1yb2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7u2zullwat47sqtskuwhm2z4s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7vut0hisd5oc48rq1y0h8q7wc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7xiok8b15mm56sfqst01ctp19.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7zxd5pg37vjsakq0u1x70zogd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8121mkzosl9giexqfww71oykr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81b88fs9pq11gjylqisx8ow9r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81jdkz9d41rnuqs4doco0w1wj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.82xkosshxxpu7m6qxtt2kcxcz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8515k15qr6utsoks0sn5armxo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.861s16j3skxjircw4vkzfmakv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.86zx8bf9v8bq82r4p1k448qp8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8bahydptclyq52z4xlsywniv5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8c0uqn5vqsyb8287k32zpub52.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8e3xs6ghzih8bf0lvj6vq65w2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8eubbozsec7ulbe28y0wk82c6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8fbd0hx9m6wuaxon2z9c3xb0v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8hnzf3li00g13ct5u2un7ce68.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8ik3x4cssbbz1u5znei9m84zw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8kic30ja11yzej7l1orxzjo5q.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8muldt87b7xrwcndnpx7nzhmm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8p0faa00gf91jrf1l4k94scql.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8pq6fds5938y2xkn15y9z6f8d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8s7na78be35ltinjvk3cohujv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8vy45igmh1pvud7v7oy6mhy3h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8w5kjxzqnhk5ljrij20dldf4e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8weesy6mrvsi9kvlp5qkok8yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8wrht89a70xk4qvy6bep718c0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8yt1saweia39dr5g04gp23u9x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.90ly7kx5l1dvhtd5ccardbwd5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.934wgc5oq915bakjibazfws9h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.93dd860rd0gk0a8r52phu76rv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.957cnxdpzo94x3dwpvzufwrdi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9bkzq13ufczemz9iz7mxaelzo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9cwh4mdwdd5rr4oq74svaplc4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9d7fbu60q8h3vx94aauah2cef.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9e5xycuswvn76r4mkc2qhtaox.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9fqz9aex2cykedgod6vqkqjqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9hirpp638kfaylkzmqlmjrjir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ik04s3yxlaa5qhj78niybor7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9izv8s442u3kn23czjaxhu05p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9k43jhjnr4zop9vitet2aciax.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9lwi7yi1sx39l46jq059oviwd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9n2j5zk045q655w4p2blc2h7m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9pkf3xk1mzb574yr0qphguf6b.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9qm4la5i88foiukczph7zsskk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ucdzxo6444ukm1b6ydqkfrfv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wb29v1xr8jks8ewr6owxduh4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9whj7iw3pmv1u2nktys67irk6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wtobv1sjql3eh40iycf9jisr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9zu765z79rl4off6iye4skwdb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a2pvb4y3t1l5l3oifmn36pr98.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a459iyg6zvx30kspo7ddkwtlx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ab18we530luqo5nhnran6ms5g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.adt80t82i8cmvtjb27ie1isz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.any2zjybvhi5a4jdnaqk9fxwz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aqswhg7yqrsiz3uq6bn8hiexr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.arfr2xuz8em98afudy58ckmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aryicow6ciyu0vkjrf5an77hm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.as2z8nvec3ba6bwdbxb9qlhs2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.auk0lzf8rlus2094zoe60dtlm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.awvaiwywb8xkkrqtdsn6rzcse.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.azr435lptdn9h20fkfisf1lya.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b0mmgdh8vsan5jjqvm86tfgk8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b5m1jthnvkragr2he6x6xx7t5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b6ubwk0fg8iaumaucps4vwheq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b75kwuqcgdj3215ua4sx0qblk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bb3fyqi28z30jav0s3g8wmaoy.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bcse6cbtck49u5l6k2h4uuq7v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bdak5ozv54xp0u04g716tmoeo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bf3dtdqt8s5ngvt3jzsnkbmau.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bh99fln9jm0d3q2zwk673buky.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bhglfb6w3wdd7214e4gv2sq48.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bju0wg406soheyts0g01ctcuc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bll1efdq78vr34urq478f6fen.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.blzd52ziyawhzxdk88bgdusqj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bwf8b05owpq5zjclzzvsnlpl0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1i1frasyoljcuqva0k91tamd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1qyctt8drd86bgclt30omquf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c3z1nvs724aric5llowvgtej4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c5wtumxcek8r2mex1bhsilnr8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c85yur536sln2e44ff9j9jta5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.caevaz21osh722lnuig9hg73s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.calft56htrgxn2cx8g6g1g79e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cet0yg9jvf9lmq21599i571aa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ci254dmscg01thqk3eb618khe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cpa19xwmalr504ze571ahw1rq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ctcdlm9tjabgd59ajr3aotyt3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cw67k837uncly6vuq8npdhczc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cx8degvnug98bhtmec83g3o8h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cyiwgszenfxbw7rodbypjtcok.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.czmlf2vexd2lq2sf8ot1ge6su.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d0ard9p869u4ciyhsdgn01qag.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d1jko68kc9w5hbx21vbu6mae7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d212que96907cqvc4kls01mdw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d3fq07k7l47kcxzn6adbvcg7u.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d4nla79e74fc02zjo5j9rerwi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d5xquviwfr601p9y54jep1lzq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9ibl0xkl388f2d382ztda4mb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9nqzbgljuonyii16na9fwjoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dip92rz20emo13ojtfpceq3it.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dj6rnts8zfcmlmo0doytqg8j2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.djcl806mtodlqth4jl26rueh1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dmgvu9m9eel9mflmvokk4pcym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dnqt4tzqup9xccl66fd1458wa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.duel9k5wbr9j8woygaxgctwzk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dviptdb0qn0p33v2xcfjuozrr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dw1cyflsc5jqixgw7nzkd2bq3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dwshm7z3rkp89yzmdlb3fyowm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dxv1ompeko0hvrhkgq3w2w2vn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dydgv8q845sjuiiq9f4n90m82.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e1wmvn0ddxovncuuf275nk19n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e249y9n26bm94gv9hkd6zs69o.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e2oke7zwlpw5cwrr2h20z6dwx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6mqvyldgjfiijbksq0xw0eir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6y1s1sm3o18bb7j9z6rvm2tb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e7fkpintc3f5mlgf6v8d5o6wr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e9mgszqodkbq0vugkird1nlop.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eb7c8nl13om0nytzxn1uozida.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ebfjtcnb2spckwy3pe3tlrqaj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eca7u8bcblml44dn031l7w4yn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ef47jp9giqt9dghconv6lye6i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eflay77q9d6qzgzg49xz3yf26.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egm0kibrp6zj7ghwejct8g99t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egw5at1kmpeyfkwavlg8vk1li.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ej1inixejyh22lrqsjspy726f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.elfwc9h0ajvk4v28v4mpqco0z.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.enucj1db3dob1v7e7a54tufjq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.epm4oxv9mymyvrxxvl3j9aijp.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.equ99n48gtrfauddt4e8ufe0f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.expg4jxxnv8qkyse0buqicg7e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezefkqmx37jnvng3dle0dblp2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezghj14raqm70bdc2e3kmnfva.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.f4kjc2agih4k8mfjphp5yn7fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b97jk9snrb3aqhvt32o0cmg4a.rcgu.o" "-Wl,--as-needed" "-Wl,-Bstatic" "/root/oko/backend/target/debug/deps/liboko-d085f20ff695da7b.rlib" "/root/oko/backend/target/debug/deps/libthiserror-c66d33be974f0ed8.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_sqlx_store-142e879a95655e8b.rlib" "/root/oko/backend/target/debug/deps/librmp_serde-97c2139225db4a59.rlib" "/root/oko/backend/target/debug/deps/librmp-6fba7706383d21b7.rlib" "/root/oko/backend/target/debug/deps/libtokio_util-0826acae9f9e98eb.rlib" "/root/oko/backend/target/debug/deps/libopencv-f4b48d339f1ac47d.rlib" "/root/oko/backend/target/debug/deps/libaxum_embed-df70f01061bb6c6c.rlib" "/root/oko/backend/target/debug/deps/libmime_guess-9966a2f15bddff45.rlib" "/root/oko/backend/target/debug/deps/libunicase-33f63275c5ec20a7.rlib" "/root/oko/backend/target/debug/deps/librust_embed-077c17df0c762aa4.rlib" "/root/oko/backend/target/debug/deps/librust_embed_utils-bfba60d99e1379a3.rlib" "/root/oko/backend/target/debug/deps/libwalkdir-1dd1923acd2c1bf5.rlib" "/root/oko/backend/target/debug/deps/libsame_file-5669399e58eccd84.rlib" "/root/oko/backend/target/debug/deps/libchrono-0c69c30e597c30c5.rlib" "/root/oko/backend/target/debug/deps/libiana_time_zone-327d1375b89fcc29.rlib" "/root/oko/backend/target/debug/deps/libpassword_auth-50bf88d060a774ef.rlib" "/root/oko/backend/target/debug/deps/libargon2-65998d232abcc12a.rlib" "/root/oko/backend/target/debug/deps/libblake2-4d9793752d0045d8.rlib" "/root/oko/backend/target/debug/deps/libpassword_hash-595990a932105b4e.rlib" "/root/oko/backend/target/debug/deps/libbase64ct-2f46f2f3eac5030a.rlib" "/root/oko/backend/target/debug/deps/libaxum_login-18a68e8ca480ea22.rlib" "/root/oko/backend/target/debug/deps/liburlencoding-1a69519d397122b9.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions-7ba41afccdabfff7.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_memory_store-25bafd7aecdf94a5.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_core-1e1874fb20ed1827.rlib" "/root/oko/backend/target/debug/deps/libfutures-f20ea04d87799095.rlib" "/root/oko/backend/target/debug/deps/libtower_cookies-2bb2de5f3b53eb83.rlib" "/root/oko/backend/target/debug/deps/libcookie-879afa3fd8d16189.rlib" "/root/oko/backend/target/debug/deps/libhmac-e37626be7e18ba2e.rlib" "/root/oko/backend/target/debug/deps/libaxum-6358e8a919252857.rlib" "/root/oko/backend/target/debug/deps/libserde_path_to_error-c257ff30b24324e2.rlib" "/root/oko/backend/target/debug/deps/libmatchit-321cc0d9d7dffff2.rlib" "/root/oko/backend/target/debug/deps/libbase64-1d5853d8a2dd9229.rlib" "/root/oko/backend/target/debug/deps/libtokio_tungstenite-cb72b48a81d61e67.rlib" "/root/oko/backend/target/debug/deps/libtungstenite-ef770446e2902466.rlib" "/root/oko/backend/target/debug/deps/libdata_encoding-8027432d1fb711ac.rlib" "/root/oko/backend/target/debug/deps/librand-81548f7851c41b9f.rlib" "/root/oko/backend/target/debug/deps/librand_chacha-40f8b3be9da65899.rlib" "/root/oko/backend/target/debug/deps/libppv_lite86-f9830d514bd3ec1b.rlib" "/root/oko/backend/target/debug/deps/librand_core-1f8e996801df326c.rlib" "/root/oko/backend/target/debug/deps/libgetrandom-21e7353a01032e9e.rlib" "/root/oko/backend/target/debug/deps/libutf8-6651985623c0c0fd.rlib" "/root/oko/backend/target/debug/deps/libsha1-8d33f3e64f5c707e.rlib" "/root/oko/backend/target/debug/deps/libhyper_util-407dbeabc07b88ab.rlib" "/root/oko/backend/target/debug/deps/libhyper-99da9edb86472c35.rlib" "/root/oko/backend/target/debug/deps/libhttparse-63cb856626cec0ca.rlib" "/root/oko/backend/target/debug/deps/libhttpdate-b9f758d21a0e98fe.rlib" "/root/oko/backend/target/debug/deps/libaxum_core-0766d02a83e3e4cd.rlib" "/root/oko/backend/target/debug/deps/libmime-566b615028bbb9d4.rlib" "/root/oko/backend/target/debug/deps/libhttp_body_util-0c817cb750c3b634.rlib" "/root/oko/backend/target/debug/deps/libhttp_body-f06908e32c21ec5d.rlib" "/root/oko/backend/target/debug/deps/libhttp-2ee8c6cbda2c6611.rlib" "/root/oko/backend/target/debug/deps/libfnv-b4bd047f342dff07.rlib" "/root/oko/backend/target/debug/deps/libtower-1ad294ccee315712.rlib" "/root/oko/backend/target/debug/deps/libsync_wrapper-a3ffac47f9bf7e9f.rlib" "/root/oko/backend/target/debug/deps/libtower_layer-dccf07d8b52ea2c9.rlib" "/root/oko/backend/target/debug/deps/libtower_service-153488c259ad6c35.rlib" "/root/oko/backend/target/debug/deps/libsqlx-3c2213808edcd0e0.rlib" "/root/oko/backend/target/debug/deps/libsqlx_sqlite-e6171b4c1950b635.rlib" "/root/oko/backend/target/debug/deps/libfutures_executor-e0db1dc0dfaa4ea2.rlib" "/root/oko/backend/target/debug/deps/libflume-b640a8267536f580.rlib" "/root/oko/backend/target/debug/deps/libspin-75079d5b2e6a47dc.rlib" "/root/oko/backend/target/debug/deps/libserde_urlencoded-2bc72e475108536a.rlib" "/root/oko/backend/target/debug/deps/libfutures_channel-c27f4a4ff696df8c.rlib" "/root/oko/backend/target/debug/deps/libfutures_intrusive-1f7782457614c229.rlib" "/root/oko/backend/target/debug/deps/libparking_lot-747a562481fc66ba.rlib" "/root/oko/backend/target/debug/deps/libparking_lot_core-4c138976f69a6857.rlib" "/root/oko/backend/target/debug/deps/liblock_api-becb7191e8eb27c7.rlib" "/root/oko/backend/target/debug/deps/libscopeguard-d59b845c07f126eb.rlib" "/root/oko/backend/target/debug/deps/liblibsqlite3_sys-b7f57a9d47547458.rlib" "/root/oko/backend/target/debug/deps/libatoi-1075fcf1bc4544fb.rlib" "/root/oko/backend/target/debug/deps/libnum_traits-696d2cc76a84ef40.rlib" "/root/oko/backend/target/debug/deps/libsqlx_core-7fad43ab9f849695.rlib" "/root/oko/backend/target/debug/deps/libthiserror-aaacfd6c558ac3da.rlib" "/root/oko/backend/target/debug/deps/libindexmap-10fc62c8bb74c388.rlib" "/root/oko/backend/target/debug/deps/libequivalent-4d5cfde55792e26d.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-62cdb64ce3ed52bb.rlib" "/root/oko/backend/target/debug/deps/libsha2-951ef62d915d5e36.rlib" "/root/oko/backend/target/debug/deps/libcpufeatures-9ef920896d0c969a.rlib" "/root/oko/backend/target/debug/deps/libdigest-b1c0eb6bc8249099.rlib" "/root/oko/backend/target/debug/deps/libsubtle-6cca911e25116a21.rlib" "/root/oko/backend/target/debug/deps/libblock_buffer-b33225e8228c539f.rlib" "/root/oko/backend/target/debug/deps/libcrypto_common-51e69f872257e8d4.rlib" "/root/oko/backend/target/debug/deps/libgeneric_array-96b5f8b414fbdd75.rlib" "/root/oko/backend/target/debug/deps/libtypenum-f8bcce2b4da82a7e.rlib" "/root/oko/backend/target/debug/deps/libsqlformat-e9cc6dccf9917618.rlib" "/root/oko/backend/target/debug/deps/libunicode_categories-756b6a6cc7c9e938.rlib" "/root/oko/backend/target/debug/deps/libnom-768e1a78634ba60f.rlib" "/root/oko/backend/target/debug/deps/libtokio-b3977c968839c0c3.rlib" "/root/oko/backend/target/debug/deps/libsignal_hook_registry-92d753f0bfdc0b99.rlib" "/root/oko/backend/target/debug/deps/libsocket2-cca1afe887309ed0.rlib" "/root/oko/backend/target/debug/deps/libmio-c1a951770e75a1cc.rlib" "/root/oko/backend/target/debug/deps/liblibc-48c07cb418e82d02.rlib" "/root/oko/backend/target/debug/deps/libbytes-4283fbd60d33408b.rlib" "/root/oko/backend/target/debug/deps/libhashlink-d681ac00d88f5181.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-bf1cc23bd6fc7fb4.rlib" "/root/oko/backend/target/debug/deps/libahash-72e73853b738809b.rlib" "/root/oko/backend/target/debug/deps/libzerocopy-976541d733ed1b5d.rlib" "/root/oko/backend/target/debug/deps/libbyteorder-f47bc0e1adee4793.rlib" "/root/oko/backend/target/debug/deps/liballocator_api2-88d7b7890afadc02.rlib" "/root/oko/backend/target/debug/deps/libtime-52818a4d74cc562c.rlib" "/root/oko/backend/target/debug/deps/libtime_core-920e11b901147e65.rlib" "/root/oko/backend/target/debug/deps/libnum_conv-4bd030b5826783c5.rlib" "/root/oko/backend/target/debug/deps/libderanged-72dc4cb961bc501d.rlib" "/root/oko/backend/target/debug/deps/libpowerfmt-776ac6678c847955.rlib" "/root/oko/backend/target/debug/deps/libserde_json-f2f96f018157924c.rlib" "/root/oko/backend/target/debug/deps/libitoa-e8776415c5fe0047.rlib" "/root/oko/backend/target/debug/deps/libryu-bba83beca99dd7c0.rlib" "/root/oko/backend/target/debug/deps/liburl-73fa154b853c3e03.rlib" "/root/oko/backend/target/debug/deps/libidna-275ef50a4ad7b0af.rlib" "/root/oko/backend/target/debug/deps/libidna_adapter-58a2201cbba197ea.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer-1f68cbb86994a223.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer_data-762e61f43eae08c2.rlib" "/root/oko/backend/target/debug/deps/libwrite16-85fd16f27fd45657.rlib" "/root/oko/backend/target/debug/deps/libutf8_iter-fbf995b92c341ba3.rlib" "/root/oko/backend/target/debug/deps/libutf16_iter-83f8708e12b6535a.rlib" "/root/oko/backend/target/debug/deps/libsmallvec-09a1a6c0c4f8c0ff.rlib" "/root/oko/backend/target/debug/deps/libicu_properties-4f0aacaa4e006cbc.rlib" "/root/oko/backend/target/debug/deps/libicu_properties_data-52a01acc947e4a6d.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform-86a31a2ba3bc49f3.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform_data-38f8208716c2d35a.rlib" "/root/oko/backend/target/debug/deps/libicu_collections-45f06e0f98da5aa7.rlib" "/root/oko/backend/target/debug/deps/libicu_provider-b33241e03fcb0d1b.rlib" "/root/oko/backend/target/debug/deps/libicu_locid-57927dd1321264dd.rlib" "/root/oko/backend/target/debug/deps/liblitemap-a0ca3b3971bb4be7.rlib" "/root/oko/backend/target/debug/deps/libtinystr-e701c31b6408cdbc.rlib" "/root/oko/backend/target/debug/deps/libzerovec-140d18236b1b859b.rlib" "/root/oko/backend/target/debug/deps/libwriteable-c63e282ed55b92df.rlib" "/root/oko/backend/target/debug/deps/libyoke-c3686be1c83072a7.rlib" "/root/oko/backend/target/debug/deps/libzerofrom-942a239d4238ad4a.rlib" "/root/oko/backend/target/debug/deps/libstable_deref_trait-3602560bab1848e8.rlib" "/root/oko/backend/target/debug/deps/libform_urlencoded-533db7122d3ddfc5.rlib" "/root/oko/backend/target/debug/deps/libpercent_encoding-88cba40a7181d984.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_queue-af3456d1d6211d1b.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_utils-f7ce83001347108b.rlib" "/root/oko/backend/target/debug/deps/libeither-fb8c12a6e9c19835.rlib" "/root/oko/backend/target/debug/deps/libserde-74db0e160148834d.rlib" "/root/oko/backend/target/debug/deps/libevent_listener-8e428c2b0618c26c.rlib" "/root/oko/backend/target/debug/deps/libparking-27e917f18806e974.rlib" "/root/oko/backend/target/debug/deps/libfutures_util-158a7b373e403896.rlib" "/root/oko/backend/target/debug/deps/libmemchr-a61794c77f52d343.rlib" "/root/oko/backend/target/debug/deps/libfutures_io-b77a2fbaad2c9353.rlib" "/root/oko/backend/target/debug/deps/libslab-083dd68e0bc19c95.rlib" "/root/oko/backend/target/debug/deps/libfutures_sink-140504a081023950.rlib" "/root/oko/backend/target/debug/deps/libfutures_task-b8cf8cc4fcc89c75.rlib" "/root/oko/backend/target/debug/deps/libpin_utils-6bd6355de79f98af.rlib" "/root/oko/backend/target/debug/deps/libfutures_core-6acc1f6b4df0dd33.rlib" "/root/oko/backend/target/debug/deps/libtracing_subscriber-87f3e8b9b19e7a4b.rlib" "/root/oko/backend/target/debug/deps/libsharded_slab-0b982918e941cef5.rlib" "/root/oko/backend/target/debug/deps/liblazy_static-977f75dcedc2f7be.rlib" "/root/oko/backend/target/debug/deps/libmatchers-81da137eb49309ea.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-abfc5f66ec152c0c.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-97b3d5521ce4fbed.rlib" "/root/oko/backend/target/debug/deps/libregex-65269ff0a2daa12f.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-755b4f61f7b258ee.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-aa292c4420fe077c.rlib" "/root/oko/backend/target/debug/deps/libtracing-e70a33f22576c382.rlib" "/root/oko/backend/target/debug/deps/liblog-2579a5a2dbce8c4d.rlib" "/root/oko/backend/target/debug/deps/libpin_project_lite-be51d264b86b6c5b.rlib" "/root/oko/backend/target/debug/deps/libthread_local-2878fc2c0308edf0.rlib" "/root/oko/backend/target/debug/deps/libcfg_if-8217498f8667ada9.rlib" "/root/oko/backend/target/debug/deps/libtracing_core-9b2ef5bfdc695f2a.rlib" "/root/oko/backend/target/debug/deps/libonce_cell-6f631f2a5f71cecc.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-ca74a2d9c5166d9f.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-e31ab23316ed5080.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-27dc4aa955912662.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-bd0d6cccce077b99.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-8d001680935b5e3c.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-ba8ce71964f984f4.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-99a73526abcec14b.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_detect-63ac0d22cff92579.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libhashbrown-9057355c92c922d5.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_alloc-358be9bc1f6bab04.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libminiz_oxide-aca15549d5bff974.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libadler-8251d2cef7072448.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-7d50b86011c66411.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-51ea098fce5006bf.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-5a14e0d0b712e731.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-8b83dbf3a7b8f999.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_core-c6fd227bdc7b39ff.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-959d3389fa3da8a5.rlib" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-abe05db089cc2c62.rlib" "-Wl,-Bdynamic" "-lstdc++" "-lopencv_gapi" "-lopencv_highgui" "-lopencv_objdetect" "-lopencv_dnn" "-lopencv_videostab" "-lopencv_calib3d" "-lopencv_features2d" "-lopencv_stitching" "-lopencv_flann" "-lopencv_videoio" "-lopencv_rgbd" "-lopencv_video" "-lopencv_imgcodecs" "-lopencv_imgproc" "-lopencv_core" "-lade" "-lavformat" "-lavcodec" "-lavutil" "-lswscale" "-llibjpeg-turbo" "-llibpng" "-llibopenjp2" "-lippiw" "-lippicv" "-llibprotobuf" "-lzlib" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/root/oko/backend/target/debug/build/opencv-9a33646d3a9efdb0/out" "-L" "/opt/opencv/lib" "-L" "/opt/opencv/lib/opencv4/3rdparty" "-L" "/usr/lib/x86_64-linux-gnu" "-L" "/root/oko/backend/target/debug/build/libsqlite3-sys-d37f842dacb8056d/out" "-L" "/usr/local/rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-nodefaultlibs"
+34.27   = note: /usr/bin/ld: /opt/opencv/lib/libopencv_videoio.a(cap_ffmpeg.cpp.o): in function `CvVideoWriter_FFMPEG::open(char const*, int, double, int, int, cv::VideoWriterParameters const&)':
+34.27           cap_ffmpeg.cpp:(.text._ZN20CvVideoWriter_FFMPEG4openEPKcidiiRKN2cv21VideoWriterParametersE+0x1937): undefined reference to `avcodec_get_context_defaults3'
+34.27           collect2: error: ld returned 1 exit status
+34.27           
+34.27   = note: some `extern` functions couldn't be found; some native libraries may need to be installed or have their path specified
+34.27   = note: use the `-l` flag to specify native libraries to link
+34.27   = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib)
+34.27 
+34.30 error: could not compile `oko` (bin "oko") due to 1 previous error
+------
+ubuntu-22.04-opencv-full-build.Dockerfile:164
+--------------------
+ 163 |     
+ 164 | >>> RUN set -xeu && \
+ 165 | >>> 	cd /root/oko/backend && \
+ 166 | >>> 	cargo build
+ 167 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c set -xeu && \tcd /root/oko/backend && \tcargo build" did not complete successfully: exit code: 101
