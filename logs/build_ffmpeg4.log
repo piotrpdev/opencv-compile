@@ -1,0 +1,151 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ubuntu-22.04-opencv-full-build.Dockerfile
+#1 transferring dockerfile: 6.43kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [ 1/15] FROM docker.io/library/ubuntu:22.04
+#4 DONE 0.0s
+
+#5 [ 4/15] RUN set -xeu &&     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
+#5 CACHED
+
+#6 [ 2/15] RUN set -xeu &&     apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y &&     apt-get autoremove -y --purge &&     apt-get -y autoclean
+#6 CACHED
+
+#7 [ 5/15] RUN set -xeu && 	curl -sSL https://deb.nodesource.com/setup_22.x | sh -s && 	DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+#7 CACHED
+
+#8 [ 7/15] RUN set -xeu && 	npm --prefix=/root/oko/frontend ci && 	npm --prefix=/root/oko/frontend run build && 	mkdir -p /root/oko/backend/static && 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
+#8 CACHED
+
+#9 [ 6/15] RUN set -xeu && 	git clone https://github.com/piotrpdev/oko.git /root/oko
+#9 CACHED
+
+#10 [ 3/15] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev     cmake python3-numpy libatlas-base-dev libceres-dev libeigen3-dev liblapacke-dev libprotobuf-dev protobuf-compiler nvidia-cuda-dev libtesseract-dev     libwebp-dev libpng-dev libtiff-dev libopenexr-dev libgdal-dev libopenjp2-7-dev libopenjpip-server libopenjpip-dec-server libopenjp2-tools libhdf5-dev     libgphoto2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libva-dev libdc1394-dev     libfreetype6-dev libharfbuzz-dev qtbase5-dev libvtk9-dev libogre-1.12-dev 	git libssl-dev
+#10 CACHED
+
+#11 [ 8/15] RUN set -xeu &&     mkdir -p /root/dist &&     curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-4.8.0/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+#11 CACHED
+
+#12 [ 9/15] RUN set -xeu && 	ls /usr/lib/x86_64-linux-gnu | grep "avcodec" && 	ls /usr/include/x86_64-linux-gnu | grep "avcodec"
+#12 0.216 + ls /usr/lib/x86_64-linux-gnu
+#12 0.216 + grep avcodec
+#12 0.225 libavcodec.a
+#12 0.225 libavcodec.so
+#12 0.225 libavcodec.so.58
+#12 0.225 libavcodec.so.58.134.100
+#12 0.226 + ls /usr/include/x86_64-linux-gnu
+#12 0.226 + grep avcodec
+#12 0.228 libavcodec
+#12 DONE 0.2s
+
+#13 [10/15] RUN set -xeu &&     mkdir -p /root/build &&     cmake -B /root/build -S "/root/dist/opencv-4.8.0" -D OPENCV_EXTRA_MODULES_PATH="/root/dist/opencv_contrib-4.8.0/modules" -D CMAKE_INSTALL_PREFIX=/opt/opencv     	-D BUILD_CUDA_STUBS=OFF     	-D BUILD_DOCS=OFF     	-D BUILD_EXAMPLES=OFF     	-D BUILD_IPP_IW=ON     	-D BUILD_ITT=OFF     	-D BUILD_JASPER=ON     	-D BUILD_JAVA=OFF     	-D BUILD_JPEG=ON     	-D BUILD_OPENEXR=OFF     	-D BUILD_PERF_TESTS=OFF     	-D BUILD_PNG=ON     	-D BUILD_PROTOBUF=ON     	-D BUILD_SHARED_LIBS=OFF     	-D BUILD_TBB=OFF     	-D BUILD_TESTS=OFF     	-D BUILD_TIFF=OFF     	-D BUILD_WEBP=OFF     	-D BUILD_WITH_DYNAMIC_IPP=OFF     	-D BUILD_ZLIB=ON 		-D BUILD_opencv_freetype=OFF     	-D BUILD_opencv_apps=OFF     	-D BUILD_opencv_python2=OFF     	-D BUILD_opencv_python3=OFF     	-D CMAKE_BUILD_TYPE=Release     	-D ENABLE_CONFIG_VERIFICATION=OFF     	-D CV_ENABLE_INTRINSICS=ON     	-D ENABLE_PIC=ON     	-D INSTALL_CREATE_DISTRIB=OFF     	-D INSTALL_PYTHON_EXAMPLES=OFF     	-D INSTALL_C_EXAMPLES=OFF     	-D INSTALL_TESTS=OFF     	-D OPENCV_ENABLE_NONFREE=ON     	-D OPENCV_FORCE_3RDPARTY_BUILD=ON     	-D OPENCV_GENERATE_PKGCONFIG=OFF     	-D PROTOBUF_UPDATE_FILES=OFF     	-D WITH_1394=OFF     	-D WITH_ADE=ON     	-D WITH_ARAVIS=OFF     	-D WITH_CLP=OFF     	-D WITH_CUBLAS=OFF     	-D WITH_CUDA=OFF     	-D WITH_CUFFT=OFF     	-D WITH_EIGEN=ON     	-D WITH_FFMPEG=ON 		-D WITH_FREETYPE=OFF     	-D WITH_GDAL=OFF     	-D WITH_GDCM=OFF     	-D WITH_GIGEAPI=OFF     	-D WITH_GPHOTO2=OFF     	-D WITH_GSTREAMER=OFF     	-D WITH_GSTREAMER_0_10=OFF     	-D WITH_GTK=OFF     	-D WITH_GTK_2_X=OFF     	-D WITH_HALIDE=OFF     	-D WITH_IMGCODEC_HDcR=OFF     	-D WITH_IMGCODEC_PXM=OFF     	-D WITH_IMGCODEC_SUNRASTER=OFF     	-D WITH_INF_ENGINE=OFF     	-D WITH_IPP=ON     	-D WITH_ITT=OFF     	-D WITH_JASPER=ON     	-D WITH_JPEG=ON     	-D WITH_LAPACK=OFF     	-D WITH_LIBV4L=OFF     	-D WITH_MATLAB=OFF     	-D WITH_MFX=OFF     	-D WITH_NVCUVID=OFF     	-D WITH_OPENCL=ON     	-D WITH_OPENCLAMDBLAS=ON     	-D WITH_OPENCLAMDFFT=ON     	-D WITH_OPENCL_SVM=ON     	-D WITH_OPENEXR=OFF     	-D WITH_OPENGL=OFF     	-D WITH_OPENMP=OFF     	-D WITH_OPENNI2=OFF     	-D WITH_OPENNI=OFF     	-D WITH_OPENVX=OFF     	-D WITH_PNG=ON     	-D WITH_PROTOBUF=ON     	-D WITH_PTHREADS_PF=ON     	-D WITH_PVAPI=OFF     	-D WITH_QT=OFF     	-D WITH_QUIRC=OFF     	-D WITH_TBB=OFF     	-D WITH_TIFF=OFF     	-D WITH_UNICAP=OFF     	-D WITH_V4L=ON     	-D WITH_VA=ON     	-D WITH_VA_INTEL=ON     	-D WITH_VTK=OFF     	-D WITH_WEBP=OFF     	-D WITH_XIMEA=OFF     	-D WITH_XINE=OFF &&     make -C /root/build -j`nproc` install
+#13 0.278 + mkdir -p /root/build
+#13 0.281 + cmake -B /root/build -S /root/dist/opencv-4.8.0 -D OPENCV_EXTRA_MODULES_PATH=/root/dist/opencv_contrib-4.8.0/modules -D CMAKE_INSTALL_PREFIX=/opt/opencv -D BUILD_CUDA_STUBS=OFF -D BUILD_DOCS=OFF -D BUILD_EXAMPLES=OFF -D BUILD_IPP_IW=ON -D BUILD_ITT=OFF -D BUILD_JASPER=ON -D BUILD_JAVA=OFF -D BUILD_JPEG=ON -D BUILD_OPENEXR=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_PNG=ON -D BUILD_PROTOBUF=ON -D BUILD_SHARED_LIBS=OFF -D BUILD_TBB=OFF -D BUILD_TESTS=OFF -D BUILD_TIFF=OFF -D BUILD_WEBP=OFF -D BUILD_WITH_DYNAMIC_IPP=OFF -D BUILD_ZLIB=ON -D BUILD_opencv_freetype=OFF -D BUILD_opencv_apps=OFF -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D CMAKE_BUILD_TYPE=Release -D ENABLE_CONFIG_VERIFICATION=OFF -D CV_ENABLE_INTRINSICS=ON -D ENABLE_PIC=ON -D INSTALL_CREATE_DISTRIB=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_FORCE_3RDPARTY_BUILD=ON -D OPENCV_GENERATE_PKGCONFIG=OFF -D PROTOBUF_UPDATE_FILES=OFF -D WITH_1394=OFF -D WITH_ADE=ON -D WITH_ARAVIS=OFF -D WITH_CLP=OFF -D WITH_CUBLAS=OFF -D WITH_CUDA=OFF -D WITH_CUFFT=OFF -D WITH_EIGEN=ON -D WITH_FFMPEG=ON -D WITH_FREETYPE=OFF -D WITH_GDAL=OFF -D WITH_GDCM=OFF -D WITH_GIGEAPI=OFF -D WITH_GPHOTO2=OFF -D WITH_GSTREAMER=OFF -D WITH_GSTREAMER_0_10=OFF -D WITH_GTK=OFF -D WITH_GTK_2_X=OFF -D WITH_HALIDE=OFF -D WITH_IMGCODEC_HDcR=OFF -D WITH_IMGCODEC_PXM=OFF -D WITH_IMGCODEC_SUNRASTER=OFF -D WITH_INF_ENGINE=OFF -D WITH_IPP=ON -D WITH_ITT=OFF -D WITH_JASPER=ON -D WITH_JPEG=ON -D WITH_LAPACK=OFF -D WITH_LIBV4L=OFF -D WITH_MATLAB=OFF -D WITH_MFX=OFF -D WITH_NVCUVID=OFF -D WITH_OPENCL=ON -D WITH_OPENCLAMDBLAS=ON -D WITH_OPENCLAMDFFT=ON -D WITH_OPENCL_SVM=ON -D WITH_OPENEXR=OFF -D WITH_OPENGL=OFF -D WITH_OPENMP=OFF -D WITH_OPENNI2=OFF -D WITH_OPENNI=OFF -D WITH_OPENVX=OFF -D WITH_PNG=ON -D WITH_PROTOBUF=ON -D WITH_PTHREADS_PF=ON -D WITH_PVAPI=OFF -D WITH_QT=OFF -D WITH_QUIRC=OFF -D WITH_TBB=OFF -D WITH_TIFF=OFF -D WITH_UNICAP=OFF -D WITH_V4L=ON -D WITH_VA=ON -D WITH_VA_INTEL=ON -D WITH_VTK=OFF -D WITH_WEBP=OFF -D WITH_XIMEA=OFF -D WITH_XINE=OFF
+#13 0.426 -- The CXX compiler identification is GNU 11.4.0
+#13 0.519 -- The C compiler identification is GNU 11.4.0
+#13 0.535 -- Detecting CXX compiler ABI info
+#13 0.698 -- Detecting CXX compiler ABI info - done
+#13 0.713 -- Check for working CXX compiler: /usr/bin/c++ - skipped
+#13 0.714 -- Detecting CXX compile features
+#13 0.715 -- Detecting CXX compile features - done
+#13 0.721 -- Detecting C compiler ABI info
+#13 0.863 -- Detecting C compiler ABI info - done
+#13 0.877 -- Check for working C compiler: /usr/bin/cc - skipped
+#13 0.878 -- Detecting C compile features
+#13 0.879 -- Detecting C compile features - done
+#13 0.887 -- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+#13 0.888 -- Detected processor: x86_64
+#13 0.943 -- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) (Required is at least version "2.7")
+#13 0.973 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.2") 
+#13 1.002 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable exact version "3.10.12") 
+#13 1.270 -- Looking for ccache - not found
+#13 1.271 -- Performing Test HAVE_CXX_FSIGNED_CHAR
+#13 1.434 -- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+#13 1.435 -- Performing Test HAVE_C_FSIGNED_CHAR
+#13 1.577 -- Performing Test HAVE_C_FSIGNED_CHAR - Success
+#13 1.578 -- Performing Test HAVE_CXX_W
+#13 1.741 -- Performing Test HAVE_CXX_W - Success
+#13 1.742 -- Performing Test HAVE_C_W
+#13 1.883 -- Performing Test HAVE_C_W - Success
+#13 1.883 -- Performing Test HAVE_CXX_WALL
+#13 2.048 -- Performing Test HAVE_CXX_WALL - Success
+#13 2.049 -- Performing Test HAVE_C_WALL
+#13 2.191 -- Performing Test HAVE_C_WALL - Success
+#13 2.191 -- Performing Test HAVE_CXX_WRETURN_TYPE
+#13 2.356 -- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+#13 2.357 -- Performing Test HAVE_C_WRETURN_TYPE
+#13 2.475 -- Performing Test HAVE_C_WRETURN_TYPE - Success
+#13 2.476 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+#13 2.639 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+#13 2.639 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+#13 2.777 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+#13 2.777 -- Performing Test HAVE_CXX_WADDRESS
+#13 2.942 -- Performing Test HAVE_CXX_WADDRESS - Success
+#13 2.942 -- Performing Test HAVE_C_WADDRESS
+#13 3.087 -- Performing Test HAVE_C_WADDRESS - Success
+#13 3.088 -- Performing Test HAVE_CXX_WSEQUENCE_POINT
+#13 3.250 -- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+#13 3.251 -- Performing Test HAVE_C_WSEQUENCE_POINT
+#13 3.390 -- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+#13 3.391 -- Performing Test HAVE_CXX_WFORMAT
+#13 3.550 -- Performing Test HAVE_CXX_WFORMAT - Success
+#13 3.550 -- Performing Test HAVE_C_WFORMAT
+#13 3.692 -- Performing Test HAVE_C_WFORMAT - Success
+#13 3.693 -- Performing Test HAVE_CXX_WFORMAT_SECURITY
+#13 3.858 -- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+#13 3.858 -- Performing Test HAVE_C_WFORMAT_SECURITY
+#13 4.001 -- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+#13 4.001 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+#13 4.165 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+#13 4.166 -- Performing Test HAVE_C_WMISSING_DECLARATIONS
+#13 4.309 -- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+#13 4.310 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+#13 4.470 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Failed
+#13 4.471 -- Performing Test HAVE_C_WMISSING_PROTOTYPES
+#13 4.611 -- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+#13 4.611 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+#13 4.778 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Failed
+#13 4.779 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+#13 4.919 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+#13 4.920 -- Performing Test HAVE_CXX_WUNDEF
+#13 5.085 -- Performing Test HAVE_CXX_WUNDEF - Success
+#13 5.085 -- Performing Test HAVE_C_WUNDEF
+#13 5.227 -- Performing Test HAVE_C_WUNDEF - Success
+#13 5.228 -- Performing Test HAVE_CXX_WINIT_SELF
+#13 5.392 -- Performing Test HAVE_CXX_WINIT_SELF - Success
+#13 5.393 -- Performing Test HAVE_C_WINIT_SELF
+#13 5.534 -- Performing Test HAVE_C_WINIT_SELF - Success
+#13 5.534 -- Performing Test HAVE_CXX_WPOINTER_ARITH
+#13 5.694 -- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+#13 5.694 -- Performing Test HAVE_C_WPOINTER_ARITH
+#13 5.835 -- Performing Test HAVE_C_WPOINTER_ARITH - Success
+#13 5.835 -- Performing Test HAVE_CXX_WSHADOW
+#13 5.998 -- Performing Test HAVE_CXX_WSHADOW - Success
+#13 5.999 -- Performing Test HAVE_C_WSHADOW
+#13 6.141 -- Performing Test HAVE_C_WSHADOW - Success
+#13 6.142 -- Performing Test HAVE_CXX_WSIGN_PROMO
+#13 6.307 -- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+#13 6.308 -- Performing Test HAVE_C_WSIGN_PROMO
+#13 6.448 -- Performing Test HAVE_C_WSIGN_PROMO - Failed
+#13 6.449 -- Performing Test HAVE_CXX_WUNINITIALIZED
+#13 6.610 -- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+#13 6.611 -- Performing Test HAVE_C_WUNINITIALIZED
+#13 6.752 -- Performing Test HAVE_C_WUNINITIALIZED - Success
+#13 6.753 -- Performing Test HAVE_CXX_WSUGGEST_OVERRIDE
+#13 6.916 -- Performing Test HAVE_CXX_WSUGGEST_OVERRIDE - Success
+#13 6.916 -- Performing Test HAVE_C_WSUGGEST_OVERRIDE
+#13 7.056 -- Performing Test HAVE_C_WSUGGEST_OVERRIDE - Failed
+#13 7.057 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 7.221 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+#13 7.221 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 CANCELED
+ERROR: failed to solve: Canceled: context canceled

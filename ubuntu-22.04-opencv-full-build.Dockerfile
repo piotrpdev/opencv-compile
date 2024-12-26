@@ -12,8 +12,8 @@ RUN set -xeu && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev \
     cmake python3-numpy libatlas-base-dev libceres-dev libeigen3-dev liblapacke-dev libprotobuf-dev protobuf-compiler nvidia-cuda-dev libtesseract-dev \
     libwebp-dev libpng-dev libtiff-dev libopenexr-dev libgdal-dev libopenjp2-7-dev libopenjpip-server libopenjpip-dec-server libopenjp2-tools libhdf5-dev \
-    libavcodec-dev libavformat-dev libavutil-dev  libgphoto2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libva-dev libdc1394-dev \
-    libfreetype6-dev libharfbuzz-dev qtbase5-dev libvtk9-dev libogre-1.12-dev \
+    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgphoto2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libva-dev libdc1394-dev \
+    libfreetype6-dev libharfbuzz-dev qtbase5-dev libogre-1.12-dev \
 	git libssl-dev 
 
 RUN set -xeu && \
@@ -35,9 +35,6 @@ RUN set -xeu && \
 	npm --prefix=/root/oko/frontend run build && \
 	mkdir -p /root/oko/backend/static && \
 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
-
-RUN set -xeu && \
-	npx playwright install-deps
 
 RUN set -xeu && \
     mkdir -p /root/dist && \
@@ -146,6 +143,13 @@ RUN set -xeu && \
 ENV OPENCV_LINK_LIBS=opencv_gapi,opencv_highgui,opencv_objdetect,opencv_dnn,opencv_videostab,opencv_calib3d,opencv_features2d,opencv_stitching,opencv_flann,opencv_videoio,opencv_rgbd,opencv_video,opencv_imgcodecs,opencv_imgproc,opencv_core,ade,libavformat,libavcodec,libavutil,libswscale,liblibjpeg-turbo,liblibpng,liblibopenjp2,ippiw,ippicv,liblibprotobuf,zlib
 ENV OPENCV_LINK_PATHS=/opt/opencv/lib,/opt/opencv/lib/opencv4/3rdparty,/usr/lib/x86_64-linux-gnu
 ENV OPENCV_INCLUDE_PATHS=/opt/opencv/include,/opt/opencv/include/opencv4
+
+RUN set -xeu && \
+	cd /root/oko/backend && \
+	cargo build
+
+RUN set -xeu && \
+	npx playwright install-deps
 
 # playwright-rs needs to install things, first time will always fail
 RUN set -xu && \
