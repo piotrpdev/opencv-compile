@@ -48,11 +48,11 @@ RUN set -xeu && \
 RUN set -xeu && \
     mkdir -p /root/build && \
     cmake -B /root/build -S "/root/dist/opencv-${OPENCV_VERSION}" -D OPENCV_EXTRA_MODULES_PATH="/root/dist/opencv_contrib-${OPENCV_VERSION}/modules" -D CMAKE_INSTALL_PREFIX=/usr \
-    	-D BUILD_CUDA_STUBS=ON \
+    	-D BUILD_CUDA_STUBS=OFF \
     	-D BUILD_DOCS=OFF \
     	-D BUILD_EXAMPLES=OFF \
     	-D BUILD_IPP_IW=ON \
-    	-D BUILD_ITT=ON \
+    	-D BUILD_ITT=OFF \
     	-D BUILD_JASPER=OFF \
     	-D BUILD_JAVA=OFF \
     	-D BUILD_JPEG=OFF \
@@ -82,7 +82,7 @@ RUN set -xeu && \
     	-D OPENCV_FORCE_3RDPARTY_BUILD=OFF \
     	-D OPENCV_GENERATE_PKGCONFIG=OFF \
     	-D PROTOBUF_UPDATE_FILES=ON \
-    	-D WITH_1394=ON \
+    	-D WITH_1394=OFF \
     	-D WITH_ADE=ON \
     	-D WITH_ARAVIS=OFF \
     	-D WITH_CLP=OFF \
@@ -94,21 +94,21 @@ RUN set -xeu && \
     	-D WITH_GDAL=ON \
     	-D WITH_GDCM=OFF \
     	-D WITH_GIGEAPI=OFF \
-    	-D WITH_GPHOTO2=ON \
+    	-D WITH_GPHOTO2=OFF \
     	-D WITH_GSTREAMER=ON \
     	-D WITH_GSTREAMER_0_10=OFF \
     	-D WITH_GTK=OFF \
     	-D WITH_GTK_2_X=OFF \
     	-D WITH_HALIDE=OFF \
-    	-D WITH_IMGCODEC_HDcR=ON \
-    	-D WITH_IMGCODEC_PXM=ON \
-    	-D WITH_IMGCODEC_SUNRASTER=ON \
+    	-D WITH_IMGCODEC_HDcR=OFF \
+    	-D WITH_IMGCODEC_PXM=OFF \
+    	-D WITH_IMGCODEC_SUNRASTER=OFF \
     	-D WITH_INF_ENGINE=OFF \
     	-D WITH_IPP=ON \
-    	-D WITH_ITT=ON \
+    	-D WITH_ITT=OFF \
     	-D WITH_JASPER=OFF \
     	-D WITH_JPEG=ON \
-    	-D WITH_LAPACK=ON \
+    	-D WITH_LAPACK=OFF \
     	-D WITH_LIBV4L=OFF \
     	-D WITH_MATLAB=OFF \
     	-D WITH_MFX=OFF \
@@ -117,8 +117,8 @@ RUN set -xeu && \
     	-D WITH_OPENCLAMDBLAS=ON \
     	-D WITH_OPENCLAMDFFT=ON \
     	-D WITH_OPENCL_SVM=ON \
-    	-D WITH_OPENEXR=ON \
-    	-D WITH_OPENGL=ON \
+    	-D WITH_OPENEXR=OFF \
+    	-D WITH_OPENGL=OFF \
     	-D WITH_OPENMP=OFF \
     	-D WITH_OPENNI2=OFF \
     	-D WITH_OPENNI=OFF \
@@ -127,19 +127,18 @@ RUN set -xeu && \
     	-D WITH_PROTOBUF=ON \
     	-D WITH_PTHREADS_PF=ON \
     	-D WITH_PVAPI=OFF \
-    	-D WITH_QT=ON \
-    	-D WITH_QUIRC=ON \
-    	-D WITH_TBB=ON \
-    	-D WITH_TIFF=ON \
+    	-D WITH_QT=OFF \
+    	-D WITH_QUIRC=OFF \
+    	-D WITH_TBB=OFF \
+    	-D WITH_TIFF=OFF \
     	-D WITH_UNICAP=OFF \
     	-D WITH_V4L=ON \
     	-D WITH_VA=ON \
     	-D WITH_VA_INTEL=ON \
-    	-D WITH_VTK=ON \
-    	-D WITH_WEBP=ON \
+    	-D WITH_VTK=OFF \
+    	-D WITH_WEBP=OFF \
     	-D WITH_XIMEA=OFF \
-    	-D WITH_XINE=OFF \
-    	-D OpenGL_GL_PREFERENCE=LEGACY && \
+    	-D WITH_XINE=OFF && \
     make -C /root/build -j`nproc` install
 
 # playwright-rs needs to install things, first time will always fail
