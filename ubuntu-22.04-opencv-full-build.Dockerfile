@@ -57,25 +57,8 @@ RUN set -xeu && \
     	-D BUILD_TESTS=OFF \
 		-D BUILD_opencv_apps=OFF \
 		-D BUILD_LIST=core,imgcodecs,imgproc,video,videoio \
-    	-D WITH_1394=OFF \
-		-D WITH_FLATBUFFERS=OFF \
-    	-D WITH_GSTREAMER=OFF \
-    	-D WITH_GTK=OFF \
-		-D WITH_IMGCODEC_HDR=OFF \
-    	-D WITH_IMGCODEC_PXM=OFF \
-		-D WITH_IMGCODEC_PFM=OFF \
-    	-D WITH_IMGCODEC_SUNRASTER=OFF \
-    	-D WITH_ITT=OFF \
-    	-D WITH_LAPACK=OFF \
-    	-D WITH_OPENCL=OFF \
-    	-D WITH_OPENCLAMDBLAS=OFF \
-    	-D WITH_OPENCLAMDFFT=OFF \
-    	-D WITH_OPENEXR=OFF \
-		-D WITH_OBSENSOR=OFF \
-    	-D WITH_PROTOBUF=OFF \
     	-D WITH_TIFF=OFF \
-    	-D WITH_V4L=OFF \
-    	-D WITH_VTK=OFF \
+    	-D WITH_OPENEXR=OFF \
     	-D WITH_WEBP=OFF && \
     make -C /root/build -j`nproc` install
 
