@@ -1,0 +1,2538 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ubuntu-22.04-opencv-full-build.Dockerfile
+#1 transferring dockerfile: 4.57kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.0s
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/node:22.12
+#4 DONE 1.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [frontend 1/3] FROM docker.io/library/node:22.12@sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc
+#6 DONE 0.0s
+
+#7 [opencv_download 1/4] FROM docker.io/library/ubuntu:22.04
+#7 DONE 0.0s
+
+#8 [opencv_download 2/4] RUN set -xeu &&     apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y &&     apt-get autoremove -y --purge &&     apt-get -y autoclean
+#8 CACHED
+
+#9 [opencv_download 3/4] RUN set -xeu && 	DEBIAN_FRONTEND=noninteractive apt-get install -y curl
+#9 CACHED
+
+#10 [backend 3/5] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y clang libclang-dev cmake     libatlas-base-dev libceres-dev libeigen3-dev libva-dev     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+#10 CACHED
+
+#11 [opencv_download 4/4] RUN set -xeu &&     mkdir -p /root/dist &&     curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-4.8.0/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+#11 CACHED
+
+#12 [backend 4/5] COPY --from=opencv_download /root/dist /root/dist
+#12 CACHED
+
+#13 [backend 5/5] RUN set -xeu &&     mkdir -p /root/build &&     cmake -B /root/build -S "/root/dist/opencv-4.8.0" -D OPENCV_EXTRA_MODULES_PATH="/root/dist/opencv_contrib-4.8.0/modules" -D CMAKE_INSTALL_PREFIX=/opt/opencv 		-D CMAKE_BUILD_TYPE=Release     	-D BUILD_SHARED_LIBS=OFF 		-D OPENCV_FORCE_3RDPARTY_BUILD=ON     	-D BUILD_PERF_TESTS=OFF     	-D BUILD_TESTS=OFF 		-D BUILD_opencv_apps=OFF 		-D BUILD_LIST=core,imgcodecs,imgproc,video,videoio     	-D WITH_TIFF=OFF     	-D WITH_OPENEXR=OFF     	-D WITH_WEBP=OFF &&     make -C /root/build -j`nproc` install
+#13 0.266 + mkdir -p /root/build
+#13 0.268 + cmake -B /root/build -S /root/dist/opencv-4.8.0 -D OPENCV_EXTRA_MODULES_PATH=/root/dist/opencv_contrib-4.8.0/modules -D CMAKE_INSTALL_PREFIX=/opt/opencv -D CMAKE_BUILD_TYPE=Release -D BUILD_SHARED_LIBS=OFF -D OPENCV_FORCE_3RDPARTY_BUILD=ON -D BUILD_PERF_TESTS=OFF -D BUILD_TESTS=OFF -D BUILD_opencv_apps=OFF -D BUILD_LIST=core,imgcodecs,imgproc,video,videoio -D WITH_TIFF=OFF -D WITH_OPENEXR=OFF -D WITH_WEBP=OFF
+#13 0.419 -- The CXX compiler identification is Clang 14.0.0
+#13 0.462 -- The C compiler identification is GNU 11.4.0
+#13 0.470 -- Detecting CXX compiler ABI info
+#13 0.585 -- Detecting CXX compiler ABI info - done
+#13 0.589 -- Check for working CXX compiler: /usr/bin/c++ - skipped
+#13 0.590 -- Detecting CXX compile features
+#13 0.590 -- Detecting CXX compile features - done
+#13 0.593 -- Detecting C compiler ABI info
+#13 0.645 -- Detecting C compiler ABI info - done
+#13 0.651 -- Check for working C compiler: /usr/bin/cc - skipped
+#13 0.651 -- Detecting C compile features
+#13 0.652 -- Detecting C compile features - done
+#13 0.655 -- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+#13 0.655 -- Detected processor: x86_64
+#13 0.670 -- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) (Required is at least version "2.7")
+#13 0.685 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.2") 
+#13 0.693 -- Could NOT find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required is exact version "3.10.12")
+#13 0.712 Traceback (most recent call last):
+#13 0.712   File "<string>", line 1, in <module>
+#13 0.712 ModuleNotFoundError: No module named 'numpy'
+#13 0.717 -- Looking for ccache - not found
+#13 0.718 -- Performing Test HAVE_CXX_FSIGNED_CHAR
+#13 0.828 -- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+#13 0.828 -- Performing Test HAVE_C_FSIGNED_CHAR
+#13 0.880 -- Performing Test HAVE_C_FSIGNED_CHAR - Success
+#13 0.880 -- Performing Test HAVE_CXX_W
+#13 0.988 -- Performing Test HAVE_CXX_W - Success
+#13 0.988 -- Performing Test HAVE_C_W
+#13 1.040 -- Performing Test HAVE_C_W - Success
+#13 1.040 -- Performing Test HAVE_CXX_WALL
+#13 1.147 -- Performing Test HAVE_CXX_WALL - Success
+#13 1.148 -- Performing Test HAVE_C_WALL
+#13 1.199 -- Performing Test HAVE_C_WALL - Success
+#13 1.199 -- Performing Test HAVE_CXX_WRETURN_TYPE
+#13 1.298 -- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+#13 1.298 -- Performing Test HAVE_C_WRETURN_TYPE
+#13 1.347 -- Performing Test HAVE_C_WRETURN_TYPE - Success
+#13 1.347 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+#13 1.445 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+#13 1.445 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+#13 1.494 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+#13 1.494 -- Performing Test HAVE_CXX_WADDRESS
+#13 1.594 -- Performing Test HAVE_CXX_WADDRESS - Success
+#13 1.594 -- Performing Test HAVE_C_WADDRESS
+#13 1.642 -- Performing Test HAVE_C_WADDRESS - Success
+#13 1.642 -- Performing Test HAVE_CXX_WSEQUENCE_POINT
+#13 1.743 -- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+#13 1.743 -- Performing Test HAVE_C_WSEQUENCE_POINT
+#13 1.790 -- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+#13 1.790 -- Performing Test HAVE_CXX_WFORMAT
+#13 1.887 -- Performing Test HAVE_CXX_WFORMAT - Success
+#13 1.887 -- Performing Test HAVE_C_WFORMAT
+#13 1.934 -- Performing Test HAVE_C_WFORMAT - Success
+#13 1.934 -- Performing Test HAVE_CXX_WFORMAT_SECURITY
+#13 2.028 -- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+#13 2.028 -- Performing Test HAVE_C_WFORMAT_SECURITY
+#13 2.076 -- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+#13 2.076 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+#13 2.171 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+#13 2.171 -- Performing Test HAVE_C_WMISSING_DECLARATIONS
+#13 2.219 -- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+#13 2.219 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+#13 2.313 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Success
+#13 2.314 -- Performing Test HAVE_C_WMISSING_PROTOTYPES
+#13 2.363 -- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+#13 2.364 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+#13 2.459 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Success
+#13 2.459 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+#13 2.509 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+#13 2.510 -- Performing Test HAVE_CXX_WUNDEF
+#13 2.606 -- Performing Test HAVE_CXX_WUNDEF - Success
+#13 2.607 -- Performing Test HAVE_C_WUNDEF
+#13 2.655 -- Performing Test HAVE_C_WUNDEF - Success
+#13 2.655 -- Performing Test HAVE_CXX_WINIT_SELF
+#13 2.758 -- Performing Test HAVE_CXX_WINIT_SELF - Success
+#13 2.759 -- Performing Test HAVE_C_WINIT_SELF
+#13 2.807 -- Performing Test HAVE_C_WINIT_SELF - Success
+#13 2.807 -- Performing Test HAVE_CXX_WPOINTER_ARITH
+#13 2.906 -- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+#13 2.906 -- Performing Test HAVE_C_WPOINTER_ARITH
+#13 2.954 -- Performing Test HAVE_C_WPOINTER_ARITH - Success
+#13 2.955 -- Performing Test HAVE_CXX_WSHADOW
+#13 3.051 -- Performing Test HAVE_CXX_WSHADOW - Success
+#13 3.051 -- Performing Test HAVE_C_WSHADOW
+#13 3.099 -- Performing Test HAVE_C_WSHADOW - Success
+#13 3.100 -- Performing Test HAVE_CXX_WSIGN_PROMO
+#13 3.196 -- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+#13 3.196 -- Performing Test HAVE_C_WSIGN_PROMO
+#13 3.245 -- Performing Test HAVE_C_WSIGN_PROMO - Failed
+#13 3.245 -- Performing Test HAVE_CXX_WUNINITIALIZED
+#13 3.343 -- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+#13 3.343 -- Performing Test HAVE_C_WUNINITIALIZED
+#13 3.391 -- Performing Test HAVE_C_WUNINITIALIZED - Success
+#13 3.392 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE
+#13 3.490 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE - Success
+#13 3.491 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE
+#13 3.513 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE - Failed
+#13 3.514 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 3.610 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+#13 3.610 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 3.659 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR - Failed
+#13 3.659 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#13 3.758 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Success
+#13 3.758 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#13 3.806 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+#13 3.806 -- Performing Test HAVE_CXX_WNO_COMMENT
+#13 3.900 -- Performing Test HAVE_CXX_WNO_COMMENT - Success
+#13 3.901 -- Performing Test HAVE_C_WNO_COMMENT
+#13 3.949 -- Performing Test HAVE_C_WNO_COMMENT - Success
+#13 3.949 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#13 4.046 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Success
+#13 4.047 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#13 4.093 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Failed
+#13 4.093 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#13 4.189 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Success
+#13 4.189 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#13 4.237 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Failed
+#13 4.237 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION
+#13 4.333 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION - Success
+#13 4.333 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION
+#13 4.380 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION - Success
+#13 4.380 -- Performing Test HAVE_CXX_WNO_LONG_LONG
+#13 4.476 -- Performing Test HAVE_CXX_WNO_LONG_LONG - Success
+#13 4.476 -- Performing Test HAVE_C_WNO_LONG_LONG
+#13 4.524 -- Performing Test HAVE_C_WNO_LONG_LONG - Success
+#13 4.524 -- Performing Test HAVE_CXX_PTHREAD
+#13 4.618 -- Performing Test HAVE_CXX_PTHREAD - Success
+#13 4.619 -- Performing Test HAVE_C_PTHREAD
+#13 4.667 -- Performing Test HAVE_C_PTHREAD - Success
+#13 4.668 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS
+#13 4.764 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS - Success
+#13 4.765 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS
+#13 4.785 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS - Failed
+#13 4.785 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS
+#13 4.881 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS - Success
+#13 4.882 -- Performing Test HAVE_C_FFUNCTION_SECTIONS
+#13 4.929 -- Performing Test HAVE_C_FFUNCTION_SECTIONS - Success
+#13 4.930 -- Performing Test HAVE_CXX_FDATA_SECTIONS
+#13 5.027 -- Performing Test HAVE_CXX_FDATA_SECTIONS - Success
+#13 5.027 -- Performing Test HAVE_C_FDATA_SECTIONS
+#13 5.076 -- Performing Test HAVE_C_FDATA_SECTIONS - Success
+#13 5.078 -- Performing Test HAVE_CXX_MSSE (check file: cmake/checks/cpu_sse.cpp)
+#13 5.202 -- Performing Test HAVE_CXX_MSSE - Success
+#13 5.202 -- Performing Test HAVE_CXX_MSSE2 (check file: cmake/checks/cpu_sse2.cpp)
+#13 5.326 -- Performing Test HAVE_CXX_MSSE2 - Success
+#13 5.327 -- Performing Test HAVE_CXX_MSSE3 (check file: cmake/checks/cpu_sse3.cpp)
+#13 5.451 -- Performing Test HAVE_CXX_MSSE3 - Success
+#13 5.451 -- Performing Test HAVE_CXX_MSSSE3 (check file: cmake/checks/cpu_ssse3.cpp)
+#13 5.577 -- Performing Test HAVE_CXX_MSSSE3 - Success
+#13 5.577 -- Performing Test HAVE_CXX_MSSE4_1 (check file: cmake/checks/cpu_sse41.cpp)
+#13 5.707 -- Performing Test HAVE_CXX_MSSE4_1 - Success
+#13 5.708 -- Performing Test HAVE_CXX_MPOPCNT (check file: cmake/checks/cpu_popcnt.cpp)
+#13 5.803 -- Performing Test HAVE_CXX_MPOPCNT - Success
+#13 5.804 -- Performing Test HAVE_CXX_MSSE4_2 (check file: cmake/checks/cpu_sse42.cpp)
+#13 5.931 -- Performing Test HAVE_CXX_MSSE4_2 - Success
+#13 5.932 -- Performing Test HAVE_CXX_MF16C (check file: cmake/checks/cpu_fp16.cpp)
+#13 6.263 -- Performing Test HAVE_CXX_MF16C - Success
+#13 6.263 -- Performing Test HAVE_CXX_MFMA
+#13 6.357 -- Performing Test HAVE_CXX_MFMA - Success
+#13 6.357 -- Performing Test HAVE_CXX_MAVX (check file: cmake/checks/cpu_avx.cpp)
+#13 6.686 -- Performing Test HAVE_CXX_MAVX - Success
+#13 6.686 -- Performing Test HAVE_CXX_MAVX2 (check file: cmake/checks/cpu_avx2.cpp)
+#13 7.018 -- Performing Test HAVE_CXX_MAVX2 - Success
+#13 7.018 -- Performing Test HAVE_CXX_MAVX512F (check file: cmake/checks/cpu_avx512.cpp)
+#13 7.355 -- Performing Test HAVE_CXX_MAVX512F - Success
+#13 7.355 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD (check file: cmake/checks/cpu_avx512common.cpp)
+#13 7.683 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD - Success
+#13 7.684 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ (check file: cmake/checks/cpu_avx512skx.cpp)
+#13 8.013 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ - Success
+#13 8.014 -- Performing Test HAVE_CPU_BASELINE_FLAGS
+#13 8.109 -- Performing Test HAVE_CPU_BASELINE_FLAGS - Success
+#13 8.111 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1
+#13 8.206 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1 - Success
+#13 8.208 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2
+#13 8.304 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2 - Success
+#13 8.306 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16
+#13 8.403 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16 - Success
+#13 8.406 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX
+#13 8.501 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX - Success
+#13 8.503 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2
+#13 8.598 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2 - Success
+#13 8.600 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX
+#13 8.693 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX - Success
+#13 8.694 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN
+#13 8.790 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN - Success
+#13 8.790 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN
+#13 8.838 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN - Success
+#13 8.838 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN
+#13 8.933 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN - Success
+#13 8.933 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN
+#13 8.980 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN - Failed
+#13 8.981 -- Performing Test HAVE_LINK_AS_NEEDED
+#13 9.061 -- Performing Test HAVE_LINK_AS_NEEDED - Success
+#13 9.061 -- Performing Test HAVE_LINK_NO_UNDEFINED
+#13 9.155 -- Performing Test HAVE_LINK_NO_UNDEFINED - Success
+#13 9.160 -- Looking for pthread.h
+#13 9.213 -- Looking for pthread.h - found
+#13 9.213 -- Looking for posix_memalign
+#13 9.266 -- Looking for posix_memalign - found
+#13 9.267 -- Looking for malloc.h
+#13 9.318 -- Looking for malloc.h - found
+#13 9.319 -- Looking for memalign
+#13 9.373 -- Looking for memalign - found
+#13 9.379 -- Looking for fseeko
+#13 9.427 -- Looking for fseeko - found
+#13 9.428 -- Looking for unistd.h
+#13 9.480 -- Looking for unistd.h - found
+#13 9.480 -- Looking for sys/types.h
+#13 9.530 -- Looking for sys/types.h - found
+#13 9.530 -- Looking for stdint.h
+#13 9.580 -- Looking for stdint.h - found
+#13 9.580 -- Looking for stddef.h
+#13 9.628 -- Looking for stddef.h - found
+#13 9.628 -- Check size of off64_t
+#13 9.650 -- Check size of off64_t - failed
+#13 9.651 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32
+#13 9.700 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32 - Failed
+#13 9.700 -- Performing Test HAVE_C_WNO_ATTRIBUTES
+#13 9.750 -- Performing Test HAVE_C_WNO_ATTRIBUTES - Success
+#13 9.750 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES
+#13 9.800 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES - Success
+#13 9.800 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES
+#13 9.849 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES - Success
+#13 9.849 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS
+#13 9.897 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS - Success
+#13 9.897 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE
+#13 9.946 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE - Success
+#13 9.946 -- Performing Test HAVE_C_WNO_UNDEF
+#13 9.994 -- Performing Test HAVE_C_WNO_UNDEF - Success
+#13 9.995 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH
+#13 10.04 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH - Success
+#13 10.05 -- Performing Test HAVE_C_WNO_UNUSED_PARAMETER
+#13 10.09 -- Performing Test HAVE_C_WNO_UNUSED_PARAMETER - Success
+#13 10.09 -- Performing Test HAVE_C_WNO_SIGN_COMPARE
+#13 10.14 -- Performing Test HAVE_C_WNO_SIGN_COMPARE - Success
+#13 10.14 -- libjpeg-turbo: VERSION = 2.1.3, BUILD = opencv-4.8.0-libjpeg-turbo
+#13 10.14 -- Check size of size_t
+#13 10.19 -- Check size of size_t - done
+#13 10.20 -- Check size of unsigned long
+#13 10.25 -- Check size of unsigned long - done
+#13 10.25 -- Performing Test HAVE_BUILTIN_CTZL
+#13 10.30 -- Performing Test HAVE_BUILTIN_CTZL - Success
+#13 10.30 -- Looking for include file locale.h
+#13 10.35 -- Looking for include file locale.h - found
+#13 10.35 -- Looking for include file stdlib.h
+#13 10.40 -- Looking for include file stdlib.h - found
+#13 10.40 -- Looking for include file sys/types.h
+#13 10.45 -- Looking for include file sys/types.h - found
+#13 10.45 -- Looking for a ASM_NASM compiler
+#13 10.48 -- Looking for a ASM_NASM compiler - NOTFOUND
+#13 10.48 -- libjpeg-turbo(SIMD): SIMD extensions disabled: could not find NASM compiler.  Performance will suffer.
+#13 10.48 -- Could NOT find OpenJPEG (minimal suitable version: 2.0, recommended version >= 2.3.1). OpenJPEG will be built from sources
+#13 10.48 -- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION
+#13 10.53 -- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION - Failed
+#13 10.53 -- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE
+#13 10.58 -- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE - Success
+#13 10.58 -- OpenJPEG: VERSION = 2.5.0, BUILD = opencv-4.8.0-openjp2-2.5.0
+#13 10.58 -- Looking for string.h
+#13 10.63 -- Looking for string.h - found
+#13 10.63 -- Looking for memory.h
+#13 10.68 -- Looking for memory.h - found
+#13 10.68 -- Looking for stdio.h
+#13 10.74 -- Looking for stdio.h - found
+#13 10.74 -- Looking for math.h
+#13 10.79 -- Looking for math.h - found
+#13 10.79 -- Looking for float.h
+#13 10.84 -- Looking for float.h - found
+#13 10.84 -- Looking for time.h
+#13 10.89 -- Looking for time.h - found
+#13 10.89 -- Looking for stdarg.h
+#13 10.94 -- Looking for stdarg.h - found
+#13 10.94 -- Looking for ctype.h
+#13 10.99 -- Looking for ctype.h - found
+#13 10.99 -- Looking for assert.h
+#13 11.04 -- Looking for assert.h - found
+#13 11.04 -- Looking for stdint.h
+#13 11.09 -- Looking for stdint.h - found
+#13 11.09 -- Looking for inttypes.h
+#13 11.14 -- Looking for inttypes.h - found
+#13 11.14 -- Looking for strings.h
+#13 11.19 -- Looking for strings.h - found
+#13 11.19 -- Looking for sys/stat.h
+#13 11.24 -- Looking for sys/stat.h - found
+#13 11.24 -- Looking for unistd.h
+#13 11.29 -- Looking for unistd.h - found
+#13 11.29 -- Looking for include file malloc.h
+#13 11.35 -- Looking for include file malloc.h - found
+#13 11.35 -- Looking for _aligned_malloc
+#13 11.37 -- Looking for _aligned_malloc - not found
+#13 11.37 -- Looking for posix_memalign
+#13 11.43 -- Looking for posix_memalign - found
+#13 11.43 -- Looking for memalign
+#13 11.68 -- Looking for memalign - found
+#13 11.68 -- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE
+#13 11.73 -- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE - Success
+#13 11.73 -- Performing Test HAVE_C_WNO_SHADOW
+#13 11.78 -- Performing Test HAVE_C_WNO_SHADOW - Success
+#13 11.78 -- Performing Test HAVE_C_WNO_UNUSED_FUNCTION
+#13 11.83 -- Performing Test HAVE_C_WNO_UNUSED_FUNCTION - Success
+#13 11.95 -- OpenJPEG libraries will be built from sources: libopenjp2 (version "2.5.0")
+#13 11.95 -- Performing Test HAVE_C_WNO_CAST_ALIGN
+#13 12.00 -- Performing Test HAVE_C_WNO_CAST_ALIGN - Success
+#13 12.00 -- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED
+#13 12.05 -- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED - Success
+#13 12.05 -- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION
+#13 12.10 -- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION - Failed
+#13 12.10 -- IPPICV: Downloading ippicv_2021.8_lnx_intel64_20230330_general.tgz from https://raw.githubusercontent.com/opencv/opencv_3rdparty/1224f78da6684df04397ac0f40c961ed37f79ccb/ippicv/ippicv_2021.8_lnx_intel64_20230330_general.tgz
+#13 13.45 -- found Intel IPP (ICV version): 2021.8.0 [2021.8]
+#13 13.45 -- at: /root/build/3rdparty/ippicv/ippicv_lnx/icv
+#13 13.45 -- found Intel IPP Integration Wrappers sources: 2021.8.0
+#13 13.45 -- at: /root/build/3rdparty/ippicv/ippicv_lnx/iw
+#13 13.47 -- Could not find OpenBLAS include. Turning OpenBLAS_FOUND off
+#13 13.47 -- Could not find OpenBLAS lib. Turning OpenBLAS_FOUND off
+#13 13.47 -- Could NOT find Atlas (missing: Atlas_CLAPACK_INCLUDE_DIR) 
+#13 13.47 -- Looking for sgemm_
+#13 13.52 -- Looking for sgemm_ - not found
+#13 13.53 -- Found Threads: TRUE  
+#13 13.54 -- Looking for dgemm_
+#13 13.60 -- Looking for dgemm_ - found
+#13 13.60 -- Found BLAS: /usr/lib/x86_64-linux-gnu/libblas.so;/usr/lib/x86_64-linux-gnu/libf77blas.so;/usr/lib/x86_64-linux-gnu/libatlas.so  
+#13 13.61 -- Looking for cheev_
+#13 13.66 -- Looking for cheev_ - not found
+#13 13.67 -- Looking for cheev_
+#13 13.71 -- Looking for cheev_ - not found
+#13 13.71 -- Looking for cheev_
+#13 13.78 -- Looking for cheev_ - found
+#13 13.78 -- Found LAPACK: /usr/lib/x86_64-linux-gnu/liblapack.so;/usr/lib/x86_64-linux-gnu/libblas.so;/usr/lib/x86_64-linux-gnu/libf77blas.so;/usr/lib/x86_64-linux-gnu/libatlas.so  
+#13 13.78 -- Performing Test HAVE_CXX_WNO_DEPRECATED
+#13 13.87 -- Performing Test HAVE_CXX_WNO_DEPRECATED - Success
+#13 13.87 -- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES
+#13 13.96 -- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES - Success
+#13 13.96 -- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS
+#13 14.04 -- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS - Success
+#13 14.04 -- Performing Test HAVE_CXX_WNO_SHADOW
+#13 14.13 -- Performing Test HAVE_CXX_WNO_SHADOW - Success
+#13 14.13 -- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER
+#13 14.22 -- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER - Success
+#13 14.22 -- Performing Test HAVE_CXX_WNO_UNUSED_LOCAL_TYPEDEFS
+#13 14.30 -- Performing Test HAVE_CXX_WNO_UNUSED_LOCAL_TYPEDEFS - Success
+#13 14.30 -- Performing Test HAVE_CXX_WNO_SIGN_COMPARE
+#13 14.38 -- Performing Test HAVE_CXX_WNO_SIGN_COMPARE - Success
+#13 14.38 -- Performing Test HAVE_CXX_WNO_SIGN_PROMO
+#13 14.47 -- Performing Test HAVE_CXX_WNO_SIGN_PROMO - Success
+#13 14.47 -- Performing Test HAVE_CXX_WNO_UNDEF
+#13 14.55 -- Performing Test HAVE_CXX_WNO_UNDEF - Success
+#13 14.55 -- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_UNDEFINED_COMPARE
+#13 14.64 -- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_UNDEFINED_COMPARE - Success
+#13 14.64 -- Performing Test HAVE_CXX_WNO_IGNORED_QUALIFIERS
+#13 14.73 -- Performing Test HAVE_CXX_WNO_IGNORED_QUALIFIERS - Success
+#13 14.73 -- Performing Test HAVE_CXX_WNO_EXTRA
+#13 14.82 -- Performing Test HAVE_CXX_WNO_EXTRA - Success
+#13 14.82 -- Performing Test HAVE_CXX_WNO_UNUSED_FUNCTION
+#13 14.90 -- Performing Test HAVE_CXX_WNO_UNUSED_FUNCTION - Success
+#13 14.90 -- Performing Test HAVE_CXX_WNO_UNUSED_CONST_VARIABLE
+#13 14.99 -- Performing Test HAVE_CXX_WNO_UNUSED_CONST_VARIABLE - Success
+#13 14.99 -- Performing Test HAVE_CXX_WNO_SHORTEN_64_TO_32
+#13 15.08 -- Performing Test HAVE_CXX_WNO_SHORTEN_64_TO_32 - Success
+#13 15.08 -- Performing Test HAVE_CXX_WNO_INVALID_OFFSETOF
+#13 15.16 -- Performing Test HAVE_CXX_WNO_INVALID_OFFSETOF - Success
+#13 15.16 -- Performing Test HAVE_CXX_WNO_ENUM_COMPARE_SWITCH
+#13 15.25 -- Performing Test HAVE_CXX_WNO_ENUM_COMPARE_SWITCH - Success
+#13 15.25 -- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE
+#13 15.33 -- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE - Success
+#13 15.33 -- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE
+#13 15.42 -- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE - Success
+#13 15.42 -- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH
+#13 15.50 -- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH - Success
+#13 15.50 -- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS
+#13 15.59 -- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS - Success
+#13 15.59 -- Could NOT find Java (missing: Java_JAVA_EXECUTABLE Java_JAR_EXECUTABLE Java_JAVAC_EXECUTABLE Java_JAVAH_EXECUTABLE Java_JAVADOC_EXECUTABLE) 
+#13 15.60 -- Could NOT find JNI (missing: JAVA_AWT_LIBRARY JAVA_JVM_LIBRARY JAVA_INCLUDE_PATH JAVA_INCLUDE_PATH2 JAVA_AWT_INCLUDE_PATH) 
+#13 15.67 -- VTK is not found. Please set -DVTK_DIR in CMake to VTK build directory, or to VTK install subdirectory with VTKConfig.cmake file
+#13 15.67 -- Performing Test HAVE_C_WNO_UNUSED_VARIABLE
+#13 15.72 -- Performing Test HAVE_C_WNO_UNUSED_VARIABLE - Success
+#13 15.72 -- Looking for dlerror in dl
+#13 15.78 -- Looking for dlerror in dl - found
+#13 15.79 -- ADE: Downloading v0.1.2a.zip from https://github.com/opencv/ade/archive/v0.1.2a.zip
+#13 16.54 -- Checking for module 'gtk+-3.0'
+#13 16.54 --   No package 'gtk+-3.0' found
+#13 16.55 -- Checking for module 'gtk+-2.0'
+#13 16.55 --   No package 'gtk+-2.0' found
+#13 16.55 -- Checking for module 'gthread-2.0>=2.32'
+#13 16.55 --   No package 'gthread-2.0' found
+#13 16.57 -- Checking for modules 'libavcodec;libavformat;libavutil;libswscale'
+#13 16.59 --   Found libavcodec, version 58.134.100
+#13 16.59 --   Found libavformat, version 58.76.100
+#13 16.60 --   Found libavutil, version 56.70.100
+#13 16.61 --   Found libswscale, version 5.9.100
+#13 16.63 -- Checking for module 'libavresample'
+#13 16.63 --   No package 'libavresample' found
+#13 16.93 -- Checking for module 'gstreamer-base-1.0'
+#13 16.93 --   No package 'gstreamer-base-1.0' found
+#13 16.93 -- Checking for module 'gstreamer-app-1.0'
+#13 16.94 --   No package 'gstreamer-app-1.0' found
+#13 16.94 -- Checking for module 'gstreamer-riff-1.0'
+#13 16.94 --   No package 'gstreamer-riff-1.0' found
+#13 16.94 -- Checking for module 'gstreamer-pbutils-1.0'
+#13 16.94 --   No package 'gstreamer-pbutils-1.0' found
+#13 16.94 -- Checking for module 'gstreamer-video-1.0'
+#13 16.94 --   No package 'gstreamer-video-1.0' found
+#13 16.94 -- Checking for module 'gstreamer-audio-1.0'
+#13 16.95 --   No package 'gstreamer-audio-1.0' found
+#13 17.03 -- Checking for module 'libdc1394-2'
+#13 17.03 --   No package 'libdc1394-2' found
+#13 17.11 -- Checking for module 'freetype2'
+#13 17.12 --   No package 'freetype2' found
+#13 17.12 -- Checking for module 'harfbuzz'
+#13 17.12 --   No package 'harfbuzz' found
+#13 17.12 -- freetype2:   NO
+#13 17.12 -- harfbuzz:    NO
+#13 17.15 -- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS) (found version "")
+#13 17.16 -- Julia not found. Not compiling Julia Bindings. 
+#13 17.17 -- Module opencv_ovis disabled because OGRE3D was not found
+#13 17.46 -- Checking SFM glog/gflags deps... TRUE
+#13 17.47 -- Checking for module 'tesseract'
+#13 17.47 --   No package 'tesseract' found
+#13 17.48 -- Tesseract:   NO
+#13 17.49 -- Using whitelist: opencv_core;opencv_imgcodecs;opencv_imgproc;opencv_video;opencv_videoio
+#13 17.49 -- Module opencv_calib3d disabled by whitelist
+#13 17.49 -- Module opencv_dnn disabled by whitelist
+#13 17.49 -- Module opencv_features2d disabled by whitelist
+#13 17.49 -- Module opencv_flann disabled by whitelist
+#13 17.49 -- Module opencv_gapi disabled by whitelist
+#13 17.49 -- Module opencv_highgui disabled by whitelist
+#13 17.49 -- Module opencv_java_bindings_generator disabled by whitelist
+#13 17.49 -- Module opencv_js_bindings_generator disabled by whitelist
+#13 17.49 -- Module opencv_ml disabled by whitelist
+#13 17.49 -- Module opencv_objc_bindings_generator disabled by whitelist
+#13 17.49 -- Module opencv_objdetect disabled by whitelist
+#13 17.49 -- Module opencv_photo disabled by whitelist
+#13 17.49 -- Module opencv_python_bindings_generator disabled by whitelist
+#13 17.49 -- Module opencv_python_tests disabled by whitelist
+#13 17.49 -- Module opencv_stitching disabled by whitelist
+#13 17.49 -- Module opencv_alphamat disabled by whitelist
+#13 17.49 -- Module opencv_aruco disabled by whitelist
+#13 17.49 -- Module opencv_bgsegm disabled by whitelist
+#13 17.49 -- Module opencv_bioinspired disabled by whitelist
+#13 17.49 -- Module opencv_ccalib disabled by whitelist
+#13 17.49 -- Module opencv_datasets disabled by whitelist
+#13 17.49 -- Module opencv_dnn_objdetect disabled by whitelist
+#13 17.49 -- Module opencv_dnn_superres disabled by whitelist
+#13 17.49 -- Module opencv_dpm disabled by whitelist
+#13 17.49 -- Module opencv_face disabled by whitelist
+#13 17.49 -- Module opencv_fuzzy disabled by whitelist
+#13 17.49 -- Module opencv_hfs disabled by whitelist
+#13 17.49 -- Module opencv_img_hash disabled by whitelist
+#13 17.49 -- Module opencv_intensity_transform disabled by whitelist
+#13 17.49 -- Module opencv_line_descriptor disabled by whitelist
+#13 17.49 -- Module opencv_mcc disabled by whitelist
+#13 17.49 -- Module opencv_optflow disabled by whitelist
+#13 17.49 -- Module opencv_phase_unwrapping disabled by whitelist
+#13 17.49 -- Module opencv_plot disabled by whitelist
+#13 17.49 -- Module opencv_quality disabled by whitelist
+#13 17.49 -- Module opencv_rapid disabled by whitelist
+#13 17.49 -- Module opencv_reg disabled by whitelist
+#13 17.49 -- Module opencv_rgbd disabled by whitelist
+#13 17.49 -- Module opencv_saliency disabled by whitelist
+#13 17.49 -- Module opencv_sfm disabled by whitelist
+#13 17.49 -- Module opencv_shape disabled by whitelist
+#13 17.49 -- Module opencv_stereo disabled by whitelist
+#13 17.49 -- Module opencv_structured_light disabled by whitelist
+#13 17.49 -- Module opencv_superres disabled by whitelist
+#13 17.49 -- Module opencv_surface_matching disabled by whitelist
+#13 17.49 -- Module opencv_text disabled by whitelist
+#13 17.49 -- Module opencv_tracking disabled by whitelist
+#13 17.49 -- Module opencv_videostab disabled by whitelist
+#13 17.49 -- Module opencv_wechat_qrcode disabled by whitelist
+#13 17.49 -- Module opencv_xfeatures2d disabled by whitelist
+#13 17.49 -- Module opencv_ximgproc disabled by whitelist
+#13 17.49 -- Module opencv_xobjdetect disabled by whitelist
+#13 17.49 -- Module opencv_xphoto disabled by whitelist
+#13 17.51 -- Allocator metrics storage type: 'long long'
+#13 17.53 -- Excluding from source files list: modules/imgproc/src/imgwarp.lasx.cpp
+#13 17.53 -- Excluding from source files list: modules/imgproc/src/resize.lasx.cpp
+#13 17.55 -- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS
+#13 17.63 -- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS - Success
+#13 17.65 -- 
+#13 17.65 -- General configuration for OpenCV 4.8.0 =====================================
+#13 17.65 --   Version control:               unknown
+#13 17.65 -- 
+#13 17.65 --   Extra modules:
+#13 17.65 --     Location (extra):            /root/dist/opencv_contrib-4.8.0/modules
+#13 17.65 --     Version control (extra):     unknown
+#13 17.65 -- 
+#13 17.65 --   Platform:
+#13 17.65 --     Timestamp:                   2024-12-27T17:04:32Z
+#13 17.65 --     Host:                        Linux 5.15.167.4-microsoft-standard-WSL2 x86_64
+#13 17.65 --     CMake:                       3.22.1
+#13 17.65 --     CMake generator:             Unix Makefiles
+#13 17.65 --     CMake build tool:            /usr/bin/gmake
+#13 17.65 --     Configuration:               Release
+#13 17.65 -- 
+#13 17.65 --   CPU/HW features:
+#13 17.65 --     Baseline:                    SSE SSE2 SSE3
+#13 17.65 --       requested:                 SSE3
+#13 17.65 --     Dispatched code generation:  SSE4_1 SSE4_2 FP16 AVX AVX2 AVX512_SKX
+#13 17.65 --       requested:                 SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+#13 17.65 --       SSE4_1 (13 files):         + SSSE3 SSE4_1
+#13 17.65 --       SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+#13 17.65 --       FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX
+#13 17.65 --       AVX (3 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+#13 17.65 --       AVX2 (25 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2
+#13 17.65 --       AVX512_SKX (2 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2 AVX_512F AVX512_COMMON AVX512_SKX
+#13 17.65 -- 
+#13 17.65 --   C/C++:
+#13 17.65 --     Built as dynamic libs?:      NO
+#13 17.65 --     C++ standard:                11
+#13 17.65 --     C++ Compiler:                /usr/bin/c++  (ver 14.0.0)
+#13 17.65 --     C++ flags (Release):         -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG
+#13 17.65 --     C++ flags (Debug):           -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG
+#13 17.65 --     C Compiler:                  /usr/bin/cc
+#13 17.65 --     C flags (Release):           -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG
+#13 17.65 --     C flags (Debug):             -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG
+#13 17.65 --     Linker flags (Release):      -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#13 17.65 --     Linker flags (Debug):        -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#13 17.65 --     ccache:                      NO
+#13 17.65 --     Precompiled headers:         NO
+#13 17.66 --     Extra dependencies:          va va-drm dl m pthread rt
+#13 17.66 --     3rdparty dependencies:       ittnotify libjpeg-turbo libpng libopenjp2 zlib ippiw ippicv
+#13 17.66 -- 
+#13 17.66 --   OpenCV modules:
+#13 17.66 --     To be built:                 core imgcodecs imgproc video videoio
+#13 17.66 --     Disabled:                    world
+#13 17.66 --     Disabled by dependency:      alphamat aruco bgsegm bioinspired calib3d ccalib datasets dnn dnn_objdetect dnn_superres dpm face features2d flann fuzzy gapi hfs highgui img_hash intensity_transform java_bindings_generator js_bindings_generator line_descriptor mcc ml objc_bindings_generator objdetect optflow phase_unwrapping photo plot python_bindings_generator python_tests quality rapid reg rgbd saliency sfm shape stereo stitching structured_light superres surface_matching text tracking videostab wechat_qrcode xfeatures2d ximgproc xobjdetect xphoto
+#13 17.66 --     Unavailable:                 cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv freetype hdf java julia matlab ovis python2 python3 ts viz
+#13 17.66 --     Applications:                -
+#13 17.66 --     Documentation:               NO
+#13 17.66 --     Non-free algorithms:         NO
+#13 17.66 -- 
+#13 17.66 --   GUI: 
+#13 17.66 --     GTK+:                        NO
+#13 17.66 --     VTK support:                 NO
+#13 17.66 -- 
+#13 17.66 --   Media I/O: 
+#13 17.66 --     ZLib:                        build (ver 1.2.13)
+#13 17.66 --     JPEG:                        build-libjpeg-turbo (ver 2.1.3-62)
+#13 17.66 --       SIMD Support Request:      YES
+#13 17.66 --       SIMD Support:              NO
+#13 17.66 --     PNG:                         build (ver 1.6.37)
+#13 17.66 --     JPEG 2000:                   build (ver 2.5.0)
+#13 17.66 --     HDR:                         YES
+#13 17.66 --     SUNRASTER:                   YES
+#13 17.66 --     PXM:                         YES
+#13 17.66 --     PFM:                         YES
+#13 17.66 -- 
+#13 17.66 --   Video I/O:
+#13 17.66 --     DC1394:                      NO
+#13 17.66 --     FFMPEG:                      YES
+#13 17.66 --       avcodec:                   YES (58.134.100)
+#13 17.66 --       avformat:                  YES (58.76.100)
+#13 17.66 --       avutil:                    YES (56.70.100)
+#13 17.66 --       swscale:                   YES (5.9.100)
+#13 17.66 --       avresample:                NO
+#13 17.66 --     GStreamer:                   NO
+#13 17.66 --     v4l/v4l2:                    YES (linux/videodev2.h)
+#13 17.66 -- 
+#13 17.66 --   Parallel framework:            pthreads
+#13 17.66 -- 
+#13 17.66 --   Trace:                         YES (with Intel ITT)
+#13 17.66 -- 
+#13 17.66 --   Other third-party libraries:
+#13 17.66 --     Intel IPP:                   2021.8 [2021.8.0]
+#13 17.66 --            at:                   /root/build/3rdparty/ippicv/ippicv_lnx/icv
+#13 17.66 --     Intel IPP IW:                sources (2021.8.0)
+#13 17.66 --               at:                /root/build/3rdparty/ippicv/ippicv_lnx/iw
+#13 17.66 --     VA:                          YES
+#13 17.66 --     Lapack:                      NO
+#13 17.66 --     Eigen:                       YES (ver 3.4.0)
+#13 17.66 --     Custom HAL:                  NO
+#13 17.67 --     Protobuf:                    build (3.19.1)
+#13 17.67 --     Flatbuffers:                 builtin/3rdparty (23.5.9)
+#13 17.67 -- 
+#13 17.67 --   OpenCL:                        YES (INTELVA)
+#13 17.67 --     Include path:                /root/dist/opencv-4.8.0/3rdparty/include/opencl/1.2
+#13 17.67 --     Link libraries:              Dynamic load
+#13 17.67 -- 
+#13 17.67 --   Python (for build):            /usr/bin/python3
+#13 17.67 -- 
+#13 17.67 --   Java:                          
+#13 17.67 --     ant:                         NO
+#13 17.67 --     Java:                        NO
+#13 17.67 --     JNI:                         NO
+#13 17.67 --     Java wrappers:               NO
+#13 17.67 --     Java tests:                  NO
+#13 17.67 -- 
+#13 17.67 --   Install to:                    /opt/opencv
+#13 17.67 -- -----------------------------------------------------------------
+#13 17.67 -- 
+#13 17.90 -- Configuring done
+#13 18.05 -- Generating done
+#13 18.06 -- Build files have been written to: /root/build
+#13 18.09 + nproc
+#13 18.09 + make -C /root/build -j16 install
+#13 18.09 make: Entering directory '/root/build'
+#13 18.11 make[1]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.11 make[2]: Entering directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Entering directory '/root/build'
+#13 18.12 make[2]: Leaving directory '/root/build'
+#13 18.12 make[2]: Entering directory '/root/build'
+#13 18.12 make[2]: Entering directory '/root/build'
+#13 18.12 make[2]: Entering directory '/root/build'
+#13 18.12 make[2]: Entering directory '/root/build'
+#13 18.13 [  0%] Built target opencv_videoio_plugins
+#13 18.13 [  0%] Built target opencv_dnn_plugins
+#13 18.13 [  0%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/jsimd.dir/src/jsimd_none.c.o
+#13 18.13 [  0%] Building C object 3rdparty/ittnotify/CMakeFiles/ittnotify.dir/src/ittnotify/ittnotify_static.c.o
+#13 18.13 [  0%] Built target opencv_highgui_plugins
+#13 18.13 [  1%] Building C object 3rdparty/ittnotify/CMakeFiles/ittnotify.dir/src/ittnotify/jitprofiling.c.o
+#13 18.13 [  1%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/bio.c.o
+#13 18.13 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_color_convert_all.c.o
+#13 18.13 [  1%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/thread.c.o
+#13 18.13 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image.c.o
+#13 18.13 [  1%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/adler32.c.o
+#13 18.13 [  2%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_core.c.o
+#13 18.13 [  2%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/dwt.c.o
+#13 18.13 [  2%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_color_convert_rgbs.c.o
+#13 18.13 [  3%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/cio.c.o
+#13 18.13 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/compress.c.o
+#13 18.14 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/crc32.c.o
+#13 18.14 [  4%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_bilateral.c.o
+#13 18.14 [  4%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/event.c.o
+#13 18.18 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/deflate.c.o
+#13 18.20 [  4%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/ht_dec.c.o
+#13 18.20 [  5%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/image.c.o
+#13 18.20 make[2]: Leaving directory '/root/build'
+#13 18.21 [  5%] Built target jsimd
+#13 18.22 [  5%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/invert.c.o
+#13 18.22 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_box.c.o
+#13 18.23 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_canny.c.o
+#13 18.23 [  6%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzclose.c.o
+#13 18.24 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_general.c.o
+#13 18.25 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_gaussian.c.o
+#13 18.26 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_laplacian.c.o
+#13 18.29 [  6%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzlib.c.o
+#13 18.32 [  6%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/j2k.c.o
+#13 18.32 [  8%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzread.c.o
+#13 18.33 [  8%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzwrite.c.o
+#13 18.35 [  8%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/jp2.c.o
+#13 18.39 [  8%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/mct.c.o
+#13 18.39 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_morphology.c.o
+#13 18.39 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_scharr.c.o
+#13 18.42 [ 10%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/mqc.c.o
+#13 18.43 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_sobel.c.o
+#13 18.48 [ 10%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inflate.c.o
+#13 18.51 [ 10%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/infback.c.o
+#13 18.52 [ 10%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inftrees.c.o
+#13 18.54 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy.c.o
+#13 18.55 [ 11%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inffast.c.o
+#13 18.59 [ 11%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/openjpeg.c.o
+#13 18.59 [ 11%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_channel.c.o
+#13 18.62 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_make_border.c.o
+#13 18.64 [ 12%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/opj_clock.c.o
+#13 18.67 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_merge.c.o
+#13 18.75 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_split.c.o
+#13 18.76 [ 12%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/trees.c.o
+#13 18.76 [ 12%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/pi.c.o
+#13 18.76 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_scale.c.o
+#13 18.83 [ 12%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/t1.c.o
+#13 18.83 [ 12%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/uncompr.c.o
+#13 18.87 [ 12%] Linking C static library ../lib/libittnotify.a
+#13 18.88 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_set.c.o
+#13 18.89 [ 13%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/zutil.c.o
+#13 18.89 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_set_channel.c.o
+#13 18.90 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_swap_channels.c.o
+#13 18.93 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_mirror.c.o
+#13 18.95 make[2]: Entering directory '/root/build'
+#13 18.97 make[2]: Leaving directory '/root/build'
+#13 18.97 make[2]: Entering directory '/root/build'
+#13 18.98 [ 14%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/t2.c.o
+#13 18.98 make[2]: Leaving directory '/root/build'
+#13 18.99 [ 14%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcapimin.c.o
+#13 18.99 [ 14%] Built target ittnotify
+#13 19.01 [ 14%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcapistd.c.o
+#13 19.02 [ 14%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_resize.c.o
+#13 19.03 [ 16%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_rotate.c.o
+#13 19.08 [ 16%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_warpaffine.c.o
+#13 19.08 [ 17%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jccoefct.c.o
+#13 19.09 [ 17%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jccolor.c.o
+#13 19.10 [ 17%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcdctmgr.c.o
+#13 19.12 [ 17%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_own.c.o
+#13 19.16 [ 17%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jchuff.c.o
+#13 19.20 [ 17%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/tcd.c.o
+#13 19.23 [ 17%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/tgt.c.o
+#13 19.24 [ 17%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/function_list.c.o
+#13 19.26 [ 18%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcicc.c.o
+#13 19.27 [ 18%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcinit.c.o
+#13 19.32 [ 19%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/opj_malloc.c.o
+#13 19.32 [ 19%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmainct.c.o
+#13 19.33 [ 19%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmarker.c.o
+#13 19.34 [ 19%] Linking C static library ../lib/libippiw.a
+#13 19.35 [ 19%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmaster.c.o
+#13 19.40 [ 20%] Linking C static library ../lib/libzlib.a
+#13 19.41 [ 20%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/sparse_array.c.o
+#13 19.41 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcomapi.c.o
+#13 19.43 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcparam.c.o
+#13 19.45 make[2]: Leaving directory '/root/build'
+#13 19.45 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcphuff.c.o
+#13 19.46 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcprepct.c.o
+#13 19.47 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcsample.c.o
+#13 19.50 [ 21%] Built target ippiw
+#13 19.54 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jctrans.c.o
+#13 19.54 make[2]: Leaving directory '/root/build'
+#13 19.57 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdapimin.c.o
+#13 19.57 [ 22%] Built target zlib
+#13 19.59 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdapistd.c.o
+#13 19.61 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdatadst.c.o
+#13 19.63 make[2]: Entering directory '/root/build'
+#13 19.64 [ 22%] Processing OpenCL kernels (core)
+#13 19.65 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdatasrc.c.o
+#13 19.66 make[2]: Entering directory '/root/build'
+#13 19.68 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdcoefct.c.o
+#13 19.68 make[2]: Leaving directory '/root/build'
+#13 19.68 make[2]: Entering directory '/root/build'
+#13 19.69 [ 24%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/png.c.o
+#13 19.70 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdcolor.c.o
+#13 19.71 make[2]: Leaving directory '/root/build'
+#13 19.72 make[2]: Entering directory '/root/build'
+#13 19.72 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdhuff.c.o
+#13 19.72 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jddctmgr.c.o
+#13 19.73 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdicc.c.o
+#13 19.74 [ 25%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/algorithm.cpp.o
+#13 19.76 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdinput.c.o
+#13 19.78 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmainct.c.o
+#13 19.83 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmarker.c.o
+#13 19.88 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmaster.c.o
+#13 19.89 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmerge.c.o
+#13 19.90 [ 26%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngerror.c.o
+#13 19.95 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdphuff.c.o
+#13 20.05 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdpostct.c.o
+#13 20.13 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdsample.c.o
+#13 20.20 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdtrans.c.o
+#13 20.23 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jerror.c.o
+#13 20.25 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctflt.c.o
+#13 20.25 [ 28%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngget.c.o
+#13 20.27 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctfst.c.o
+#13 20.31 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctint.c.o
+#13 20.33 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctflt.c.o
+#13 20.36 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctfst.c.o
+#13 20.37 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctint.c.o
+#13 20.39 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctred.c.o
+#13 20.41 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jquant1.c.o
+#13 20.46 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jquant2.c.o
+#13 20.47 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jutils.c.o
+#13 20.50 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jmemmgr.c.o
+#13 20.52 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jmemnobs.c.o
+#13 20.54 [ 31%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngmem.c.o
+#13 20.56 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jaricom.c.o
+#13 20.60 [ 32%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcarith.c.o
+#13 20.61 [ 32%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdarith.c.o
+#13 20.62 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngpread.c.o
+#13 20.65 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngread.c.o
+#13 20.68 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrio.c.o
+#13 20.74 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrtran.c.o
+#13 20.78 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrutil.c.o
+#13 20.79 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngset.c.o
+#13 20.86 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngtrans.c.o
+#13 20.89 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwio.c.o
+#13 20.92 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwrite.c.o
+#13 20.99 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwtran.c.o
+#13 21.00 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwutil.c.o
+#13 21.00 [ 34%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/alloc.cpp.o
+#13 21.00 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/intel/intel_init.c.o
+#13 21.04 [ 35%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/intel/filter_sse2_intrinsics.c.o
+#13 21.08 [ 35%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.cpp.o
+#13 21.21 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.dispatch.cpp.o
+#13 21.22 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/array.cpp.o
+#13 21.29 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/async.cpp.o
+#13 21.39 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/batch_distance.cpp.o
+#13 21.46 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/bindings_utils.cpp.o
+#13 21.55 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/buffer_area.cpp.o
+#13 21.58 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/channels.cpp.o
+#13 21.61 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/check.cpp.o
+#13 21.89 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/command_line_parser.cpp.o
+#13 22.20 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/conjugate_gradient.cpp.o
+#13 22.66 [ 39%] Linking C static library ../lib/liblibpng.a
+#13 22.77 make[2]: Leaving directory '/root/build'
+#13 22.79 [ 39%] Built target libpng
+#13 22.81 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert.dispatch.cpp.o
+#13 23.30 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_c.cpp.o
+#13 24.46 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_scale.dispatch.cpp.o
+#13 24.62 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/copy.cpp.o
+#13 24.64 [ 39%] Linking C static library ../../lib/liblibopenjp2.a
+#13 24.75 make[2]: Leaving directory '/root/build'
+#13 24.76 [ 39%] Built target libopenjp2
+#13 24.77 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/count_non_zero.dispatch.cpp.o
+#13 25.19 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat.cpp.o
+#13 25.42 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat_nd.cpp.o
+#13 25.75 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_host_mem.cpp.o
+#13 25.80 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_info.cpp.o
+#13 25.92 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_stream.cpp.o
+#13 26.07 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/datastructs.cpp.o
+#13 26.21 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/directx.cpp.o
+#13 26.47 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/downhill_simplex.cpp.o
+#13 26.76 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/dxt.cpp.o
+#13 26.95 [ 42%] Linking C static library ../lib/liblibjpeg-turbo.a
+#13 26.96 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/gl_core_3_1.cpp.o
+#13 27.04 make[2]: Leaving directory '/root/build'
+#13 27.05 [ 42%] Built target libjpeg-turbo
+#13 27.06 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/glob.cpp.o
+#13 28.35 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/hal_internal.cpp.o
+#13 28.50 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/has_non_zero.dispatch.cpp.o
+#13 28.71 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/kmeans.cpp.o
+#13 28.96 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lapack.cpp.o
+#13 29.32 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lda.cpp.o
+#13 29.37 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/logger.cpp.o
+#13 29.39 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lpsolver.cpp.o
+#13 29.53 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lut.cpp.o
+#13 29.58 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs.cpp.o
+#13 29.75 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs_core.dispatch.cpp.o
+#13 29.98 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matmul.dispatch.cpp.o
+#13 30.38 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
+#13 30.59 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_c.cpp.o
+#13 30.93 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_decomp.cpp.o
+#13 31.31 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_expressions.cpp.o
+#13 31.75 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_iterator.cpp.o
+#13 32.36 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_operations.cpp.o
+#13 32.82 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_sparse.cpp.o
+#13 33.04 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_transform.cpp.o
+#13 33.09 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_wrap.cpp.o
+#13 33.32 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mean.dispatch.cpp.o
+#13 33.36 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/merge.dispatch.cpp.o
+#13 33.93 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/minmax.cpp.o
+#13 34.06 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/norm.cpp.o
+#13 34.18 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ocl.cpp.o
+#13 34.55 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clblas.cpp.o
+#13 34.55 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clfft.cpp.o
+#13 34.70 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_core.cpp.o
+#13 34.87 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opengl.cpp.o
+#13 35.47 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/out.cpp.o
+#13 37.09 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ovx.cpp.o
+#13 37.48 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel.cpp.o
+#13 37.55 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel.cpp.o
+#13 37.59 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_openmp.cpp.o
+#13 37.76 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_tbb.cpp.o
+#13 37.78 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel_impl.cpp.o
+#13 37.95 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/pca.cpp.o
+#13 38.11 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence.cpp.o
+#13 38.74 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_base64_encoding.cpp.o
+#13 38.88 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_json.cpp.o
+#13 38.89 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_types.cpp.o
+#13 38.94 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_xml.cpp.o
+#13 40.12 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_yml.cpp.o
+#13 40.48 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/rand.cpp.o
+#13 40.63 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/softfloat.cpp.o
+#13 40.71 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/split.dispatch.cpp.o
+#13 40.76 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat.dispatch.cpp.o
+#13 41.09 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat_c.cpp.o
+#13 41.90 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stl.cpp.o
+#13 42.31 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/sum.dispatch.cpp.o
+#13 42.54 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/system.cpp.o
+#13 42.62 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/tables.cpp.o
+#13 42.69 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/trace.cpp.o
+#13 42.87 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/types.cpp.o
+#13 43.85 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/umatrix.cpp.o
+#13 44.06 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/datafile.cpp.o
+#13 44.38 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/filesystem.cpp.o
+#13 44.49 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagmanager.cpp.o
+#13 44.49 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagconfigparser.cpp.o
+#13 44.86 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/samples.cpp.o
+#13 44.98 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/va_intel.cpp.o
+#13 45.15 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/opencl_kernels_core.cpp.o
+#13 45.25 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.sse4_1.cpp.o
+#13 45.59 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.sse4_1.cpp.o
+#13 46.09 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.sse4_2.cpp.o
+#13 46.38 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx.cpp.o
+#13 46.42 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx2.cpp.o
+#13 46.59 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.avx2.cpp.o
+#13 46.64 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.avx2.cpp.o
+#13 47.27 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert.avx2.cpp.o
+#13 47.94 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert_scale.avx2.cpp.o
+#13 47.99 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/count_non_zero.avx2.cpp.o
+#13 48.00 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/has_non_zero.avx2.cpp.o
+#13 48.08 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx2.cpp.o
+#13 48.24 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mean.avx2.cpp.o
+#13 48.80 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/merge.avx2.cpp.o
+#13 48.98 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/split.avx2.cpp.o
+#13 49.10 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/sum.avx2.cpp.o
+#13 50.18 [ 62%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx512_skx.cpp.o
+#13 55.61 [ 62%] Linking CXX static library ../../lib/libopencv_core.a
+#13 55.76 make[2]: Leaving directory '/root/build'
+#13 55.77 [ 62%] Built target opencv_core
+#13 55.78 make[2]: Entering directory '/root/build'
+#13 55.78 [ 62%] Processing OpenCL kernels (imgproc)
+#13 55.83 make[2]: Leaving directory '/root/build'
+#13 55.83 make[2]: Entering directory '/root/build'
+#13 55.84 [ 62%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/box_filter.dispatch.cpp.o
+#13 55.84 [ 62%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/approx.cpp.o
+#13 55.84 [ 62%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.cpp.o
+#13 55.84 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.dispatch.cpp.o
+#13 55.84 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/blend.cpp.o
+#13 55.84 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/bilateral_filter.dispatch.cpp.o
+#13 55.84 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color.cpp.o
+#13 55.84 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/canny.cpp.o
+#13 55.84 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/clahe.cpp.o
+#13 55.84 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_lab.cpp.o
+#13 55.84 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_yuv.dispatch.cpp.o
+#13 55.84 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_rgb.dispatch.cpp.o
+#13 55.84 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_hsv.dispatch.cpp.o
+#13 55.84 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/colormap.cpp.o
+#13 55.85 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/connectedcomponents.cpp.o
+#13 55.85 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours.cpp.o
+#13 58.49 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/convhull.cpp.o
+#13 58.82 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.cpp.o
+#13 58.91 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/cornersubpix.cpp.o
+#13 58.91 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/demosaicing.cpp.o
+#13 59.15 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/deriv.cpp.o
+#13 59.41 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/distransform.cpp.o
+#13 59.54 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/drawing.cpp.o
+#13 59.92 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/emd.cpp.o
+#13 59.92 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/featureselect.cpp.o
+#13 60.25 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/filter.dispatch.cpp.o
+#13 60.57 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/floodfill.cpp.o
+#13 61.46 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/gabor.cpp.o
+#13 61.56 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/generalized_hough.cpp.o
+#13 61.81 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/geometry.cpp.o
+#13 62.03 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/grabcut.cpp.o
+#13 62.32 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hershey_fonts.cpp.o
+#13 62.40 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/histogram.cpp.o
+#13 62.61 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hough.cpp.o
+#13 62.64 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.cpp.o
+#13 63.20 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intelligent_scissors.cpp.o
+#13 63.26 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intersection.cpp.o
+#13 63.26 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/linefit.cpp.o
+#13 63.61 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/lsd.cpp.o
+#13 64.15 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/main.cpp.o
+#13 64.47 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/matchcontours.cpp.o
+#13 64.75 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/median_blur.dispatch.cpp.o
+#13 65.01 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/min_enclosing_triangle.cpp.o
+#13 65.91 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/moments.cpp.o
+#13 66.16 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/morph.dispatch.cpp.o
+#13 66.31 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/phasecorr.cpp.o
+#13 66.35 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/pyramids.cpp.o
+#13 66.56 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.cpp.o
+#13 66.89 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/rotcalipers.cpp.o
+#13 66.89 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/samplers.cpp.o
+#13 67.34 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/segmentation.cpp.o
+#13 67.69 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/shapedescr.cpp.o
+#13 68.31 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/smooth.dispatch.cpp.o
+#13 68.99 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/spatialgradient.cpp.o
+#13 69.31 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/stackblur.cpp.o
+#13 69.34 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/subdivision2d.cpp.o
+#13 69.39 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/sumpixels.dispatch.cpp.o
+#13 69.62 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/tables.cpp.o
+#13 70.00 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/templmatch.cpp.o
+#13 70.19 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/thresh.cpp.o
+#13 70.76 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/utils.cpp.o
+#13 71.68 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/opencl_kernels_imgproc.cpp.o
+#13 71.77 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.sse4_1.cpp.o
+#13 71.84 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.sse4_1.cpp.o
+#13 72.65 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.sse4_1.cpp.o
+#13 73.14 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.sse4_1.cpp.o
+#13 73.19 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.sse4_1.cpp.o
+#13 73.52 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.sse4_1.cpp.o
+#13 73.74 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.sse4_1.cpp.o
+#13 73.94 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.sse4_1.cpp.o
+#13 74.20 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.sse4_1.cpp.o
+#13 74.87 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.sse4_1.cpp.o
+#13 75.15 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.sse4_1.cpp.o
+#13 75.22 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.avx.cpp.o
+#13 75.41 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx.cpp.o
+#13 75.66 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.avx2.cpp.o
+#13 77.52 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.avx2.cpp.o
+#13 77.74 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx2.cpp.o
+#13 78.12 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/bilateral_filter.avx2.cpp.o
+#13 78.83 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.avx2.cpp.o
+#13 78.83 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.avx2.cpp.o
+#13 79.03 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.avx2.cpp.o
+#13 79.03 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.avx2.cpp.o
+#13 79.65 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.avx2.cpp.o
+#13 79.68 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.avx2.cpp.o
+#13 79.85 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.avx2.cpp.o
+#13 81.01 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.avx2.cpp.o
+#13 81.32 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx2.cpp.o
+#13 81.44 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx512_skx.cpp.o
+#13 89.38 [ 83%] Linking CXX static library ../../lib/libopencv_imgproc.a
+#13 89.55 make[2]: Leaving directory '/root/build'
+#13 89.56 [ 83%] Built target opencv_imgproc
+#13 89.56 make[2]: Entering directory '/root/build'
+#13 89.56 make[2]: Entering directory '/root/build'
+#13 89.56 [ 83%] Processing OpenCL kernels (video)
+#13 89.56 make[2]: Leaving directory '/root/build'
+#13 89.57 make[2]: Entering directory '/root/build'
+#13 89.57 [ 83%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/loadsave.cpp.o
+#13 89.57 [ 83%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/utils.cpp.o
+#13 89.57 [ 83%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_base.cpp.o
+#13 89.57 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_avif.cpp.o
+#13 89.57 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_gdal.cpp.o
+#13 89.57 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_exr.cpp.o
+#13 89.57 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_bmp.cpp.o
+#13 89.57 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_gdcm.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg2000_openjpeg.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_hdr.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pfm.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg2000.cpp.o
+#13 89.57 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_png.cpp.o
+#13 89.57 [ 87%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pam.cpp.o
+#13 89.60 make[2]: Leaving directory '/root/build'
+#13 89.60 make[2]: Entering directory '/root/build'
+#13 89.61 [ 88%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/bgfg_KNN.cpp.o
+#13 91.91 [ 88%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pxm.cpp.o
+#13 91.94 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_spng.cpp.o
+#13 91.94 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_sunras.cpp.o
+#13 91.98 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_tiff.cpp.o
+#13 92.00 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_webp.cpp.o
+#13 92.08 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/bitstrm.cpp.o
+#13 92.09 [ 90%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/rgbe.cpp.o
+#13 92.30 [ 90%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/exif.cpp.o
+#13 92.37 [ 90%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/bgfg_gaussmix2.cpp.o
+#13 92.42 [ 90%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/camshift.cpp.o
+#13 92.46 [ 90%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/dis_flow.cpp.o
+#13 92.50 [ 90%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/ecc.cpp.o
+#13 92.52 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/kalman.cpp.o
+#13 92.52 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/lkpyramid.cpp.o
+#13 92.64 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/optflowgf.cpp.o
+#13 93.11 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/optical_flow_io.cpp.o
+#13 94.41 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_feature.cpp.o
+#13 94.51 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_feature_set.cpp.o
+#13 94.73 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_mil_model.cpp.o
+#13 94.80 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_model.cpp.o
+#13 94.80 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_mil_state.cpp.o
+#13 94.85 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_sampler.cpp.o
+#13 94.97 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_sampler_algorithm.cpp.o
+#13 95.05 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_state_estimator.cpp.o
+#13 95.10 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracking_feature.cpp.o
+#13 95.47 [ 94%] Linking CXX static library ../../lib/libopencv_imgcodecs.a
+#13 95.54 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracking_online_mil.cpp.o
+#13 95.57 make[2]: Leaving directory '/root/build'
+#13 95.58 [ 94%] Built target opencv_imgcodecs
+#13 95.58 make[2]: Entering directory '/root/build'
+#13 95.60 make[2]: Leaving directory '/root/build'
+#13 95.60 make[2]: Entering directory '/root/build'
+#13 95.61 [ 94%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/videoio_registry.cpp.o
+#13 95.66 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker.cpp.o
+#13 95.85 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_dasiamrpn.cpp.o
+#13 96.34 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_goturn.cpp.o
+#13 96.82 [ 96%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/videoio_c.cpp.o
+#13 96.85 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_mil.cpp.o
+#13 97.11 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_nano.cpp.o
+#13 97.28 [ 97%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/variational_refinement.cpp.o
+#13 97.53 [ 97%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/opencl_kernels_video.cpp.o
+#13 97.61 [ 97%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap.cpp.o
+#13 97.64 [ 97%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_images.cpp.o
+#13 97.66 [ 97%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_mjpeg_encoder.cpp.o
+#13 97.67 [ 97%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_mjpeg_decoder.cpp.o
+#13 97.81 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/backend_plugin.cpp.o
+#13 98.13 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/backend_static.cpp.o
+#13 98.15 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/container_avi.cpp.o
+#13 98.41 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_v4l.cpp.o
+#13 98.69 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_ffmpeg.cpp.o
+#13 98.86 [100%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_obsensor_capture.cpp.o
+#13 98.90 [100%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_obsensor/obsensor_uvc_stream_channel.cpp.o
+#13 99.54 [100%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_obsensor/obsensor_stream_channel_v4l2.cpp.o
+#13 100.9 [100%] Linking CXX static library ../../lib/libopencv_video.a
+#13 101.0 make[2]: Leaving directory '/root/build'
+#13 101.0 [100%] Built target opencv_video
+#13 102.7 [100%] Linking CXX static library ../../lib/libopencv_videoio.a
+#13 102.8 make[2]: Leaving directory '/root/build'
+#13 102.8 [100%] Built target opencv_videoio
+#13 102.8 make[1]: Leaving directory '/root/build'
+#13 102.8 Install the project...
+#13 102.8 -- Install configuration: "Release"
+#13 102.8 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-readme.htm
+#13 102.8 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-EULA.txt
+#13 102.8 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-third-party-programs.txt
+#13 102.8 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libippicv.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-support.txt
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-third-party-programs.txt
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-EULA.txt
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/flatbuffers-LICENSE.txt
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/opencl-headers-LICENSE.txt
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ade-LICENSE
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/cvconfig.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv_modules.hpp
+#13 103.0 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules.cmake
+#13 103.0 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules-release.cmake
+#13 103.0 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig-version.cmake
+#13 103.0 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig.cmake
+#13 103.0 -- Installing: /opt/opencv/bin/setup_vars_opencv4.sh
+#13 103.0 -- Installing: /opt/opencv/share/opencv4/valgrind.supp
+#13 103.0 -- Installing: /opt/opencv/share/opencv4/valgrind_3rdparty.supp
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libzlib.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/zlib-LICENSE
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibjpeg-turbo.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-README.md
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-LICENSE.md
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-README.ijg
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libopenjp2-README.md
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libopenjp2-LICENSE
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibopenjp2.a
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibpng.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libpng-LICENSE
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/libpng-README
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libippiw.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/protobuf-LICENSE
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/protobuf-README.md
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/quirc-LICENSE
+#13 103.0 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libittnotify.a
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ittnotify-LICENSE.BSD
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/ittnotify-LICENSE.GPL
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv.hpp
+#13 103.0 -- Installing: /opt/opencv/lib/libopencv_core.a
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/affine.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/async.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/base.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bindings_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bufferpool.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/check.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core_c.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.inl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/block.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/border_interpolate.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/color.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/common.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/datamov_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/color_detail.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce_key_val.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/transform_detail.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/type_traits_detail.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/vec_distance_detail.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/dynamic_smem.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/emulation.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/filters.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/funcattrib.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/functional.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/limits.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/reduce.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/saturate_cast.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/scan.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/simd_functions.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/transform.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/type_traits.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/utility.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_distance.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_math.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_traits.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_reduce.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_shuffle.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_stream_accessor.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_types.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_dispatch.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_helper.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvdef.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.inl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/async_promise.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/dispatch_helper.impl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/exception_ptr.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/directx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.inl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/eigen.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/fast_math.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/hal.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/interface.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx512.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_cpp.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_forward.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_lasx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_msa.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_neon.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv071.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_non-policy.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_overloaded-non-policy.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_compat_overloaded.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_scalable.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse_em.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_vsx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_wasm.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/msa_macros.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/simd_utils.impl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.inl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/matx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/neon_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl_genbase.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/ocl_defs.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_info.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_svm.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clblas.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clfft.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core_wrappers.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clblas.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clfft.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core_wrappers.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl_wrappers.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_20.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_definitions.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_hsa_extension.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opengl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/operations.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/optim.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ovx.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.openmp.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.tbb.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/parallel_backend.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/persistence.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.inl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/saturate.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/simd_intrinsics.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/softfloat.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/sse_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/traits.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types_c.h
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utility.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.impl.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/filesystem.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/fp_control_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/instrumentation.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.defines.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logtag.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/tls.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/trace.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/va_intel.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/version.hpp
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/core/vsx_utils.hpp
+#13 103.0 -- Installing: /opt/opencv/share/licenses/opencv4/SoftFloat-COPYING.txt
+#13 103.0 -- Installing: /opt/opencv/lib/libopencv_imgproc.a
+#13 103.0 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/bindings.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/detail/gcgraph.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/hal/hal.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/hal/interface.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/imgproc.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/imgproc_c.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/segmentation.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/types_c.h
+#13 103.1 -- Installing: /opt/opencv/lib/libopencv_video.a
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video/background_segm.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video/detail/tracking.detail.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video/legacy/constants_c.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video/tracking.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/video/video.hpp
+#13 103.1 -- Installing: /opt/opencv/lib/libopencv_imgcodecs.a
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/imgcodecs.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/imgcodecs_c.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/ios.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/legacy/constants_c.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/macosx.h
+#13 103.1 -- Installing: /opt/opencv/lib/libopencv_videoio.a
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/cap_ios.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/legacy/constants_c.h
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/registry.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/videoio.hpp
+#13 103.1 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/videoio_c.h
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye_tree_eyeglasses.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface_extended.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt2.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt_tree.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_default.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_fullbody.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lefteye_2splits.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_license_plate_rus_16stages.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lowerbody.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_profileface.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_righteye_2splits.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_russian_plate_number.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_smile.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_upperbody.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalcatface.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface_improved.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_profileface.xml
+#13 103.1 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_silverware.xml
+#13 103.1 make: Leaving directory '/root/build'
+#13 DONE 103.3s
+
+#14 [test  3/11] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev     cmake     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+#14 CACHED
+
+#15 [test  4/11] RUN set -xeu &&     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
+#15 CACHED
+
+#16 [frontend 2/3] RUN set -xeu && 	git clone https://github.com/piotrpdev/oko.git /root/oko
+#16 CACHED
+
+#17 [frontend 3/3] RUN set -xeu && 	npm --prefix=/root/oko/frontend ci && 	npm --prefix=/root/oko/frontend run build && 	mkdir -p /root/oko/backend/static && 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
+#17 CACHED
+
+#18 [test  5/11] COPY --from=backend /opt/opencv /opt/opencv
+#18 DONE 0.3s
+
+#19 [test  6/11] COPY --from=frontend /root/oko /root/oko
+#19 DONE 6.1s
+
+#20 [test  7/11] RUN set -xeu && 	ls /opt/opencv/lib && 	ls /opt/opencv/lib/opencv4/3rdparty && 	ls /usr/lib/x86_64-linux-gnu && 	ls /opt/opencv/include && 	ls /opt/opencv/include/opencv4 && 	ls /usr/include/x86_64-linux-gnu
+#20 0.340 + ls /opt/opencv/lib
+#20 0.342 cmake
+#20 0.342 libopencv_core.a
+#20 0.342 libopencv_imgcodecs.a
+#20 0.342 libopencv_imgproc.a
+#20 0.342 libopencv_video.a
+#20 0.342 libopencv_videoio.a
+#20 0.342 opencv4
+#20 0.342 + ls /opt/opencv/lib/opencv4/3rdparty
+#20 0.343 libippicv.a
+#20 0.343 libippiw.a
+#20 0.343 libittnotify.a
+#20 0.343 liblibjpeg-turbo.a
+#20 0.343 liblibopenjp2.a
+#20 0.343 liblibpng.a
+#20 0.343 libzlib.a
+#20 0.343 + ls /usr/lib/x86_64-linux-gnu
+#20 0.344 Mcrt1.o
+#20 0.344 Scrt1.o
+#20 0.344 audit
+#20 0.344 bfd-plugins
+#20 0.344 crt1.o
+#20 0.344 crti.o
+#20 0.344 crtn.o
+#20 0.344 dri
+#20 0.344 e2fsprogs
+#20 0.344 engines-3
+#20 0.344 gconv
+#20 0.344 gcrt1.o
+#20 0.344 gdk-pixbuf-2.0
+#20 0.344 gio
+#20 0.344 glib-2.0
+#20 0.344 grcrt1.o
+#20 0.344 icu
+#20 0.344 krb5
+#20 0.344 ld-linux-x86-64.so.2
+#20 0.344 ldscripts
+#20 0.344 libBrokenLocale.a
+#20 0.344 libBrokenLocale.so
+#20 0.344 libBrokenLocale.so.1
+#20 0.344 libLLVM-14.0.0.so.1
+#20 0.344 libLLVM-14.so
+#20 0.344 libLLVM-14.so.1
+#20 0.344 libLLVM-15.so
+#20 0.344 libLLVM-15.so.1
+#20 0.344 libOpenCL.so.1
+#20 0.344 libOpenCL.so.1.0.0
+#20 0.344 libX11-xcb.so.1
+#20 0.344 libX11-xcb.so.1.0.0
+#20 0.344 libX11.so.6
+#20 0.344 libX11.so.6.4.0
+#20 0.344 libXau.so.6
+#20 0.344 libXau.so.6.0.0
+#20 0.344 libXdmcp.so.6
+#20 0.344 libXdmcp.so.6.0.0
+#20 0.344 libXext.so.6
+#20 0.344 libXext.so.6.4.0
+#20 0.344 libXfixes.so.3
+#20 0.344 libXfixes.so.3.1.0
+#20 0.344 libXpm.so.4
+#20 0.344 libXpm.so.4.11.0
+#20 0.344 libXrender.so.1
+#20 0.344 libXrender.so.1.3.0
+#20 0.344 libaacs.so.0
+#20 0.344 libaacs.so.0.7.2
+#20 0.344 libacl.so.1
+#20 0.344 libacl.so.1.1.2301
+#20 0.344 libanl.a
+#20 0.344 libanl.so
+#20 0.344 libanl.so.1
+#20 0.344 libaom.so.3
+#20 0.344 libaom.so.3.3.0
+#20 0.344 libapt-pkg.so.6.0
+#20 0.344 libapt-pkg.so.6.0.0
+#20 0.344 libapt-private.so.0.0
+#20 0.344 libapt-private.so.0.0.0
+#20 0.344 libarchive.so.13
+#20 0.344 libarchive.so.13.6.0
+#20 0.344 libasan.so.6
+#20 0.344 libasan.so.6.0.0
+#20 0.344 libatomic.so.1
+#20 0.344 libatomic.so.1.2.0
+#20 0.344 libattr.so.1
+#20 0.344 libattr.so.1.1.2501
+#20 0.344 libaudit.so.1
+#20 0.344 libaudit.so.1.0.0
+#20 0.344 libavcodec.a
+#20 0.344 libavcodec.so
+#20 0.344 libavcodec.so.58
+#20 0.344 libavcodec.so.58.134.100
+#20 0.344 libavformat.a
+#20 0.344 libavformat.so
+#20 0.344 libavformat.so.58
+#20 0.344 libavformat.so.58.76.100
+#20 0.344 libavutil.a
+#20 0.344 libavutil.so
+#20 0.344 libavutil.so.56
+#20 0.344 libavutil.so.56.70.100
+#20 0.344 libbdplus.so.0
+#20 0.344 libbdplus.so.0.2.0
+#20 0.344 libbfd-2.38-system.so
+#20 0.344 libblkid.so.1
+#20 0.344 libblkid.so.1.1.0
+#20 0.344 libbluray.so.2
+#20 0.344 libbluray.so.2.4.1
+#20 0.344 libbrotlicommon.so.1
+#20 0.344 libbrotlicommon.so.1.0.9
+#20 0.344 libbrotlidec.so.1
+#20 0.344 libbrotlidec.so.1.0.9
+#20 0.344 libbrotlienc.so.1
+#20 0.344 libbrotlienc.so.1.0.9
+#20 0.344 libbsd.so.0
+#20 0.344 libbsd.so.0.11.5
+#20 0.344 libbz2.so.1
+#20 0.344 libbz2.so.1.0
+#20 0.344 libbz2.so.1.0.4
+#20 0.344 libc.a
+#20 0.344 libc.so
+#20 0.344 libc.so.6
+#20 0.344 libc_malloc_debug.so
+#20 0.344 libc_malloc_debug.so.0
+#20 0.344 libc_nonshared.a
+#20 0.344 libcairo-gobject.so.2
+#20 0.344 libcairo-gobject.so.2.11600.0
+#20 0.344 libcairo.so.2
+#20 0.344 libcairo.so.2.11600.0
+#20 0.344 libcap-ng.so.0
+#20 0.344 libcap-ng.so.0.0.0
+#20 0.344 libcap.so.2
+#20 0.344 libcap.so.2.44
+#20 0.344 libcc1.so.0
+#20 0.344 libcc1.so.0.0.0
+#20 0.344 libchromaprint.so.1
+#20 0.344 libchromaprint.so.1.5.1
+#20 0.344 libclang-14.so
+#20 0.344 libclang-14.so.1
+#20 0.344 libclang-14.so.13
+#20 0.344 libclang-14.so.14.0.0
+#20 0.344 libclang-cpp.so.14
+#20 0.344 libcodec2.so.1.0
+#20 0.344 libcom_err.so.2
+#20 0.344 libcom_err.so.2.1
+#20 0.344 libcrypt.a
+#20 0.344 libcrypt.so
+#20 0.344 libcrypt.so.1
+#20 0.344 libcrypt.so.1.1.0
+#20 0.344 libcrypto.so.3
+#20 0.344 libctf-nobfd.so.0
+#20 0.344 libctf-nobfd.so.0.0.0
+#20 0.344 libctf.so.0
+#20 0.344 libctf.so.0.0.0
+#20 0.344 libcurl.so.4
+#20 0.344 libcurl.so.4.7.0
+#20 0.344 libcurses.a
+#20 0.344 libcurses.so
+#20 0.344 libdatrie.so.1
+#20 0.344 libdatrie.so.1.4.0
+#20 0.344 libdav1d.so.5
+#20 0.344 libdav1d.so.5.1.1
+#20 0.344 libdb-5.3.so
+#20 0.344 libdebconfclient.so.0
+#20 0.344 libdebconfclient.so.0.0.0
+#20 0.344 libdeflate.so.0
+#20 0.344 libdl.a
+#20 0.344 libdl.so.2
+#20 0.344 libdrm.so.2
+#20 0.344 libdrm.so.2.4.0
+#20 0.344 libdrm_amdgpu.so.1
+#20 0.344 libdrm_amdgpu.so.1.0.0
+#20 0.344 libdrm_intel.so.1
+#20 0.344 libdrm_intel.so.1.0.0
+#20 0.344 libdrm_nouveau.so.2
+#20 0.344 libdrm_nouveau.so.2.0.0
+#20 0.344 libdrm_radeon.so.1
+#20 0.344 libdrm_radeon.so.1.0.1
+#20 0.344 libe2p.so.2
+#20 0.344 libe2p.so.2.3
+#20 0.344 libedit.so.2
+#20 0.344 libedit.so.2.0.68
+#20 0.344 libelf-0.186.so
+#20 0.344 libelf.so.1
+#20 0.344 libexpat.so.1
+#20 0.344 libexpat.so.1.8.7
+#20 0.344 libexpatw.so.1
+#20 0.344 libexpatw.so.1.8.7
+#20 0.344 libext2fs.so.2
+#20 0.344 libext2fs.so.2.4
+#20 0.344 libffi.a
+#20 0.344 libffi.so
+#20 0.344 libffi.so.8
+#20 0.344 libffi.so.8.1.0
+#20 0.344 libffi_pic.a
+#20 0.344 libfontconfig.so.1
+#20 0.344 libfontconfig.so.1.12.0
+#20 0.344 libform.a
+#20 0.344 libform.so
+#20 0.344 libform.so.6
+#20 0.344 libform.so.6.3
+#20 0.344 libformw.a
+#20 0.344 libformw.so
+#20 0.344 libformw.so.6
+#20 0.344 libformw.so.6.3
+#20 0.344 libfreetype.so.6
+#20 0.344 libfreetype.so.6.18.1
+#20 0.344 libfribidi.so.0
+#20 0.344 libfribidi.so.0.4.0
+#20 0.344 libg.a
+#20 0.344 libgc.so.1
+#20 0.344 libgc.so.1.4.4
+#20 0.344 libgcc_s.so.1
+#20 0.344 libgccpp.so.1
+#20 0.344 libgccpp.so.1.4.1
+#20 0.344 libgcrypt.so.20
+#20 0.344 libgcrypt.so.20.3.4
+#20 0.344 libgd.so.3
+#20 0.344 libgd.so.3.0.8
+#20 0.344 libgdk_pixbuf-2.0.so.0
+#20 0.344 libgdk_pixbuf-2.0.so.0.4200.8
+#20 0.344 libgio-2.0.so.0
+#20 0.344 libgio-2.0.so.0.7200.4
+#20 0.344 libglib-2.0.so.0
+#20 0.344 libglib-2.0.so.0.7200.4
+#20 0.344 libgme.so.0
+#20 0.344 libgme.so.0.6.3
+#20 0.344 libgmodule-2.0.so.0
+#20 0.344 libgmodule-2.0.so.0.7200.4
+#20 0.344 libgmp.so.10
+#20 0.344 libgmp.so.10.4.1
+#20 0.344 libgnutls.so.30
+#20 0.344 libgnutls.so.30.31.0
+#20 0.344 libgobject-2.0.so.0
+#20 0.344 libgobject-2.0.so.0.7200.4
+#20 0.344 libgomp.so.1
+#20 0.344 libgomp.so.1.0.0
+#20 0.344 libgpg-error.so.0
+#20 0.344 libgpg-error.so.0.32.1
+#20 0.344 libgraphite2.so.2.0.0
+#20 0.344 libgraphite2.so.3
+#20 0.344 libgraphite2.so.3.2.1
+#20 0.344 libgsm.so.1
+#20 0.344 libgsm.so.1.0.19
+#20 0.344 libgssapi_krb5.so.2
+#20 0.344 libgssapi_krb5.so.2.2
+#20 0.344 libgthread-2.0.so.0
+#20 0.344 libgthread-2.0.so.0.7200.4
+#20 0.344 libharfbuzz.so.0
+#20 0.344 libharfbuzz.so.0.20704.0
+#20 0.344 libhistory.so.8
+#20 0.344 libhistory.so.8.1
+#20 0.344 libhogweed.so.6
+#20 0.344 libhogweed.so.6.4
+#20 0.344 libicudata.a
+#20 0.344 libicudata.so
+#20 0.344 libicudata.so.70
+#20 0.344 libicudata.so.70.1
+#20 0.344 libicui18n.a
+#20 0.344 libicui18n.so
+#20 0.344 libicui18n.so.70
+#20 0.344 libicui18n.so.70.1
+#20 0.344 libicuio.a
+#20 0.344 libicuio.so
+#20 0.344 libicuio.so.70
+#20 0.344 libicuio.so.70.1
+#20 0.344 libicutest.a
+#20 0.344 libicutest.so
+#20 0.344 libicutest.so.70
+#20 0.344 libicutest.so.70.1
+#20 0.344 libicutu.a
+#20 0.344 libicutu.so
+#20 0.344 libicutu.so.70
+#20 0.344 libicutu.so.70.1
+#20 0.344 libicuuc.a
+#20 0.344 libicuuc.so
+#20 0.344 libicuuc.so.70
+#20 0.344 libicuuc.so.70.1
+#20 0.344 libidn2.so.0
+#20 0.344 libidn2.so.0.3.7
+#20 0.344 libigdgmm.so.12
+#20 0.344 libigdgmm.so.12.1.0
+#20 0.344 libisl.so.23
+#20 0.344 libisl.so.23.1.0
+#20 0.344 libitm.so.1
+#20 0.344 libitm.so.1.0.0
+#20 0.344 libjbig.so.0
+#20 0.344 libjpeg.so.8
+#20 0.344 libjpeg.so.8.2.2
+#20 0.344 libjsoncpp.so.1.9.5
+#20 0.344 libjsoncpp.so.25
+#20 0.344 libk5crypto.so.3
+#20 0.344 libk5crypto.so.3.1
+#20 0.344 libkeyutils.so.1
+#20 0.344 libkeyutils.so.1.9
+#20 0.344 libkrb5.so.3
+#20 0.344 libkrb5.so.3.3
+#20 0.344 libkrb5support.so.0
+#20 0.344 libkrb5support.so.0.1
+#20 0.344 liblber-2.5.so.0
+#20 0.344 liblber-2.5.so.0.1.13
+#20 0.344 libldap-2.5.so.0
+#20 0.344 libldap-2.5.so.0.1.13
+#20 0.344 liblsan.so.0
+#20 0.344 liblsan.so.0.0.0
+#20 0.344 liblz4.so.1
+#20 0.344 liblz4.so.1.9.3
+#20 0.344 liblzma.so.5
+#20 0.344 liblzma.so.5.2.5
+#20 0.344 libm-2.35.a
+#20 0.344 libm.a
+#20 0.344 libm.so
+#20 0.344 libm.so.6
+#20 0.344 libmcheck.a
+#20 0.344 libmd.so.0
+#20 0.344 libmd.so.0.0.5
+#20 0.344 libmemusage.so
+#20 0.344 libmenu.a
+#20 0.344 libmenu.so
+#20 0.344 libmenu.so.6
+#20 0.344 libmenu.so.6.3
+#20 0.344 libmenuw.a
+#20 0.344 libmenuw.so
+#20 0.344 libmenuw.so.6
+#20 0.344 libmenuw.so.6.3
+#20 0.344 libmfx-tracer.so.1
+#20 0.344 libmfx-tracer.so.1.35
+#20 0.344 libmfx.so.1
+#20 0.344 libmfx.so.1.35
+#20 0.344 libmfxhw64.so.1
+#20 0.344 libmfxhw64.so.1.35
+#20 0.344 libmount.so.1
+#20 0.344 libmount.so.1.1.0
+#20 0.344 libmp3lame.so.0
+#20 0.344 libmp3lame.so.0.0.0
+#20 0.344 libmpc.so.3
+#20 0.344 libmpc.so.3.2.1
+#20 0.344 libmpdec++.so.2.5.1
+#20 0.344 libmpdec++.so.3
+#20 0.344 libmpdec.so.2.5.1
+#20 0.344 libmpdec.so.3
+#20 0.344 libmpfr.so.6
+#20 0.344 libmpfr.so.6.1.0
+#20 0.344 libmpg123.so.0
+#20 0.344 libmpg123.so.0.46.7
+#20 0.344 libmvec.a
+#20 0.344 libmvec.so
+#20 0.344 libmvec.so.1
+#20 0.344 libncurses++.a
+#20 0.344 libncurses++w.a
+#20 0.344 libncurses.a
+#20 0.344 libncurses.so
+#20 0.344 libncurses.so.6
+#20 0.344 libncurses.so.6.3
+#20 0.344 libncursesw.a
+#20 0.344 libncursesw.so
+#20 0.344 libncursesw.so.6
+#20 0.344 libncursesw.so.6.3
+#20 0.344 libnettle.so.8
+#20 0.344 libnettle.so.8.4
+#20 0.344 libnghttp2.so.14
+#20 0.344 libnghttp2.so.14.20.1
+#20 0.344 libnorm.so.1
+#20 0.344 libnsl.a
+#20 0.344 libnsl.so
+#20 0.344 libnsl.so.1
+#20 0.344 libnsl.so.2
+#20 0.344 libnsl.so.2.0.1
+#20 0.344 libnss_compat.so
+#20 0.344 libnss_compat.so.2
+#20 0.344 libnss_dns.so.2
+#20 0.344 libnss_files.so.2
+#20 0.344 libnss_hesiod.so
+#20 0.344 libnss_hesiod.so.2
+#20 0.344 libnuma.so.1
+#20 0.344 libnuma.so.1.0.0
+#20 0.344 libobjc.so.4
+#20 0.344 libobjc.so.4.0.0
+#20 0.344 libobjc_gc.so.4
+#20 0.344 libobjc_gc.so.4.0.0
+#20 0.344 libogg.so.0
+#20 0.344 libogg.so.0.8.5
+#20 0.344 libopcodes-2.38-system.so
+#20 0.344 libopenjp2.so.2.4.0
+#20 0.344 libopenjp2.so.7
+#20 0.344 libopenmpt.so.0
+#20 0.344 libopenmpt.so.0.3.3
+#20 0.344 libopus.so.0
+#20 0.344 libopus.so.0.8.0
+#20 0.344 libp11-kit.so.0
+#20 0.344 libp11-kit.so.0.3.0
+#20 0.344 libpam.so.0
+#20 0.344 libpam.so.0.85.1
+#20 0.344 libpam_misc.so.0
+#20 0.344 libpam_misc.so.0.82.1
+#20 0.344 libpamc.so.0
+#20 0.344 libpamc.so.0.82.1
+#20 0.344 libpanel.a
+#20 0.344 libpanel.so
+#20 0.344 libpanel.so.6
+#20 0.344 libpanel.so.6.3
+#20 0.344 libpanelw.a
+#20 0.344 libpanelw.so
+#20 0.344 libpanelw.so.6
+#20 0.344 libpanelw.so.6.3
+#20 0.344 libpango-1.0.so.0
+#20 0.344 libpango-1.0.so.0.5000.6
+#20 0.344 libpangocairo-1.0.so.0
+#20 0.344 libpangocairo-1.0.so.0.5000.6
+#20 0.344 libpangoft2-1.0.so.0
+#20 0.344 libpangoft2-1.0.so.0.5000.6
+#20 0.344 libpciaccess.so.0
+#20 0.344 libpciaccess.so.0.11.1
+#20 0.344 libpcprofile.so
+#20 0.344 libpcre.so.3
+#20 0.344 libpcre.so.3.13.3
+#20 0.344 libpcre2-8.so.0
+#20 0.344 libpcre2-8.so.0.10.4
+#20 0.344 libpcreposix.so.3
+#20 0.344 libpcreposix.so.3.13.3
+#20 0.344 libpfm.so.4
+#20 0.344 libpfm.so.4.11.1
+#20 0.344 libpgm-5.3.so.0
+#20 0.344 libpgm-5.3.so.0.0.128
+#20 0.344 libpipeline.so.1
+#20 0.344 libpipeline.so.1.5.5
+#20 0.344 libpixman-1.so.0
+#20 0.344 libpixman-1.so.0.40.0
+#20 0.344 libpng16.so.16
+#20 0.344 libpng16.so.16.37.0
+#20 0.344 libprocps.so.8
+#20 0.344 libprocps.so.8.0.3
+#20 0.344 libpsl.so.5
+#20 0.344 libpsl.so.5.3.2
+#20 0.344 libpthread.a
+#20 0.344 libpthread.so.0
+#20 0.344 libquadmath.so.0
+#20 0.344 libquadmath.so.0.0.0
+#20 0.344 librabbitmq.so.4
+#20 0.344 librabbitmq.so.4.4.0
+#20 0.344 libreadline.so.8
+#20 0.344 libreadline.so.8.1
+#20 0.344 libresolv.a
+#20 0.344 libresolv.so
+#20 0.344 libresolv.so.2
+#20 0.344 librhash.so.0
+#20 0.344 librsvg-2.so.2
+#20 0.344 librsvg-2.so.2.48.0
+#20 0.344 librt.a
+#20 0.344 librt.so.1
+#20 0.344 librtmp.so.1
+#20 0.344 libsasl2.so.2
+#20 0.344 libsasl2.so.2.0.25
+#20 0.344 libseccomp.so.2
+#20 0.344 libseccomp.so.2.5.3
+#20 0.344 libselinux.so.1
+#20 0.344 libsemanage.so.2
+#20 0.344 libsepol.so.2
+#20 0.344 libshine.so.3
+#20 0.344 libshine.so.3.0.1
+#20 0.344 libsmartcols.so.1
+#20 0.344 libsmartcols.so.1.1.0
+#20 0.344 libsnappy.so.1
+#20 0.344 libsnappy.so.1.1.8
+#20 0.344 libsodium.so.23
+#20 0.344 libsodium.so.23.3.0
+#20 0.344 libsoxr.so.0
+#20 0.344 libsoxr.so.0.1.2
+#20 0.344 libspeex.so.1
+#20 0.344 libspeex.so.1.5.0
+#20 0.344 libsqlite3.so.0
+#20 0.344 libsqlite3.so.0.8.6
+#20 0.344 libsrt-gnutls.so.1.4
+#20 0.344 libsrt-gnutls.so.1.4.4
+#20 0.344 libss.so.2
+#20 0.344 libss.so.2.0
+#20 0.344 libssh-gcrypt.so.4
+#20 0.344 libssh-gcrypt.so.4.8.7
+#20 0.344 libssh.so.4
+#20 0.344 libssh.so.4.8.7
+#20 0.344 libssl.so.3
+#20 0.344 libstdc++.so.6
+#20 0.344 libstdc++.so.6.0.30
+#20 0.344 libswresample.a
+#20 0.344 libswresample.so
+#20 0.344 libswresample.so.3
+#20 0.344 libswresample.so.3.9.100
+#20 0.344 libswscale.a
+#20 0.344 libswscale.so
+#20 0.344 libswscale.so.5
+#20 0.344 libswscale.so.5.9.100
+#20 0.344 libsystemd.so.0
+#20 0.344 libsystemd.so.0.32.0
+#20 0.344 libtasn1.so.6
+#20 0.344 libtasn1.so.6.6.2
+#20 0.344 libtermcap.a
+#20 0.344 libtermcap.so
+#20 0.344 libthai.so.0
+#20 0.344 libthai.so.0.3.1
+#20 0.344 libtheora.so.0
+#20 0.344 libtheora.so.0.3.10
+#20 0.344 libtheoradec.so.1
+#20 0.344 libtheoradec.so.1.1.4
+#20 0.344 libtheoraenc.so.1
+#20 0.344 libtheoraenc.so.1.1.2
+#20 0.344 libthread_db.so
+#20 0.344 libthread_db.so.1
+#20 0.344 libtic.a
+#20 0.344 libtic.so
+#20 0.344 libtic.so.6
+#20 0.344 libtic.so.6.3
+#20 0.344 libtiff.so.5
+#20 0.344 libtiff.so.5.7.0
+#20 0.344 libtinfo.a
+#20 0.344 libtinfo.so
+#20 0.344 libtinfo.so.6
+#20 0.344 libtinfo.so.6.3
+#20 0.344 libtirpc.a
+#20 0.344 libtirpc.so
+#20 0.344 libtirpc.so.3
+#20 0.344 libtirpc.so.3.0.0
+#20 0.344 libtsan.so.0
+#20 0.344 libtsan.so.0.0.0
+#20 0.344 libtwolame.so.0
+#20 0.344 libtwolame.so.0.0.0
+#20 0.344 libubsan.so.1
+#20 0.344 libubsan.so.1.0.0
+#20 0.344 libudev.so.1
+#20 0.344 libudev.so.1.7.2
+#20 0.344 libudfread.so.0
+#20 0.344 libudfread.so.0.1.0
+#20 0.344 libunistring.so.2
+#20 0.344 libunistring.so.2.2.0
+#20 0.344 libutil.a
+#20 0.344 libutil.so.1
+#20 0.344 libuuid.so.1
+#20 0.344 libuuid.so.1.3.0
+#20 0.344 libuv.so.1
+#20 0.344 libuv.so.1.0.0
+#20 0.344 libva-drm.so.2
+#20 0.344 libva-drm.so.2.1400.0
+#20 0.344 libva-x11.so.2
+#20 0.344 libva-x11.so.2.1400.0
+#20 0.344 libva.so.2
+#20 0.344 libva.so.2.1400.0
+#20 0.344 libvdpau.so.1
+#20 0.344 libvdpau.so.1.0.0
+#20 0.344 libvorbis.so.0
+#20 0.344 libvorbis.so.0.4.9
+#20 0.344 libvorbisenc.so.2
+#20 0.344 libvorbisenc.so.2.0.12
+#20 0.344 libvorbisfile.so.3
+#20 0.344 libvorbisfile.so.3.3.8
+#20 0.344 libvpx.so.7
+#20 0.344 libvpx.so.7.0
+#20 0.344 libvpx.so.7.0.0
+#20 0.344 libwebp.so.7
+#20 0.344 libwebp.so.7.1.3
+#20 0.344 libwebpmux.so.3
+#20 0.344 libwebpmux.so.3.0.8
+#20 0.344 libx264.so.163
+#20 0.344 libx265.so.199
+#20 0.344 libxcb-dri2.so.0
+#20 0.344 libxcb-dri2.so.0.0.0
+#20 0.344 libxcb-dri3.so.0
+#20 0.344 libxcb-dri3.so.0.0.0
+#20 0.344 libxcb-present.so.0
+#20 0.344 libxcb-present.so.0.0.0
+#20 0.344 libxcb-render.so.0
+#20 0.344 libxcb-render.so.0.0.0
+#20 0.344 libxcb-shm.so.0
+#20 0.344 libxcb-shm.so.0.0.0
+#20 0.344 libxcb-sync.so.1
+#20 0.344 libxcb-sync.so.1.0.0
+#20 0.344 libxcb-xfixes.so.0
+#20 0.344 libxcb-xfixes.so.0.0.0
+#20 0.344 libxcb.so.1
+#20 0.344 libxcb.so.1.1.0
+#20 0.344 libxml2.a
+#20 0.344 libxml2.so
+#20 0.344 libxml2.so.2
+#20 0.344 libxml2.so.2.9.13
+#20 0.344 libxshmfence.so.1
+#20 0.344 libxshmfence.so.1.0.0
+#20 0.344 libxvidcore.so.4
+#20 0.344 libxvidcore.so.4.3
+#20 0.344 libxxhash.so.0
+#20 0.344 libxxhash.so.0.8.1
+#20 0.344 libyaml-0.so.2
+#20 0.344 libyaml-0.so.2.0.6
+#20 0.344 libz.so.1
+#20 0.344 libz.so.1.2.11
+#20 0.344 libz3.so
+#20 0.344 libz3.so.4
+#20 0.344 libzmq.so.5
+#20 0.344 libzmq.so.5.2.4
+#20 0.344 libzstd.so.1
+#20 0.344 libzstd.so.1.4.8
+#20 0.344 libzvbi-chains.so.0
+#20 0.344 libzvbi-chains.so.0.0.0
+#20 0.344 libzvbi.so.0
+#20 0.344 libzvbi.so.0.13.2
+#20 0.344 mfx
+#20 0.344 ossl-modules
+#20 0.344 perl-base
+#20 0.344 pkgconfig
+#20 0.344 rcrt1.o
+#20 0.344 sasl2
+#20 0.344 security
+#20 0.344 vdpau
+#20 0.344 xml2Conf.sh
+#20 0.344 + ls /opt/opencv/include
+#20 0.345 opencv4
+#20 0.345 + ls /opt/opencv/include/opencv4
+#20 0.346 opencv2
+#20 0.346 + ls /usr/include/x86_64-linux-gnu
+#20 0.348 a.out.h
+#20 0.348 asm
+#20 0.348 bits
+#20 0.348 c++
+#20 0.348 ffi.h
+#20 0.348 ffitarget.h
+#20 0.348 fpu_control.h
+#20 0.348 gnu
+#20 0.348 ieee754.h
+#20 0.348 libavcodec
+#20 0.348 libavformat
+#20 0.348 libavutil
+#20 0.348 libswresample
+#20 0.348 libswscale
+#20 0.348 sys
+#20 DONE 0.4s
+
+#21 [test  8/11] RUN set -xeu && 	cd /root/oko/backend && 	cargo build
+#21 0.353 + cd /root/oko/backend
+#21 0.353 + cargo build
+#21 0.418     Updating crates.io index
+#21 3.004  Downloading crates ...
+#21 3.379   Downloaded foreign-types-shared v0.1.1
+#21 3.389   Downloaded foreign-types v0.3.2
+#21 3.410   Downloaded tower-layer v0.3.3
+#21 3.413   Downloaded http-body v1.0.1
+#21 3.415   Downloaded equivalent v1.0.1
+#21 3.435   Downloaded icu_provider_macros v1.5.0
+#21 3.444   Downloaded atoi v2.0.0
+#21 3.450   Downloaded block-buffer v0.10.4
+#21 3.452   Downloaded axum-login v0.16.0
+#21 3.456   Downloaded axum-core v0.4.5
+#21 3.460   Downloaded matchers v0.1.0
+#21 3.463   Downloaded http-body-util v0.1.2
+#21 3.466   Downloaded tower-sessions-memory-store v0.13.0
+#21 3.467   Downloaded tower-service v0.3.3
+#21 3.469   Downloaded http-range-header v0.4.2
+#21 3.471   Downloaded crc v3.2.1
+#21 3.477   Downloaded futures-task v0.3.31
+#21 3.479   Downloaded lazy_static v1.5.0
+#21 3.482   Downloaded openssl-macros v0.1.1
+#21 3.484   Downloaded num-conv v0.1.0
+#21 3.486   Downloaded zerofrom v0.1.5
+#21 3.488   Downloaded crc-catalog v2.4.0
+#21 3.492   Downloaded futures-io v0.3.31
+#21 3.494   Downloaded openssl-probe v0.1.5
+#21 3.499   Downloaded rust-embed-impl v8.5.0
+#21 3.501   Downloaded cfg-if v1.0.0
+#21 3.504   Downloaded httparse v1.9.5
+#21 3.510   Downloaded litemap v0.7.4
+#21 3.516   Downloaded same-file v1.0.6
+#21 3.519   Downloaded icu_locid_transform_data v1.5.0
+#21 3.526   Downloaded urlencoding v2.1.3
+#21 3.528   Downloaded slab v0.4.9
+#21 3.533   Downloaded unicase v2.8.0
+#21 3.537   Downloaded tokio-native-tls v0.3.1
+#21 3.541   Downloaded indexmap v2.7.0
+#21 3.549   Downloaded sharded-slab v0.1.7
+#21 3.556   Downloaded thiserror v1.0.69
+#21 3.565   Downloaded thiserror v2.0.6
+#21 3.575   Downloaded rust-embed-utils v8.5.0
+#21 3.577   Downloaded sync_wrapper v1.0.2
+#21 3.581   Downloaded password-auth v1.0.0
+#21 3.583   Downloaded utf8_iter v1.0.4
+#21 3.585   Downloaded thiserror-impl v1.0.69
+#21 3.588   Downloaded tempfile v3.14.0
+#21 3.593   Downloaded sqlx-sqlite v0.8.2
+#21 3.600   Downloaded sqlx v0.8.2
+#21 3.622   Downloaded thiserror-impl v2.0.6
+#21 3.626   Downloaded syn v2.0.90
+#21 3.643   Downloaded quote v1.0.37
+#21 3.648   Downloaded rmp v0.8.14
+#21 3.655   Downloaded pkcs8 v0.10.2
+#21 3.659   Downloaded paste v1.0.15
+#21 3.664   Downloaded pin-project-lite v0.2.15
+#21 3.672   Downloaded pem-rfc7468 v0.7.0
+#21 3.675   Downloaded password-hash v0.5.0
+#21 3.679   Downloaded native-tls v0.2.12
+#21 3.682   Downloaded time-core v0.1.2
+#21 3.684   Downloaded once_cell v1.20.2
+#21 3.688   Downloaded signature v2.2.0
+#21 3.690   Downloaded time v0.3.37
+#21 3.704   Downloaded pkcs1 v0.7.5
+#21 3.709   Downloaded unicode-properties v0.1.3
+#21 3.714   Downloaded serde_path_to_error v0.1.16
+#21 3.718   Downloaded serde_urlencoded v0.7.1
+#21 3.722   Downloaded spin v0.9.8
+#21 3.726   Downloaded tinystr v0.7.6
+#21 3.730   Downloaded time-macros v0.2.19
+#21 3.734   Downloaded rustix v0.38.42
+#21 3.774   Downloaded rsa v0.9.7
+#21 3.782   Downloaded mio v1.0.3
+#21 3.790   Downloaded url v2.5.4
+#21 3.794   Downloaded socket2 v0.5.8
+#21 3.796   Downloaded minimal-lexical v0.2.1
+#21 3.803   Downloaded serde_derive v1.0.216
+#21 3.807   Downloaded regex-automata v0.1.10
+#21 3.815   Downloaded thread_local v1.1.8
+#21 3.818   Downloaded unicode-normalization v0.1.24
+#21 3.824   Downloaded serde_json v1.0.133
+#21 3.836   Downloaded zerocopy v0.7.35
+#21 3.860   Downloaded opencv-binding-generator v0.93.0
+#21 3.875   Downloaded vcpkg v0.2.15
+#21 3.936   Downloaded tracing-subscriber v0.3.19
+#21 3.947   Downloaded regex v1.11.1
+#21 3.966   Downloaded nom v7.1.3
+#21 3.975   Downloaded regex-syntax v0.6.29
+#21 3.983   Downloaded openssl v0.10.68
+#21 3.994   Downloaded zerovec v0.10.4
+#21 4.003   Downloaded regex-syntax v0.8.5
+#21 4.013   Downloaded tower-http v0.6.2
+#21 4.024   Downloaded num-bigint-dig v0.8.4
+#21 4.032   Downloaded tower v0.5.2
+#21 4.048   Downloaded tokio-util v0.7.13
+#21 4.058   Downloaded serde v1.0.216
+#21 4.062   Downloaded linux-raw-sys v0.4.14
+#21 4.111   Downloaded memchr v2.7.4
+#21 4.119   Downloaded unicode_categories v0.1.1
+#21 4.122   Downloaded tracing v0.1.41
+#21 4.127   Downloaded rand v0.8.5
+#21 4.131   Downloaded smallvec v1.13.2
+#21 4.134   Downloaded typenum v1.17.0
+#21 4.138   Downloaded tracing-core v0.1.33
+#21 4.142   Downloaded rustversion v1.0.18
+#21 4.145   Downloaded proc-macro2 v1.0.92
+#21 4.149   Downloaded regex-automata v0.4.9
+#21 4.169   Downloaded openssl-sys v0.9.104
+#21 4.175   Downloaded tokio v1.42.0
+#21 4.227   Downloaded unicode-bidi v0.3.17
+#21 4.230   Downloaded tungstenite v0.24.0
+#21 4.234   Downloaded parking_lot v0.12.3
+#21 4.237   Downloaded num-traits v0.2.19
+#21 4.241   Downloaded log v0.4.22
+#21 4.244   Downloaded zerocopy-derive v0.7.35
+#21 4.249   Downloaded unicode-ident v1.0.14
+#21 4.254   Downloaded signal-hook-registry v1.4.2
+#21 4.256   Downloaded tokio-stream v0.1.17
+#21 4.261   Downloaded rmp-serde v1.3.0
+#21 4.264   Downloaded tower-cookies v0.10.0
+#21 4.266   Downloaded rust-embed v8.5.0
+#21 4.276   Downloaded libc v0.2.168
+#21 4.317   Downloaded parking_lot_core v0.9.10
+#21 4.320   Downloaded matchit v0.7.3
+#21 4.323   Downloaded utf16_iter v1.0.5
+#21 4.324   Downloaded axum-embed v0.1.0
+#21 4.334   Downloaded mime_guess v2.0.5
+#21 4.336   Downloaded yoke v0.7.5
+#21 4.338   Downloaded walkdir v2.5.0
+#21 4.341   Downloaded version_check v0.9.5
+#21 4.343   Downloaded tower-sessions-sqlx-store v0.14.2
+#21 4.345   Downloaded tracing-attributes v0.1.28
+#21 4.348   Downloaded lock_api v0.4.12
+#21 4.350   Downloaded sqlx-core v0.8.2
+#21 4.360   Downloaded rand_core v0.6.4
+#21 4.362   Downloaded mime v0.3.17
+#21 4.364   Downloaded writeable v0.5.5
+#21 4.366   Downloaded whoami v1.5.2
+#21 4.368   Downloaded tower-sessions v0.13.0
+#21 4.372   Downloaded icu_properties_data v1.5.0
+#21 4.384   Downloaded rand_chacha v0.3.1
+#21 4.386   Downloaded num-integer v0.1.46
+#21 4.388   Downloaded tokio-macros v2.4.0
+#21 4.390   Downloaded chrono v0.4.39
+#21 4.399   Downloaded sqlx-mysql v0.8.2
+#21 4.406   Downloaded ppv-lite86 v0.2.20
+#21 4.408   Downloaded powerfmt v0.2.0
+#21 4.410   Downloaded pin-utils v0.1.0
+#21 4.411   Downloaded percent-encoding v2.3.1
+#21 4.412   Downloaded sqlformat v0.2.6
+#21 4.415   Downloaded sqlx-postgres v0.8.2
+#21 4.424   Downloaded pkg-config v0.3.31
+#21 4.426   Downloaded zerofrom-derive v0.1.5
+#21 4.427   Downloaded yoke-derive v0.7.5
+#21 4.428   Downloaded futures-util v0.3.31
+#21 4.444   Downloaded synstructure v0.13.1
+#21 4.446   Downloaded num-iter v0.1.45
+#21 4.447   Downloaded utf-8 v0.7.6
+#21 4.449   Downloaded hkdf v0.12.4
+#21 4.452   Downloaded subtle v2.6.1
+#21 4.454   Downloaded opencv v0.93.5
+#21 4.502   Downloaded stringprep v0.1.5
+#21 4.505   Downloaded spki v0.7.3
+#21 4.507   Downloaded tinyvec_macros v0.1.1
+#21 4.508   Downloaded sha2 v0.10.8
+#21 4.512   Downloaded sha1 v0.10.6
+#21 4.514   Downloaded stable_deref_trait v1.2.0
+#21 4.515   Downloaded sqlx-macros-core v0.8.2
+#21 4.518   Downloaded semver v1.0.23
+#21 4.522   Downloaded hyper v1.5.1
+#21 4.531   Downloaded axum v0.7.9
+#21 4.541   Downloaded aho-corasick v1.1.3
+#21 4.548   Downloaded shlex v1.3.0
+#21 4.550   Downloaded sqlx-macros v0.8.2
+#21 4.551   Downloaded scopeguard v1.2.0
+#21 4.553   Downloaded ryu v1.0.18
+#21 4.557   Downloaded tinyvec v1.8.0
+#21 4.560   Downloaded libm v0.2.11
+#21 4.570   Downloaded idna v1.0.3
+#21 4.574   Downloaded hashbrown v0.15.2
+#21 4.581   Downloaded hashbrown v0.14.5
+#21 4.588   Downloaded parking v2.2.1
+#21 4.590   Downloaded zerovec-derive v0.10.3
+#21 4.593   Downloaded der v0.7.9
+#21 4.601   Downloaded http v1.2.0
+#21 4.607   Downloaded cc v1.2.3
+#21 4.612   Downloaded md-5 v0.10.6
+#21 4.614   Downloaded zeroize v1.8.1
+#21 4.616   Downloaded tower-sessions-core v0.13.0
+#21 4.617   Downloaded icu_collections v1.5.0
+#21 4.626   Downloaded futures-intrusive v0.5.0
+#21 4.632   Downloaded bytes v1.9.0
+#21 4.638   Downloaded flume v0.11.1
+#21 4.642   Downloaded base64 v0.22.1
+#21 4.649   Downloaded icu_properties v1.5.1
+#21 4.652   Downloaded icu_normalizer v1.5.0
+#21 4.656   Downloaded hyper-util v0.1.10
+#21 4.664   Downloaded clang v2.0.0
+#21 4.667   Downloaded icu_normalizer_data v1.5.0
+#21 4.670   Downloaded allocator-api2 v0.2.21
+#21 4.673   Downloaded tokio-tungstenite v0.24.0
+#21 4.675   Downloaded icu_locid v1.5.0
+#21 4.683   Downloaded event-listener v5.3.1
+#21 4.687   Downloaded cookie v0.18.1
+#21 4.690   Downloaded futures v0.3.31
+#21 4.696   Downloaded crossbeam-utils v0.8.20
+#21 4.700   Downloaded const-oid v0.9.6
+#21 4.703   Downloaded bitflags v2.6.0
+#21 4.708   Downloaded jobserver v0.1.32
+#21 4.711   Downloaded icu_provider v1.5.0
+#21 4.715   Downloaded iana-time-zone v0.1.61
+#21 4.718   Downloaded hmac v0.12.1
+#21 4.720   Downloaded glob v0.3.1
+#21 4.722   Downloaded clang-sys v1.8.1
+#21 4.725   Downloaded blake2 v0.10.6
+#21 4.729   Downloaded ahash v0.8.11
+#21 4.732   Downloaded icu_locid_transform v1.5.0
+#21 4.735   Downloaded hashlink v0.9.1
+#21 4.737   Downloaded futures-executor v0.3.31
+#21 4.739   Downloaded futures-channel v0.3.31
+#21 4.742   Downloaded getrandom v0.2.15
+#21 4.746   Downloaded generic-array v0.14.7
+#21 4.747   Downloaded displaydoc v0.2.5
+#21 4.751   Downloaded data-encoding v2.6.0
+#21 4.752   Downloaded async-trait v0.1.83
+#21 4.756   Downloaded argon2 v0.5.3
+#21 4.759   Downloaded itoa v1.0.14
+#21 4.761   Downloaded hex v0.4.3
+#21 4.763   Downloaded base64ct v1.6.0
+#21 4.766   Downloaded either v1.13.0
+#21 4.768   Downloaded errno v0.3.10
+#21 4.770   Downloaded cpufeatures v0.2.16
+#21 4.771   Downloaded write16 v1.0.0
+#21 4.772   Downloaded idna_adapter v1.2.0
+#21 4.774   Downloaded crypto-common v0.1.6
+#21 4.775   Downloaded futures-core v0.3.31
+#21 4.776   Downloaded fnv v1.0.7
+#21 4.777   Downloaded fastrand v2.3.0
+#21 4.779   Downloaded dunce v1.0.5
+#21 4.780   Downloaded byteorder v1.5.0
+#21 4.782   Downloaded form_urlencoded v1.2.1
+#21 4.783   Downloaded digest v0.10.7
+#21 4.786   Downloaded deranged v0.3.11
+#21 4.787   Downloaded home v0.5.9
+#21 4.789   Downloaded heck v0.5.0
+#21 4.791   Downloaded futures-sink v0.3.31
+#21 4.792   Downloaded futures-macro v0.3.31
+#21 4.794   Downloaded concurrent-queue v2.5.0
+#21 4.797   Downloaded httpdate v1.0.3
+#21 4.799   Downloaded dotenvy v0.15.7
+#21 4.805   Downloaded crossbeam-queue v0.3.11
+#21 4.807   Downloaded autocfg v1.4.0
+#21 4.811   Downloaded libsqlite3-sys v0.30.1
+#21 5.021    Compiling proc-macro2 v1.0.92
+#21 5.021    Compiling unicode-ident v1.0.14
+#21 5.021    Compiling autocfg v1.4.0
+#21 5.021    Compiling libc v0.2.168
+#21 5.024    Compiling cfg-if v1.0.0
+#21 5.026    Compiling version_check v0.9.5
+#21 5.027    Compiling memchr v2.7.4
+#21 5.029    Compiling futures-core v0.3.31
+#21 5.032    Compiling pin-project-lite v0.2.15
+#21 5.032    Compiling typenum v1.17.0
+#21 5.032    Compiling itoa v1.0.14
+#21 5.039    Compiling bytes v1.9.0
+#21 5.042    Compiling futures-io v0.3.31
+#21 5.046    Compiling futures-task v0.3.31
+#21 5.053    Compiling pin-utils v0.1.0
+#21 5.053    Compiling once_cell v1.20.2
+#21 5.087    Compiling cpufeatures v0.2.16
+#21 5.102    Compiling serde v1.0.216
+#21 5.108    Compiling stable_deref_trait v1.2.0
+#21 5.122    Compiling futures-sink v0.3.31
+#21 5.191    Compiling scopeguard v1.2.0
+#21 5.202    Compiling percent-encoding v2.3.1
+#21 5.203    Compiling byteorder v1.5.0
+#21 5.225    Compiling subtle v2.6.1
+#21 5.229    Compiling litemap v0.7.4
+#21 5.247    Compiling writeable v0.5.5
+#21 5.260    Compiling parking_lot_core v0.9.10
+#21 5.289    Compiling smallvec v1.13.2
+#21 5.303    Compiling log v0.4.22
+#21 5.392    Compiling powerfmt v0.2.0
+#21 5.408    Compiling generic-array v0.14.7
+#21 5.423    Compiling icu_locid_transform_data v1.5.0
+#21 5.460    Compiling icu_properties_data v1.5.0
+#21 5.460    Compiling time-core v0.1.2
+#21 5.469    Compiling thiserror v1.0.69
+#21 5.500    Compiling num-conv v0.1.0
+#21 5.506    Compiling ryu v1.0.18
+#21 5.521    Compiling fnv v1.0.7
+#21 5.526    Compiling slab v0.4.9
+#21 5.570    Compiling write16 v1.0.0
+#21 5.587    Compiling utf8_iter v1.0.4
+#21 5.595    Compiling serde_json v1.0.133
+#21 5.601    Compiling utf16_iter v1.0.5
+#21 5.607    Compiling icu_normalizer_data v1.5.0
+#21 5.633    Compiling http v1.2.0
+#21 5.634    Compiling time-macros v0.2.19
+#21 5.645    Compiling lock_api v0.4.12
+#21 5.669    Compiling ahash v0.8.11
+#21 5.697    Compiling tracing-core v0.1.33
+#21 5.725    Compiling form_urlencoded v1.2.1
+#21 5.729    Compiling shlex v1.3.0
+#21 5.735    Compiling crossbeam-utils v0.8.20
+#21 5.899    Compiling num-traits v0.2.19
+#21 5.903    Compiling futures-channel v0.3.31
+#21 5.912    Compiling allocator-api2 v0.2.21
+#21 5.941    Compiling paste v1.0.15
+#21 6.000    Compiling tower-service v0.3.3
+#21 6.026    Compiling vcpkg v0.2.15
+#21 6.063    Compiling quote v1.0.37
+#21 6.083    Compiling pkg-config v0.3.31
+#21 6.141    Compiling rustversion v1.0.18
+#21 6.252    Compiling mime v0.3.17
+#21 6.318    Compiling tower-layer v0.3.3
+#21 6.471    Compiling syn v2.0.90
+#21 6.501    Compiling mio v1.0.3
+#21 6.524    Compiling socket2 v0.5.8
+#21 6.541    Compiling signal-hook-registry v1.4.2
+#21 6.542    Compiling getrandom v0.2.15
+#21 6.745    Compiling rand_core v0.6.4
+#21 6.755    Compiling http-body v1.0.1
+#21 6.766    Compiling jobserver v0.1.32
+#21 6.929    Compiling minimal-lexical v0.2.1
+#21 7.008    Compiling sync_wrapper v1.0.2
+#21 7.051    Compiling cc v1.2.3
+#21 7.150    Compiling concurrent-queue v2.5.0
+#21 7.171    Compiling unicode_categories v0.1.1
+#21 7.223    Compiling nom v7.1.3
+#21 7.231    Compiling equivalent v1.0.1
+#21 7.244    Compiling crc-catalog v2.4.0
+#21 7.290    Compiling parking v2.2.1
+#21 7.300    Compiling zerocopy v0.7.35
+#21 7.366    Compiling hashbrown v0.15.2
+#21 7.380    Compiling event-listener v5.3.1
+#21 7.395    Compiling crc v3.2.1
+#21 7.407    Compiling crossbeam-queue v0.3.11
+#21 7.445    Compiling httparse v1.9.5
+#21 7.469    Compiling hex v0.4.3
+#21 7.543    Compiling crypto-common v0.1.6
+#21 7.555    Compiling block-buffer v0.10.4
+#21 7.610    Compiling base64 v0.22.1
+#21 7.626    Compiling glob v0.3.1
+#21 7.665    Compiling digest v0.10.7
+#21 7.853    Compiling parking_lot v0.12.3
+#21 7.897    Compiling sha2 v0.10.8
+#21 7.916    Compiling futures-util v0.3.31
+#21 7.968    Compiling tokio v1.42.0
+#21 7.994    Compiling deranged v0.3.11
+#21 8.080    Compiling hashbrown v0.14.5
+#21 8.087    Compiling rustix v0.38.42
+#21 8.106    Compiling clang-sys v1.8.1
+#21 8.201    Compiling indexmap v2.7.0
+#21 8.228    Compiling futures-intrusive v0.5.0
+#21 8.482    Compiling spin v0.9.8
+#21 8.605    Compiling aho-corasick v1.1.3
+#21 8.696    Compiling linux-raw-sys v0.4.14
+#21 8.760    Compiling bitflags v2.6.0
+#21 8.801    Compiling same-file v1.0.6
+#21 8.873    Compiling atoi v2.0.0
+#21 8.909    Compiling regex-syntax v0.8.5
+#21 8.956    Compiling hashlink v0.9.1
+#21 8.970    Compiling walkdir v2.5.0
+#21 8.993    Compiling time v0.3.37
+#21 9.002    Compiling flume v0.11.1
+#21 9.010    Compiling cookie v0.18.1
+#21 9.017    Compiling semver v1.0.23
+#21 9.041    Compiling unicase v2.8.0
+#21 9.275    Compiling fastrand v2.3.0
+#21 9.281    Compiling httpdate v1.0.3
+#21 9.366    Compiling mime_guess v2.0.5
+#21 9.440    Compiling hmac v0.12.1
+#21 9.464    Compiling sha1 v0.10.6
+#21 9.557    Compiling clang v2.0.0
+#21 9.580    Compiling data-encoding v2.6.0
+#21 9.608    Compiling dunce v1.0.5
+#21 9.614    Compiling utf-8 v0.7.6
+#21 9.727    Compiling dotenvy v0.15.7
+#21 9.737    Compiling heck v0.5.0
+#21 9.768    Compiling libsqlite3-sys v0.30.1
+#21 9.818    Compiling rust-embed-utils v8.5.0
+#21 9.967    Compiling sqlformat v0.2.6
+#21 10.11    Compiling regex-syntax v0.6.29
+#21 10.14    Compiling base64ct v1.6.0
+#21 10.38    Compiling rmp v0.8.14
+#21 10.46    Compiling password-hash v0.5.0
+#21 10.73    Compiling blake2 v0.10.6
+#21 10.90    Compiling thiserror v2.0.6
+#21 11.00    Compiling iana-time-zone v0.1.61
+#21 11.05    Compiling lazy_static v1.5.0
+#21 11.12    Compiling matchit v0.7.3
+#21 11.13    Compiling sharded-slab v0.1.7
+#21 11.35    Compiling chrono v0.4.39
+#21 11.38    Compiling argon2 v0.5.3
+#21 11.42    Compiling thread_local v1.1.8
+#21 11.52    Compiling urlencoding v2.1.3
+#21 11.57    Compiling regex-automata v0.4.9
+#21 11.71    Compiling futures-executor v0.3.31
+#21 11.73    Compiling tempfile v3.14.0
+#21 11.75    Compiling oko v0.1.2 (/root/oko/backend)
+#21 12.05    Compiling http-range-header v0.4.2
+#21 12.09    Compiling password-auth v1.0.0
+#21 12.24    Compiling synstructure v0.13.1
+#21 12.43    Compiling regex-automata v0.1.10
+#21 13.10    Compiling serde_derive v1.0.216
+#21 13.10    Compiling zerofrom-derive v0.1.5
+#21 13.10    Compiling yoke-derive v0.7.5
+#21 13.10    Compiling zerovec-derive v0.10.3
+#21 13.12    Compiling displaydoc v0.2.5
+#21 13.14    Compiling futures-macro v0.3.31
+#21 13.15    Compiling zerocopy-derive v0.7.35
+#21 13.17    Compiling icu_provider_macros v1.5.0
+#21 13.19    Compiling tokio-macros v2.4.0
+#21 13.27    Compiling thiserror-impl v1.0.69
+#21 14.16    Compiling tracing-attributes v0.1.28
+#21 14.38    Compiling async-trait v0.1.83
+#21 14.49    Compiling tokio-stream v0.1.17
+#21 15.07    Compiling regex v1.11.1
+#21 15.09    Compiling rust-embed-impl v8.5.0
+#21 15.21    Compiling matchers v0.1.0
+#21 15.34    Compiling thiserror-impl v2.0.6
+#21 15.37    Compiling zerofrom v0.1.5
+#21 15.48    Compiling ppv-lite86 v0.2.20
+#21 15.51    Compiling yoke v0.7.5
+#21 15.67    Compiling opencv-binding-generator v0.93.0
+#21 15.73    Compiling zerovec v0.10.4
+#21 16.09    Compiling rand_chacha v0.3.1
+#21 16.50    Compiling rand v0.8.5
+#21 16.53    Compiling rust-embed v8.5.0
+#21 16.57    Compiling tracing v0.1.41
+#21 16.77    Compiling tracing-subscriber v0.3.19
+#21 17.01    Compiling tinystr v0.7.6
+#21 17.01    Compiling icu_collections v1.5.0
+#21 17.15    Compiling icu_locid v1.5.0
+#21 17.18    Compiling tungstenite v0.24.0
+#21 17.66    Compiling icu_provider v1.5.0
+#21 18.07    Compiling icu_locid_transform v1.5.0
+#21 18.15    Compiling http-body-util v0.1.2
+#21 18.15    Compiling futures v0.3.31
+#21 18.41    Compiling axum-core v0.4.5
+#21 18.83    Compiling icu_properties v1.5.1
+#21 19.74    Compiling opencv v0.93.5
+#21 19.80    Compiling hyper v1.5.1
+#21 19.80    Compiling tower v0.5.2
+#21 19.80    Compiling tokio-tungstenite v0.24.0
+#21 19.80    Compiling tokio-util v0.7.13
+#21 20.28    Compiling serde_urlencoded v0.7.1
+#21 20.28    Compiling either v1.13.0
+#21 20.30    Compiling serde_path_to_error v0.1.16
+#21 20.57    Compiling rmp-serde v1.3.0
+#21 20.71    Compiling axum-embed v0.1.0
+#21 20.82    Compiling icu_normalizer v1.5.0
+#21 20.98    Compiling hyper-util v0.1.10
+#21 21.02    Compiling tower-http v0.6.2
+#21 21.40    Compiling idna_adapter v1.2.0
+#21 21.45    Compiling idna v1.0.3
+#21 21.51    Compiling axum v0.7.9
+#21 21.80    Compiling url v2.5.4
+#21 22.41    Compiling sqlx-core v0.8.2
+#21 23.02    Compiling tower-sessions-core v0.13.0
+#21 23.29    Compiling tower-cookies v0.10.0
+#21 23.55    Compiling tower-sessions-memory-store v0.13.0
+#21 23.66    Compiling tower-sessions v0.13.0
+#21 24.41    Compiling sqlx-sqlite v0.8.2
+#21 25.14    Compiling axum-login v0.16.0
+#21 25.88    Compiling sqlx-macros-core v0.8.2
+#21 26.88    Compiling sqlx-macros v0.8.2
+#21 28.56    Compiling sqlx v0.8.2
+#21 28.63    Compiling tower-sessions-sqlx-store v0.14.2
+#21 46.88 error: linking with `cc` failed: exit status: 1
+#21 46.88   |
+#21 46.88   = note: LC_ALL="C" PATH="/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.cargo/bin" VSLANG="1033" "cc" "-m64" "/tmp/rustcGpDAgZ/symbols.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.016q7egpqml8qdh87kdyjhuqf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04fvp96bb87v885hxxosmlzt1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04ou3ijbyggwajeuvaroh3mj5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.04rp1kt9pv1m2kdjb4n93oghx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.05n7w932wq311hlhgvoagv6vx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08a5jeev1gnhk89a83dryrtb8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.08qvlu3kf2ph1lo8e3humafex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09tcwcdo9sa36ryxrp88zzm8j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.09vxg5sopybbnbujee10qy4wk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0c34gslzf1bnkia441ymhtdny.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fhq7021elhgz6ffd5qy53waj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0fynzp34uk12cd6bg4t6p16oq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nvrmh3xb7vmw0azfn44jvtho.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0nya7zbiqrb9e20697bmppp1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0ozicw79097lohdfbmnmpunai.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0rjjvixkg2ve961lfc0yz8eas.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s6djh7ky584nay3cjgpnwj8l.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0s8jefb966pex59nsun49s07a.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0wq5zhx651kyr5msnehovc9c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.0zfcr801c9t1vssc53o5nqoou.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11jy0yhndeml9thvce7cs8jlv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.11ydb6xcbxsj3020rem7w9laa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1283aimnzajst5lo7awybobex.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.12scmmcqo9jkx1pfetd2clgfr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13896ttkesp9ojy1kc7vncsgf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.13mywzmjayiaofwtka1grpj60.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.157vd7cgii3k7qfpeglo0l84i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.16gmm6amptul6e0ahe5kxogl4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bbwnl5by3pkwz005mfi9jxhx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1bnvhucf3hqkesqtupjnyx49w.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1eqbxw5uqpq3qhzukaekpmd5r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1es0xkm9ty6atkwg1hc7ctus4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1f2bg2riqo7lvv4g83vyio1y7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1g9i1wjbvr0qg3ryj836s2zr3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1groc22v44stxha5yh9qvty71.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1hn6prgv7g54dif96uoqndp91.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ijrxyeuirlhl6uhlwicutnfs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1pjdsc93it0vus47u8hmretkg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1r4mp2hd2mjtc5naho5uur95c.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1xp0xe3veat5epa3s57iquv9s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.1ypwxphtmtker9jxeo5drqwhq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.23b40gtnwwlebx95agmdefyu3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.26rfpafuk4nqc2y6e5419yvvw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.29bk1eudmhtdfqlhe493zinjc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ag2e1n3c0v0emp8eztrjga84.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2agjzvraicew15etlbcna3y73.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2bf6nu6qpdh2gr825f0t32cft.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2fepoa2buqzj7dasupqvyf5c3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2h1jjuz78gp7x42zg9nvfirxm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2stczcyfk2tn17d7psx84s457.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xpu21ze2221h5aab01nlll99.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2xxzdzviick8vl1dply9bvirx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.2ze6iehqmp8tnbjp8vfg4udgu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31mtikmtwvzaj3ucrsuimv8fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.31z1m09myt8yqapedzq1aohh5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.32oxzb88nllfhe6405spwrc17.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3445v60f3832ay7w4avascua3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.35imc5zlwtjn6bitb6iwy9m6g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.37ami1eka6g7wktj3xaz2jvy5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bmvc0lghmkciqj211mogxznb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3bq6d4e610macumcc68a5s6st.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ijxn27bwpajgzmm22zjnbmoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3k9xbz8ofhca43eng5cc7r0ro.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3mw2ra2qz9mrnpqdaf7er4kqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3n096oxzyax1hs8udcuv16i4d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3ptx1dy7mw88iybtjt9zzl4e6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r2a9ppxf9jn98hi2djuk681m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3r7wza1xwxm6bh1ldgn8n0vf7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3wzshgvi2pozl98haf7f44b32.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xn5rvp9oawra8zxpz234uo35.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.3xz82vose6kao6k0xu1o77e1x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.41vr64uuaytrghkul0cj3k119.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.43erw4n1mfglxtewunkzfmqal.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.461iux3gun64tizu4sf00zpkn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.467pctattetzy1na4yosqq7ym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.46gq9l5f8iglhcicu2mtvq3iz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.47bd8l5vz0a29v01fdjwnh8na.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4ac9auaste3htnxogzg0bz8x2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4aihpuu8eppecttffjrbdvvjs.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4angiz8mu028uawlhuk922gvu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4drpz6gy2m0jzixhynd6ymo5n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4its1g4wq63ml96xq6350pdug.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4kblb0uy0ymevsz3oqk5lc8bq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mh64hysbtw1oppe4pniv8eos.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4mx1qpiwu4rhie6x85ah6v4cv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4om1tlzbfldx5azke6d79uwcv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4wvzt9bgtzsx8fdcja5uurvur.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.4xa4bsdnjkkgnqo05n1b7jx4k.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57pqjicfonldtsnajzmpkps01.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.57vdv75hv42clx8k58ofljafm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59aochvel1jryjmqcbhfarjz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59cwp3vt96d993k4rugei5x6v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.59t4a4f5f9hyc1489co2lalv2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5a54cqckzl688k5mj41konsci.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5c3kayrwa4mo4927cw1l2t7jj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5fkda9y0y0mmrpow0cgmrbl9i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5h0ugqnd1o80l3hgja0gqh5q6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5imh4cvuvl0ijk55yzt9syqvg.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5o043j47ow6dwvod8xzzg11ez.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5ol54fmwkhtgp8riip897gt3p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5tyjbyif9fi374kc2jo7g9iec.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5xxcdcjflz8z3sixm5znb9kwc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.5z1ml6j346z8bouq3aqc6f9yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.60hcyb2115giv3il0ouiojn2p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hb3fai2h3gu45eq9snx4vh0j.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6hu8wf7t32sawyoi8f88j6hbn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6jdfohuih7e4wi87echnsovri.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6kty3teiia56hgdsxrs05z3qe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6lbiezvw5shp3oo8gfgiswk4t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6pnmais4z45pu2sf4yhc3wmu7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6r8f016jrxtawmsjsbnli1xry.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6rxj441ekf105wcbrrx4a3or0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6v0wc4z876uqblx46cbdpt311.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6vsujpiq9kwvzveybizpyz6mu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6x149fxjtxm3x34dfnk09wga6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.6z7ky7lmzhdh0g27uj1pflmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.72hkvcceghvcxctrg0z48bqj9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.74c6chokmcqguiqvfxm1309n5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ccui9prznp1hftn0b1pqhdjz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7d32aulymafeh0xr0943e1301.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7exiuxqgn408so8fxzqg1ufp9.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7ss6ejxbjsy0rmgycnn7haed2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7tor34v33m5057rr0yodw1yb2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7u2zullwat47sqtskuwhm2z4s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7vut0hisd5oc48rq1y0h8q7wc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7xiok8b15mm56sfqst01ctp19.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.7zxd5pg37vjsakq0u1x70zogd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8121mkzosl9giexqfww71oykr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81b88fs9pq11gjylqisx8ow9r.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.81jdkz9d41rnuqs4doco0w1wj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.82xkosshxxpu7m6qxtt2kcxcz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8515k15qr6utsoks0sn5armxo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.861s16j3skxjircw4vkzfmakv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.86zx8bf9v8bq82r4p1k448qp8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8bahydptclyq52z4xlsywniv5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8c0uqn5vqsyb8287k32zpub52.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8e3xs6ghzih8bf0lvj6vq65w2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8eubbozsec7ulbe28y0wk82c6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8fbd0hx9m6wuaxon2z9c3xb0v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8hnzf3li00g13ct5u2un7ce68.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8ik3x4cssbbz1u5znei9m84zw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8kic30ja11yzej7l1orxzjo5q.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8muldt87b7xrwcndnpx7nzhmm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8p0faa00gf91jrf1l4k94scql.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8pq6fds5938y2xkn15y9z6f8d.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8s7na78be35ltinjvk3cohujv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8vy45igmh1pvud7v7oy6mhy3h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8w5kjxzqnhk5ljrij20dldf4e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8weesy6mrvsi9kvlp5qkok8yb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8wrht89a70xk4qvy6bep718c0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.8yt1saweia39dr5g04gp23u9x.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.90ly7kx5l1dvhtd5ccardbwd5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.934wgc5oq915bakjibazfws9h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.93dd860rd0gk0a8r52phu76rv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.957cnxdpzo94x3dwpvzufwrdi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9bkzq13ufczemz9iz7mxaelzo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9cwh4mdwdd5rr4oq74svaplc4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9d7fbu60q8h3vx94aauah2cef.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9e5xycuswvn76r4mkc2qhtaox.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9fqz9aex2cykedgod6vqkqjqq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9hirpp638kfaylkzmqlmjrjir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ik04s3yxlaa5qhj78niybor7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9izv8s442u3kn23czjaxhu05p.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9k43jhjnr4zop9vitet2aciax.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9lwi7yi1sx39l46jq059oviwd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9n2j5zk045q655w4p2blc2h7m.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9pkf3xk1mzb574yr0qphguf6b.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9qm4la5i88foiukczph7zsskk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9ucdzxo6444ukm1b6ydqkfrfv.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wb29v1xr8jks8ewr6owxduh4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9whj7iw3pmv1u2nktys67irk6.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9wtobv1sjql3eh40iycf9jisr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.9zu765z79rl4off6iye4skwdb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a2pvb4y3t1l5l3oifmn36pr98.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.a459iyg6zvx30kspo7ddkwtlx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ab18we530luqo5nhnran6ms5g.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.adt80t82i8cmvtjb27ie1isz7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.any2zjybvhi5a4jdnaqk9fxwz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aqswhg7yqrsiz3uq6bn8hiexr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.arfr2xuz8em98afudy58ckmbu.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.aryicow6ciyu0vkjrf5an77hm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.as2z8nvec3ba6bwdbxb9qlhs2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.auk0lzf8rlus2094zoe60dtlm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.awvaiwywb8xkkrqtdsn6rzcse.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.azr435lptdn9h20fkfisf1lya.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b0mmgdh8vsan5jjqvm86tfgk8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b5m1jthnvkragr2he6x6xx7t5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b6ubwk0fg8iaumaucps4vwheq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b75kwuqcgdj3215ua4sx0qblk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bb3fyqi28z30jav0s3g8wmaoy.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bcse6cbtck49u5l6k2h4uuq7v.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bdak5ozv54xp0u04g716tmoeo.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bf3dtdqt8s5ngvt3jzsnkbmau.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bh99fln9jm0d3q2zwk673buky.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bhglfb6w3wdd7214e4gv2sq48.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bju0wg406soheyts0g01ctcuc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bll1efdq78vr34urq478f6fen.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.blzd52ziyawhzxdk88bgdusqj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.bwf8b05owpq5zjclzzvsnlpl0.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1i1frasyoljcuqva0k91tamd.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c1qyctt8drd86bgclt30omquf.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c3z1nvs724aric5llowvgtej4.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c5wtumxcek8r2mex1bhsilnr8.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.c85yur536sln2e44ff9j9jta5.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.caevaz21osh722lnuig9hg73s.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.calft56htrgxn2cx8g6g1g79e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cet0yg9jvf9lmq21599i571aa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ci254dmscg01thqk3eb618khe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cpa19xwmalr504ze571ahw1rq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ctcdlm9tjabgd59ajr3aotyt3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cw67k837uncly6vuq8npdhczc.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cx8degvnug98bhtmec83g3o8h.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.cyiwgszenfxbw7rodbypjtcok.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.czmlf2vexd2lq2sf8ot1ge6su.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d0ard9p869u4ciyhsdgn01qag.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d1jko68kc9w5hbx21vbu6mae7.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d212que96907cqvc4kls01mdw.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d3fq07k7l47kcxzn6adbvcg7u.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d4nla79e74fc02zjo5j9rerwi.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d5xquviwfr601p9y54jep1lzq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9ibl0xkl388f2d382ztda4mb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.d9nqzbgljuonyii16na9fwjoz.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dip92rz20emo13ojtfpceq3it.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dj6rnts8zfcmlmo0doytqg8j2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.djcl806mtodlqth4jl26rueh1.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dmgvu9m9eel9mflmvokk4pcym.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dnqt4tzqup9xccl66fd1458wa.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.duel9k5wbr9j8woygaxgctwzk.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dviptdb0qn0p33v2xcfjuozrr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dw1cyflsc5jqixgw7nzkd2bq3.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dwshm7z3rkp89yzmdlb3fyowm.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dxv1ompeko0hvrhkgq3w2w2vn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.dydgv8q845sjuiiq9f4n90m82.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e1wmvn0ddxovncuuf275nk19n.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e249y9n26bm94gv9hkd6zs69o.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e2oke7zwlpw5cwrr2h20z6dwx.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6mqvyldgjfiijbksq0xw0eir.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e6y1s1sm3o18bb7j9z6rvm2tb.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e7fkpintc3f5mlgf6v8d5o6wr.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.e9mgszqodkbq0vugkird1nlop.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eb7c8nl13om0nytzxn1uozida.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ebfjtcnb2spckwy3pe3tlrqaj.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eca7u8bcblml44dn031l7w4yn.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ef47jp9giqt9dghconv6lye6i.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.eflay77q9d6qzgzg49xz3yf26.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egm0kibrp6zj7ghwejct8g99t.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.egw5at1kmpeyfkwavlg8vk1li.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ej1inixejyh22lrqsjspy726f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.elfwc9h0ajvk4v28v4mpqco0z.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.enucj1db3dob1v7e7a54tufjq.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.epm4oxv9mymyvrxxvl3j9aijp.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.equ99n48gtrfauddt4e8ufe0f.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.expg4jxxnv8qkyse0buqicg7e.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezefkqmx37jnvng3dle0dblp2.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.ezghj14raqm70bdc2e3kmnfva.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.f4kjc2agih4k8mfjphp5yn7fe.rcgu.o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7.b97jk9snrb3aqhvt32o0cmg4a.rcgu.o" "-Wl,--as-needed" "-Wl,-Bstatic" "/root/oko/backend/target/debug/deps/liboko-d085f20ff695da7b.rlib" "/root/oko/backend/target/debug/deps/libthiserror-c66d33be974f0ed8.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_sqlx_store-142e879a95655e8b.rlib" "/root/oko/backend/target/debug/deps/librmp_serde-97c2139225db4a59.rlib" "/root/oko/backend/target/debug/deps/librmp-6fba7706383d21b7.rlib" "/root/oko/backend/target/debug/deps/libtokio_util-0826acae9f9e98eb.rlib" "/root/oko/backend/target/debug/deps/libopencv-f4b48d339f1ac47d.rlib" "/root/oko/backend/target/debug/deps/libaxum_embed-df70f01061bb6c6c.rlib" "/root/oko/backend/target/debug/deps/libmime_guess-9966a2f15bddff45.rlib" "/root/oko/backend/target/debug/deps/libunicase-33f63275c5ec20a7.rlib" "/root/oko/backend/target/debug/deps/librust_embed-077c17df0c762aa4.rlib" "/root/oko/backend/target/debug/deps/librust_embed_utils-bfba60d99e1379a3.rlib" "/root/oko/backend/target/debug/deps/libwalkdir-1dd1923acd2c1bf5.rlib" "/root/oko/backend/target/debug/deps/libsame_file-5669399e58eccd84.rlib" "/root/oko/backend/target/debug/deps/libchrono-0c69c30e597c30c5.rlib" "/root/oko/backend/target/debug/deps/libiana_time_zone-327d1375b89fcc29.rlib" "/root/oko/backend/target/debug/deps/libpassword_auth-50bf88d060a774ef.rlib" "/root/oko/backend/target/debug/deps/libargon2-65998d232abcc12a.rlib" "/root/oko/backend/target/debug/deps/libblake2-4d9793752d0045d8.rlib" "/root/oko/backend/target/debug/deps/libpassword_hash-595990a932105b4e.rlib" "/root/oko/backend/target/debug/deps/libbase64ct-2f46f2f3eac5030a.rlib" "/root/oko/backend/target/debug/deps/libaxum_login-18a68e8ca480ea22.rlib" "/root/oko/backend/target/debug/deps/liburlencoding-1a69519d397122b9.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions-7ba41afccdabfff7.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_memory_store-25bafd7aecdf94a5.rlib" "/root/oko/backend/target/debug/deps/libtower_sessions_core-1e1874fb20ed1827.rlib" "/root/oko/backend/target/debug/deps/libfutures-f20ea04d87799095.rlib" "/root/oko/backend/target/debug/deps/libtower_cookies-2bb2de5f3b53eb83.rlib" "/root/oko/backend/target/debug/deps/libcookie-879afa3fd8d16189.rlib" "/root/oko/backend/target/debug/deps/libhmac-e37626be7e18ba2e.rlib" "/root/oko/backend/target/debug/deps/libaxum-6358e8a919252857.rlib" "/root/oko/backend/target/debug/deps/libserde_path_to_error-c257ff30b24324e2.rlib" "/root/oko/backend/target/debug/deps/libmatchit-321cc0d9d7dffff2.rlib" "/root/oko/backend/target/debug/deps/libbase64-1d5853d8a2dd9229.rlib" "/root/oko/backend/target/debug/deps/libtokio_tungstenite-cb72b48a81d61e67.rlib" "/root/oko/backend/target/debug/deps/libtungstenite-ef770446e2902466.rlib" "/root/oko/backend/target/debug/deps/libdata_encoding-8027432d1fb711ac.rlib" "/root/oko/backend/target/debug/deps/librand-81548f7851c41b9f.rlib" "/root/oko/backend/target/debug/deps/librand_chacha-40f8b3be9da65899.rlib" "/root/oko/backend/target/debug/deps/libppv_lite86-f9830d514bd3ec1b.rlib" "/root/oko/backend/target/debug/deps/librand_core-1f8e996801df326c.rlib" "/root/oko/backend/target/debug/deps/libgetrandom-21e7353a01032e9e.rlib" "/root/oko/backend/target/debug/deps/libutf8-6651985623c0c0fd.rlib" "/root/oko/backend/target/debug/deps/libsha1-8d33f3e64f5c707e.rlib" "/root/oko/backend/target/debug/deps/libhyper_util-407dbeabc07b88ab.rlib" "/root/oko/backend/target/debug/deps/libhyper-99da9edb86472c35.rlib" "/root/oko/backend/target/debug/deps/libhttparse-63cb856626cec0ca.rlib" "/root/oko/backend/target/debug/deps/libhttpdate-b9f758d21a0e98fe.rlib" "/root/oko/backend/target/debug/deps/libaxum_core-0766d02a83e3e4cd.rlib" "/root/oko/backend/target/debug/deps/libmime-566b615028bbb9d4.rlib" "/root/oko/backend/target/debug/deps/libhttp_body_util-0c817cb750c3b634.rlib" "/root/oko/backend/target/debug/deps/libhttp_body-f06908e32c21ec5d.rlib" "/root/oko/backend/target/debug/deps/libhttp-2ee8c6cbda2c6611.rlib" "/root/oko/backend/target/debug/deps/libfnv-b4bd047f342dff07.rlib" "/root/oko/backend/target/debug/deps/libtower-1ad294ccee315712.rlib" "/root/oko/backend/target/debug/deps/libsync_wrapper-a3ffac47f9bf7e9f.rlib" "/root/oko/backend/target/debug/deps/libtower_layer-dccf07d8b52ea2c9.rlib" "/root/oko/backend/target/debug/deps/libtower_service-153488c259ad6c35.rlib" "/root/oko/backend/target/debug/deps/libsqlx-3c2213808edcd0e0.rlib" "/root/oko/backend/target/debug/deps/libsqlx_sqlite-e6171b4c1950b635.rlib" "/root/oko/backend/target/debug/deps/libfutures_executor-e0db1dc0dfaa4ea2.rlib" "/root/oko/backend/target/debug/deps/libflume-b640a8267536f580.rlib" "/root/oko/backend/target/debug/deps/libspin-75079d5b2e6a47dc.rlib" "/root/oko/backend/target/debug/deps/libserde_urlencoded-2bc72e475108536a.rlib" "/root/oko/backend/target/debug/deps/libfutures_channel-c27f4a4ff696df8c.rlib" "/root/oko/backend/target/debug/deps/libfutures_intrusive-1f7782457614c229.rlib" "/root/oko/backend/target/debug/deps/libparking_lot-747a562481fc66ba.rlib" "/root/oko/backend/target/debug/deps/libparking_lot_core-4c138976f69a6857.rlib" "/root/oko/backend/target/debug/deps/liblock_api-becb7191e8eb27c7.rlib" "/root/oko/backend/target/debug/deps/libscopeguard-d59b845c07f126eb.rlib" "/root/oko/backend/target/debug/deps/liblibsqlite3_sys-b7f57a9d47547458.rlib" "/root/oko/backend/target/debug/deps/libatoi-1075fcf1bc4544fb.rlib" "/root/oko/backend/target/debug/deps/libnum_traits-696d2cc76a84ef40.rlib" "/root/oko/backend/target/debug/deps/libsqlx_core-7fad43ab9f849695.rlib" "/root/oko/backend/target/debug/deps/libthiserror-aaacfd6c558ac3da.rlib" "/root/oko/backend/target/debug/deps/libindexmap-10fc62c8bb74c388.rlib" "/root/oko/backend/target/debug/deps/libequivalent-4d5cfde55792e26d.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-62cdb64ce3ed52bb.rlib" "/root/oko/backend/target/debug/deps/libsha2-951ef62d915d5e36.rlib" "/root/oko/backend/target/debug/deps/libcpufeatures-9ef920896d0c969a.rlib" "/root/oko/backend/target/debug/deps/libdigest-b1c0eb6bc8249099.rlib" "/root/oko/backend/target/debug/deps/libsubtle-6cca911e25116a21.rlib" "/root/oko/backend/target/debug/deps/libblock_buffer-b33225e8228c539f.rlib" "/root/oko/backend/target/debug/deps/libcrypto_common-51e69f872257e8d4.rlib" "/root/oko/backend/target/debug/deps/libgeneric_array-96b5f8b414fbdd75.rlib" "/root/oko/backend/target/debug/deps/libtypenum-f8bcce2b4da82a7e.rlib" "/root/oko/backend/target/debug/deps/libsqlformat-e9cc6dccf9917618.rlib" "/root/oko/backend/target/debug/deps/libunicode_categories-756b6a6cc7c9e938.rlib" "/root/oko/backend/target/debug/deps/libnom-768e1a78634ba60f.rlib" "/root/oko/backend/target/debug/deps/libtokio-b3977c968839c0c3.rlib" "/root/oko/backend/target/debug/deps/libsignal_hook_registry-92d753f0bfdc0b99.rlib" "/root/oko/backend/target/debug/deps/libsocket2-cca1afe887309ed0.rlib" "/root/oko/backend/target/debug/deps/libmio-c1a951770e75a1cc.rlib" "/root/oko/backend/target/debug/deps/liblibc-48c07cb418e82d02.rlib" "/root/oko/backend/target/debug/deps/libbytes-4283fbd60d33408b.rlib" "/root/oko/backend/target/debug/deps/libhashlink-d681ac00d88f5181.rlib" "/root/oko/backend/target/debug/deps/libhashbrown-bf1cc23bd6fc7fb4.rlib" "/root/oko/backend/target/debug/deps/libahash-72e73853b738809b.rlib" "/root/oko/backend/target/debug/deps/libzerocopy-976541d733ed1b5d.rlib" "/root/oko/backend/target/debug/deps/libbyteorder-f47bc0e1adee4793.rlib" "/root/oko/backend/target/debug/deps/liballocator_api2-88d7b7890afadc02.rlib" "/root/oko/backend/target/debug/deps/libtime-52818a4d74cc562c.rlib" "/root/oko/backend/target/debug/deps/libtime_core-920e11b901147e65.rlib" "/root/oko/backend/target/debug/deps/libnum_conv-4bd030b5826783c5.rlib" "/root/oko/backend/target/debug/deps/libderanged-72dc4cb961bc501d.rlib" "/root/oko/backend/target/debug/deps/libpowerfmt-776ac6678c847955.rlib" "/root/oko/backend/target/debug/deps/libserde_json-f2f96f018157924c.rlib" "/root/oko/backend/target/debug/deps/libitoa-e8776415c5fe0047.rlib" "/root/oko/backend/target/debug/deps/libryu-bba83beca99dd7c0.rlib" "/root/oko/backend/target/debug/deps/liburl-73fa154b853c3e03.rlib" "/root/oko/backend/target/debug/deps/libidna-275ef50a4ad7b0af.rlib" "/root/oko/backend/target/debug/deps/libidna_adapter-58a2201cbba197ea.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer-1f68cbb86994a223.rlib" "/root/oko/backend/target/debug/deps/libicu_normalizer_data-762e61f43eae08c2.rlib" "/root/oko/backend/target/debug/deps/libwrite16-85fd16f27fd45657.rlib" "/root/oko/backend/target/debug/deps/libutf8_iter-fbf995b92c341ba3.rlib" "/root/oko/backend/target/debug/deps/libutf16_iter-83f8708e12b6535a.rlib" "/root/oko/backend/target/debug/deps/libsmallvec-09a1a6c0c4f8c0ff.rlib" "/root/oko/backend/target/debug/deps/libicu_properties-4f0aacaa4e006cbc.rlib" "/root/oko/backend/target/debug/deps/libicu_properties_data-52a01acc947e4a6d.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform-86a31a2ba3bc49f3.rlib" "/root/oko/backend/target/debug/deps/libicu_locid_transform_data-38f8208716c2d35a.rlib" "/root/oko/backend/target/debug/deps/libicu_collections-45f06e0f98da5aa7.rlib" "/root/oko/backend/target/debug/deps/libicu_provider-b33241e03fcb0d1b.rlib" "/root/oko/backend/target/debug/deps/libicu_locid-57927dd1321264dd.rlib" "/root/oko/backend/target/debug/deps/liblitemap-a0ca3b3971bb4be7.rlib" "/root/oko/backend/target/debug/deps/libtinystr-e701c31b6408cdbc.rlib" "/root/oko/backend/target/debug/deps/libzerovec-140d18236b1b859b.rlib" "/root/oko/backend/target/debug/deps/libwriteable-c63e282ed55b92df.rlib" "/root/oko/backend/target/debug/deps/libyoke-c3686be1c83072a7.rlib" "/root/oko/backend/target/debug/deps/libzerofrom-942a239d4238ad4a.rlib" "/root/oko/backend/target/debug/deps/libstable_deref_trait-3602560bab1848e8.rlib" "/root/oko/backend/target/debug/deps/libform_urlencoded-533db7122d3ddfc5.rlib" "/root/oko/backend/target/debug/deps/libpercent_encoding-88cba40a7181d984.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_queue-af3456d1d6211d1b.rlib" "/root/oko/backend/target/debug/deps/libcrossbeam_utils-f7ce83001347108b.rlib" "/root/oko/backend/target/debug/deps/libeither-fb8c12a6e9c19835.rlib" "/root/oko/backend/target/debug/deps/libserde-74db0e160148834d.rlib" "/root/oko/backend/target/debug/deps/libevent_listener-8e428c2b0618c26c.rlib" "/root/oko/backend/target/debug/deps/libparking-27e917f18806e974.rlib" "/root/oko/backend/target/debug/deps/libfutures_util-158a7b373e403896.rlib" "/root/oko/backend/target/debug/deps/libmemchr-a61794c77f52d343.rlib" "/root/oko/backend/target/debug/deps/libfutures_io-b77a2fbaad2c9353.rlib" "/root/oko/backend/target/debug/deps/libslab-083dd68e0bc19c95.rlib" "/root/oko/backend/target/debug/deps/libfutures_sink-140504a081023950.rlib" "/root/oko/backend/target/debug/deps/libfutures_task-b8cf8cc4fcc89c75.rlib" "/root/oko/backend/target/debug/deps/libpin_utils-6bd6355de79f98af.rlib" "/root/oko/backend/target/debug/deps/libfutures_core-6acc1f6b4df0dd33.rlib" "/root/oko/backend/target/debug/deps/libtracing_subscriber-87f3e8b9b19e7a4b.rlib" "/root/oko/backend/target/debug/deps/libsharded_slab-0b982918e941cef5.rlib" "/root/oko/backend/target/debug/deps/liblazy_static-977f75dcedc2f7be.rlib" "/root/oko/backend/target/debug/deps/libmatchers-81da137eb49309ea.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-abfc5f66ec152c0c.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-97b3d5521ce4fbed.rlib" "/root/oko/backend/target/debug/deps/libregex-65269ff0a2daa12f.rlib" "/root/oko/backend/target/debug/deps/libregex_automata-755b4f61f7b258ee.rlib" "/root/oko/backend/target/debug/deps/libregex_syntax-aa292c4420fe077c.rlib" "/root/oko/backend/target/debug/deps/libtracing-e70a33f22576c382.rlib" "/root/oko/backend/target/debug/deps/liblog-2579a5a2dbce8c4d.rlib" "/root/oko/backend/target/debug/deps/libpin_project_lite-be51d264b86b6c5b.rlib" "/root/oko/backend/target/debug/deps/libthread_local-2878fc2c0308edf0.rlib" "/root/oko/backend/target/debug/deps/libcfg_if-8217498f8667ada9.rlib" "/root/oko/backend/target/debug/deps/libtracing_core-9b2ef5bfdc695f2a.rlib" "/root/oko/backend/target/debug/deps/libonce_cell-6f631f2a5f71cecc.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd-ca74a2d9c5166d9f.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libpanic_unwind-e31ab23316ed5080.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libobject-27dc4aa955912662.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libmemchr-bd0d6cccce077b99.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libaddr2line-8d001680935b5e3c.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libgimli-ba8ce71964f984f4.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_demangle-99a73526abcec14b.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libstd_detect-63ac0d22cff92579.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libhashbrown-9057355c92c922d5.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_alloc-358be9bc1f6bab04.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libminiz_oxide-aca15549d5bff974.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libadler-8251d2cef7072448.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libunwind-7d50b86011c66411.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcfg_if-51ea098fce5006bf.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liblibc-5a14e0d0b712e731.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/liballoc-8b83dbf3a7b8f999.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/librustc_std_workspace_core-c6fd227bdc7b39ff.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcore-959d3389fa3da8a5.rlib" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib/libcompiler_builtins-abe05db089cc2c62.rlib" "-Wl,-Bdynamic" "-lstdc++" "-lopencv_videoio" "-lopencv_video" "-lopencv_imgcodecs" "-lopencv_imgproc" "-lopencv_core" "-lavformat" "-lavcodec" "-lavutil" "-lswscale" "-llibjpeg-turbo" "-llibpng" "-llibopenjp2" "-lippiw" "-lippicv" "-lzlib" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/root/oko/backend/target/debug/build/opencv-9a33646d3a9efdb0/out" "-L" "/opt/opencv/lib" "-L" "/opt/opencv/lib/opencv4/3rdparty" "-L" "/usr/lib/x86_64-linux-gnu" "-L" "/root/oko/backend/target/debug/build/libsqlite3-sys-d37f842dacb8056d/out" "-L" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/root/oko/backend/target/debug/deps/oko-43bfcfd3ede090c7" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-nodefaultlibs"
+#21 46.88   = note: /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(parallel_impl.cpp.o): in function `cv::WorkerThread::thread_loop_wrapper(void*)':
+#21 46.88           parallel_impl.cpp:(.text._ZN2cv12WorkerThread19thread_loop_wrapperEPv[_ZN2cv12WorkerThread19thread_loop_wrapperEPv]+0xd): undefined reference to `__itt_thread_set_name_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(system.cpp.o): in function `cv::TLSData<cv::(anonymous namespace)::ThreadID>::createDataInstance() const':
+#21 46.88           system.cpp:(.text._ZNK2cv7TLSDataINS_12_GLOBAL__N_18ThreadIDEE18createDataInstanceEv+0x3b): undefined reference to `__itt_thread_set_name_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::isITTEnabled()':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7detailsL12isITTEnabledEv+0x4a): undefined reference to `__itt_api_version_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7detailsL12isITTEnabledEv+0x72): undefined reference to `__itt_domain_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::Region::LocationExtraData::init(cv::utils::trace::details::Region::LocationStaticStorage const&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details6Region17LocationExtraData4initERKNS3_21LocationStaticStorageE+0x72): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::Region::Impl::enterRegion(cv::utils::trace::details::TraceManagerThreadLocal&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11enterRegionERNS2_23TraceManagerThreadLocalE+0x146): undefined reference to `__itt_task_begin_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::Region::Impl::leaveRegion(cv::utils::trace::details::TraceManagerThreadLocal&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x8d): undefined reference to `__itt_metadata_add_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0xb5): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x11a): undefined reference to `__itt_metadata_add_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x141): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x19c): undefined reference to `__itt_metadata_add_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x1c3): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details6Region4Impl11leaveRegionERNS2_23TraceManagerThreadLocalE+0x215): undefined reference to `__itt_task_end_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::Region::Region(cv::utils::trace::details::Region::LocationStaticStorage const&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details6RegionC2ERKNS3_21LocationStaticStorageE+0x4dd): undefined reference to `__itt_id_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::Region::destroy()':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details6Region7destroyEv+0x23d): undefined reference to `__itt_id_destroy_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::TraceManager::TraceManager()':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details12TraceManagerC2Ev+0x247): undefined reference to `__itt_region_begin_ptr__3_0'
+#21 46.88           /usr/bin/ld: trace.cpp:(.text._ZN2cv5utils5trace7details12TraceManagerC2Ev+0x256): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::TraceManager::~TraceManager()':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details12TraceManagerD2Ev+0x2c): undefined reference to `__itt_region_end_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::parallelForAttachNestedRegion(cv::utils::trace::details::Region const&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details29parallelForAttachNestedRegionERKNS2_6RegionE+0x50): undefined reference to `__itt_relation_add_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::initTraceArg(cv::utils::trace::details::TraceManagerThreadLocal&, cv::utils::trace::details::TraceArg const&)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7detailsL12initTraceArgERNS2_23TraceManagerThreadLocalERKNS2_8TraceArgE+0x55): undefined reference to `__itt_string_handle_create_ptr__3_0'
+#21 46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::traceArg(cv::utils::trace::details::TraceArg const&, long)':
+#21 46.88           trace.cpp:(.text._ZN2cv5utils5trace7details8traceArgERKNS2_8TraceArgEl+0x60): undefined reference to `__itt_metadata_add_ptr__3_0'
+#21 46.88           collect2: error: ld returned 1 exit status
+#21 46.88           
+#21 46.88   = note: some `extern` functions couldn't be found; some native libraries may need to be installed or have their path specified
+#21 46.88   = note: use the `-l` flag to specify native libraries to link
+#21 46.88   = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib)
+#21 46.88 
+#21 46.90 error: could not compile `oko` (bin "oko") due to 1 previous error
+#21 ERROR: process "/bin/sh -c set -xeu && \tcd /root/oko/backend && \tcargo build" did not complete successfully: exit code: 101
+------
+ > [test  8/11] RUN set -xeu && 	cd /root/oko/backend && 	cargo build:
+46.88           trace.cpp:(.text._ZN2cv5utils5trace7detailsL12initTraceArgERNS2_23TraceManagerThreadLocalERKNS2_8TraceArgE+0x55): undefined reference to `__itt_string_handle_create_ptr__3_0'
+46.88           /usr/bin/ld: /opt/opencv/lib/libopencv_core.a(trace.cpp.o): in function `cv::utils::trace::details::traceArg(cv::utils::trace::details::TraceArg const&, long)':
+46.88           trace.cpp:(.text._ZN2cv5utils5trace7details8traceArgERKNS2_8TraceArgEl+0x60): undefined reference to `__itt_metadata_add_ptr__3_0'
+46.88           collect2: error: ld returned 1 exit status
+46.88           
+46.88   = note: some `extern` functions couldn't be found; some native libraries may need to be installed or have their path specified
+46.88   = note: use the `-l` flag to specify native libraries to link
+46.88   = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-lib)
+46.88 
+46.90 error: could not compile `oko` (bin "oko") due to 1 previous error
+------
+ubuntu-22.04-opencv-full-build.Dockerfile:98
+--------------------
+  97 |     
+  98 | >>> RUN set -xeu && \
+  99 | >>> 	cd /root/oko/backend && \
+ 100 | >>> 	cargo build
+ 101 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c set -xeu && \tcd /root/oko/backend && \tcargo build" did not complete successfully: exit code: 101
