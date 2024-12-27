@@ -136,7 +136,7 @@ RUN set -xeu && \
     	-D WITH_TBB=OFF \
     	-D WITH_TIFF=OFF \
     	-D WITH_UNICAP=OFF \
-    	-D WITH_V4L=ON \
+    	-D WITH_V4L=OFF \
     	-D WITH_VA=ON \
     	-D WITH_VA_INTEL=ON \
     	-D WITH_VTK=OFF \

@@ -1,0 +1,1274 @@
+-- The CXX compiler identification is Clang 14.0.0
+-- The C compiler identification is GNU 11.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+-- Detected processor: x86_64
+-- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) (Required is at least version "2.7")
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.2") 
+-- Could NOT find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required is exact version "3.10.12")
+-- Looking for ccache - not found
+-- Performing Test HAVE_CXX_FSIGNED_CHAR
+-- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+-- Performing Test HAVE_C_FSIGNED_CHAR
+-- Performing Test HAVE_C_FSIGNED_CHAR - Success
+-- Performing Test HAVE_CXX_W
+-- Performing Test HAVE_CXX_W - Success
+-- Performing Test HAVE_C_W
+-- Performing Test HAVE_C_W - Success
+-- Performing Test HAVE_CXX_WALL
+-- Performing Test HAVE_CXX_WALL - Success
+-- Performing Test HAVE_C_WALL
+-- Performing Test HAVE_C_WALL - Success
+-- Performing Test HAVE_CXX_WRETURN_TYPE
+-- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+-- Performing Test HAVE_C_WRETURN_TYPE
+-- Performing Test HAVE_C_WRETURN_TYPE - Success
+-- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+-- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+-- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+-- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+-- Performing Test HAVE_CXX_WADDRESS
+-- Performing Test HAVE_CXX_WADDRESS - Success
+-- Performing Test HAVE_C_WADDRESS
+-- Performing Test HAVE_C_WADDRESS - Success
+-- Performing Test HAVE_CXX_WSEQUENCE_POINT
+-- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+-- Performing Test HAVE_C_WSEQUENCE_POINT
+-- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+-- Performing Test HAVE_CXX_WFORMAT
+-- Performing Test HAVE_CXX_WFORMAT - Success
+-- Performing Test HAVE_C_WFORMAT
+-- Performing Test HAVE_C_WFORMAT - Success
+-- Performing Test HAVE_CXX_WFORMAT_SECURITY
+-- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+-- Performing Test HAVE_C_WFORMAT_SECURITY
+-- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+-- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+-- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+-- Performing Test HAVE_C_WMISSING_DECLARATIONS
+-- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+-- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Success
+-- Performing Test HAVE_C_WMISSING_PROTOTYPES
+-- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+-- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+-- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Success
+-- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+-- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+-- Performing Test HAVE_CXX_WUNDEF
+-- Performing Test HAVE_CXX_WUNDEF - Success
+-- Performing Test HAVE_C_WUNDEF
+-- Performing Test HAVE_C_WUNDEF - Success
+-- Performing Test HAVE_CXX_WINIT_SELF
+-- Performing Test HAVE_CXX_WINIT_SELF - Success
+-- Performing Test HAVE_C_WINIT_SELF
+-- Performing Test HAVE_C_WINIT_SELF - Success
+-- Performing Test HAVE_CXX_WPOINTER_ARITH
+-- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+-- Performing Test HAVE_C_WPOINTER_ARITH
+-- Performing Test HAVE_C_WPOINTER_ARITH - Success
+-- Performing Test HAVE_CXX_WSHADOW
+-- Performing Test HAVE_CXX_WSHADOW - Success
+-- Performing Test HAVE_C_WSHADOW
+-- Performing Test HAVE_C_WSHADOW - Success
+-- Performing Test HAVE_CXX_WSIGN_PROMO
+-- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+-- Performing Test HAVE_C_WSIGN_PROMO
+-- Performing Test HAVE_C_WSIGN_PROMO - Failed
+-- Performing Test HAVE_CXX_WUNINITIALIZED
+-- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+-- Performing Test HAVE_C_WUNINITIALIZED
+-- Performing Test HAVE_C_WUNINITIALIZED - Success
+-- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE
+-- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE - Success
+-- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE
+-- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE - Failed
+-- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+-- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+-- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+-- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR - Failed
+-- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+-- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Success
+-- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+-- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+-- Performing Test HAVE_CXX_WNO_COMMENT
+-- Performing Test HAVE_CXX_WNO_COMMENT - Success
+-- Performing Test HAVE_C_WNO_COMMENT
+-- Performing Test HAVE_C_WNO_COMMENT - Success
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Success
+-- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+-- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Failed
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Success
+-- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+-- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Failed
+-- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION
+-- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION - Success
+-- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION
+-- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION - Success
+-- Performing Test HAVE_CXX_WNO_LONG_LONG
+-- Performing Test HAVE_CXX_WNO_LONG_LONG - Success
+-- Performing Test HAVE_C_WNO_LONG_LONG
+-- Performing Test HAVE_C_WNO_LONG_LONG - Success
+-- Performing Test HAVE_CXX_PTHREAD
+-- Performing Test HAVE_CXX_PTHREAD - Success
+-- Performing Test HAVE_C_PTHREAD
+-- Performing Test HAVE_C_PTHREAD - Success
+-- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS
+-- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS - Success
+-- Performing Test HAVE_C_QUNUSED_ARGUMENTS
+-- Performing Test HAVE_C_QUNUSED_ARGUMENTS - Failed
+-- Performing Test HAVE_CXX_FFUNCTION_SECTIONS
+-- Performing Test HAVE_CXX_FFUNCTION_SECTIONS - Success
+-- Performing Test HAVE_C_FFUNCTION_SECTIONS
+-- Performing Test HAVE_C_FFUNCTION_SECTIONS - Success
+-- Performing Test HAVE_CXX_FDATA_SECTIONS
+-- Performing Test HAVE_CXX_FDATA_SECTIONS - Success
+-- Performing Test HAVE_C_FDATA_SECTIONS
+-- Performing Test HAVE_C_FDATA_SECTIONS - Success
+-- Performing Test HAVE_CXX_MSSE (check file: cmake/checks/cpu_sse.cpp)
+-- Performing Test HAVE_CXX_MSSE - Success
+-- Performing Test HAVE_CXX_MSSE2 (check file: cmake/checks/cpu_sse2.cpp)
+-- Performing Test HAVE_CXX_MSSE2 - Success
+-- Performing Test HAVE_CXX_MSSE3 (check file: cmake/checks/cpu_sse3.cpp)
+-- Performing Test HAVE_CXX_MSSE3 - Success
+-- Performing Test HAVE_CXX_MSSSE3 (check file: cmake/checks/cpu_ssse3.cpp)
+-- Performing Test HAVE_CXX_MSSSE3 - Success
+-- Performing Test HAVE_CXX_MSSE4_1 (check file: cmake/checks/cpu_sse41.cpp)
+-- Performing Test HAVE_CXX_MSSE4_1 - Success
+-- Performing Test HAVE_CXX_MPOPCNT (check file: cmake/checks/cpu_popcnt.cpp)
+-- Performing Test HAVE_CXX_MPOPCNT - Success
+-- Performing Test HAVE_CXX_MSSE4_2 (check file: cmake/checks/cpu_sse42.cpp)
+-- Performing Test HAVE_CXX_MSSE4_2 - Success
+-- Performing Test HAVE_CXX_MF16C (check file: cmake/checks/cpu_fp16.cpp)
+-- Performing Test HAVE_CXX_MF16C - Success
+-- Performing Test HAVE_CXX_MFMA
+-- Performing Test HAVE_CXX_MFMA - Success
+-- Performing Test HAVE_CXX_MAVX (check file: cmake/checks/cpu_avx.cpp)
+-- Performing Test HAVE_CXX_MAVX - Success
+-- Performing Test HAVE_CXX_MAVX2 (check file: cmake/checks/cpu_avx2.cpp)
+-- Performing Test HAVE_CXX_MAVX2 - Success
+-- Performing Test HAVE_CXX_MAVX512F (check file: cmake/checks/cpu_avx512.cpp)
+-- Performing Test HAVE_CXX_MAVX512F - Success
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD (check file: cmake/checks/cpu_avx512common.cpp)
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD - Success
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ (check file: cmake/checks/cpu_avx512skx.cpp)
+-- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ - Success
+-- Performing Test HAVE_CPU_BASELINE_FLAGS
+-- Performing Test HAVE_CPU_BASELINE_FLAGS - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2 - Success
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX
+-- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX - Success
+-- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN
+-- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN - Success
+-- Performing Test HAVE_C_FVISIBILITY_HIDDEN
+-- Performing Test HAVE_C_FVISIBILITY_HIDDEN - Success
+-- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN
+-- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN - Success
+-- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN
+-- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN - Failed
+-- Performing Test HAVE_LINK_AS_NEEDED
+-- Performing Test HAVE_LINK_AS_NEEDED - Success
+-- Performing Test HAVE_LINK_NO_UNDEFINED
+-- Performing Test HAVE_LINK_NO_UNDEFINED - Success
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for posix_memalign
+-- Looking for posix_memalign - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for memalign
+-- Looking for memalign - found
+-- Looking for fseeko
+-- Looking for fseeko - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of off64_t
+-- Check size of off64_t - failed
+-- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32
+-- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32 - Failed
+-- Performing Test HAVE_C_WNO_ATTRIBUTES
+-- Performing Test HAVE_C_WNO_ATTRIBUTES - Success
+-- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES
+-- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES - Success
+-- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES
+-- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES - Success
+-- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS
+-- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS - Success
+-- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE
+-- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE - Success
+-- Performing Test HAVE_C_WNO_UNDEF
+-- Performing Test HAVE_C_WNO_UNDEF - Success
+-- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH
+-- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH - Success
+-- Performing Test HAVE_C_WNO_UNUSED_PARAMETER
+-- Performing Test HAVE_C_WNO_UNUSED_PARAMETER - Success
+-- Performing Test HAVE_C_WNO_SIGN_COMPARE
+-- Performing Test HAVE_C_WNO_SIGN_COMPARE - Success
+-- libjpeg-turbo: VERSION = 2.1.3, BUILD = opencv-4.8.0-libjpeg-turbo
+-- Check size of size_t
+-- Check size of size_t - done
+-- Check size of unsigned long
+-- Check size of unsigned long - done
+-- Performing Test HAVE_BUILTIN_CTZL
+-- Performing Test HAVE_BUILTIN_CTZL - Success
+-- Looking for include file locale.h
+-- Looking for include file locale.h - found
+-- Looking for include file stdlib.h
+-- Looking for include file stdlib.h - found
+-- Looking for include file sys/types.h
+-- Looking for include file sys/types.h - found
+-- Looking for a ASM_NASM compiler
+-- Looking for a ASM_NASM compiler - NOTFOUND
+-- libjpeg-turbo(SIMD): SIMD extensions disabled: could not find NASM compiler.  Performance will suffer.
+-- Could NOT find OpenJPEG (minimal suitable version: 2.0, recommended version >= 2.3.1). OpenJPEG will be built from sources
+-- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION
+-- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION - Failed
+-- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE
+-- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE - Success
+-- OpenJPEG: VERSION = 2.5.0, BUILD = opencv-4.8.0-openjp2-2.5.0
+-- Looking for string.h
+-- Looking for string.h - found
+-- Looking for memory.h
+-- Looking for memory.h - found
+-- Looking for stdio.h
+-- Looking for stdio.h - found
+-- Looking for math.h
+-- Looking for math.h - found
+-- Looking for float.h
+-- Looking for float.h - found
+-- Looking for time.h
+-- Looking for time.h - found
+-- Looking for stdarg.h
+-- Looking for stdarg.h - found
+-- Looking for ctype.h
+-- Looking for ctype.h - found
+-- Looking for assert.h
+-- Looking for assert.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for inttypes.h
+-- Looking for inttypes.h - found
+-- Looking for strings.h
+-- Looking for strings.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for include file malloc.h
+-- Looking for include file malloc.h - found
+-- Looking for _aligned_malloc
+-- Looking for _aligned_malloc - not found
+-- Looking for posix_memalign
+-- Looking for posix_memalign - found
+-- Looking for memalign
+-- Looking for memalign - found
+-- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE
+-- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE - Success
+-- Performing Test HAVE_C_WNO_SHADOW
+-- Performing Test HAVE_C_WNO_SHADOW - Success
+-- Performing Test HAVE_C_WNO_UNUSED_FUNCTION
+-- Performing Test HAVE_C_WNO_UNUSED_FUNCTION - Success
+-- OpenJPEG libraries will be built from sources: libopenjp2 (version "2.5.0")
+-- Performing Test HAVE_C_WNO_CAST_ALIGN
+-- Performing Test HAVE_C_WNO_CAST_ALIGN - Success
+-- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED
+-- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED - Success
+-- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION
+-- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION - Failed
+-- IPPICV: Downloading ippicv_2021.8_lnx_intel64_20230330_general.tgz from https://raw.githubusercontent.com/opencv/opencv_3rdparty/1224f78da6684df04397ac0f40c961ed37f79ccb/ippicv/ippicv_2021.8_lnx_intel64_20230330_general.tgz
+-- found Intel IPP (ICV version): 2021.8.0 [2021.8]
+-- at: /root/build/3rdparty/ippicv/ippicv_lnx/icv
+-- found Intel IPP Integration Wrappers sources: 2021.8.0
+-- at: /root/build/3rdparty/ippicv/ippicv_lnx/iw
+-- Performing Test HAVE_CXX_WNO_DEPRECATED
+-- Performing Test HAVE_CXX_WNO_DEPRECATED - Success
+-- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES
+-- Performing Test HAVE_CXX_WNO_MISSING_PROTOTYPES - Success
+-- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS
+-- Performing Test HAVE_CXX_WNO_MISSING_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WNO_SHADOW
+-- Performing Test HAVE_CXX_WNO_SHADOW - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER
+-- Performing Test HAVE_CXX_WNO_UNUSED_PARAMETER - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_LOCAL_TYPEDEFS
+-- Performing Test HAVE_CXX_WNO_UNUSED_LOCAL_TYPEDEFS - Success
+-- Performing Test HAVE_CXX_WNO_SIGN_COMPARE
+-- Performing Test HAVE_CXX_WNO_SIGN_COMPARE - Success
+-- Performing Test HAVE_CXX_WNO_SIGN_PROMO
+-- Performing Test HAVE_CXX_WNO_SIGN_PROMO - Success
+-- Performing Test HAVE_CXX_WNO_UNDEF
+-- Performing Test HAVE_CXX_WNO_UNDEF - Success
+-- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_UNDEFINED_COMPARE
+-- Performing Test HAVE_CXX_WNO_TAUTOLOGICAL_UNDEFINED_COMPARE - Success
+-- Performing Test HAVE_CXX_WNO_IGNORED_QUALIFIERS
+-- Performing Test HAVE_CXX_WNO_IGNORED_QUALIFIERS - Success
+-- Performing Test HAVE_CXX_WNO_EXTRA
+-- Performing Test HAVE_CXX_WNO_EXTRA - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_FUNCTION
+-- Performing Test HAVE_CXX_WNO_UNUSED_FUNCTION - Success
+-- Performing Test HAVE_CXX_WNO_UNUSED_CONST_VARIABLE
+-- Performing Test HAVE_CXX_WNO_UNUSED_CONST_VARIABLE - Success
+-- Performing Test HAVE_CXX_WNO_SHORTEN_64_TO_32
+-- Performing Test HAVE_CXX_WNO_SHORTEN_64_TO_32 - Success
+-- Performing Test HAVE_CXX_WNO_INVALID_OFFSETOF
+-- Performing Test HAVE_CXX_WNO_INVALID_OFFSETOF - Success
+-- Performing Test HAVE_CXX_WNO_ENUM_COMPARE_SWITCH
+-- Performing Test HAVE_CXX_WNO_ENUM_COMPARE_SWITCH - Success
+-- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE
+-- Performing Test HAVE_CXX_WNO_SUGGEST_OVERRIDE - Success
+-- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE
+-- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE - Success
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH
+-- Performing Test HAVE_CXX_WNO_IMPLICIT_FALLTHROUGH - Success
+-- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS
+-- Performing Test HAVE_CXX_WNO_ARRAY_BOUNDS - Success
+-- ADE: Downloading v0.1.2a.zip from https://github.com/opencv/ade/archive/v0.1.2a.zip
+-- Checking for modules 'libavcodec;libavformat;libavutil;libswscale'
+--   Found libavcodec, version 58.134.100
+--   Found libavformat, version 58.76.100
+--   Found libavutil, version 56.70.100
+--   Found libswscale, version 5.9.100
+-- Checking for module 'libavresample'
+--   No package 'libavresample' found
+-- Checking for module 'freetype2'
+--   No package 'freetype2' found
+-- Checking for module 'harfbuzz'
+--   No package 'harfbuzz' found
+-- freetype2:   NO
+-- harfbuzz:    NO
+-- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS) (found version "")
+-- Julia not found. Not compiling Julia Bindings. 
+-- Module opencv_ovis disabled because OGRE3D was not found
+-- Checking SFM glog/gflags deps... TRUE
+-- Checking for module 'tesseract'
+--   No package 'tesseract' found
+-- Tesseract:   NO
+-- Allocator metrics storage type: 'long long'
+-- Excluding from source files list: modules/imgproc/src/imgwarp.lasx.cpp
+-- Excluding from source files list: modules/imgproc/src/resize.lasx.cpp
+-- Registering hook 'INIT_MODULE_SOURCES_opencv_dnn': /root/dist/opencv-4.8.0/modules/dnn/cmake/hooks/INIT_MODULE_SOURCES_opencv_dnn.cmake
+-- opencv_dnn: filter out cuda4dnn source code
+-- Excluding from source files list: <BUILD>/modules/dnn/layers/layers_common.rvv.cpp
+-- Excluding from source files list: <BUILD>/modules/dnn/layers/layers_common.lasx.cpp
+-- Excluding from source files list: <BUILD>/modules/dnn/int8layers/layers_common.lasx.cpp
+-- Excluding from source files list: <BUILD>/modules/dnn/layers/cpu_kernels/conv_depthwise.rvv.cpp
+-- Excluding from source files list: <BUILD>/modules/dnn/layers/cpu_kernels/conv_depthwise.lasx.cpp
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS - Success
+-- Performing Test HAVE_CXX_WNO_OVERLOADED_VIRTUAL
+-- Performing Test HAVE_CXX_WNO_OVERLOADED_VIRTUAL - Success
+-- highgui: using builtin backend: NONE
+-- Performing Test Iconv_IS_BUILT_IN
+-- Performing Test Iconv_IS_BUILT_IN - Success
+-- wechat_qrcode: Downloading detect.caffemodel from https://raw.githubusercontent.com/WeChatCV/opencv_3rdparty/a8b69ccc738421293254aec5ddb38bd523503252/detect.caffemodel
+-- wechat_qrcode: Downloading detect.prototxt from https://raw.githubusercontent.com/WeChatCV/opencv_3rdparty/a8b69ccc738421293254aec5ddb38bd523503252/detect.prototxt
+-- wechat_qrcode: Downloading sr.caffemodel from https://raw.githubusercontent.com/WeChatCV/opencv_3rdparty/a8b69ccc738421293254aec5ddb38bd523503252/sr.caffemodel
+-- wechat_qrcode: Downloading sr.prototxt from https://raw.githubusercontent.com/WeChatCV/opencv_3rdparty/a8b69ccc738421293254aec5ddb38bd523503252/sr.prototxt
+-- xfeatures2d/boostdesc: Downloading boostdesc_bgm.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_bgm_bi.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm_bi.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_bgm_hd.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_bgm_hd.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_binboost_064.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_binboost_064.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_binboost_128.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_binboost_128.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_binboost_256.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_binboost_256.i
+-- xfeatures2d/boostdesc: Downloading boostdesc_lbgm.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/34e4206aef44d50e6bbcd0ab06354b52e7466d26/boostdesc_lbgm.i
+-- xfeatures2d/vgg: Downloading vgg_generated_48.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d/vgg_generated_48.i
+-- xfeatures2d/vgg: Downloading vgg_generated_64.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d/vgg_generated_64.i
+-- xfeatures2d/vgg: Downloading vgg_generated_80.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d/vgg_generated_80.i
+-- xfeatures2d/vgg: Downloading vgg_generated_120.i from https://raw.githubusercontent.com/opencv/opencv_3rdparty/fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d/vgg_generated_120.i
+-- data: Downloading face_landmark_model.dat from https://raw.githubusercontent.com/opencv/opencv_3rdparty/8afa57abc8229d611c4937165d20e2a2d9fc5a12/face_landmark_model.dat
+-- Performing Test HAVE_CXX_WNO_UNUSED_BUT_SET_VARIABLE
+-- Performing Test HAVE_CXX_WNO_UNUSED_BUT_SET_VARIABLE - Success
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_COPY
+-- Performing Test HAVE_CXX_WNO_DEPRECATED_COPY - Success
+-- Found 'misc' Python modules from /root/dist/opencv-4.8.0/modules/python/package/extra_modules
+-- Found 'mat_wrapper;utils' Python modules from /root/dist/opencv-4.8.0/modules/core/misc/python/package
+-- Found 'gapi' Python modules from /root/dist/opencv-4.8.0/modules/gapi/misc/python/package
+-- 
+-- General configuration for OpenCV 4.8.0 =====================================
+--   Version control:               unknown
+-- 
+--   Extra modules:
+--     Location (extra):            /root/dist/opencv_contrib-4.8.0/modules
+--     Version control (extra):     unknown
+-- 
+--   Platform:
+--     Timestamp:                   2024-12-27T13:42:24Z
+--     Host:                        Linux 5.15.167.4-microsoft-standard-WSL2 x86_64
+--     CMake:                       3.22.1
+--     CMake generator:             Unix Makefiles
+--     CMake build tool:            /usr/bin/gmake
+--     Configuration:               Release
+-- 
+--   CPU/HW features:
+--     Baseline:                    SSE SSE2 SSE3
+--       requested:                 SSE3
+--     Dispatched code generation:  SSE4_1 SSE4_2 FP16 AVX AVX2 AVX512_SKX
+--       requested:                 SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+--       SSE4_1 (16 files):         + SSSE3 SSE4_1
+--       SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+--       FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX
+--       AVX (7 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+--       AVX2 (35 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2
+--       AVX512_SKX (5 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2 AVX_512F AVX512_COMMON AVX512_SKX
+-- 
+--   C/C++:
+--     Built as dynamic libs?:      NO
+--     C++ standard:                11
+--     C++ Compiler:                /usr/bin/c++  (ver 14.0.0)
+--     C++ flags (Release):         -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG
+--     C++ flags (Debug):           -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG
+--     C Compiler:                  /usr/bin/cc
+--     C flags (Release):           -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG
+--     C flags (Debug):             -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG
+--     Linker flags (Release):      -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+--     Linker flags (Debug):        -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+--     ccache:                      NO
+--     Precompiled headers:         NO
+--     Extra dependencies:          va va-drm correspondence multiview numeric glog::glog gflags_shared simple_pipeline Iconv::Iconv dl m pthread rt
+--     3rdparty dependencies:       libprotobuf ade libjpeg-turbo libpng libopenjp2 zlib ippiw ippicv
+-- 
+--   OpenCV modules:
+--     To be built:                 alphamat aruco bgsegm bioinspired calib3d ccalib core datasets dnn dnn_objdetect dnn_superres dpm face features2d flann fuzzy gapi hfs highgui img_hash imgcodecs imgproc intensity_transform line_descriptor mcc ml objdetect optflow phase_unwrapping photo plot quality rapid reg rgbd saliency sfm shape stereo stitching structured_light superres surface_matching text tracking video videoio videostab wechat_qrcode xfeatures2d ximgproc xobjdetect xphoto
+--     Disabled:                    world
+--     Disabled by dependency:      -
+--     Unavailable:                 cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv freetype hdf java julia matlab ovis python2 python3 ts viz
+--     Applications:                -
+--     Documentation:               NO
+--     Non-free algorithms:         YES
+-- 
+--   GUI:                           NONE
+-- 
+--   Media I/O: 
+--     ZLib:                        build (ver 1.2.13)
+--     JPEG:                        build-libjpeg-turbo (ver 2.1.3-62)
+--       SIMD Support Request:      YES
+--       SIMD Support:              NO
+--     PNG:                         build (ver 1.6.37)
+--     JPEG 2000:                   build (ver 2.5.0)
+--     HDR:                         YES
+--     SUNRASTER:                   NO
+--     PXM:                         NO
+--     PFM:                         YES
+-- 
+--   Video I/O:
+--     FFMPEG:                      YES
+--       avcodec:                   YES (58.134.100)
+--       avformat:                  YES (58.76.100)
+--       avutil:                    YES (56.70.100)
+--       swscale:                   YES (5.9.100)
+--       avresample:                NO
+--     v4l/v4l2:                    YES (linux/videodev2.h)
+-- 
+--   Parallel framework:            pthreads
+-- 
+--   Trace:                         YES (built-in)
+-- 
+--   Other third-party libraries:
+--     Intel IPP:                   2021.8 [2021.8.0]
+--            at:                   /root/build/3rdparty/ippicv/ippicv_lnx/icv
+--     Intel IPP IW:                sources (2021.8.0)
+--               at:                /root/build/3rdparty/ippicv/ippicv_lnx/iw
+--     VA:                          YES
+--     Eigen:                       YES (ver 3.4.0)
+--     Custom HAL:                  NO
+--     Protobuf:                    build (3.19.1)
+--     Flatbuffers:                 builtin/3rdparty (23.5.9)
+-- 
+--   OpenCL:                        YES (SVM INTELVA)
+--     Include path:                /root/dist/opencv-4.8.0/3rdparty/include/opencl/1.2
+--     Link libraries:              Dynamic load
+-- 
+--   Python (for build):            /usr/bin/python3
+-- 
+--   Install to:                    /opt/opencv
+-- -----------------------------------------------------------------
+-- 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/build
+-- Cache values
+// Build CUDA modules stubs when no CUDA SDK
+BUILD_CUDA_STUBS:BOOL=OFF
+
+// Create build rules for OpenCV Documentation
+BUILD_DOCS:BOOL=OFF
+
+// Build all examples
+BUILD_EXAMPLES:BOOL=OFF
+
+// Create Java wrapper exporting all functions of OpenCV library (requires static build of OpenCV modules)
+BUILD_FAT_JAVA_LIB:BOOL=OFF
+
+// Build IPP IW from source
+BUILD_IPP_IW:BOOL=ON
+
+// Build Intel ITT from source
+BUILD_ITT:BOOL=OFF
+
+// Build libjasper from source
+BUILD_JASPER:BOOL=ON
+
+// Enable Java support
+BUILD_JAVA:BOOL=OFF
+
+// Build libjpeg from source
+BUILD_JPEG:BOOL=ON
+
+// Build only listed modules (comma-separated, e.g. 'videoio,dnn,ts')
+BUILD_LIST:STRING=
+
+// Build openexr from source
+BUILD_OPENEXR:BOOL=OFF
+
+// Build OpenJPEG from source
+BUILD_OPENJPEG:BOOL=ON
+
+// Enables 'make package_source' command
+BUILD_PACKAGE:BOOL=ON
+
+// Build performance tests
+BUILD_PERF_TESTS:BOOL=OFF
+
+// Build libpng from source
+BUILD_PNG:BOOL=ON
+
+// Force to build libprotobuf runtime from sources
+BUILD_PROTOBUF:BOOL=ON
+
+// Build shared libraries (.dll/.so) instead of static ones (.lib/.a)
+BUILD_SHARED_LIBS:BOOL=OFF
+
+// Download and build TBB from source
+BUILD_TBB:BOOL=OFF
+
+// Build accuracy & regression tests
+BUILD_TESTS:BOOL=OFF
+
+// Build libtiff from source
+BUILD_TIFF:BOOL=OFF
+
+// Use symlinks instead of files copying during build (and !!INSTALL!!)
+BUILD_USE_SYMLINKS:BOOL=OFF
+
+// Build WebP from source
+BUILD_WEBP:BOOL=OFF
+
+// Include debug info into release binaries ('OFF' means default settings)
+BUILD_WITH_DEBUG_INFO:BOOL=OFF
+
+// Enables dynamic linking of IPP (only for standalone IPP)
+BUILD_WITH_DYNAMIC_IPP:BOOL=OFF
+
+// Build zlib from source
+BUILD_ZLIB:BOOL=ON
+
+// Include opencv_alphamat module into the OpenCV build
+BUILD_opencv_alphamat:BOOL=ON
+
+// Build utility applications (used for example to train classifiers)
+BUILD_opencv_apps:BOOL=OFF
+
+// Include opencv_aruco module into the OpenCV build
+BUILD_opencv_aruco:BOOL=ON
+
+// Include opencv_bgsegm module into the OpenCV build
+BUILD_opencv_bgsegm:BOOL=ON
+
+// Include opencv_bioinspired module into the OpenCV build
+BUILD_opencv_bioinspired:BOOL=ON
+
+// Include opencv_calib3d module into the OpenCV build
+BUILD_opencv_calib3d:BOOL=ON
+
+// Include opencv_ccalib module into the OpenCV build
+BUILD_opencv_ccalib:BOOL=ON
+
+// Include opencv_core module into the OpenCV build
+BUILD_opencv_core:BOOL=ON
+
+// Include opencv_datasets module into the OpenCV build
+BUILD_opencv_datasets:BOOL=ON
+
+// Include opencv_dnn module into the OpenCV build
+BUILD_opencv_dnn:BOOL=ON
+
+// Include opencv_dnn_objdetect module into the OpenCV build
+BUILD_opencv_dnn_objdetect:BOOL=ON
+
+// Include opencv_dnn_superres module into the OpenCV build
+BUILD_opencv_dnn_superres:BOOL=ON
+
+// Include opencv_dpm module into the OpenCV build
+BUILD_opencv_dpm:BOOL=ON
+
+// Include opencv_face module into the OpenCV build
+BUILD_opencv_face:BOOL=ON
+
+// Include opencv_features2d module into the OpenCV build
+BUILD_opencv_features2d:BOOL=ON
+
+// Include opencv_flann module into the OpenCV build
+BUILD_opencv_flann:BOOL=ON
+
+// Include opencv_fuzzy module into the OpenCV build
+BUILD_opencv_fuzzy:BOOL=ON
+
+// Include opencv_gapi module into the OpenCV build
+BUILD_opencv_gapi:BOOL=ON
+
+// Include opencv_hfs module into the OpenCV build
+BUILD_opencv_hfs:BOOL=ON
+
+// Include opencv_highgui module into the OpenCV build
+BUILD_opencv_highgui:BOOL=ON
+
+// Include opencv_img_hash module into the OpenCV build
+BUILD_opencv_img_hash:BOOL=ON
+
+// Include opencv_imgcodecs module into the OpenCV build
+BUILD_opencv_imgcodecs:BOOL=ON
+
+// Include opencv_imgproc module into the OpenCV build
+BUILD_opencv_imgproc:BOOL=ON
+
+// Include opencv_intensity_transform module into the OpenCV build
+BUILD_opencv_intensity_transform:BOOL=ON
+
+// Include opencv_java_bindings_generator module into the OpenCV build
+BUILD_opencv_java_bindings_generator:BOOL=ON
+
+// Build JavaScript bindings by Emscripten
+BUILD_opencv_js:BOOL=OFF
+
+// Include opencv_js_bindings_generator module into the OpenCV build
+BUILD_opencv_js_bindings_generator:BOOL=ON
+
+// Include opencv_line_descriptor module into the OpenCV build
+BUILD_opencv_line_descriptor:BOOL=ON
+
+// Include opencv_mcc module into the OpenCV build
+BUILD_opencv_mcc:BOOL=ON
+
+// Include opencv_ml module into the OpenCV build
+BUILD_opencv_ml:BOOL=ON
+
+// Include opencv_objc_bindings_generator module into the OpenCV build
+BUILD_opencv_objc_bindings_generator:BOOL=ON
+
+// Include opencv_objdetect module into the OpenCV build
+BUILD_opencv_objdetect:BOOL=ON
+
+// Include opencv_optflow module into the OpenCV build
+BUILD_opencv_optflow:BOOL=ON
+
+// Include opencv_phase_unwrapping module into the OpenCV build
+BUILD_opencv_phase_unwrapping:BOOL=ON
+
+// Include opencv_photo module into the OpenCV build
+BUILD_opencv_photo:BOOL=ON
+
+// Include opencv_plot module into the OpenCV build
+BUILD_opencv_plot:BOOL=ON
+
+// Include opencv_python_bindings_generator module into the OpenCV build
+BUILD_opencv_python_bindings_generator:BOOL=ON
+
+// Include opencv_python_tests module into the OpenCV build
+BUILD_opencv_python_tests:BOOL=ON
+
+// Include opencv_quality module into the OpenCV build
+BUILD_opencv_quality:BOOL=ON
+
+// Include opencv_rapid module into the OpenCV build
+BUILD_opencv_rapid:BOOL=ON
+
+// Include opencv_reg module into the OpenCV build
+BUILD_opencv_reg:BOOL=ON
+
+// Include opencv_rgbd module into the OpenCV build
+BUILD_opencv_rgbd:BOOL=ON
+
+// Include opencv_saliency module into the OpenCV build
+BUILD_opencv_saliency:BOOL=ON
+
+// Include opencv_sfm module into the OpenCV build
+BUILD_opencv_sfm:BOOL=ON
+
+// Include opencv_shape module into the OpenCV build
+BUILD_opencv_shape:BOOL=ON
+
+// Include opencv_stereo module into the OpenCV build
+BUILD_opencv_stereo:BOOL=ON
+
+// Include opencv_stitching module into the OpenCV build
+BUILD_opencv_stitching:BOOL=ON
+
+// Include opencv_structured_light module into the OpenCV build
+BUILD_opencv_structured_light:BOOL=ON
+
+// Include opencv_superres module into the OpenCV build
+BUILD_opencv_superres:BOOL=ON
+
+// Include opencv_surface_matching module into the OpenCV build
+BUILD_opencv_surface_matching:BOOL=ON
+
+// Include opencv_text module into the OpenCV build
+BUILD_opencv_text:BOOL=ON
+
+// Include opencv_tracking module into the OpenCV build
+BUILD_opencv_tracking:BOOL=ON
+
+// Include opencv_video module into the OpenCV build
+BUILD_opencv_video:BOOL=ON
+
+// Include opencv_videoio module into the OpenCV build
+BUILD_opencv_videoio:BOOL=ON
+
+// Include opencv_videostab module into the OpenCV build
+BUILD_opencv_videostab:BOOL=ON
+
+// Include opencv_wechat_qrcode module into the OpenCV build
+BUILD_opencv_wechat_qrcode:BOOL=ON
+
+// Include opencv_world module into the OpenCV build
+BUILD_opencv_world:BOOL=OFF
+
+// Include opencv_xfeatures2d module into the OpenCV build
+BUILD_opencv_xfeatures2d:BOOL=ON
+
+// Include opencv_ximgproc module into the OpenCV build
+BUILD_opencv_ximgproc:BOOL=ON
+
+// Include opencv_xobjdetect module into the OpenCV build
+BUILD_opencv_xobjdetect:BOOL=ON
+
+// Include opencv_xphoto module into the OpenCV build
+BUILD_opencv_xphoto:BOOL=ON
+
+// Path to a program.
+CCACHE_PROGRAM:FILEPATH=CCACHE_PROGRAM-NOTFOUND
+
+// clAmdFft include directory
+CLAMDBLAS_INCLUDE_DIR:PATH=CLAMDBLAS_INCLUDE_DIR-NOTFOUND
+
+// AMD FFT root directory
+CLAMDBLAS_ROOT_DIR:PATH=CLAMDBLAS_ROOT_DIR-NOTFOUND
+
+// clAmdFft include directory
+CLAMDFFT_INCLUDE_DIR:PATH=CLAMDFFT_INCLUDE_DIR-NOTFOUND
+
+// AMD FFT root directory
+CLAMDFFT_ROOT_DIR:PATH=CLAMDFFT_ROOT_DIR-NOTFOUND
+
+// Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ...
+CMAKE_BUILD_TYPE:STRING=Release
+
+// Configs
+CMAKE_CONFIGURATION_TYPES:STRING=Debug;Release
+
+// Install path prefix, prepended onto install directories.
+CMAKE_INSTALL_PREFIX:PATH=/opt/opencv
+
+// Specify list of enabled baseline CPU optimizations
+CPU_BASELINE:STRING=SSE3
+
+// Specify list of dispatched CPU optimizations
+CPU_DISPATCH:STRING=SSE4_1;SSE4_2;AVX;FP16;AVX2;AVX512_SKX
+
+// Disable explicit optimized code (dispatched code/intrinsics/loop unrolling/etc)
+CV_DISABLE_OPTIMIZATION:BOOL=OFF
+
+// Use intrinsic-based optimized code
+CV_ENABLE_INTRINSICS:BOOL=ON
+
+// Enable OpenCV code trace
+CV_TRACE:BOOL=ON
+
+// The directory containing a CMake configuration file for Ceres.
+Ceres_DIR:PATH=/usr/lib/cmake/Ceres
+
+// Enable hardening of the resulting binaries (against security attacks, detects memory corruption, etc)
+ENABLE_BUILD_HARDENING:BOOL=OFF
+
+// Use ccache
+ENABLE_CCACHE:BOOL=ON
+
+// Fail build if actual configuration doesn't match requested (WITH_XXX != HAVE_XXX)
+ENABLE_CONFIG_VERIFICATION:BOOL=OFF
+
+// Enable compiler options for fast math optimizations on FP computations (not recommended)
+ENABLE_FAST_MATH:BOOL=OFF
+
+// Add target with Python flake8 checker
+ENABLE_FLAKE8:BOOL=OFF
+
+// Collect implementation data on function call
+ENABLE_IMPL_COLLECTION:BOOL=OFF
+
+// Instrument functions to collect calls trace and performance
+ENABLE_INSTRUMENTATION:BOOL=OFF
+
+// Include SIMD extensions for libjpeg-turbo, if available for this platform
+ENABLE_LIBJPEG_TURBO_SIMD:BOOL=ON
+
+// Show all warnings even if they are too noisy
+ENABLE_NOISY_WARNINGS:BOOL=OFF
+
+// Generate position independent code (necessary for shared libraries)
+ENABLE_PIC:BOOL=ON
+
+// 
+ENABLE_PRECOMPILED_HEADERS:BOOL=OFF
+
+// Add target with Pylint checks
+ENABLE_PYLINT:BOOL=OFF
+
+// Solution folder in Visual Studio or in other IDEs
+ENABLE_SOLUTION_FOLDERS:BOOL=OFF
+
+// Enable Thin LTO
+ENABLE_THIN_LTO:BOOL=OFF
+
+// Output directory for applications
+EXECUTABLE_OUTPUT_PATH:PATH=/root/build/bin
+
+// The directory containing a CMake configuration file for Eigen3.
+Eigen3_DIR:PATH=/usr/share/eigen3/cmake
+
+// Generate XML file for abi_compliance_checker tool
+GENERATE_ABI_DESCRIPTOR:BOOL=OFF
+
+// The directory containing a CMake configuration file for Gflags.
+Gflags_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/gflags
+
+// The directory containing a CMake configuration file for HDF5.
+HDF5_DIR:PATH=HDF5_DIR-NOTFOUND
+
+// Change install rules to build the distribution package
+INSTALL_CREATE_DISTRIB:BOOL=OFF
+
+// Install C examples
+INSTALL_C_EXAMPLES:BOOL=OFF
+
+// Install Python examples
+INSTALL_PYTHON_EXAMPLES:BOOL=OFF
+
+// Install accuracy and performance test binaries and test data
+INSTALL_TESTS:BOOL=OFF
+
+// Path to a library.
+Lept_LIBRARY:FILEPATH=Lept_LIBRARY-NOTFOUND
+
+// Path to a library.
+M_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libm.so
+
+// The directory containing a CMake configuration file for OGRE.
+OGRE_DIR:PATH=OGRE_DIR-NOTFOUND
+
+// OpenCL library is found
+OPENCL_FOUND:BOOL=ON
+
+// Where to create the platform-dependant cvconfig.h
+OPENCV_CONFIG_FILE_INCLUDE_DIR:PATH=/root/build
+
+// Disable filesystem support
+OPENCV_DISABLE_FILESYSTEM_SUPPORT:BOOL=OFF
+
+// Build with CUDA support
+OPENCV_DNN_CUDA:BOOL=OFF
+
+// Build with OpenCL support
+OPENCV_DNN_OPENCL:BOOL=ON
+
+// Build with OpenVINO support (2021.4+)
+OPENCV_DNN_OPENVINO:BOOL=OFF
+
+// Add performance tests of Caffe framework
+OPENCV_DNN_PERF_CAFFE:BOOL=OFF
+
+// Add performance tests of clCaffe framework
+OPENCV_DNN_PERF_CLCAFFE:BOOL=OFF
+
+// Build with TFLite support
+OPENCV_DNN_TFLITE:BOOL=ON
+
+// Cache directory for downloaded files
+OPENCV_DOWNLOAD_PATH:PATH=/root/dist/opencv-4.8.0/.cache
+
+// Dump called OpenCV hooks
+OPENCV_DUMP_HOOKS_FLOW:BOOL=OFF
+
+// Enable Allocator metrics
+OPENCV_ENABLE_ALLOCATOR_STATS:BOOL=ON
+
+// Enable C++ compiler support for atomic<long long>
+OPENCV_ENABLE_ATOMIC_LONG_LONG:BOOL=ON
+
+// Enable posix_memalign or memalign usage
+OPENCV_ENABLE_MEMALIGN:BOOL=ON
+
+// Better support for memory/address sanitizers
+OPENCV_ENABLE_MEMORY_SANITIZER:BOOL=OFF
+
+// Enable non-free algorithms
+OPENCV_ENABLE_NONFREE:BOOL=ON
+
+// Where to look for additional OpenCV modules (can be ;-separated list of paths)
+OPENCV_EXTRA_MODULES_PATH:PATH=/root/dist/opencv_contrib-4.8.0/modules
+
+// Include FFMPEG/libavdevice library support.
+OPENCV_FFMPEG_ENABLE_LIBAVDEVICE:BOOL=OFF
+
+// Force using 3rdparty code from source
+OPENCV_FORCE_3RDPARTY_BUILD:BOOL=ON
+
+// Build G-API with GStreamer support
+OPENCV_GAPI_GSTREAMER:BOOL=OFF
+
+// Generate .pc file for pkg-config build tool (deprecated)
+OPENCV_GENERATE_PKGCONFIG:BOOL=OFF
+
+// Generate setup_vars* scripts
+OPENCV_GENERATE_SETUPVARS:BOOL=ON
+
+// Enable IPP optimizations for GaussianBlur (+8Mb in binary size)
+OPENCV_IPP_GAUSSIAN_BLUR:BOOL=OFF
+
+// URI to a MathJax installation
+OPENCV_MATHJAX_RELPATH:STRING=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0
+
+// Python3 version
+OPENCV_PYTHON3_VERSION:BOOL=OFF
+
+// Build test with CANN
+OPENCV_TEST_DNN_CANN:BOOL=OFF
+
+// Build test with OpenVINO code
+OPENCV_TEST_DNN_OPENVINO:BOOL=OFF
+
+// Build test with TFLite
+OPENCV_TEST_DNN_TFLITE:BOOL=ON
+
+// Timestamp of OpenCV build configuration
+OPENCV_TIMESTAMP:STRING=2024-12-27T13:42:24Z
+
+// Treat warnings as errors
+OPENCV_WARNINGS_ARE_ERRORS:BOOL=OFF
+
+// Disable TPsot==TNsot fix. See https://github.com/uclouvain/openjpeg/issues/254.
+OPJ_DISABLE_TPSOT_FIX:BOOL=OFF
+
+// Build with thread/mutex support 
+OPJ_USE_THREAD:BOOL=ON
+
+// The directory containing a CMake configuration file for OpenCV_HAL.
+OpenCV_HAL_DIR:PATH=OpenCV_HAL_DIR-NOTFOUND
+
+// Allow building parallel plugin support
+PARALLEL_ENABLE_PLUGINS:BOOL=ON
+
+// Force rebuilding .proto files (protoc should be available)
+PROTOBUF_UPDATE_FILES:BOOL=OFF
+
+// Path to Python interpreter
+PYTHON2_EXECUTABLE:FILEPATH=
+
+// Python include dir
+PYTHON2_INCLUDE_DIR:PATH=
+
+// Python include dir 2
+PYTHON2_INCLUDE_DIR2:PATH=
+
+// Path to Python library
+PYTHON2_LIBRARY:FILEPATH=
+
+// Path to Python debug
+PYTHON2_LIBRARY_DEBUG:FILEPATH=
+
+// Path to numpy headers
+PYTHON2_NUMPY_INCLUDE_DIRS:PATH=
+
+// Where to install the python packages.
+PYTHON2_PACKAGES_PATH:PATH=
+
+// Path to Python interpreter
+PYTHON3_EXECUTABLE:FILEPATH=/usr/bin/python3
+
+// Python include dir
+PYTHON3_INCLUDE_DIR:PATH=
+
+// Python include dir 2
+PYTHON3_INCLUDE_DIR2:PATH=
+
+// Path to Python library
+PYTHON3_LIBRARY:FILEPATH=
+
+// Path to Python debug
+PYTHON3_LIBRARY_DEBUG:FILEPATH=
+
+// Path to numpy headers
+PYTHON3_NUMPY_INCLUDE_DIRS:PATH=
+
+// Where to install the python packages.
+PYTHON3_PACKAGES_PATH:PATH=lib/python3.10/dist-packages
+
+// The directory containing a CMake configuration file for Tesseract.
+Tesseract_DIR:PATH=Tesseract_DIR-NOTFOUND
+
+// Path to a file.
+Tesseract_INCLUDE_DIR:PATH=Tesseract_INCLUDE_DIR-NOTFOUND
+
+// Path to a library.
+Tesseract_LIBRARY:FILEPATH=Tesseract_LIBRARY-NOTFOUND
+
+// Path to libva headers
+VA_INCLUDE_DIR:PATH=/usr/include
+
+// Include IEEE1394 support
+WITH_1394:BOOL=OFF
+
+// Enable ADE framework (required for Graph API module)
+WITH_ADE:BOOL=ON
+
+// Include Aravis GigE support
+WITH_ARAVIS:BOOL=OFF
+
+// Include arithmetic decoding support when emulating the libjpeg v6b API/ABI
+WITH_ARITH_DEC:BOOL=ON
+
+// Include arithmetic encoding support when emulating the libjpeg v6b API/ABI
+WITH_ARITH_ENC:BOOL=ON
+
+// Enable AVIF support
+WITH_AVIF:BOOL=OFF
+
+// Include CANN support
+WITH_CANN:BOOL=OFF
+
+// Include Clp support (EPL)
+WITH_CLP:BOOL=OFF
+
+// Include NVidia Cuda Runtime support
+WITH_CUDA:BOOL=OFF
+
+// Include Eigen2/Eigen3 support
+WITH_EIGEN:BOOL=ON
+
+// Include FFMPEG support
+WITH_FFMPEG:BOOL=ON
+
+// Include Flatbuffers support (required by DNN/TFLite importer)
+WITH_FLATBUFFERS:BOOL=ON
+
+// Enable FreeType framework
+WITH_FREETYPE:BOOL=OFF
+
+// Include GDAL Support
+WITH_GDAL:BOOL=OFF
+
+// Include DICOM support
+WITH_GDCM:BOOL=OFF
+
+// Include gPhoto2 library support
+WITH_GPHOTO2:BOOL=OFF
+
+// Include Gstreamer support
+WITH_GSTREAMER:BOOL=OFF
+
+// Include GTK support
+WITH_GTK:BOOL=OFF
+
+// Use GTK version 2
+WITH_GTK_2_X:BOOL=OFF
+
+// Include Halide support
+WITH_HALIDE:BOOL=OFF
+
+// Include Ste||ar Group HPX support
+WITH_HPX:BOOL=OFF
+
+// Include HDR support
+WITH_IMGCODEC_HDR:BOOL=ON
+
+// Include PFM formats support
+WITH_IMGCODEC_PFM:BOOL=ON
+
+// Include PNM (PBM,PGM,PPM) and PAM formats support
+WITH_IMGCODEC_PXM:BOOL=OFF
+
+// Include SUNRASTER support
+WITH_IMGCODEC_SUNRASTER:BOOL=OFF
+
+// Include Intel IPP support
+WITH_IPP:BOOL=ON
+
+// Include Intel ITT support
+WITH_ITT:BOOL=OFF
+
+// Include JPEG2K support (Jasper)
+WITH_JASPER:BOOL=ON
+
+// Include JPEG support
+WITH_JPEG:BOOL=ON
+
+// Include Julia support (opencv_contrib)
+WITH_JULIA:BOOL=OFF
+
+// Include Lapack library support
+WITH_LAPACK:BOOL=OFF
+
+// Include Intel librealsense support
+WITH_LIBREALSENSE:BOOL=OFF
+
+// Include Matlab support (opencv_contrib)
+WITH_MATLAB:BOOL=OFF
+
+// Include Intel Media SDK support
+WITH_MFX:BOOL=OFF
+
+// Include OpenCV AI Kit support
+WITH_OAK:BOOL=OFF
+
+// Include obsensor support (Orbbec RGB-D modules: Astra+/Femto)
+WITH_OBSENSOR:BOOL=ON
+
+// Include Microsoft ONNX Runtime support
+WITH_ONNX:BOOL=OFF
+
+// Include OpenCL Runtime support
+WITH_OPENCL:BOOL=ON
+
+// Include AMD OpenCL BLAS library support
+WITH_OPENCLAMDBLAS:BOOL=ON
+
+// Include AMD OpenCL FFT library support
+WITH_OPENCLAMDFFT:BOOL=ON
+
+// Include OpenCL Shared Virtual Memory support
+WITH_OPENCL_SVM:BOOL=ON
+
+// Include ILM support via OpenEXR
+WITH_OPENEXR:BOOL=OFF
+
+// Include OpenGL support
+WITH_OPENGL:BOOL=OFF
+
+// Include JPEG2K support (OpenJPEG)
+WITH_OPENJPEG:BOOL=ON
+
+// Include OpenMP support
+WITH_OPENMP:BOOL=OFF
+
+// Include OpenNI support
+WITH_OPENNI:BOOL=OFF
+
+// Include OpenNI2 support
+WITH_OPENNI2:BOOL=OFF
+
+// Include Intel OpenVINO toolkit support
+WITH_OPENVINO:BOOL=OFF
+
+// Include OpenVX support
+WITH_OPENVX:BOOL=OFF
+
+// Include PlaidML2 support
+WITH_PLAIDML:BOOL=OFF
+
+// Include PNG support
+WITH_PNG:BOOL=ON
+
+// Enable libprotobuf
+WITH_PROTOBUF:BOOL=ON
+
+// Use pthreads-based parallel_for
+WITH_PTHREADS_PF:BOOL=ON
+
+// Include Prosilica GigE support
+WITH_PVAPI:BOOL=OFF
+
+// Build with Qt Backend support
+WITH_QT:BOOL=OFF
+
+// Include library QR-code decoding
+WITH_QUIRC:BOOL=OFF
+
+// Include SPNG support
+WITH_SPNG:BOOL=OFF
+
+// Include Intel TBB support
+WITH_TBB:BOOL=OFF
+
+// Include Tesseract OCR library support
+WITH_TESSERACT:BOOL=ON
+
+// Include TIFF support
+WITH_TIFF:BOOL=OFF
+
+// Include Tim-VX support
+WITH_TIMVX:BOOL=OFF
+
+// Include UEYE camera support
+WITH_UEYE:BOOL=OFF
+
+// Include Video 4 Linux support
+WITH_V4L:BOOL=ON
+
+// Include VA support
+WITH_VA:BOOL=ON
+
+// Include Intel VA-API/OpenCL support
+WITH_VA_INTEL:BOOL=ON
+
+// Include VTK library support (and build opencv_viz module eiher)
+WITH_VTK:BOOL=OFF
+
+// Include Vulkan support
+WITH_VULKAN:BOOL=OFF
+
+// Include Wayland support
+WITH_WAYLAND:BOOL=OFF
+
+// Include WebNN support
+WITH_WEBNN:BOOL=OFF
+
+// Include WebP support
+WITH_WEBP:BOOL=OFF
+
+// Include XIMEA cameras support
+WITH_XIMEA:BOOL=OFF
+
+// Include Xine support (GPL)
+WITH_XINE:BOOL=OFF
+
+// The directory containing a CMake configuration file for gflags.
+gflags_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/gflags
+
+// The directory containing a CMake configuration file for glog.
+glog_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/glog
+
