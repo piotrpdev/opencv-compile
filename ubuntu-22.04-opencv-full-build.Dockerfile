@@ -20,12 +20,9 @@ RUN set -xeu && \
     apt-get -y autoclean
 
 RUN set -xeu && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev \
-    cmake python3-numpy libatlas-base-dev libceres-dev libeigen3-dev liblapacke-dev libprotobuf-dev protobuf-compiler nvidia-cuda-dev libtesseract-dev \
-    libwebp-dev libpng-dev libtiff-dev libopenexr-dev libgdal-dev libopenjp2-7-dev libopenjpip-server libopenjpip-dec-server libopenjp2-tools libhdf5-dev \
-    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libgphoto2-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libva-dev libdc1394-dev \
-    libfreetype6-dev libharfbuzz-dev qtbase5-dev libogre-1.12-dev \
-	git libssl-dev 
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev cmake \
+    python3-numpy libatlas-base-dev libceres-dev libeigen3-dev libprotobuf-dev protobuf-compiler libva-dev \
+    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
 
 ARG OPENCV_VERSION=4.8.0
 
