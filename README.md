@@ -13,3 +13,5 @@ RUSTFLAGS="-C target-feature=+crt-static" cargo build --release --target x86_64-
 # https://stackoverflow.com/questions/73610525/how-to-find-out-which-rust-dependency-added-a-dynamically-linked-library
 cargo clean && cargo build -vv 2>/dev/null | grep 'rustc-link-lib'
 ```
+
+Tried adding `-D CMAKE_SHARED_LINKER_FLAGS="-static -static-libgcc -static-libstdc++"` to CMake command but `libstdc++` was still there.
