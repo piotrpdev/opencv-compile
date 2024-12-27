@@ -11,6 +11,25 @@ RUN set -xeu && \
 	mkdir -p /root/oko/backend/static && \
 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
 
+FROM ubuntu:22.04 AS opencv_download
+
+RUN set -xeu && \
+    apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
+    apt-get autoremove -y --purge && \
+    apt-get -y autoclean
+
+RUN set -xeu && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y curl
+
+ARG OPENCV_VERSION=4.8.0
+
+RUN set -xeu && \
+    mkdir -p /root/dist && \
+    curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/${OPENCV_VERSION}.tar.gz" | tar xz -C /root/dist && \
+    curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/${OPENCV_VERSION}.tar.gz" | tar xz -C /root/dist && \
+    sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-${OPENCV_VERSION}/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+
 FROM ubuntu:22.04 AS backend
 
 RUN set -xeu && \
@@ -20,17 +39,13 @@ RUN set -xeu && \
     apt-get -y autoclean
 
 RUN set -xeu && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev cmake \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y clang libclang-dev cmake \
     libatlas-base-dev libceres-dev libeigen3-dev libprotobuf-dev protobuf-compiler libva-dev \
     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
 
 ARG OPENCV_VERSION=4.8.0
 
-RUN set -xeu && \
-    mkdir -p /root/dist && \
-    curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/${OPENCV_VERSION}.tar.gz" | tar xz -C /root/dist && \
-    curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/${OPENCV_VERSION}.tar.gz" | tar xz -C /root/dist && \
-    sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-${OPENCV_VERSION}/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+COPY --from=opencv_download /root/dist /root/dist
 
 RUN set -xeu && \
     mkdir -p /root/build && \
