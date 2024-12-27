@@ -40,7 +40,7 @@ RUN set -xeu && \
 
 RUN set -xeu && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y clang libclang-dev cmake \
-    libatlas-base-dev libceres-dev libeigen3-dev libprotobuf-dev protobuf-compiler libva-dev \
+    libatlas-base-dev libceres-dev libeigen3-dev libva-dev \
     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
 
 ARG OPENCV_VERSION=4.8.0
@@ -61,7 +61,7 @@ RUN set -xeu && \
     	-D BUILD_OPENEXR=OFF \
     	-D BUILD_PERF_TESTS=OFF \
     	-D BUILD_PNG=ON \
-    	-D BUILD_PROTOBUF=ON \
+    	-D BUILD_PROTOBUF=OFF \
     	-D BUILD_SHARED_LIBS=OFF \
     	-D BUILD_TBB=OFF \
     	-D BUILD_TESTS=OFF \
@@ -69,6 +69,64 @@ RUN set -xeu && \
     	-D BUILD_WEBP=OFF \
     	-D BUILD_WITH_DYNAMIC_IPP=OFF \
     	-D BUILD_ZLIB=ON \
+		-D BUILD_opencv_alphamat=OFF \
+		-D BUILD_opencv_aruco=OFF \
+		-D BUILD_opencv_bgsegm=OFF \
+		-D BUILD_opencv_bioinspired=OFF \
+		-D BUILD_opencv_calib3d=OFF \
+		-D BUILD_opencv_ccalib=OFF \
+		-D BUILD_opencv_core=ON \
+		-D BUILD_opencv_datasets=OFF \
+		-D BUILD_opencv_dnn=OFF \
+		-D BUILD_opencv_dnn_objdetect=OFF \
+		-D BUILD_opencv_dnn_superres=OFF \
+		-D BUILD_opencv_dpm=OFF \
+		-D BUILD_opencv_face=OFF \
+		-D BUILD_opencv_features2d=OFF \
+		-D BUILD_opencv_flann=OFF \
+		-D BUILD_opencv_fuzzy=OFF \
+		-D BUILD_opencv_gapi=OFF \
+		-D BUILD_opencv_hfs=OFF \
+		-D BUILD_opencv_highgui=OFF \
+		-D BUILD_opencv_img_hash=OFF \
+		-D BUILD_opencv_imgcodecs=ON \
+		-D BUILD_opencv_imgproc=ON \
+		-D BUILD_opencv_intensity_transform=OFF \
+		-D BUILD_opencv_java_bindings_generator=OFF \
+		-D BUILD_opencv_js_bindings_generator=OFF \
+		-D BUILD_opencv_line_descriptor=OFF \
+		-D BUILD_opencv_mcc=OFF \
+		-D BUILD_opencv_ml=OFF \
+		-D BUILD_opencv_objc_bindings_generator=OFF \
+		-D BUILD_opencv_objdetect=OFF \
+		-D BUILD_opencv_optflow=OFF \
+		-D BUILD_opencv_phase_unwrapping=OFF \
+		-D BUILD_opencv_photo=OFF \
+		-D BUILD_opencv_plot=OFF \
+		-D BUILD_opencv_python_bindings_generator=OFF \
+		-D BUILD_opencv_python_tests=OFF \
+		-D BUILD_opencv_quality=OFF \
+		-D BUILD_opencv_rapid=OFF \
+		-D BUILD_opencv_reg=OFF \
+		-D BUILD_opencv_rgbd=OFF \
+		-D BUILD_opencv_saliency=OFF \
+		-D BUILD_opencv_sfm=OFF \
+		-D BUILD_opencv_shape=OFF \
+		-D BUILD_opencv_stereo=OFF \
+		-D BUILD_opencv_stitching=OFF \
+		-D BUILD_opencv_structured_light=OFF \
+		-D BUILD_opencv_superres=OFF \
+		-D BUILD_opencv_surface_matching=OFF \
+		-D BUILD_opencv_text=OFF \
+		-D BUILD_opencv_tracking=OFF \
+		-D BUILD_opencv_video=ON \
+		-D BUILD_opencv_videoio=ON \
+		-D BUILD_opencv_videostab=OFF \
+		-D BUILD_opencv_wechat_qrcode=OFF \
+		-D BUILD_opencv_xfeatures2d=OFF \
+		-D BUILD_opencv_ximgproc=OFF \
+		-D BUILD_opencv_xobjdetect=OFF \
+		-D BUILD_opencv_xphoto=OFF \
 		-D BUILD_opencv_freetype=OFF \
     	-D BUILD_opencv_apps=OFF \
     	-D BUILD_opencv_python2=OFF \
@@ -85,8 +143,11 @@ RUN set -xeu && \
     	-D OPENCV_FORCE_3RDPARTY_BUILD=ON \
     	-D OPENCV_GENERATE_PKGCONFIG=OFF \
     	-D PROTOBUF_UPDATE_FILES=OFF \
+		-D OPENCV_DNN_OPENCL=OFF \
+		-D OPENCV_DNN_TFLITE=OFF \
+		-D OPENCV_TEST_DNN_TFLITE=OFF \
     	-D WITH_1394=OFF \
-    	-D WITH_ADE=ON \
+    	-D WITH_ADE=OFF \
     	-D WITH_ARAVIS=OFF \
     	-D WITH_CLP=OFF \
     	-D WITH_CUBLAS=OFF \
@@ -94,6 +155,7 @@ RUN set -xeu && \
     	-D WITH_CUFFT=OFF \
     	-D WITH_EIGEN=ON \
     	-D WITH_FFMPEG=ON \
+		-D WITH_FLATBUFFERS=OFF \
 		-D WITH_FREETYPE=OFF \
     	-D WITH_GDAL=OFF \
     	-D WITH_GDCM=OFF \
@@ -105,7 +167,9 @@ RUN set -xeu && \
     	-D WITH_GTK_2_X=OFF \
     	-D WITH_HALIDE=OFF \
     	-D WITH_IMGCODEC_HDcR=OFF \
+		-D WITH_IMGCODEC_HDR=OFF \
     	-D WITH_IMGCODEC_PXM=OFF \
+		-D WITH_IMGCODEC_PFM=OFF \
     	-D WITH_IMGCODEC_SUNRASTER=OFF \
     	-D WITH_INF_ENGINE=OFF \
     	-D WITH_IPP=ON \
@@ -117,20 +181,22 @@ RUN set -xeu && \
     	-D WITH_MATLAB=OFF \
     	-D WITH_MFX=OFF \
     	-D WITH_NVCUVID=OFF \
-    	-D WITH_OPENCL=ON \
-    	-D WITH_OPENCLAMDBLAS=ON \
-    	-D WITH_OPENCLAMDFFT=ON \
-    	-D WITH_OPENCL_SVM=ON \
+    	-D WITH_OPENCL=OFF \
+    	-D WITH_OPENCLAMDBLAS=OFF \
+    	-D WITH_OPENCLAMDFFT=OFF \
+    	-D WITH_OPENCL_SVM=OFF \
     	-D WITH_OPENEXR=OFF \
     	-D WITH_OPENGL=OFF \
     	-D WITH_OPENMP=OFF \
     	-D WITH_OPENNI2=OFF \
     	-D WITH_OPENNI=OFF \
     	-D WITH_OPENVX=OFF \
+		-D WITH_OBSENSOR=OFF \
     	-D WITH_PNG=ON \
-    	-D WITH_PROTOBUF=ON \
+    	-D WITH_PROTOBUF=OFF \
     	-D WITH_PTHREADS_PF=ON \
     	-D WITH_PVAPI=OFF \
+		-D WITH_TESSERACT=OFF \
     	-D WITH_QT=OFF \
     	-D WITH_QUIRC=OFF \
     	-D WITH_TBB=OFF \
@@ -174,7 +240,7 @@ RUN set -xeu && \
 	ls /opt/opencv/include/opencv4 && \
 	ls /usr/include/x86_64-linux-gnu
 
-ENV OPENCV_LINK_LIBS=opencv_videoio,opencv_video,opencv_imgcodecs,opencv_imgproc,opencv_core,libavformat,libavcodec,libavutil,libswscale,liblibjpeg-turbo,liblibpng,liblibopenjp2,ippiw,ippicv,liblibprotobuf,zlib
+ENV OPENCV_LINK_LIBS=opencv_videoio,opencv_video,opencv_imgcodecs,opencv_imgproc,opencv_core,libavformat,libavcodec,libavutil,libswscale,liblibjpeg-turbo,liblibpng,liblibopenjp2,ippiw,ippicv,zlib
 ENV OPENCV_LINK_PATHS=/opt/opencv/lib,/opt/opencv/lib/opencv4/3rdparty,/usr/lib/x86_64-linux-gnu
 ENV OPENCV_INCLUDE_PATHS=/opt/opencv/include,/opt/opencv/include/opencv4
 
