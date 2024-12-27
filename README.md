@@ -4,4 +4,12 @@
 docker build -f ubuntu-22.04-opencv-full-build.Dockerfile --progress=plain . &> build_ffmpeg8.log
 
 docker build -f ubuntu-22.04-opencv-full-build.Dockerfile --no-cache-filter frontend .
+
+docker run --rm -it 7e1ce6336850 /bin/bash -c "cd /root/oko/backend/ && cargo build --quiet --release && /usr/bin/ldd /root/oko/backend/target/release/oko" >> latest.txt
+
+# https://github.com/rust-lang/rust/issues/78210#issuecomment-1502275713
+RUSTFLAGS="-C target-feature=+crt-static" cargo build --release --target x86_64-unknown-linux-gnu
+
+# https://stackoverflow.com/questions/73610525/how-to-find-out-which-rust-dependency-added-a-dynamically-linked-library
+cargo clean && cargo build -vv 2>/dev/null | grep 'rustc-link-lib'
 ```

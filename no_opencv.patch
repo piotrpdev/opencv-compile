@@ -1,0 +1,66 @@
+diff --git a/backend/Cargo.toml b/backend/Cargo.toml
+index 213f122..d05f5f7 100644
+--- a/backend/Cargo.toml
++++ b/backend/Cargo.toml
+@@ -1,5 +1,5 @@
+ [workspace]
+-members = ["utils/camera-impersonator", "utils/ws-utils"]
++members = []
+ 
+ [package]
+ name = "oko"
+@@ -16,7 +16,6 @@ include = [".sqlx/", "migrations/", "src/", "static/", "build.rs"]
+ [workspace.dependencies]
+ futures-util = { version = "0.3.31", default-features = false }
+ tokio = { version = "1.34.0", features = ["fs", "signal", "rt-multi-thread", "net", "time", "macros"] }
+-opencv = { version = "0.93.3", default-features = false, features = ["imgcodecs", "videoio"] }
+ 
+ [dependencies]
+ async-trait = "0.1.74"
+@@ -36,7 +35,6 @@ thiserror = { version = "2.0.6", default-features = false }
+ serde_json = "1.0.132"
+ tracing = { version = "0.1.40", default-features = false }
+ tower-http = { version = "0.6.1", features = ["fs"] }
+-opencv = { workspace = true }
+ tokio-util = { version = "0.7.12", features = ["rt"] }
+ axum-embed = "0.1.0"
+ rust-embed = "8.5.0"
+diff --git a/backend/src/web/app.rs b/backend/src/web/app.rs
+index f5a9757..e9a0cb5 100644
+--- a/backend/src/web/app.rs
++++ b/backend/src/web/app.rs
+@@ -14,11 +14,6 @@ use axum_login::{
+     AuthManagerLayerBuilder,
+ };
+ use futures_util::{SinkExt, StreamExt};
+-use opencv::{
+-    core::Size,
+-    imgcodecs::{imdecode, IMREAD_COLOR},
+-    videoio::{VideoWriter, VideoWriterTrait},
+-};
+ use rust_embed::RustEmbed;
+ use serde::{Deserialize, Serialize};
+ use sqlx::{sqlite::SqliteConnectOptions, SqlitePool};
+@@ -356,10 +351,6 @@ async fn handle_socket(
+                 video.create_using_self(&auth_session.backend.db).await?;
+ 
+                 // TODO: Don't hardcode these
+-                let video_fourcc = VideoWriter::fourcc('m', 'p', '4', 'v')?;
+-                let video_size = Size::new(800, 600);
+-                let mut video_writer =
+-                    VideoWriter::new_def(&video.file_path, video_fourcc, 12.5, video_size)?;
+ 
+                 let mut total_bytes = 0;
+ 
+@@ -377,11 +368,9 @@ async fn handle_socket(
+                         let message_data_vec = message_parsed_json.image_bytes;
+                         // let message_data_vec = message.into_data();
+                         let message_data_vec_slice = message_data_vec.as_slice();
+-                        let decoded_image = imdecode(&message_data_vec_slice, IMREAD_COLOR)?;
+ 
+                         // TODO: Handle error here
+                         // ? Does calling this function too often/quickly risk a crash? Use a buffer/batch?
+-                        video_writer.write(&decoded_image)?;
+                         total_bytes += message_data_vec_slice.len();
+                     }
+ 
