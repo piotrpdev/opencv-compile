@@ -1,0 +1,3113 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ubuntu-22.04-opencv-full-build.Dockerfile
+#1 transferring dockerfile: 7.01kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.0s
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/node:22.12
+#4 DONE 1.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [frontend 1/3] FROM docker.io/library/node:22.12@sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc
+#6 DONE 0.0s
+
+#7 [opencv_download 1/4] FROM docker.io/library/ubuntu:22.04
+#7 DONE 0.0s
+
+#8 [opencv_download 2/4] RUN set -xeu &&     apt-get update &&     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y &&     apt-get autoremove -y --purge &&     apt-get -y autoclean
+#8 CACHED
+
+#9 [opencv_download 3/4] RUN set -xeu && 	DEBIAN_FRONTEND=noninteractive apt-get install -y curl
+#9 CACHED
+
+#10 [opencv_download 4/4] RUN set -xeu &&     mkdir -p /root/dist &&     curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     curl -sSfL "https://github.com/opencv/opencv_contrib/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist &&     sed -ri 's/Ptr<FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/Ptr<cv::cuda::FarnebackOpticalFlow> cv::cuda::FarnebackOpticalFlow::create/' "/root/dist/opencv_contrib-4.8.0/modules/cudaoptflow/src/farneback.cpp" # patch for version 4.8.0
+#10 CACHED
+
+#11 [backend 3/5] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y clang libclang-dev cmake     libatlas-base-dev libceres-dev libeigen3-dev libva-dev     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+#11 CACHED
+
+#12 [backend 4/5] COPY --from=opencv_download /root/dist /root/dist
+#12 CACHED
+
+#13 [backend 5/5] RUN set -xeu &&     mkdir -p /root/build &&     cmake -B /root/build -S "/root/dist/opencv-4.8.0" -D OPENCV_EXTRA_MODULES_PATH="/root/dist/opencv_contrib-4.8.0/modules" -D CMAKE_INSTALL_PREFIX=/opt/opencv     	-D BUILD_CUDA_STUBS=OFF     	-D BUILD_DOCS=OFF     	-D BUILD_EXAMPLES=OFF     	-D BUILD_IPP_IW=ON     	-D BUILD_ITT=OFF     	-D BUILD_JASPER=ON     	-D BUILD_JAVA=OFF     	-D BUILD_JPEG=ON     	-D BUILD_OPENEXR=OFF     	-D BUILD_PERF_TESTS=OFF     	-D BUILD_PNG=ON     	-D BUILD_PROTOBUF=OFF     	-D BUILD_SHARED_LIBS=OFF     	-D BUILD_TBB=OFF     	-D BUILD_TESTS=OFF     	-D BUILD_TIFF=OFF     	-D BUILD_WEBP=OFF     	-D BUILD_WITH_DYNAMIC_IPP=OFF     	-D BUILD_ZLIB=ON 		-D BUILD_opencv_apps=OFF 		-D BUILD_LIST=core,imgcodecs,imgproc,video,videoio     	-D CMAKE_BUILD_TYPE=Release     	-D ENABLE_CONFIG_VERIFICATION=OFF     	-D CV_ENABLE_INTRINSICS=ON     	-D ENABLE_PIC=ON     	-D INSTALL_CREATE_DISTRIB=OFF     	-D INSTALL_PYTHON_EXAMPLES=OFF     	-D INSTALL_C_EXAMPLES=OFF     	-D INSTALL_TESTS=OFF     	-D OPENCV_ENABLE_NONFREE=ON     	-D OPENCV_FORCE_3RDPARTY_BUILD=ON     	-D OPENCV_GENERATE_PKGCONFIG=OFF     	-D PROTOBUF_UPDATE_FILES=OFF 		-D OPENCV_DNN_OPENCL=OFF 		-D OPENCV_DNN_TFLITE=OFF 		-D OPENCV_TEST_DNN_TFLITE=OFF     	-D WITH_1394=OFF     	-D WITH_ADE=OFF     	-D WITH_ARAVIS=OFF     	-D WITH_CLP=OFF     	-D WITH_CUBLAS=OFF     	-D WITH_CUDA=OFF     	-D WITH_CUFFT=OFF     	-D WITH_EIGEN=ON     	-D WITH_FFMPEG=ON 		-D WITH_FLATBUFFERS=OFF 		-D WITH_FREETYPE=OFF     	-D WITH_GDAL=OFF     	-D WITH_GDCM=OFF     	-D WITH_GIGEAPI=OFF     	-D WITH_GPHOTO2=OFF     	-D WITH_GSTREAMER=OFF     	-D WITH_GSTREAMER_0_10=OFF     	-D WITH_GTK=OFF     	-D WITH_GTK_2_X=OFF     	-D WITH_HALIDE=OFF     	-D WITH_IMGCODEC_HDcR=OFF 		-D WITH_IMGCODEC_HDR=OFF     	-D WITH_IMGCODEC_PXM=OFF 		-D WITH_IMGCODEC_PFM=OFF     	-D WITH_IMGCODEC_SUNRASTER=OFF     	-D WITH_INF_ENGINE=OFF     	-D WITH_IPP=ON     	-D WITH_ITT=OFF     	-D WITH_JASPER=ON     	-D WITH_JPEG=ON     	-D WITH_LAPACK=OFF     	-D WITH_LIBV4L=OFF     	-D WITH_MATLAB=OFF     	-D WITH_MFX=OFF     	-D WITH_NVCUVID=OFF     	-D WITH_OPENCL=OFF     	-D WITH_OPENCLAMDBLAS=OFF     	-D WITH_OPENCLAMDFFT=OFF     	-D WITH_OPENCL_SVM=OFF     	-D WITH_OPENEXR=OFF     	-D WITH_OPENGL=OFF     	-D WITH_OPENMP=OFF     	-D WITH_OPENNI2=OFF     	-D WITH_OPENNI=OFF     	-D WITH_OPENVX=OFF 		-D WITH_OBSENSOR=OFF     	-D WITH_PNG=ON     	-D WITH_PROTOBUF=OFF     	-D WITH_PTHREADS_PF=ON     	-D WITH_PVAPI=OFF 		-D WITH_TESSERACT=OFF     	-D WITH_QT=OFF     	-D WITH_QUIRC=OFF     	-D WITH_TBB=OFF     	-D WITH_TIFF=OFF     	-D WITH_UNICAP=OFF     	-D WITH_V4L=OFF     	-D WITH_VA=ON     	-D WITH_VA_INTEL=ON     	-D WITH_VTK=OFF     	-D WITH_WEBP=OFF     	-D WITH_XIMEA=OFF     	-D WITH_XINE=OFF &&     make -C /root/build -j`nproc` install
+#13 0.269 + mkdir -p /root/build
+#13 0.271 + cmake -B /root/build -S /root/dist/opencv-4.8.0 -D OPENCV_EXTRA_MODULES_PATH=/root/dist/opencv_contrib-4.8.0/modules -D CMAKE_INSTALL_PREFIX=/opt/opencv -D BUILD_CUDA_STUBS=OFF -D BUILD_DOCS=OFF -D BUILD_EXAMPLES=OFF -D BUILD_IPP_IW=ON -D BUILD_ITT=OFF -D BUILD_JASPER=ON -D BUILD_JAVA=OFF -D BUILD_JPEG=ON -D BUILD_OPENEXR=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_PNG=ON -D BUILD_PROTOBUF=OFF -D BUILD_SHARED_LIBS=OFF -D BUILD_TBB=OFF -D BUILD_TESTS=OFF -D BUILD_TIFF=OFF -D BUILD_WEBP=OFF -D BUILD_WITH_DYNAMIC_IPP=OFF -D BUILD_ZLIB=ON -D BUILD_opencv_apps=OFF -D BUILD_LIST=core,imgcodecs,imgproc,video,videoio -D CMAKE_BUILD_TYPE=Release -D ENABLE_CONFIG_VERIFICATION=OFF -D CV_ENABLE_INTRINSICS=ON -D ENABLE_PIC=ON -D INSTALL_CREATE_DISTRIB=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D OPENCV_ENABLE_NONFREE=ON -D OPENCV_FORCE_3RDPARTY_BUILD=ON -D OPENCV_GENERATE_PKGCONFIG=OFF -D PROTOBUF_UPDATE_FILES=OFF -D OPENCV_DNN_OPENCL=OFF -D OPENCV_DNN_TFLITE=OFF -D OPENCV_TEST_DNN_TFLITE=OFF -D WITH_1394=OFF -D WITH_ADE=OFF -D WITH_ARAVIS=OFF -D WITH_CLP=OFF -D WITH_CUBLAS=OFF -D WITH_CUDA=OFF -D WITH_CUFFT=OFF -D WITH_EIGEN=ON -D WITH_FFMPEG=ON -D WITH_FLATBUFFERS=OFF -D WITH_FREETYPE=OFF -D WITH_GDAL=OFF -D WITH_GDCM=OFF -D WITH_GIGEAPI=OFF -D WITH_GPHOTO2=OFF -D WITH_GSTREAMER=OFF -D WITH_GSTREAMER_0_10=OFF -D WITH_GTK=OFF -D WITH_GTK_2_X=OFF -D WITH_HALIDE=OFF -D WITH_IMGCODEC_HDcR=OFF -D WITH_IMGCODEC_HDR=OFF -D WITH_IMGCODEC_PXM=OFF -D WITH_IMGCODEC_PFM=OFF -D WITH_IMGCODEC_SUNRASTER=OFF -D WITH_INF_ENGINE=OFF -D WITH_IPP=ON -D WITH_ITT=OFF -D WITH_JASPER=ON -D WITH_JPEG=ON -D WITH_LAPACK=OFF -D WITH_LIBV4L=OFF -D WITH_MATLAB=OFF -D WITH_MFX=OFF -D WITH_NVCUVID=OFF -D WITH_OPENCL=OFF -D WITH_OPENCLAMDBLAS=OFF -D WITH_OPENCLAMDFFT=OFF -D WITH_OPENCL_SVM=OFF -D WITH_OPENEXR=OFF -D WITH_OPENGL=OFF -D WITH_OPENMP=OFF -D WITH_OPENNI2=OFF -D WITH_OPENNI=OFF -D WITH_OPENVX=OFF -D WITH_OBSENSOR=OFF -D WITH_PNG=ON -D WITH_PROTOBUF=OFF -D WITH_PTHREADS_PF=ON -D WITH_PVAPI=OFF -D WITH_TESSERACT=OFF -D WITH_QT=OFF -D WITH_QUIRC=OFF -D WITH_TBB=OFF -D WITH_TIFF=OFF -D WITH_UNICAP=OFF -D WITH_V4L=OFF -D WITH_VA=ON -D WITH_VA_INTEL=ON -D WITH_VTK=OFF -D WITH_WEBP=OFF -D WITH_XIMEA=OFF -D WITH_XINE=OFF
+#13 0.437 -- The CXX compiler identification is Clang 14.0.0
+#13 0.478 -- The C compiler identification is GNU 11.4.0
+#13 0.486 -- Detecting CXX compiler ABI info
+#13 0.603 -- Detecting CXX compiler ABI info - done
+#13 0.608 -- Check for working CXX compiler: /usr/bin/c++ - skipped
+#13 0.609 -- Detecting CXX compile features
+#13 0.610 -- Detecting CXX compile features - done
+#13 0.613 -- Detecting C compiler ABI info
+#13 0.664 -- Detecting C compiler ABI info - done
+#13 0.670 -- Check for working C compiler: /usr/bin/cc - skipped
+#13 0.670 -- Detecting C compile features
+#13 0.671 -- Detecting C compile features - done
+#13 0.674 -- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+#13 0.675 -- Detected processor: x86_64
+#13 0.694 -- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) (Required is at least version "2.7")
+#13 0.711 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.2") 
+#13 0.718 -- Could NOT find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required is exact version "3.10.12")
+#13 0.739 Traceback (most recent call last):
+#13 0.739   File "<string>", line 1, in <module>
+#13 0.739 ModuleNotFoundError: No module named 'numpy'
+#13 0.744 -- Looking for ccache - not found
+#13 0.745 -- Performing Test HAVE_CXX_FSIGNED_CHAR
+#13 0.850 -- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+#13 0.851 -- Performing Test HAVE_C_FSIGNED_CHAR
+#13 0.900 -- Performing Test HAVE_C_FSIGNED_CHAR - Success
+#13 0.901 -- Performing Test HAVE_CXX_W
+#13 1.008 -- Performing Test HAVE_CXX_W - Success
+#13 1.008 -- Performing Test HAVE_C_W
+#13 1.056 -- Performing Test HAVE_C_W - Success
+#13 1.057 -- Performing Test HAVE_CXX_WALL
+#13 1.155 -- Performing Test HAVE_CXX_WALL - Success
+#13 1.155 -- Performing Test HAVE_C_WALL
+#13 1.204 -- Performing Test HAVE_C_WALL - Success
+#13 1.204 -- Performing Test HAVE_CXX_WRETURN_TYPE
+#13 1.319 -- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+#13 1.320 -- Performing Test HAVE_C_WRETURN_TYPE
+#13 1.371 -- Performing Test HAVE_C_WRETURN_TYPE - Success
+#13 1.371 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+#13 1.484 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+#13 1.484 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+#13 1.535 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+#13 1.536 -- Performing Test HAVE_CXX_WADDRESS
+#13 1.659 -- Performing Test HAVE_CXX_WADDRESS - Success
+#13 1.659 -- Performing Test HAVE_C_WADDRESS
+#13 1.712 -- Performing Test HAVE_C_WADDRESS - Success
+#13 1.712 -- Performing Test HAVE_CXX_WSEQUENCE_POINT
+#13 1.830 -- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+#13 1.830 -- Performing Test HAVE_C_WSEQUENCE_POINT
+#13 1.882 -- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+#13 1.882 -- Performing Test HAVE_CXX_WFORMAT
+#13 1.990 -- Performing Test HAVE_CXX_WFORMAT - Success
+#13 1.990 -- Performing Test HAVE_C_WFORMAT
+#13 2.041 -- Performing Test HAVE_C_WFORMAT - Success
+#13 2.041 -- Performing Test HAVE_CXX_WFORMAT_SECURITY
+#13 2.142 -- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+#13 2.143 -- Performing Test HAVE_C_WFORMAT_SECURITY
+#13 2.194 -- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+#13 2.194 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+#13 2.305 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+#13 2.305 -- Performing Test HAVE_C_WMISSING_DECLARATIONS
+#13 2.360 -- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+#13 2.361 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+#13 2.489 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Success
+#13 2.489 -- Performing Test HAVE_C_WMISSING_PROTOTYPES
+#13 2.541 -- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+#13 2.542 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+#13 2.663 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Success
+#13 2.663 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+#13 2.716 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+#13 2.716 -- Performing Test HAVE_CXX_WUNDEF
+#13 2.843 -- Performing Test HAVE_CXX_WUNDEF - Success
+#13 2.844 -- Performing Test HAVE_C_WUNDEF
+#13 2.899 -- Performing Test HAVE_C_WUNDEF - Success
+#13 2.899 -- Performing Test HAVE_CXX_WINIT_SELF
+#13 3.016 -- Performing Test HAVE_CXX_WINIT_SELF - Success
+#13 3.016 -- Performing Test HAVE_C_WINIT_SELF
+#13 3.068 -- Performing Test HAVE_C_WINIT_SELF - Success
+#13 3.068 -- Performing Test HAVE_CXX_WPOINTER_ARITH
+#13 3.187 -- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+#13 3.188 -- Performing Test HAVE_C_WPOINTER_ARITH
+#13 3.241 -- Performing Test HAVE_C_WPOINTER_ARITH - Success
+#13 3.242 -- Performing Test HAVE_CXX_WSHADOW
+#13 3.363 -- Performing Test HAVE_CXX_WSHADOW - Success
+#13 3.363 -- Performing Test HAVE_C_WSHADOW
+#13 3.419 -- Performing Test HAVE_C_WSHADOW - Success
+#13 3.419 -- Performing Test HAVE_CXX_WSIGN_PROMO
+#13 3.533 -- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+#13 3.534 -- Performing Test HAVE_C_WSIGN_PROMO
+#13 3.583 -- Performing Test HAVE_C_WSIGN_PROMO - Failed
+#13 3.583 -- Performing Test HAVE_CXX_WUNINITIALIZED
+#13 3.694 -- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+#13 3.695 -- Performing Test HAVE_C_WUNINITIALIZED
+#13 3.746 -- Performing Test HAVE_C_WUNINITIALIZED - Success
+#13 3.746 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE
+#13 3.859 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE - Success
+#13 3.859 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE
+#13 3.883 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE - Failed
+#13 3.883 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 3.990 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+#13 3.990 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+#13 4.054 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR - Failed
+#13 4.055 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#13 4.177 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Success
+#13 4.177 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#13 4.229 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+#13 4.229 -- Performing Test HAVE_CXX_WNO_COMMENT
+#13 4.338 -- Performing Test HAVE_CXX_WNO_COMMENT - Success
+#13 4.338 -- Performing Test HAVE_C_WNO_COMMENT
+#13 4.391 -- Performing Test HAVE_C_WNO_COMMENT - Success
+#13 4.391 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#13 4.499 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Success
+#13 4.499 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#13 4.548 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Failed
+#13 4.548 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#13 4.651 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Success
+#13 4.652 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#13 4.701 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Failed
+#13 4.702 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION
+#13 4.815 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION - Success
+#13 4.815 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION
+#13 4.866 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION - Success
+#13 4.866 -- Performing Test HAVE_CXX_WNO_LONG_LONG
+#13 4.978 -- Performing Test HAVE_CXX_WNO_LONG_LONG - Success
+#13 4.979 -- Performing Test HAVE_C_WNO_LONG_LONG
+#13 5.029 -- Performing Test HAVE_C_WNO_LONG_LONG - Success
+#13 5.030 -- Performing Test HAVE_CXX_PTHREAD
+#13 5.134 -- Performing Test HAVE_CXX_PTHREAD - Success
+#13 5.134 -- Performing Test HAVE_C_PTHREAD
+#13 5.185 -- Performing Test HAVE_C_PTHREAD - Success
+#13 5.185 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS
+#13 5.295 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS - Success
+#13 5.296 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS
+#13 5.319 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS - Failed
+#13 5.319 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS
+#13 5.421 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS - Success
+#13 5.421 -- Performing Test HAVE_C_FFUNCTION_SECTIONS
+#13 5.474 -- Performing Test HAVE_C_FFUNCTION_SECTIONS - Success
+#13 5.474 -- Performing Test HAVE_CXX_FDATA_SECTIONS
+#13 5.578 -- Performing Test HAVE_CXX_FDATA_SECTIONS - Success
+#13 5.578 -- Performing Test HAVE_C_FDATA_SECTIONS
+#13 5.630 -- Performing Test HAVE_C_FDATA_SECTIONS - Success
+#13 5.633 -- Performing Test HAVE_CXX_MSSE (check file: cmake/checks/cpu_sse.cpp)
+#13 5.784 -- Performing Test HAVE_CXX_MSSE - Success
+#13 5.784 -- Performing Test HAVE_CXX_MSSE2 (check file: cmake/checks/cpu_sse2.cpp)
+#13 5.932 -- Performing Test HAVE_CXX_MSSE2 - Success
+#13 5.932 -- Performing Test HAVE_CXX_MSSE3 (check file: cmake/checks/cpu_sse3.cpp)
+#13 6.090 -- Performing Test HAVE_CXX_MSSE3 - Success
+#13 6.091 -- Performing Test HAVE_CXX_MSSSE3 (check file: cmake/checks/cpu_ssse3.cpp)
+#13 6.246 -- Performing Test HAVE_CXX_MSSSE3 - Success
+#13 6.247 -- Performing Test HAVE_CXX_MSSE4_1 (check file: cmake/checks/cpu_sse41.cpp)
+#13 6.414 -- Performing Test HAVE_CXX_MSSE4_1 - Success
+#13 6.415 -- Performing Test HAVE_CXX_MPOPCNT (check file: cmake/checks/cpu_popcnt.cpp)
+#13 6.530 -- Performing Test HAVE_CXX_MPOPCNT - Success
+#13 6.530 -- Performing Test HAVE_CXX_MSSE4_2 (check file: cmake/checks/cpu_sse42.cpp)
+#13 6.680 -- Performing Test HAVE_CXX_MSSE4_2 - Success
+#13 6.680 -- Performing Test HAVE_CXX_MF16C (check file: cmake/checks/cpu_fp16.cpp)
+#13 7.054 -- Performing Test HAVE_CXX_MF16C - Success
+#13 7.055 -- Performing Test HAVE_CXX_MFMA
+#13 7.167 -- Performing Test HAVE_CXX_MFMA - Success
+#13 7.167 -- Performing Test HAVE_CXX_MAVX (check file: cmake/checks/cpu_avx.cpp)
+#13 7.534 -- Performing Test HAVE_CXX_MAVX - Success
+#13 7.535 -- Performing Test HAVE_CXX_MAVX2 (check file: cmake/checks/cpu_avx2.cpp)
+#13 7.879 -- Performing Test HAVE_CXX_MAVX2 - Success
+#13 7.879 -- Performing Test HAVE_CXX_MAVX512F (check file: cmake/checks/cpu_avx512.cpp)
+#13 8.223 -- Performing Test HAVE_CXX_MAVX512F - Success
+#13 8.224 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD (check file: cmake/checks/cpu_avx512common.cpp)
+#13 8.563 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD - Success
+#13 8.564 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ (check file: cmake/checks/cpu_avx512skx.cpp)
+#13 8.903 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ - Success
+#13 8.905 -- Performing Test HAVE_CPU_BASELINE_FLAGS
+#13 9.006 -- Performing Test HAVE_CPU_BASELINE_FLAGS - Success
+#13 9.008 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1
+#13 9.108 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1 - Success
+#13 9.110 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2
+#13 9.212 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2 - Success
+#13 9.214 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16
+#13 9.315 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16 - Success
+#13 9.318 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX
+#13 9.419 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX - Success
+#13 9.422 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2
+#13 9.527 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2 - Success
+#13 9.529 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX
+#13 9.632 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX - Success
+#13 9.632 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN
+#13 9.733 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN - Success
+#13 9.733 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN
+#13 9.786 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN - Success
+#13 9.786 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN
+#13 9.886 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN - Success
+#13 9.886 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN
+#13 9.933 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN - Failed
+#13 9.933 -- Performing Test HAVE_LINK_AS_NEEDED
+#13 10.01 -- Performing Test HAVE_LINK_AS_NEEDED - Success
+#13 10.01 -- Performing Test HAVE_LINK_NO_UNDEFINED
+#13 10.11 -- Performing Test HAVE_LINK_NO_UNDEFINED - Success
+#13 10.12 -- Looking for pthread.h
+#13 10.17 -- Looking for pthread.h - found
+#13 10.17 -- Looking for posix_memalign
+#13 10.23 -- Looking for posix_memalign - found
+#13 10.23 -- Looking for malloc.h
+#13 10.28 -- Looking for malloc.h - found
+#13 10.28 -- Looking for memalign
+#13 10.34 -- Looking for memalign - found
+#13 10.34 -- Looking for fseeko
+#13 10.39 -- Looking for fseeko - found
+#13 10.39 -- Looking for unistd.h
+#13 10.45 -- Looking for unistd.h - found
+#13 10.45 -- Looking for sys/types.h
+#13 10.50 -- Looking for sys/types.h - found
+#13 10.50 -- Looking for stdint.h
+#13 10.55 -- Looking for stdint.h - found
+#13 10.55 -- Looking for stddef.h
+#13 10.61 -- Looking for stddef.h - found
+#13 10.61 -- Check size of off64_t
+#13 10.63 -- Check size of off64_t - failed
+#13 10.63 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32
+#13 10.68 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32 - Failed
+#13 10.68 -- Performing Test HAVE_C_WNO_ATTRIBUTES
+#13 10.73 -- Performing Test HAVE_C_WNO_ATTRIBUTES - Success
+#13 10.73 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES
+#13 10.78 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES - Success
+#13 10.78 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES
+#13 10.83 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES - Success
+#13 10.83 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS
+#13 10.88 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS - Success
+#13 10.88 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE
+#13 10.93 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE - Success
+#13 10.93 -- Performing Test HAVE_C_WNO_UNDEF
+#13 10.98 -- Performing Test HAVE_C_WNO_UNDEF - Success
+#13 10.98 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH
+#13 11.04 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH - Success
+#13 11.04 -- Performing Test HAVE_C_WNO_UNUSED_PARAMETER
+#13 11.09 -- Performing Test HAVE_C_WNO_UNUSED_PARAMETER - Success
+#13 11.09 -- Performing Test HAVE_C_WNO_SIGN_COMPARE
+#13 11.14 -- Performing Test HAVE_C_WNO_SIGN_COMPARE - Success
+#13 11.14 -- libjpeg-turbo: VERSION = 2.1.3, BUILD = opencv-4.8.0-libjpeg-turbo
+#13 11.14 -- Check size of size_t
+#13 11.20 -- Check size of size_t - done
+#13 11.20 -- Check size of unsigned long
+#13 11.26 -- Check size of unsigned long - done
+#13 11.26 -- Performing Test HAVE_BUILTIN_CTZL
+#13 11.32 -- Performing Test HAVE_BUILTIN_CTZL - Success
+#13 11.32 -- Looking for include file locale.h
+#13 11.37 -- Looking for include file locale.h - found
+#13 11.37 -- Looking for include file stdlib.h
+#13 11.43 -- Looking for include file stdlib.h - found
+#13 11.43 -- Looking for include file sys/types.h
+#13 11.48 -- Looking for include file sys/types.h - found
+#13 11.48 -- Looking for a ASM_NASM compiler
+#13 11.51 -- Looking for a ASM_NASM compiler - NOTFOUND
+#13 11.51 -- libjpeg-turbo(SIMD): SIMD extensions disabled: could not find NASM compiler.  Performance will suffer.
+#13 11.52 -- Could NOT find OpenJPEG (minimal suitable version: 2.0, recommended version >= 2.3.1). OpenJPEG will be built from sources
+#13 11.52 -- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION
+#13 11.57 -- Performing Test HAVE_C_WNO_IMPLICIT_CONST_INT_FLOAT_CONVERSION - Failed
+#13 11.57 -- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE
+#13 11.62 -- Performing Test HAVE_C_WNO_UNUSED_BUT_SET_VARIABLE - Success
+#13 11.62 -- OpenJPEG: VERSION = 2.5.0, BUILD = opencv-4.8.0-openjp2-2.5.0
+#13 11.62 -- Looking for string.h
+#13 11.67 -- Looking for string.h - found
+#13 11.67 -- Looking for memory.h
+#13 11.73 -- Looking for memory.h - found
+#13 11.73 -- Looking for stdio.h
+#13 11.78 -- Looking for stdio.h - found
+#13 11.78 -- Looking for math.h
+#13 11.84 -- Looking for math.h - found
+#13 11.84 -- Looking for float.h
+#13 11.89 -- Looking for float.h - found
+#13 11.89 -- Looking for time.h
+#13 11.94 -- Looking for time.h - found
+#13 11.94 -- Looking for stdarg.h
+#13 11.99 -- Looking for stdarg.h - found
+#13 11.99 -- Looking for ctype.h
+#13 12.05 -- Looking for ctype.h - found
+#13 12.05 -- Looking for assert.h
+#13 12.10 -- Looking for assert.h - found
+#13 12.10 -- Looking for stdint.h
+#13 12.15 -- Looking for stdint.h - found
+#13 12.15 -- Looking for inttypes.h
+#13 12.21 -- Looking for inttypes.h - found
+#13 12.21 -- Looking for strings.h
+#13 12.50 -- Looking for strings.h - found
+#13 12.50 -- Looking for sys/stat.h
+#13 12.55 -- Looking for sys/stat.h - found
+#13 12.55 -- Looking for unistd.h
+#13 12.60 -- Looking for unistd.h - found
+#13 12.60 -- Looking for include file malloc.h
+#13 12.66 -- Looking for include file malloc.h - found
+#13 12.66 -- Looking for _aligned_malloc
+#13 12.68 -- Looking for _aligned_malloc - not found
+#13 12.68 -- Looking for posix_memalign
+#13 12.74 -- Looking for posix_memalign - found
+#13 12.74 -- Looking for memalign
+#13 12.79 -- Looking for memalign - found
+#13 12.80 -- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE
+#13 12.85 -- Performing Test HAVE_C_WNO_CAST_FUNCTION_TYPE - Success
+#13 12.85 -- Performing Test HAVE_C_WNO_SHADOW
+#13 12.90 -- Performing Test HAVE_C_WNO_SHADOW - Success
+#13 12.90 -- Performing Test HAVE_C_WNO_UNUSED_FUNCTION
+#13 12.95 -- Performing Test HAVE_C_WNO_UNUSED_FUNCTION - Success
+#13 13.06 -- OpenJPEG libraries will be built from sources: libopenjp2 (version "2.5.0")
+#13 13.06 -- Performing Test HAVE_C_WNO_CAST_ALIGN
+#13 13.11 -- Performing Test HAVE_C_WNO_CAST_ALIGN - Success
+#13 13.11 -- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED
+#13 13.16 -- Performing Test HAVE_C_WNO_MAYBE_UNINITIALIZED - Success
+#13 13.16 -- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION
+#13 13.21 -- Performing Test HAVE_C_WNO_NULL_POINTER_SUBTRACTION - Failed
+#13 13.22 -- IPPICV: Downloading ippicv_2021.8_lnx_intel64_20230330_general.tgz from https://raw.githubusercontent.com/opencv/opencv_3rdparty/1224f78da6684df04397ac0f40c961ed37f79ccb/ippicv/ippicv_2021.8_lnx_intel64_20230330_general.tgz
+#13 14.60 -- found Intel IPP (ICV version): 2021.8.0 [2021.8]
+#13 14.60 -- at: /root/build/3rdparty/ippicv/ippicv_lnx/icv
+#13 14.60 -- found Intel IPP Integration Wrappers sources: 2021.8.0
+#13 14.60 -- at: /root/build/3rdparty/ippicv/ippicv_lnx/iw
+#13 14.66 -- Checking for modules 'libavcodec;libavformat;libavutil;libswscale'
+#13 14.67 --   Found libavcodec, version 58.134.100
+#13 14.68 --   Found libavformat, version 58.76.100
+#13 14.69 --   Found libavutil, version 56.70.100
+#13 14.70 --   Found libswscale, version 5.9.100
+#13 14.73 -- Checking for module 'libavresample'
+#13 14.73 --   No package 'libavresample' found
+#13 15.08 -- Performing Test HAVE_CXX_WNO_UNDEF
+#13 15.16 -- Performing Test HAVE_CXX_WNO_UNDEF - Success
+#13 15.18 -- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE
+#13 15.27 -- Performing Test HAVE_CXX_WNO_INCONSISTENT_MISSING_OVERRIDE - Success
+#13 15.28 -- Checking for module 'freetype2'
+#13 15.28 --   No package 'freetype2' found
+#13 15.28 -- Checking for module 'harfbuzz'
+#13 15.29 --   No package 'harfbuzz' found
+#13 15.29 -- freetype2:   NO
+#13 15.29 -- harfbuzz:    NO
+#13 15.32 -- Could NOT find HDF5 (missing: HDF5_LIBRARIES HDF5_INCLUDE_DIRS) (found version "")
+#13 15.33 -- Julia not found. Not compiling Julia Bindings. 
+#13 15.34 -- Module opencv_ovis disabled because OGRE3D was not found
+#13 15.66 -- Checking SFM glog/gflags deps... TRUE
+#13 15.68 -- Using whitelist: opencv_core;opencv_imgcodecs;opencv_imgproc;opencv_video;opencv_videoio
+#13 15.68 -- Module opencv_calib3d disabled by whitelist
+#13 15.68 -- Module opencv_dnn disabled by whitelist
+#13 15.68 -- Module opencv_features2d disabled by whitelist
+#13 15.68 -- Module opencv_flann disabled by whitelist
+#13 15.68 -- Module opencv_highgui disabled by whitelist
+#13 15.68 -- Module opencv_java_bindings_generator disabled by whitelist
+#13 15.68 -- Module opencv_js_bindings_generator disabled by whitelist
+#13 15.68 -- Module opencv_ml disabled by whitelist
+#13 15.68 -- Module opencv_objc_bindings_generator disabled by whitelist
+#13 15.68 -- Module opencv_objdetect disabled by whitelist
+#13 15.68 -- Module opencv_photo disabled by whitelist
+#13 15.68 -- Module opencv_python_bindings_generator disabled by whitelist
+#13 15.68 -- Module opencv_python_tests disabled by whitelist
+#13 15.68 -- Module opencv_stitching disabled by whitelist
+#13 15.68 -- Module opencv_alphamat disabled by whitelist
+#13 15.69 -- Module opencv_aruco disabled by whitelist
+#13 15.69 -- Module opencv_bgsegm disabled by whitelist
+#13 15.69 -- Module opencv_bioinspired disabled by whitelist
+#13 15.69 -- Module opencv_ccalib disabled by whitelist
+#13 15.69 -- Module opencv_datasets disabled by whitelist
+#13 15.69 -- Module opencv_dnn_objdetect disabled by whitelist
+#13 15.69 -- Module opencv_dnn_superres disabled by whitelist
+#13 15.69 -- Module opencv_dpm disabled by whitelist
+#13 15.69 -- Module opencv_face disabled by whitelist
+#13 15.69 -- Module opencv_fuzzy disabled by whitelist
+#13 15.69 -- Module opencv_hfs disabled by whitelist
+#13 15.69 -- Module opencv_img_hash disabled by whitelist
+#13 15.69 -- Module opencv_intensity_transform disabled by whitelist
+#13 15.69 -- Module opencv_line_descriptor disabled by whitelist
+#13 15.69 -- Module opencv_mcc disabled by whitelist
+#13 15.69 -- Module opencv_optflow disabled by whitelist
+#13 15.69 -- Module opencv_phase_unwrapping disabled by whitelist
+#13 15.69 -- Module opencv_plot disabled by whitelist
+#13 15.69 -- Module opencv_quality disabled by whitelist
+#13 15.69 -- Module opencv_rapid disabled by whitelist
+#13 15.69 -- Module opencv_reg disabled by whitelist
+#13 15.69 -- Module opencv_rgbd disabled by whitelist
+#13 15.69 -- Module opencv_saliency disabled by whitelist
+#13 15.69 -- Module opencv_sfm disabled by whitelist
+#13 15.69 -- Module opencv_shape disabled by whitelist
+#13 15.69 -- Module opencv_stereo disabled by whitelist
+#13 15.69 -- Module opencv_structured_light disabled by whitelist
+#13 15.69 -- Module opencv_superres disabled by whitelist
+#13 15.69 -- Module opencv_surface_matching disabled by whitelist
+#13 15.69 -- Module opencv_text disabled by whitelist
+#13 15.69 -- Module opencv_tracking disabled by whitelist
+#13 15.69 -- Module opencv_videostab disabled by whitelist
+#13 15.69 -- Module opencv_wechat_qrcode disabled by whitelist
+#13 15.69 -- Module opencv_xfeatures2d disabled by whitelist
+#13 15.69 -- Module opencv_ximgproc disabled by whitelist
+#13 15.69 -- Module opencv_xobjdetect disabled by whitelist
+#13 15.69 -- Module opencv_xphoto disabled by whitelist
+#13 15.71 -- Allocator metrics storage type: 'long long'
+#13 15.73 -- Excluding from source files list: modules/imgproc/src/imgwarp.lasx.cpp
+#13 15.73 -- Excluding from source files list: modules/imgproc/src/resize.lasx.cpp
+#13 15.75 -- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS
+#13 15.84 -- Performing Test HAVE_CXX_WNO_DEPRECATED_DECLARATIONS - Success
+#13 15.85 -- 
+#13 15.85 -- General configuration for OpenCV 4.8.0 =====================================
+#13 15.85 --   Version control:               unknown
+#13 15.85 -- 
+#13 15.85 --   Extra modules:
+#13 15.85 --     Location (extra):            /root/dist/opencv_contrib-4.8.0/modules
+#13 15.85 --     Version control (extra):     unknown
+#13 15.85 -- 
+#13 15.85 --   Platform:
+#13 15.85 --     Timestamp:                   2024-12-27T15:01:38Z
+#13 15.85 --     Host:                        Linux 5.15.167.4-microsoft-standard-WSL2 x86_64
+#13 15.85 --     CMake:                       3.22.1
+#13 15.85 --     CMake generator:             Unix Makefiles
+#13 15.85 --     CMake build tool:            /usr/bin/gmake
+#13 15.85 --     Configuration:               Release
+#13 15.85 -- 
+#13 15.85 --   CPU/HW features:
+#13 15.85 --     Baseline:                    SSE SSE2 SSE3
+#13 15.85 --       requested:                 SSE3
+#13 15.85 --     Dispatched code generation:  SSE4_1 SSE4_2 FP16 AVX AVX2 AVX512_SKX
+#13 15.85 --       requested:                 SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+#13 15.85 --       SSE4_1 (13 files):         + SSSE3 SSE4_1
+#13 15.85 --       SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+#13 15.85 --       FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX
+#13 15.85 --       AVX (3 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+#13 15.85 --       AVX2 (25 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2
+#13 15.85 --       AVX512_SKX (2 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2 AVX_512F AVX512_COMMON AVX512_SKX
+#13 15.85 -- 
+#13 15.85 --   C/C++:
+#13 15.85 --     Built as dynamic libs?:      NO
+#13 15.85 --     C++ standard:                11
+#13 15.85 --     C++ Compiler:                /usr/bin/c++  (ver 14.0.0)
+#13 15.86 --     C++ flags (Release):         -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG
+#13 15.86 --     C++ flags (Debug):           -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG
+#13 15.86 --     C Compiler:                  /usr/bin/cc
+#13 15.86 --     C flags (Release):           -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG
+#13 15.86 --     C flags (Debug):             -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG
+#13 15.86 --     Linker flags (Release):      -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#13 15.86 --     Linker flags (Debug):        -Wl,--exclude-libs,libippicv.a -Wl,--exclude-libs,libippiw.a   -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#13 15.86 --     ccache:                      NO
+#13 15.86 --     Precompiled headers:         NO
+#13 15.86 --     Extra dependencies:          va va-drm dl m pthread rt
+#13 15.86 --     3rdparty dependencies:       libjpeg-turbo libpng libopenjp2 zlib ippiw ippicv
+#13 15.86 -- 
+#13 15.86 --   OpenCV modules:
+#13 15.86 --     To be built:                 core imgcodecs imgproc video videoio
+#13 15.86 --     Disabled:                    world
+#13 15.86 --     Disabled by dependency:      alphamat aruco bgsegm bioinspired calib3d ccalib datasets dnn dnn_objdetect dnn_superres dpm face features2d flann fuzzy hfs highgui img_hash intensity_transform java_bindings_generator js_bindings_generator line_descriptor mcc ml objc_bindings_generator objdetect optflow phase_unwrapping photo plot python_bindings_generator python_tests quality rapid reg rgbd saliency sfm shape stereo stitching structured_light superres surface_matching text tracking videostab wechat_qrcode xfeatures2d ximgproc xobjdetect xphoto
+#13 15.86 --     Unavailable:                 cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv freetype gapi hdf java julia matlab ovis python2 python3 ts viz
+#13 15.86 --     Applications:                -
+#13 15.86 --     Documentation:               NO
+#13 15.86 --     Non-free algorithms:         YES
+#13 15.86 -- 
+#13 15.86 --   GUI: 
+#13 15.86 -- 
+#13 15.86 --   Media I/O: 
+#13 15.86 --     ZLib:                        build (ver 1.2.13)
+#13 15.86 --     JPEG:                        build-libjpeg-turbo (ver 2.1.3-62)
+#13 15.86 --       SIMD Support Request:      YES
+#13 15.86 --       SIMD Support:              NO
+#13 15.86 --     PNG:                         build (ver 1.6.37)
+#13 15.86 --     JPEG 2000:                   build (ver 2.5.0)
+#13 15.86 --     HDR:                         NO
+#13 15.86 --     SUNRASTER:                   NO
+#13 15.86 --     PXM:                         NO
+#13 15.86 --     PFM:                         NO
+#13 15.86 -- 
+#13 15.86 --   Video I/O:
+#13 15.86 --     FFMPEG:                      YES
+#13 15.86 --       avcodec:                   YES (58.134.100)
+#13 15.86 --       avformat:                  YES (58.76.100)
+#13 15.86 --       avutil:                    YES (56.70.100)
+#13 15.86 --       swscale:                   YES (5.9.100)
+#13 15.86 --       avresample:                NO
+#13 15.86 -- 
+#13 15.86 --   Parallel framework:            pthreads
+#13 15.86 -- 
+#13 15.86 --   Trace:                         YES (built-in)
+#13 15.86 -- 
+#13 15.86 --   Other third-party libraries:
+#13 15.86 --     Intel IPP:                   2021.8 [2021.8.0]
+#13 15.86 --            at:                   /root/build/3rdparty/ippicv/ippicv_lnx/icv
+#13 15.86 --     Intel IPP IW:                sources (2021.8.0)
+#13 15.86 --               at:                /root/build/3rdparty/ippicv/ippicv_lnx/iw
+#13 15.86 --     VA:                          YES
+#13 15.87 --     Eigen:                       YES (ver 3.4.0)
+#13 15.87 --     Custom HAL:                  NO
+#13 15.87 -- 
+#13 15.87 --   Python (for build):            /usr/bin/python3
+#13 15.87 -- 
+#13 15.87 --   Install to:                    /opt/opencv
+#13 15.87 -- -----------------------------------------------------------------
+#13 15.87 -- 
+#13 16.05 -- Configuring done
+#13 16.18 -- Generating done
+#13 16.20 -- Build files have been written to: /root/build
+#13 16.23 + nproc
+#13 16.23 + make -C /root/build -j16 install
+#13 16.23 make: Entering directory '/root/build'
+#13 16.24 make[1]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Leaving directory '/root/build'
+#13 16.25 make[2]: Entering directory '/root/build'
+#13 16.26 make[2]: Entering directory '/root/build'
+#13 16.26 make[2]: Entering directory '/root/build'
+#13 16.26 make[2]: Entering directory '/root/build'
+#13 16.26 [  1%] Built target opencv_videoio_plugins
+#13 16.26 [  1%] Built target opencv_dnn_plugins
+#13 16.26 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image.c.o
+#13 16.26 [  1%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/jsimd.dir/src/jsimd_none.c.o
+#13 16.26 [  1%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/thread.c.o
+#13 16.26 [  1%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/cio.c.o
+#13 16.26 [  1%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/bio.c.o
+#13 16.26 [  1%] Built target opencv_highgui_plugins
+#13 16.26 [  1%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/compress.c.o
+#13 16.26 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_core.c.o
+#13 16.26 [  1%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/adler32.c.o
+#13 16.26 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_color_convert_rgbs.c.o
+#13 16.26 [  1%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_color_convert_all.c.o
+#13 16.27 [  1%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/crc32.c.o
+#13 16.27 [  3%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzclose.c.o
+#13 16.27 [  3%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/event.c.o
+#13 16.27 [  3%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/dwt.c.o
+#13 16.27 [  3%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/deflate.c.o
+#13 16.27 [  4%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_bilateral.c.o
+#13 16.32 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzlib.c.o
+#13 16.33 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzread.c.o
+#13 16.35 make[2]: Leaving directory '/root/build'
+#13 16.35 [  4%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/ht_dec.c.o
+#13 16.35 [  4%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_box.c.o
+#13 16.36 [  4%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_canny.c.o
+#13 16.36 [  4%] Built target jsimd
+#13 16.36 [  5%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzwrite.c.o
+#13 16.38 [  5%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_gaussian.c.o
+#13 16.38 [  5%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inflate.c.o
+#13 16.39 [  6%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_general.c.o
+#13 16.42 [  6%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/image.c.o
+#13 16.44 [  7%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/invert.c.o
+#13 16.44 [  7%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/infback.c.o
+#13 16.44 make[2]: Entering directory '/root/build'
+#13 16.46 make[2]: Leaving directory '/root/build'
+#13 16.46 make[2]: Entering directory '/root/build'
+#13 16.47 [  7%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcapimin.c.o
+#13 16.47 [  7%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inftrees.c.o
+#13 16.50 [  7%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_laplacian.c.o
+#13 16.50 [  8%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inffast.c.o
+#13 16.52 [  8%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_morphology.c.o
+#13 16.55 [  8%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_scharr.c.o
+#13 16.57 [  8%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/j2k.c.o
+#13 16.57 [  8%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcapistd.c.o
+#13 16.59 [  8%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/trees.c.o
+#13 16.60 [  8%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/jp2.c.o
+#13 16.62 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_filter_sobel.c.o
+#13 16.65 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy.c.o
+#13 16.65 [  9%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jccoefct.c.o
+#13 16.67 [  9%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/uncompr.c.o
+#13 16.67 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_channel.c.o
+#13 16.69 [  9%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_make_border.c.o
+#13 16.74 [  9%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/zutil.c.o
+#13 16.75 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_merge.c.o
+#13 16.78 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_copy_split.c.o
+#13 16.78 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_scale.c.o
+#13 16.79 [ 10%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_set.c.o
+#13 16.80 [ 11%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_set_channel.c.o
+#13 16.81 [ 12%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jccolor.c.o
+#13 16.84 [ 12%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcdctmgr.c.o
+#13 16.84 [ 12%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/mct.c.o
+#13 16.89 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_op_swap_channels.c.o
+#13 16.91 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_mirror.c.o
+#13 16.91 [ 12%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_resize.c.o
+#13 16.92 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_rotate.c.o
+#13 16.99 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_image_transform_warpaffine.c.o
+#13 17.01 [ 13%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jchuff.c.o
+#13 17.01 [ 13%] Building C object 3rdparty/ippiw/CMakeFiles/ippiw.dir/src/iw_own.c.o
+#13 17.04 [ 14%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/mqc.c.o
+#13 17.04 [ 14%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/openjpeg.c.o
+#13 17.04 [ 14%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/opj_clock.c.o
+#13 17.08 [ 14%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcicc.c.o
+#13 17.11 [ 14%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/pi.c.o
+#13 17.13 [ 15%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/t1.c.o
+#13 17.14 [ 16%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcinit.c.o
+#13 17.15 [ 16%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmainct.c.o
+#13 17.16 [ 16%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmarker.c.o
+#13 17.20 [ 16%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcmaster.c.o
+#13 17.21 [ 16%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/t2.c.o
+#13 17.22 [ 16%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/tgt.c.o
+#13 17.22 [ 16%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/tcd.c.o
+#13 17.22 [ 17%] Linking C static library ../lib/libzlib.a
+#13 17.23 [ 18%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcomapi.c.o
+#13 17.24 [ 18%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcparam.c.o
+#13 17.24 [ 18%] Linking C static library ../lib/libippiw.a
+#13 17.29 [ 18%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcphuff.c.o
+#13 17.30 make[2]: Leaving directory '/root/build'
+#13 17.32 [ 18%] Built target zlib
+#13 17.32 make[2]: Entering directory '/root/build'
+#13 17.33 make[2]: Leaving directory '/root/build'
+#13 17.33 make[2]: Entering directory '/root/build'
+#13 17.34 [ 19%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/png.c.o
+#13 17.35 make[2]: Leaving directory '/root/build'
+#13 17.37 [ 19%] Built target ippiw
+#13 17.39 make[2]: Entering directory '/root/build'
+#13 17.40 [ 20%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/function_list.c.o
+#13 17.40 [ 20%] Processing OpenCL kernels (core)
+#13 17.41 [ 20%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcprepct.c.o
+#13 17.43 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcsample.c.o
+#13 17.46 make[2]: Leaving directory '/root/build'
+#13 17.46 make[2]: Entering directory '/root/build'
+#13 17.49 [ 21%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/algorithm.cpp.o
+#13 17.49 [ 21%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/opj_malloc.c.o
+#13 17.51 [ 21%] Building C object 3rdparty/openjpeg/openjp2/CMakeFiles/libopenjp2.dir/sparse_array.c.o
+#13 17.54 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jctrans.c.o
+#13 17.55 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdapimin.c.o
+#13 17.58 [ 21%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdapistd.c.o
+#13 17.65 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdatadst.c.o
+#13 17.67 [ 22%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdatasrc.c.o
+#13 17.68 [ 23%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/alloc.cpp.o
+#13 17.72 [ 23%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.cpp.o
+#13 17.72 [ 23%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdcoefct.c.o
+#13 17.75 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jddctmgr.c.o
+#13 17.75 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdcolor.c.o
+#13 17.76 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdhuff.c.o
+#13 17.78 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdicc.c.o
+#13 17.79 [ 24%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdinput.c.o
+#13 17.87 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmainct.c.o
+#13 17.91 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmarker.c.o
+#13 17.95 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmaster.c.o
+#13 18.02 [ 25%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdmerge.c.o
+#13 18.14 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdphuff.c.o
+#13 18.27 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdpostct.c.o
+#13 18.29 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdsample.c.o
+#13 18.31 [ 26%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdtrans.c.o
+#13 18.35 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jerror.c.o
+#13 18.37 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctflt.c.o
+#13 18.38 [ 27%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngerror.c.o
+#13 18.40 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctfst.c.o
+#13 18.43 [ 27%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jfdctint.c.o
+#13 18.48 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctflt.c.o
+#13 18.51 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctfst.c.o
+#13 18.54 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctint.c.o
+#13 18.57 [ 28%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jidctred.c.o
+#13 18.58 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jquant1.c.o
+#13 18.61 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jquant2.c.o
+#13 18.62 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jutils.c.o
+#13 18.67 [ 29%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngget.c.o
+#13 18.70 [ 29%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngmem.c.o
+#13 18.70 [ 29%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jmemmgr.c.o
+#13 18.70 [ 30%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jmemnobs.c.o
+#13 18.76 [ 30%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jaricom.c.o
+#13 18.79 [ 30%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jcarith.c.o
+#13 18.80 [ 31%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngpread.c.o
+#13 18.81 [ 31%] Building C object 3rdparty/libjpeg-turbo/CMakeFiles/libjpeg-turbo.dir/src/jdarith.c.o
+#13 18.87 [ 31%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngread.c.o
+#13 18.95 [ 31%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrio.c.o
+#13 19.01 [ 31%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrtran.c.o
+#13 19.02 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngrutil.c.o
+#13 19.03 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngset.c.o
+#13 19.04 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngtrans.c.o
+#13 19.08 [ 32%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwio.c.o
+#13 19.12 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwrite.c.o
+#13 19.15 [ 33%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/array.cpp.o
+#13 19.15 [ 33%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.dispatch.cpp.o
+#13 19.15 [ 33%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwtran.c.o
+#13 19.26 [ 34%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/async.cpp.o
+#13 19.37 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/pngwutil.c.o
+#13 19.40 [ 34%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/intel/intel_init.c.o
+#13 19.47 [ 35%] Building C object 3rdparty/libpng/CMakeFiles/libpng.dir/intel/filter_sse2_intrinsics.c.o
+#13 19.48 [ 35%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/batch_distance.cpp.o
+#13 19.59 [ 35%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/bindings_utils.cpp.o
+#13 19.66 [ 35%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/buffer_area.cpp.o
+#13 19.74 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/channels.cpp.o
+#13 20.01 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/check.cpp.o
+#13 20.17 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/command_line_parser.cpp.o
+#13 20.46 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/conjugate_gradient.cpp.o
+#13 20.79 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert.dispatch.cpp.o
+#13 20.85 [ 37%] Linking C static library ../lib/liblibpng.a
+#13 20.87 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_c.cpp.o
+#13 20.94 make[2]: Leaving directory '/root/build'
+#13 20.95 [ 37%] Built target libpng
+#13 20.96 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_scale.dispatch.cpp.o
+#13 22.36 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/copy.cpp.o
+#13 22.44 [ 38%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/count_non_zero.dispatch.cpp.o
+#13 22.72 [ 38%] Linking C static library ../../lib/liblibopenjp2.a
+#13 22.82 make[2]: Leaving directory '/root/build'
+#13 22.84 [ 38%] Built target libopenjp2
+#13 22.84 [ 38%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat.cpp.o
+#13 22.85 [ 38%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat_nd.cpp.o
+#13 23.23 [ 38%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_host_mem.cpp.o
+#13 23.29 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_info.cpp.o
+#13 23.32 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_stream.cpp.o
+#13 23.48 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/datastructs.cpp.o
+#13 23.69 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/directx.cpp.o
+#13 24.04 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/downhill_simplex.cpp.o
+#13 24.51 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/dxt.cpp.o
+#13 24.73 [ 41%] Linking C static library ../lib/liblibjpeg-turbo.a
+#13 24.83 make[2]: Leaving directory '/root/build'
+#13 24.84 [ 41%] Built target libjpeg-turbo
+#13 24.85 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/gl_core_3_1.cpp.o
+#13 25.04 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/glob.cpp.o
+#13 25.87 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/hal_internal.cpp.o
+#13 26.10 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/has_non_zero.dispatch.cpp.o
+#13 26.12 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/kmeans.cpp.o
+#13 26.16 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lapack.cpp.o
+#13 26.27 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lda.cpp.o
+#13 26.33 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/logger.cpp.o
+#13 26.33 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lpsolver.cpp.o
+#13 26.43 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lut.cpp.o
+#13 26.66 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs.cpp.o
+#13 26.70 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs_core.dispatch.cpp.o
+#13 27.49 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matmul.dispatch.cpp.o
+#13 28.00 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
+#13 28.22 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_c.cpp.o
+#13 28.55 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_decomp.cpp.o
+#13 28.88 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_expressions.cpp.o
+#13 29.27 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_iterator.cpp.o
+#13 29.66 [ 46%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_operations.cpp.o
+#13 29.66 [ 46%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_sparse.cpp.o
+#13 29.76 [ 46%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_transform.cpp.o
+#13 29.99 [ 46%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_wrap.cpp.o
+#13 30.33 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mean.dispatch.cpp.o
+#13 30.49 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/merge.dispatch.cpp.o
+#13 30.66 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/minmax.cpp.o
+#13 31.05 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/norm.cpp.o
+#13 31.32 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ocl.cpp.o
+#13 31.57 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clblas.cpp.o
+#13 32.11 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clfft.cpp.o
+#13 32.40 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_core.cpp.o
+#13 32.54 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opengl.cpp.o
+#13 33.09 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/out.cpp.o
+#13 34.10 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ovx.cpp.o
+#13 34.46 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel.cpp.o
+#13 34.61 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel.cpp.o
+#13 34.66 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_openmp.cpp.o
+#13 34.94 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_tbb.cpp.o
+#13 35.08 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel_impl.cpp.o
+#13 35.15 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/pca.cpp.o
+#13 35.20 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence.cpp.o
+#13 35.38 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_base64_encoding.cpp.o
+#13 35.75 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_json.cpp.o
+#13 36.21 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_types.cpp.o
+#13 36.26 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_xml.cpp.o
+#13 36.81 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_yml.cpp.o
+#13 37.40 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/rand.cpp.o
+#13 37.77 [ 53%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/softfloat.cpp.o
+#13 37.99 [ 53%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/split.dispatch.cpp.o
+#13 38.19 [ 53%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat.dispatch.cpp.o
+#13 38.84 [ 53%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat_c.cpp.o
+#13 39.00 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stl.cpp.o
+#13 39.07 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/sum.dispatch.cpp.o
+#13 39.42 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/system.cpp.o
+#13 39.44 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/tables.cpp.o
+#13 40.02 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/trace.cpp.o
+#13 40.09 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/types.cpp.o
+#13 40.43 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/datafile.cpp.o
+#13 40.44 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/umatrix.cpp.o
+#13 41.46 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/filesystem.cpp.o
+#13 41.67 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagconfigparser.cpp.o
+#13 41.68 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagmanager.cpp.o
+#13 41.78 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/samples.cpp.o
+#13 41.88 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/va_intel.cpp.o
+#13 41.90 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/opencl_kernels_core.cpp.o
+#13 42.22 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.sse4_1.cpp.o
+#13 42.77 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.sse4_1.cpp.o
+#13 43.28 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.sse4_2.cpp.o
+#13 43.34 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx.cpp.o
+#13 43.41 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx2.cpp.o
+#13 43.84 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.avx2.cpp.o
+#13 44.09 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.avx2.cpp.o
+#13 44.21 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert.avx2.cpp.o
+#13 44.59 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert_scale.avx2.cpp.o
+#13 44.73 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/count_non_zero.avx2.cpp.o
+#13 45.30 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/has_non_zero.avx2.cpp.o
+#13 45.46 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx2.cpp.o
+#13 45.52 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mean.avx2.cpp.o
+#13 45.60 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/merge.avx2.cpp.o
+#13 46.21 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/split.avx2.cpp.o
+#13 46.41 [ 61%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/sum.avx2.cpp.o
+#13 47.48 [ 61%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx512_skx.cpp.o
+#13 53.11 [ 61%] Linking CXX static library ../../lib/libopencv_core.a
+#13 53.25 make[2]: Leaving directory '/root/build'
+#13 53.26 [ 61%] Built target opencv_core
+#13 53.26 make[2]: Entering directory '/root/build'
+#13 53.27 [ 61%] Processing OpenCL kernels (imgproc)
+#13 53.32 make[2]: Leaving directory '/root/build'
+#13 53.32 make[2]: Entering directory '/root/build'
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/box_filter.dispatch.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/blend.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/accum.dispatch.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/bilateral_filter.dispatch.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/approx.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/clahe.cpp.o
+#13 53.33 [ 63%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/canny.cpp.o
+#13 53.33 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color.cpp.o
+#13 53.33 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_hsv.dispatch.cpp.o
+#13 53.33 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_lab.cpp.o
+#13 53.33 [ 64%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_rgb.dispatch.cpp.o
+#13 53.33 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/color_yuv.dispatch.cpp.o
+#13 53.33 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/connectedcomponents.cpp.o
+#13 53.34 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/contours.cpp.o
+#13 53.34 [ 65%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/colormap.cpp.o
+#13 56.37 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/convhull.cpp.o
+#13 56.49 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.cpp.o
+#13 56.66 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/cornersubpix.cpp.o
+#13 56.68 [ 66%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/demosaicing.cpp.o
+#13 57.07 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/deriv.cpp.o
+#13 57.15 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/distransform.cpp.o
+#13 57.19 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/drawing.cpp.o
+#13 57.53 [ 67%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/emd.cpp.o
+#13 57.53 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/featureselect.cpp.o
+#13 57.73 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/filter.dispatch.cpp.o
+#13 58.00 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/floodfill.cpp.o
+#13 59.08 [ 68%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/gabor.cpp.o
+#13 59.33 [ 69%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/generalized_hough.cpp.o
+#13 59.44 [ 69%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/geometry.cpp.o
+#13 59.56 [ 69%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/grabcut.cpp.o
+#13 59.66 [ 69%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hershey_fonts.cpp.o
+#13 60.07 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/histogram.cpp.o
+#13 60.14 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/hough.cpp.o
+#13 60.38 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.cpp.o
+#13 60.63 [ 70%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intelligent_scissors.cpp.o
+#13 60.65 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/intersection.cpp.o
+#13 60.70 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/linefit.cpp.o
+#13 61.12 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/lsd.cpp.o
+#13 61.69 [ 71%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/main.cpp.o
+#13 61.85 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/matchcontours.cpp.o
+#13 62.22 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/median_blur.dispatch.cpp.o
+#13 62.29 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/min_enclosing_triangle.cpp.o
+#13 63.23 [ 72%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/moments.cpp.o
+#13 63.58 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/morph.dispatch.cpp.o
+#13 63.66 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/phasecorr.cpp.o
+#13 63.81 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/pyramids.cpp.o
+#13 63.89 [ 73%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.cpp.o
+#13 64.33 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/rotcalipers.cpp.o
+#13 64.61 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/samplers.cpp.o
+#13 64.62 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/segmentation.cpp.o
+#13 65.08 [ 74%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/shapedescr.cpp.o
+#13 65.88 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/smooth.dispatch.cpp.o
+#13 66.29 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/spatialgradient.cpp.o
+#13 66.42 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/stackblur.cpp.o
+#13 66.79 [ 75%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/subdivision2d.cpp.o
+#13 66.89 [ 76%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/sumpixels.dispatch.cpp.o
+#13 67.06 [ 76%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/tables.cpp.o
+#13 67.92 [ 76%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/thresh.cpp.o
+#13 67.92 [ 76%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/templmatch.cpp.o
+#13 67.99 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/utils.cpp.o
+#13 68.85 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/opencl_kernels_imgproc.cpp.o
+#13 69.17 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.sse4_1.cpp.o
+#13 69.22 [ 77%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.sse4_1.cpp.o
+#13 69.57 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.sse4_1.cpp.o
+#13 69.77 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.sse4_1.cpp.o
+#13 70.00 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.sse4_1.cpp.o
+#13 70.18 [ 78%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.sse4_1.cpp.o
+#13 70.50 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.sse4_1.cpp.o
+#13 70.80 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.sse4_1.cpp.o
+#13 71.08 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.sse4_1.cpp.o
+#13 71.34 [ 79%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.sse4_1.cpp.o
+#13 71.74 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.sse4_1.cpp.o
+#13 72.02 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/corner.avx.cpp.o
+#13 72.23 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx.cpp.o
+#13 72.46 [ 80%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/imgwarp.avx2.cpp.o
+#13 73.87 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/src/resize.avx2.cpp.o
+#13 73.94 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/accum.avx2.cpp.o
+#13 74.06 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/bilateral_filter.avx2.cpp.o
+#13 74.67 [ 81%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/box_filter.avx2.cpp.o
+#13 74.89 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/filter.avx2.cpp.o
+#13 75.43 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_hsv.avx2.cpp.o
+#13 75.72 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_rgb.avx2.cpp.o
+#13 76.32 [ 82%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/color_yuv.avx2.cpp.o
+#13 76.50 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/median_blur.avx2.cpp.o
+#13 76.75 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/morph.avx2.cpp.o
+#13 76.91 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/smooth.avx2.cpp.o
+#13 77.20 [ 83%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx2.cpp.o
+#13 77.94 [ 84%] Building CXX object modules/imgproc/CMakeFiles/opencv_imgproc.dir/sumpixels.avx512_skx.cpp.o
+#13 85.55 [ 84%] Linking CXX static library ../../lib/libopencv_imgproc.a
+#13 85.72 make[2]: Leaving directory '/root/build'
+#13 85.73 [ 84%] Built target opencv_imgproc
+#13 85.73 make[2]: Entering directory '/root/build'
+#13 85.73 make[2]: Entering directory '/root/build'
+#13 85.74 [ 84%] Processing OpenCL kernels (video)
+#13 85.74 make[2]: Leaving directory '/root/build'
+#13 85.74 make[2]: Entering directory '/root/build'
+#13 85.74 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_exr.cpp.o
+#13 85.74 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_avif.cpp.o
+#13 85.74 [ 85%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/loadsave.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_bmp.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/utils.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_base.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_gdcm.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_gdal.cpp.o
+#13 85.75 [ 86%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_hdr.cpp.o
+#13 85.75 [ 87%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg.cpp.o
+#13 85.75 [ 87%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg2000.cpp.o
+#13 85.75 [ 87%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pam.cpp.o
+#13 85.75 [ 87%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_jpeg2000_openjpeg.cpp.o
+#13 85.76 [ 88%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pfm.cpp.o
+#13 85.76 [ 88%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_png.cpp.o
+#13 85.77 make[2]: Leaving directory '/root/build'
+#13 85.77 make[2]: Entering directory '/root/build'
+#13 85.78 [ 88%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/bgfg_KNN.cpp.o
+#13 88.15 [ 88%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_pxm.cpp.o
+#13 88.18 [ 88%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_spng.cpp.o
+#13 88.18 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_sunras.cpp.o
+#13 88.20 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_tiff.cpp.o
+#13 88.24 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/grfmt_webp.cpp.o
+#13 88.25 [ 89%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/bitstrm.cpp.o
+#13 88.27 [ 90%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/rgbe.cpp.o
+#13 88.27 [ 90%] Building CXX object modules/imgcodecs/CMakeFiles/opencv_imgcodecs.dir/src/exif.cpp.o
+#13 88.29 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/bgfg_gaussmix2.cpp.o
+#13 88.34 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/camshift.cpp.o
+#13 88.54 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/dis_flow.cpp.o
+#13 88.62 [ 91%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/ecc.cpp.o
+#13 88.68 [ 92%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/kalman.cpp.o
+#13 88.77 [ 92%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/lkpyramid.cpp.o
+#13 88.99 [ 92%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/optflowgf.cpp.o
+#13 89.67 [ 92%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/optical_flow_io.cpp.o
+#13 90.35 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_feature.cpp.o
+#13 90.68 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_feature_set.cpp.o
+#13 90.74 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_mil_model.cpp.o
+#13 90.84 [ 93%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_mil_state.cpp.o
+#13 90.86 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_model.cpp.o
+#13 91.02 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_sampler.cpp.o
+#13 91.14 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_sampler_algorithm.cpp.o
+#13 91.17 [ 94%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracker_state_estimator.cpp.o
+#13 91.28 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracking_feature.cpp.o
+#13 91.48 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/detail/tracking_online_mil.cpp.o
+#13 91.78 [ 95%] Linking CXX static library ../../lib/libopencv_imgcodecs.a
+#13 91.87 make[2]: Leaving directory '/root/build'
+#13 91.88 [ 95%] Built target opencv_imgcodecs
+#13 91.89 make[2]: Entering directory '/root/build'
+#13 91.90 make[2]: Leaving directory '/root/build'
+#13 91.90 make[2]: Entering directory '/root/build'
+#13 91.92 [ 95%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/videoio_registry.cpp.o
+#13 91.99 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker.cpp.o
+#13 92.28 [ 95%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_dasiamrpn.cpp.o
+#13 92.38 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_goturn.cpp.o
+#13 92.63 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_mil.cpp.o
+#13 92.65 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/tracking/tracker_nano.cpp.o
+#13 92.81 [ 96%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/src/variational_refinement.cpp.o
+#13 93.31 [ 97%] Building CXX object modules/video/CMakeFiles/opencv_video.dir/opencl_kernels_video.cpp.o
+#13 93.56 [ 97%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/videoio_c.cpp.o
+#13 93.67 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap.cpp.o
+#13 93.71 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_images.cpp.o
+#13 93.78 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_mjpeg_encoder.cpp.o
+#13 93.78 [ 98%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_mjpeg_decoder.cpp.o
+#13 93.81 [ 99%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/backend_plugin.cpp.o
+#13 94.23 [ 99%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/backend_static.cpp.o
+#13 94.42 [ 99%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/container_avi.cpp.o
+#13 94.45 [ 99%] Building CXX object modules/videoio/CMakeFiles/opencv_videoio.dir/src/cap_ffmpeg.cpp.o
+#13 96.25 [ 99%] Linking CXX static library ../../lib/libopencv_video.a
+#13 96.30 make[2]: Leaving directory '/root/build'
+#13 96.31 [ 99%] Built target opencv_video
+#13 97.72 [100%] Linking CXX static library ../../lib/libopencv_videoio.a
+#13 97.77 make[2]: Leaving directory '/root/build'
+#13 97.77 [100%] Built target opencv_videoio
+#13 97.77 make[1]: Leaving directory '/root/build'
+#13 97.80 Install the project...
+#13 97.80 -- Install configuration: "Release"
+#13 97.80 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-readme.htm
+#13 97.80 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-EULA.txt
+#13 97.80 -- Installing: /opt/opencv/share/licenses/opencv4/ippicv-third-party-programs.txt
+#13 97.80 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libippicv.a
+#13 97.91 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-support.txt
+#13 97.91 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-third-party-programs.txt
+#13 97.91 -- Installing: /opt/opencv/share/licenses/opencv4/ippiw-EULA.txt
+#13 97.91 -- Installing: /opt/opencv/include/opencv4/opencv2/cvconfig.h
+#13 97.91 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv_modules.hpp
+#13 97.91 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules.cmake
+#13 97.92 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules-release.cmake
+#13 97.92 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig-version.cmake
+#13 97.92 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig.cmake
+#13 97.92 -- Installing: /opt/opencv/bin/setup_vars_opencv4.sh
+#13 97.92 -- Installing: /opt/opencv/share/opencv4/valgrind.supp
+#13 97.92 -- Installing: /opt/opencv/share/opencv4/valgrind_3rdparty.supp
+#13 97.92 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libzlib.a
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/zlib-LICENSE
+#13 97.92 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibjpeg-turbo.a
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-README.md
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-LICENSE.md
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libjpeg-turbo-README.ijg
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libopenjp2-README.md
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libopenjp2-LICENSE
+#13 97.92 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibopenjp2.a
+#13 97.92 -- Installing: /opt/opencv/lib/opencv4/3rdparty/liblibpng.a
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libpng-LICENSE
+#13 97.92 -- Installing: /opt/opencv/share/licenses/opencv4/libpng-README
+#13 97.92 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libippiw.a
+#13 97.92 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv.hpp
+#13 97.93 -- Installing: /opt/opencv/lib/libopencv_core.a
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/affine.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/async.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/base.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bindings_utils.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bufferpool.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/check.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core_c.h
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.inl.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/block.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/border_interpolate.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/color.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/common.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/datamov_utils.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/color_detail.hpp
+#13 97.94 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce_key_val.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/transform_detail.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/type_traits_detail.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/vec_distance_detail.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/dynamic_smem.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/emulation.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/filters.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/funcattrib.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/functional.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/limits.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/reduce.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/saturate_cast.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/scan.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/simd_functions.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/transform.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/type_traits.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/utility.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_distance.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_math.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_traits.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_reduce.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_shuffle.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_stream_accessor.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_types.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_dispatch.h
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_helper.h
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvdef.h
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.inl.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/async_promise.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/dispatch_helper.impl.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/exception_ptr.hpp
+#13 97.95 -- Installing: /opt/opencv/include/opencv4/opencv2/core/directx.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.inl.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/eigen.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/fast_math.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/hal.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/interface.h
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx512.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_cpp.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_forward.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_lasx.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_msa.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_neon.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv071.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_non-policy.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_overloaded-non-policy.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_compat_overloaded.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_scalable.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse.hpp
+#13 97.96 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse_em.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_vsx.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_wasm.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/msa_macros.h
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/simd_utils.impl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.inl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/matx.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/neon_utils.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl_genbase.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/ocl_defs.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_info.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_svm.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clblas.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clfft.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core_wrappers.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clblas.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clfft.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core_wrappers.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl_wrappers.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_20.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_definitions.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_hsa_extension.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opengl.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/operations.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/optim.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ovx.hpp
+#13 97.97 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.openmp.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.tbb.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/parallel_backend.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/persistence.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.inl.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/saturate.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/simd_intrinsics.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/softfloat.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/sse_utils.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/traits.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types_c.h
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utility.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.impl.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/filesystem.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/fp_control_utils.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/instrumentation.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.defines.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logtag.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/tls.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/trace.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/va_intel.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/version.hpp
+#13 97.98 -- Installing: /opt/opencv/include/opencv4/opencv2/core/vsx_utils.hpp
+#13 97.98 -- Installing: /opt/opencv/share/licenses/opencv4/SoftFloat-COPYING.txt
+#13 97.98 -- Installing: /opt/opencv/lib/libopencv_imgproc.a
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/bindings.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/detail/gcgraph.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/hal/hal.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/hal/interface.h
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/imgproc.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/imgproc_c.h
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/segmentation.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgproc/types_c.h
+#13 98.00 -- Installing: /opt/opencv/lib/libopencv_video.a
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video/background_segm.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video/detail/tracking.detail.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video/legacy/constants_c.h
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video/tracking.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/video/video.hpp
+#13 98.00 -- Installing: /opt/opencv/lib/libopencv_imgcodecs.a
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/imgcodecs.hpp
+#13 98.00 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/imgcodecs_c.h
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/ios.h
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/legacy/constants_c.h
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/imgcodecs/macosx.h
+#13 98.01 -- Installing: /opt/opencv/lib/libopencv_videoio.a
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio.hpp
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/cap_ios.h
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/legacy/constants_c.h
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/registry.hpp
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/videoio.hpp
+#13 98.01 -- Installing: /opt/opencv/include/opencv4/opencv2/videoio/videoio_c.h
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye_tree_eyeglasses.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface_extended.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt2.xml
+#13 98.01 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt_tree.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_default.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_fullbody.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lefteye_2splits.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_license_plate_rus_16stages.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lowerbody.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_profileface.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_righteye_2splits.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_russian_plate_number.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_smile.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_upperbody.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalcatface.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface.xml
+#13 98.02 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface_improved.xml
+#13 98.03 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_profileface.xml
+#13 98.03 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_silverware.xml
+#13 98.03 make: Leaving directory '/root/build'
+#13 DONE 98.2s
+
+#14 [test  3/11] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev     cmake     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+#14 CACHED
+
+#15 [frontend 2/3] RUN set -xeu && 	git clone https://github.com/piotrpdev/oko.git /root/oko
+#15 CACHED
+
+#16 [frontend 3/3] RUN set -xeu && 	npm --prefix=/root/oko/frontend ci && 	npm --prefix=/root/oko/frontend run build && 	mkdir -p /root/oko/backend/static && 	cp -r /root/oko/frontend/dist/* /root/oko/backend/static/
+#16 CACHED
+
+#17 [test  4/11] RUN set -xeu &&     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
+#17 CACHED
+
+#18 [test  5/11] COPY --from=backend /opt/opencv /opt/opencv
+#18 DONE 0.3s
+
+#19 [test  6/11] COPY --from=frontend /root/oko /root/oko
+#19 DONE 4.9s
+
+#20 [test  7/11] RUN set -xeu && 	ls /opt/opencv/lib && 	ls /opt/opencv/lib/opencv4/3rdparty && 	ls /usr/lib/x86_64-linux-gnu && 	ls /opt/opencv/include && 	ls /opt/opencv/include/opencv4 && 	ls /usr/include/x86_64-linux-gnu
+#20 0.312 + ls /opt/opencv/lib
+#20 0.315 cmake
+#20 0.315 libopencv_core.a
+#20 0.315 libopencv_imgcodecs.a
+#20 0.315 libopencv_imgproc.a
+#20 0.315 libopencv_video.a
+#20 0.315 libopencv_videoio.a
+#20 0.315 opencv4
+#20 0.315 + ls /opt/opencv/lib/opencv4/3rdparty
+#20 0.316 libippicv.a
+#20 0.316 libippiw.a
+#20 0.316 liblibjpeg-turbo.a
+#20 0.316 liblibopenjp2.a
+#20 0.316 liblibpng.a
+#20 0.316 libzlib.a
+#20 0.316 + ls /usr/lib/x86_64-linux-gnu
+#20 0.317 Mcrt1.o
+#20 0.317 Scrt1.o
+#20 0.317 audit
+#20 0.317 bfd-plugins
+#20 0.317 crt1.o
+#20 0.317 crti.o
+#20 0.317 crtn.o
+#20 0.317 dri
+#20 0.317 e2fsprogs
+#20 0.317 engines-3
+#20 0.317 gconv
+#20 0.317 gcrt1.o
+#20 0.317 gdk-pixbuf-2.0
+#20 0.317 gio
+#20 0.317 glib-2.0
+#20 0.317 grcrt1.o
+#20 0.317 icu
+#20 0.317 krb5
+#20 0.317 ld-linux-x86-64.so.2
+#20 0.317 ldscripts
+#20 0.317 libBrokenLocale.a
+#20 0.317 libBrokenLocale.so
+#20 0.317 libBrokenLocale.so.1
+#20 0.317 libLLVM-14.0.0.so.1
+#20 0.317 libLLVM-14.so
+#20 0.317 libLLVM-14.so.1
+#20 0.317 libLLVM-15.so
+#20 0.317 libLLVM-15.so.1
+#20 0.317 libOpenCL.so.1
+#20 0.317 libOpenCL.so.1.0.0
+#20 0.317 libX11-xcb.so.1
+#20 0.317 libX11-xcb.so.1.0.0
+#20 0.317 libX11.so.6
+#20 0.317 libX11.so.6.4.0
+#20 0.317 libXau.so.6
+#20 0.317 libXau.so.6.0.0
+#20 0.317 libXdmcp.so.6
+#20 0.317 libXdmcp.so.6.0.0
+#20 0.317 libXext.so.6
+#20 0.317 libXext.so.6.4.0
+#20 0.317 libXfixes.so.3
+#20 0.317 libXfixes.so.3.1.0
+#20 0.317 libXpm.so.4
+#20 0.317 libXpm.so.4.11.0
+#20 0.317 libXrender.so.1
+#20 0.317 libXrender.so.1.3.0
+#20 0.317 libaacs.so.0
+#20 0.317 libaacs.so.0.7.2
+#20 0.317 libacl.so.1
+#20 0.317 libacl.so.1.1.2301
+#20 0.317 libanl.a
+#20 0.317 libanl.so
+#20 0.317 libanl.so.1
+#20 0.317 libaom.so.3
+#20 0.317 libaom.so.3.3.0
+#20 0.317 libapt-pkg.so.6.0
+#20 0.317 libapt-pkg.so.6.0.0
+#20 0.317 libapt-private.so.0.0
+#20 0.317 libapt-private.so.0.0.0
+#20 0.317 libarchive.so.13
+#20 0.317 libarchive.so.13.6.0
+#20 0.317 libasan.so.6
+#20 0.317 libasan.so.6.0.0
+#20 0.317 libatomic.so.1
+#20 0.317 libatomic.so.1.2.0
+#20 0.317 libattr.so.1
+#20 0.317 libattr.so.1.1.2501
+#20 0.317 libaudit.so.1
+#20 0.317 libaudit.so.1.0.0
+#20 0.317 libavcodec.a
+#20 0.317 libavcodec.so
+#20 0.317 libavcodec.so.58
+#20 0.317 libavcodec.so.58.134.100
+#20 0.317 libavformat.a
+#20 0.317 libavformat.so
+#20 0.317 libavformat.so.58
+#20 0.317 libavformat.so.58.76.100
+#20 0.317 libavutil.a
+#20 0.317 libavutil.so
+#20 0.317 libavutil.so.56
+#20 0.317 libavutil.so.56.70.100
+#20 0.317 libbdplus.so.0
+#20 0.317 libbdplus.so.0.2.0
+#20 0.317 libbfd-2.38-system.so
+#20 0.317 libblkid.so.1
+#20 0.317 libblkid.so.1.1.0
+#20 0.317 libbluray.so.2
+#20 0.317 libbluray.so.2.4.1
+#20 0.317 libbrotlicommon.so.1
+#20 0.317 libbrotlicommon.so.1.0.9
+#20 0.317 libbrotlidec.so.1
+#20 0.317 libbrotlidec.so.1.0.9
+#20 0.317 libbrotlienc.so.1
+#20 0.317 libbrotlienc.so.1.0.9
+#20 0.317 libbsd.so.0
+#20 0.317 libbsd.so.0.11.5
+#20 0.317 libbz2.so.1
+#20 0.317 libbz2.so.1.0
+#20 0.317 libbz2.so.1.0.4
+#20 0.317 libc.a
+#20 0.317 libc.so
+#20 0.317 libc.so.6
+#20 0.317 libc_malloc_debug.so
+#20 0.317 libc_malloc_debug.so.0
+#20 0.317 libc_nonshared.a
+#20 0.317 libcairo-gobject.so.2
+#20 0.317 libcairo-gobject.so.2.11600.0
+#20 0.317 libcairo.so.2
+#20 0.317 libcairo.so.2.11600.0
+#20 0.317 libcap-ng.so.0
+#20 0.317 libcap-ng.so.0.0.0
+#20 0.317 libcap.so.2
+#20 0.317 libcap.so.2.44
+#20 0.317 libcc1.so.0
+#20 0.317 libcc1.so.0.0.0
+#20 0.317 libchromaprint.so.1
+#20 0.317 libchromaprint.so.1.5.1
+#20 0.317 libclang-14.so
+#20 0.317 libclang-14.so.1
+#20 0.317 libclang-14.so.13
+#20 0.317 libclang-14.so.14.0.0
+#20 0.317 libclang-cpp.so.14
+#20 0.317 libcodec2.so.1.0
+#20 0.317 libcom_err.so.2
+#20 0.317 libcom_err.so.2.1
+#20 0.317 libcrypt.a
+#20 0.317 libcrypt.so
+#20 0.317 libcrypt.so.1
+#20 0.317 libcrypt.so.1.1.0
+#20 0.317 libcrypto.so.3
+#20 0.317 libctf-nobfd.so.0
+#20 0.317 libctf-nobfd.so.0.0.0
+#20 0.317 libctf.so.0
+#20 0.317 libctf.so.0.0.0
+#20 0.317 libcurl.so.4
+#20 0.317 libcurl.so.4.7.0
+#20 0.317 libcurses.a
+#20 0.317 libcurses.so
+#20 0.317 libdatrie.so.1
+#20 0.317 libdatrie.so.1.4.0
+#20 0.317 libdav1d.so.5
+#20 0.317 libdav1d.so.5.1.1
+#20 0.317 libdb-5.3.so
+#20 0.317 libdebconfclient.so.0
+#20 0.317 libdebconfclient.so.0.0.0
+#20 0.317 libdeflate.so.0
+#20 0.317 libdl.a
+#20 0.317 libdl.so.2
+#20 0.317 libdrm.so.2
+#20 0.317 libdrm.so.2.4.0
+#20 0.317 libdrm_amdgpu.so.1
+#20 0.317 libdrm_amdgpu.so.1.0.0
+#20 0.317 libdrm_intel.so.1
+#20 0.317 libdrm_intel.so.1.0.0
+#20 0.317 libdrm_nouveau.so.2
+#20 0.317 libdrm_nouveau.so.2.0.0
+#20 0.317 libdrm_radeon.so.1
+#20 0.317 libdrm_radeon.so.1.0.1
+#20 0.317 libe2p.so.2
+#20 0.317 libe2p.so.2.3
+#20 0.317 libedit.so.2
+#20 0.317 libedit.so.2.0.68
+#20 0.317 libelf-0.186.so
+#20 0.317 libelf.so.1
+#20 0.317 libexpat.so.1
+#20 0.317 libexpat.so.1.8.7
+#20 0.317 libexpatw.so.1
+#20 0.317 libexpatw.so.1.8.7
+#20 0.317 libext2fs.so.2
+#20 0.317 libext2fs.so.2.4
+#20 0.317 libffi.a
+#20 0.317 libffi.so
+#20 0.317 libffi.so.8
+#20 0.317 libffi.so.8.1.0
+#20 0.317 libffi_pic.a
+#20 0.317 libfontconfig.so.1
+#20 0.317 libfontconfig.so.1.12.0
+#20 0.317 libform.a
+#20 0.317 libform.so
+#20 0.317 libform.so.6
+#20 0.317 libform.so.6.3
+#20 0.317 libformw.a
+#20 0.317 libformw.so
+#20 0.317 libformw.so.6
+#20 0.317 libformw.so.6.3
+#20 0.317 libfreetype.so.6
+#20 0.317 libfreetype.so.6.18.1
+#20 0.317 libfribidi.so.0
+#20 0.317 libfribidi.so.0.4.0
+#20 0.317 libg.a
+#20 0.317 libgc.so.1
+#20 0.317 libgc.so.1.4.4
+#20 0.317 libgcc_s.so.1
+#20 0.317 libgccpp.so.1
+#20 0.317 libgccpp.so.1.4.1
+#20 0.317 libgcrypt.so.20
+#20 0.317 libgcrypt.so.20.3.4
+#20 0.317 libgd.so.3
+#20 0.317 libgd.so.3.0.8
+#20 0.317 libgdk_pixbuf-2.0.so.0
+#20 0.317 libgdk_pixbuf-2.0.so.0.4200.8
+#20 0.317 libgio-2.0.so.0
+#20 0.317 libgio-2.0.so.0.7200.4
+#20 0.317 libglib-2.0.so.0
+#20 0.317 libglib-2.0.so.0.7200.4
+#20 0.317 libgme.so.0
+#20 0.317 libgme.so.0.6.3
+#20 0.317 libgmodule-2.0.so.0
+#20 0.317 libgmodule-2.0.so.0.7200.4
+#20 0.317 libgmp.so.10
+#20 0.317 libgmp.so.10.4.1
+#20 0.317 libgnutls.so.30
+#20 0.317 libgnutls.so.30.31.0
+#20 0.317 libgobject-2.0.so.0
+#20 0.317 libgobject-2.0.so.0.7200.4
+#20 0.317 libgomp.so.1
+#20 0.317 libgomp.so.1.0.0
+#20 0.317 libgpg-error.so.0
+#20 0.317 libgpg-error.so.0.32.1
+#20 0.317 libgraphite2.so.2.0.0
+#20 0.317 libgraphite2.so.3
+#20 0.317 libgraphite2.so.3.2.1
+#20 0.317 libgsm.so.1
+#20 0.317 libgsm.so.1.0.19
+#20 0.317 libgssapi_krb5.so.2
+#20 0.317 libgssapi_krb5.so.2.2
+#20 0.317 libgthread-2.0.so.0
+#20 0.317 libgthread-2.0.so.0.7200.4
+#20 0.317 libharfbuzz.so.0
+#20 0.317 libharfbuzz.so.0.20704.0
+#20 0.317 libhistory.so.8
+#20 0.317 libhistory.so.8.1
+#20 0.317 libhogweed.so.6
+#20 0.317 libhogweed.so.6.4
+#20 0.317 libicudata.a
+#20 0.317 libicudata.so
+#20 0.317 libicudata.so.70
+#20 0.317 libicudata.so.70.1
+#20 0.317 libicui18n.a
+#20 0.317 libicui18n.so
+#20 0.317 libicui18n.so.70
+#20 0.317 libicui18n.so.70.1
+#20 0.317 libicuio.a
+#20 0.317 libicuio.so
+#20 0.317 libicuio.so.70
+#20 0.317 libicuio.so.70.1
+#20 0.317 libicutest.a
+#20 0.317 libicutest.so
+#20 0.317 libicutest.so.70
+#20 0.317 libicutest.so.70.1
+#20 0.317 libicutu.a
+#20 0.317 libicutu.so
+#20 0.317 libicutu.so.70
+#20 0.317 libicutu.so.70.1
+#20 0.317 libicuuc.a
+#20 0.317 libicuuc.so
+#20 0.317 libicuuc.so.70
+#20 0.317 libicuuc.so.70.1
+#20 0.317 libidn2.so.0
+#20 0.317 libidn2.so.0.3.7
+#20 0.317 libigdgmm.so.12
+#20 0.317 libigdgmm.so.12.1.0
+#20 0.317 libisl.so.23
+#20 0.317 libisl.so.23.1.0
+#20 0.317 libitm.so.1
+#20 0.317 libitm.so.1.0.0
+#20 0.317 libjbig.so.0
+#20 0.317 libjpeg.so.8
+#20 0.317 libjpeg.so.8.2.2
+#20 0.317 libjsoncpp.so.1.9.5
+#20 0.317 libjsoncpp.so.25
+#20 0.317 libk5crypto.so.3
+#20 0.317 libk5crypto.so.3.1
+#20 0.317 libkeyutils.so.1
+#20 0.317 libkeyutils.so.1.9
+#20 0.317 libkrb5.so.3
+#20 0.317 libkrb5.so.3.3
+#20 0.317 libkrb5support.so.0
+#20 0.317 libkrb5support.so.0.1
+#20 0.317 liblber-2.5.so.0
+#20 0.317 liblber-2.5.so.0.1.13
+#20 0.317 libldap-2.5.so.0
+#20 0.317 libldap-2.5.so.0.1.13
+#20 0.317 liblsan.so.0
+#20 0.317 liblsan.so.0.0.0
+#20 0.317 liblz4.so.1
+#20 0.317 liblz4.so.1.9.3
+#20 0.317 liblzma.so.5
+#20 0.317 liblzma.so.5.2.5
+#20 0.317 libm-2.35.a
+#20 0.317 libm.a
+#20 0.317 libm.so
+#20 0.317 libm.so.6
+#20 0.317 libmcheck.a
+#20 0.317 libmd.so.0
+#20 0.317 libmd.so.0.0.5
+#20 0.317 libmemusage.so
+#20 0.317 libmenu.a
+#20 0.317 libmenu.so
+#20 0.317 libmenu.so.6
+#20 0.317 libmenu.so.6.3
+#20 0.317 libmenuw.a
+#20 0.317 libmenuw.so
+#20 0.317 libmenuw.so.6
+#20 0.317 libmenuw.so.6.3
+#20 0.317 libmfx-tracer.so.1
+#20 0.317 libmfx-tracer.so.1.35
+#20 0.317 libmfx.so.1
+#20 0.317 libmfx.so.1.35
+#20 0.317 libmfxhw64.so.1
+#20 0.317 libmfxhw64.so.1.35
+#20 0.317 libmount.so.1
+#20 0.317 libmount.so.1.1.0
+#20 0.317 libmp3lame.so.0
+#20 0.317 libmp3lame.so.0.0.0
+#20 0.317 libmpc.so.3
+#20 0.317 libmpc.so.3.2.1
+#20 0.317 libmpdec++.so.2.5.1
+#20 0.317 libmpdec++.so.3
+#20 0.317 libmpdec.so.2.5.1
+#20 0.317 libmpdec.so.3
+#20 0.317 libmpfr.so.6
+#20 0.317 libmpfr.so.6.1.0
+#20 0.317 libmpg123.so.0
+#20 0.317 libmpg123.so.0.46.7
+#20 0.317 libmvec.a
+#20 0.317 libmvec.so
+#20 0.317 libmvec.so.1
+#20 0.317 libncurses++.a
+#20 0.317 libncurses++w.a
+#20 0.317 libncurses.a
+#20 0.317 libncurses.so
+#20 0.317 libncurses.so.6
+#20 0.317 libncurses.so.6.3
+#20 0.317 libncursesw.a
+#20 0.317 libncursesw.so
+#20 0.317 libncursesw.so.6
+#20 0.317 libncursesw.so.6.3
+#20 0.317 libnettle.so.8
+#20 0.317 libnettle.so.8.4
+#20 0.317 libnghttp2.so.14
+#20 0.317 libnghttp2.so.14.20.1
+#20 0.317 libnorm.so.1
+#20 0.317 libnsl.a
+#20 0.317 libnsl.so
+#20 0.317 libnsl.so.1
+#20 0.317 libnsl.so.2
+#20 0.317 libnsl.so.2.0.1
+#20 0.317 libnss_compat.so
+#20 0.317 libnss_compat.so.2
+#20 0.317 libnss_dns.so.2
+#20 0.317 libnss_files.so.2
+#20 0.317 libnss_hesiod.so
+#20 0.317 libnss_hesiod.so.2
+#20 0.317 libnuma.so.1
+#20 0.317 libnuma.so.1.0.0
+#20 0.317 libobjc.so.4
+#20 0.317 libobjc.so.4.0.0
+#20 0.317 libobjc_gc.so.4
+#20 0.317 libobjc_gc.so.4.0.0
+#20 0.317 libogg.so.0
+#20 0.317 libogg.so.0.8.5
+#20 0.317 libopcodes-2.38-system.so
+#20 0.317 libopenjp2.so.2.4.0
+#20 0.317 libopenjp2.so.7
+#20 0.317 libopenmpt.so.0
+#20 0.317 libopenmpt.so.0.3.3
+#20 0.317 libopus.so.0
+#20 0.317 libopus.so.0.8.0
+#20 0.317 libp11-kit.so.0
+#20 0.317 libp11-kit.so.0.3.0
+#20 0.317 libpam.so.0
+#20 0.317 libpam.so.0.85.1
+#20 0.317 libpam_misc.so.0
+#20 0.317 libpam_misc.so.0.82.1
+#20 0.317 libpamc.so.0
+#20 0.317 libpamc.so.0.82.1
+#20 0.317 libpanel.a
+#20 0.317 libpanel.so
+#20 0.317 libpanel.so.6
+#20 0.317 libpanel.so.6.3
+#20 0.317 libpanelw.a
+#20 0.317 libpanelw.so
+#20 0.317 libpanelw.so.6
+#20 0.317 libpanelw.so.6.3
+#20 0.317 libpango-1.0.so.0
+#20 0.317 libpango-1.0.so.0.5000.6
+#20 0.317 libpangocairo-1.0.so.0
+#20 0.317 libpangocairo-1.0.so.0.5000.6
+#20 0.317 libpangoft2-1.0.so.0
+#20 0.317 libpangoft2-1.0.so.0.5000.6
+#20 0.317 libpciaccess.so.0
+#20 0.317 libpciaccess.so.0.11.1
+#20 0.317 libpcprofile.so
+#20 0.317 libpcre.so.3
+#20 0.317 libpcre.so.3.13.3
+#20 0.317 libpcre2-8.so.0
+#20 0.317 libpcre2-8.so.0.10.4
+#20 0.317 libpcreposix.so.3
+#20 0.317 libpcreposix.so.3.13.3
+#20 0.317 libpfm.so.4
+#20 0.317 libpfm.so.4.11.1
+#20 0.317 libpgm-5.3.so.0
+#20 0.317 libpgm-5.3.so.0.0.128
+#20 0.317 libpipeline.so.1
+#20 0.317 libpipeline.so.1.5.5
+#20 0.317 libpixman-1.so.0
+#20 0.317 libpixman-1.so.0.40.0
+#20 0.317 libpng16.so.16
+#20 0.317 libpng16.so.16.37.0
+#20 0.317 libprocps.so.8
+#20 0.317 libprocps.so.8.0.3
+#20 0.317 libpsl.so.5
+#20 0.317 libpsl.so.5.3.2
+#20 0.317 libpthread.a
+#20 0.317 libpthread.so.0
+#20 0.317 libquadmath.so.0
+#20 0.317 libquadmath.so.0.0.0
+#20 0.317 librabbitmq.so.4
+#20 0.317 librabbitmq.so.4.4.0
+#20 0.317 libreadline.so.8
+#20 0.317 libreadline.so.8.1
+#20 0.317 libresolv.a
+#20 0.317 libresolv.so
+#20 0.317 libresolv.so.2
+#20 0.317 librhash.so.0
+#20 0.317 librsvg-2.so.2
+#20 0.317 librsvg-2.so.2.48.0
+#20 0.317 librt.a
+#20 0.317 librt.so.1
+#20 0.317 librtmp.so.1
+#20 0.317 libsasl2.so.2
+#20 0.317 libsasl2.so.2.0.25
+#20 0.317 libseccomp.so.2
+#20 0.317 libseccomp.so.2.5.3
+#20 0.317 libselinux.so.1
+#20 0.317 libsemanage.so.2
+#20 0.317 libsepol.so.2
+#20 0.317 libshine.so.3
+#20 0.317 libshine.so.3.0.1
+#20 0.317 libsmartcols.so.1
+#20 0.317 libsmartcols.so.1.1.0
+#20 0.317 libsnappy.so.1
+#20 0.317 libsnappy.so.1.1.8
+#20 0.317 libsodium.so.23
+#20 0.317 libsodium.so.23.3.0
+#20 0.317 libsoxr.so.0
+#20 0.317 libsoxr.so.0.1.2
+#20 0.317 libspeex.so.1
+#20 0.317 libspeex.so.1.5.0
+#20 0.317 libsqlite3.so.0
+#20 0.317 libsqlite3.so.0.8.6
+#20 0.317 libsrt-gnutls.so.1.4
+#20 0.317 libsrt-gnutls.so.1.4.4
+#20 0.317 libss.so.2
+#20 0.317 libss.so.2.0
+#20 0.317 libssh-gcrypt.so.4
+#20 0.317 libssh-gcrypt.so.4.8.7
+#20 0.317 libssh.so.4
+#20 0.317 libssh.so.4.8.7
+#20 0.317 libssl.so.3
+#20 0.317 libstdc++.so.6
+#20 0.317 libstdc++.so.6.0.30
+#20 0.317 libswresample.a
+#20 0.317 libswresample.so
+#20 0.317 libswresample.so.3
+#20 0.317 libswresample.so.3.9.100
+#20 0.317 libswscale.a
+#20 0.317 libswscale.so
+#20 0.317 libswscale.so.5
+#20 0.317 libswscale.so.5.9.100
+#20 0.317 libsystemd.so.0
+#20 0.317 libsystemd.so.0.32.0
+#20 0.317 libtasn1.so.6
+#20 0.317 libtasn1.so.6.6.2
+#20 0.317 libtermcap.a
+#20 0.317 libtermcap.so
+#20 0.317 libthai.so.0
+#20 0.317 libthai.so.0.3.1
+#20 0.317 libtheora.so.0
+#20 0.317 libtheora.so.0.3.10
+#20 0.317 libtheoradec.so.1
+#20 0.317 libtheoradec.so.1.1.4
+#20 0.317 libtheoraenc.so.1
+#20 0.317 libtheoraenc.so.1.1.2
+#20 0.317 libthread_db.so
+#20 0.317 libthread_db.so.1
+#20 0.317 libtic.a
+#20 0.317 libtic.so
+#20 0.317 libtic.so.6
+#20 0.317 libtic.so.6.3
+#20 0.317 libtiff.so.5
+#20 0.317 libtiff.so.5.7.0
+#20 0.317 libtinfo.a
+#20 0.317 libtinfo.so
+#20 0.317 libtinfo.so.6
+#20 0.317 libtinfo.so.6.3
+#20 0.317 libtirpc.a
+#20 0.317 libtirpc.so
+#20 0.317 libtirpc.so.3
+#20 0.317 libtirpc.so.3.0.0
+#20 0.317 libtsan.so.0
+#20 0.317 libtsan.so.0.0.0
+#20 0.317 libtwolame.so.0
+#20 0.317 libtwolame.so.0.0.0
+#20 0.317 libubsan.so.1
+#20 0.317 libubsan.so.1.0.0
+#20 0.317 libudev.so.1
+#20 0.317 libudev.so.1.7.2
+#20 0.317 libudfread.so.0
+#20 0.317 libudfread.so.0.1.0
+#20 0.317 libunistring.so.2
+#20 0.317 libunistring.so.2.2.0
+#20 0.317 libutil.a
+#20 0.317 libutil.so.1
+#20 0.317 libuuid.so.1
+#20 0.317 libuuid.so.1.3.0
+#20 0.317 libuv.so.1
+#20 0.317 libuv.so.1.0.0
+#20 0.317 libva-drm.so.2
+#20 0.317 libva-drm.so.2.1400.0
+#20 0.317 libva-x11.so.2
+#20 0.317 libva-x11.so.2.1400.0
+#20 0.317 libva.so.2
+#20 0.317 libva.so.2.1400.0
+#20 0.317 libvdpau.so.1
+#20 0.317 libvdpau.so.1.0.0
+#20 0.317 libvorbis.so.0
+#20 0.317 libvorbis.so.0.4.9
+#20 0.317 libvorbisenc.so.2
+#20 0.317 libvorbisenc.so.2.0.12
+#20 0.317 libvorbisfile.so.3
+#20 0.317 libvorbisfile.so.3.3.8
+#20 0.317 libvpx.so.7
+#20 0.317 libvpx.so.7.0
+#20 0.317 libvpx.so.7.0.0
+#20 0.317 libwebp.so.7
+#20 0.317 libwebp.so.7.1.3
+#20 0.317 libwebpmux.so.3
+#20 0.317 libwebpmux.so.3.0.8
+#20 0.317 libx264.so.163
+#20 0.317 libx265.so.199
+#20 0.317 libxcb-dri2.so.0
+#20 0.317 libxcb-dri2.so.0.0.0
+#20 0.317 libxcb-dri3.so.0
+#20 0.317 libxcb-dri3.so.0.0.0
+#20 0.317 libxcb-present.so.0
+#20 0.317 libxcb-present.so.0.0.0
+#20 0.317 libxcb-render.so.0
+#20 0.317 libxcb-render.so.0.0.0
+#20 0.317 libxcb-shm.so.0
+#20 0.317 libxcb-shm.so.0.0.0
+#20 0.317 libxcb-sync.so.1
+#20 0.317 libxcb-sync.so.1.0.0
+#20 0.317 libxcb-xfixes.so.0
+#20 0.317 libxcb-xfixes.so.0.0.0
+#20 0.317 libxcb.so.1
+#20 0.317 libxcb.so.1.1.0
+#20 0.317 libxml2.a
+#20 0.317 libxml2.so
+#20 0.317 libxml2.so.2
+#20 0.317 libxml2.so.2.9.13
+#20 0.317 libxshmfence.so.1
+#20 0.317 libxshmfence.so.1.0.0
+#20 0.317 libxvidcore.so.4
+#20 0.317 libxvidcore.so.4.3
+#20 0.317 libxxhash.so.0
+#20 0.317 libxxhash.so.0.8.1
+#20 0.317 libyaml-0.so.2
+#20 0.317 libyaml-0.so.2.0.6
+#20 0.317 libz.so.1
+#20 0.317 libz.so.1.2.11
+#20 0.317 libz3.so
+#20 0.317 libz3.so.4
+#20 0.317 libzmq.so.5
+#20 0.317 libzmq.so.5.2.4
+#20 0.317 libzstd.so.1
+#20 0.317 libzstd.so.1.4.8
+#20 0.317 libzvbi-chains.so.0
+#20 0.317 libzvbi-chains.so.0.0.0
+#20 0.317 libzvbi.so.0
+#20 0.317 libzvbi.so.0.13.2
+#20 0.317 mfx
+#20 0.317 ossl-modules
+#20 0.317 perl-base
+#20 0.317 pkgconfig
+#20 0.317 rcrt1.o
+#20 0.317 sasl2
+#20 0.317 security
+#20 0.317 vdpau
+#20 0.317 xml2Conf.sh
+#20 0.317 + ls /opt/opencv/include
+#20 0.318 opencv4
+#20 0.318 + ls /opt/opencv/include/opencv4
+#20 0.319 opencv2
+#20 0.319 + ls /usr/include/x86_64-linux-gnu
+#20 0.320 a.out.h
+#20 0.320 asm
+#20 0.320 bits
+#20 0.320 c++
+#20 0.320 ffi.h
+#20 0.320 ffitarget.h
+#20 0.320 fpu_control.h
+#20 0.320 gnu
+#20 0.320 ieee754.h
+#20 0.320 libavcodec
+#20 0.320 libavformat
+#20 0.320 libavutil
+#20 0.320 libswresample
+#20 0.320 libswscale
+#20 0.320 sys
+#20 DONE 0.4s
+
+#21 [test  8/11] RUN set -xeu && 	cd /root/oko/backend && 	cargo build
+#21 0.428 + cd /root/oko/backend
+#21 0.428 + cargo build
+#21 0.492     Updating crates.io index
+#21 3.574  Downloading crates ...
+#21 3.904   Downloaded equivalent v1.0.1
+#21 3.937   Downloaded icu_provider_macros v1.5.0
+#21 3.939   Downloaded foreign-types v0.3.2
+#21 3.960   Downloaded zerofrom v0.1.5
+#21 3.963   Downloaded http-body v1.0.1
+#21 3.967   Downloaded foreign-types-shared v0.1.1
+#21 3.969   Downloaded tower-service v0.3.3
+#21 3.978   Downloaded axum-login v0.16.0
+#21 3.981   Downloaded crc-catalog v2.4.0
+#21 3.984   Downloaded block-buffer v0.10.4
+#21 3.987   Downloaded argon2 v0.5.3
+#21 3.990   Downloaded cfg-if v1.0.0
+#21 3.994   Downloaded autocfg v1.4.0
+#21 3.999   Downloaded errno v0.3.10
+#21 4.003   Downloaded idna_adapter v1.2.0
+#21 4.008   Downloaded tower-layer v0.3.3
+#21 4.010   Downloaded httpdate v1.0.3
+#21 4.014   Downloaded lazy_static v1.5.0
+#21 4.021   Downloaded urlencoding v2.1.3
+#21 4.025   Downloaded matchers v0.1.0
+#21 4.029   Downloaded hashlink v0.9.1
+#21 4.033   Downloaded jobserver v0.1.32
+#21 4.041   Downloaded litemap v0.7.4
+#21 4.047   Downloaded rust-embed-impl v8.5.0
+#21 4.050   Downloaded num-conv v0.1.0
+#21 4.054   Downloaded scopeguard v1.2.0
+#21 4.059   Downloaded clang-sys v1.8.1
+#21 4.066   Downloaded icu_properties v1.5.1
+#21 4.072   Downloaded smallvec v1.13.2
+#21 4.077   Downloaded openssl-probe v0.1.5
+#21 4.080   Downloaded cc v1.2.3
+#21 4.091   Downloaded thiserror-impl v1.0.69
+#21 4.096   Downloaded thiserror-impl v2.0.6
+#21 4.100   Downloaded sqlformat v0.2.6
+#21 4.105   Downloaded spki v0.7.3
+#21 4.111   Downloaded sqlx-macros v0.8.2
+#21 4.113   Downloaded subtle v2.6.1
+#21 4.118   Downloaded sqlx-macros-core v0.8.2
+#21 4.124   Downloaded semver v1.0.23
+#21 4.129   Downloaded sqlx-sqlite v0.8.2
+#21 4.137   Downloaded serde_derive v1.0.216
+#21 4.142   Downloaded serde v1.0.216
+#21 4.149   Downloaded serde_urlencoded v0.7.1
+#21 4.155   Downloaded sha2 v0.10.8
+#21 4.161   Downloaded sha1 v0.10.6
+#21 4.165   Downloaded shlex v1.3.0
+#21 4.168   Downloaded tempfile v3.14.0
+#21 4.174   Downloaded synstructure v0.13.1
+#21 4.176   Downloaded signal-hook-registry v1.4.2
+#21 4.180   Downloaded utf-8 v0.7.6
+#21 4.183   Downloaded tinystr v0.7.6
+#21 4.187   Downloaded time-macros v0.2.19
+#21 4.193   Downloaded tinyvec v1.8.0
+#21 4.199   Downloaded ppv-lite86 v0.2.20
+#21 4.203   Downloaded tokio-native-tls v0.3.1
+#21 4.206   Downloaded tokio-tungstenite v0.24.0
+#21 4.210   Downloaded tinyvec_macros v0.1.1
+#21 4.212   Downloaded rustix v0.38.42
+#21 4.252   Downloaded parking_lot_core v0.9.10
+#21 4.257   Downloaded time v0.3.37
+#21 4.271   Downloaded rmp v0.8.14
+#21 4.277   Downloaded once_cell v1.20.2
+#21 4.281   Downloaded pkcs1 v0.7.5
+#21 4.285   Downloaded pin-utils v0.1.0
+#21 4.288   Downloaded native-tls v0.2.12
+#21 4.292   Downloaded mime_guess v2.0.5
+#21 4.295   Downloaded quote v1.0.37
+#21 4.301   Downloaded rmp-serde v1.3.0
+#21 4.305   Downloaded num-integer v0.1.46
+#21 4.308   Downloaded serde_path_to_error v0.1.16
+#21 4.312   Downloaded unicode-ident v1.0.14
+#21 4.319   Downloaded parking_lot v0.12.3
+#21 4.323   Downloaded log v0.4.22
+#21 4.328   Downloaded pin-project-lite v0.2.15
+#21 4.340   Downloaded sharded-slab v0.1.7
+#21 4.345   Downloaded rsa v0.9.7
+#21 4.354   Downloaded sqlx-mysql v0.8.2
+#21 4.363   Downloaded rand v0.8.5
+#21 4.369   Downloaded memchr v2.7.4
+#21 4.378   Downloaded mio v1.0.3
+#21 4.387   Downloaded regex-automata v0.1.10
+#21 4.394   Downloaded num-bigint-dig v0.8.4
+#21 4.401   Downloaded zerovec v0.10.4
+#21 4.410   Downloaded zerocopy v0.7.35
+#21 4.435   Downloaded nom v7.1.3
+#21 4.446   Downloaded tracing-subscriber v0.3.19
+#21 4.461   Downloaded vcpkg v0.2.15
+#21 4.524   Downloaded unicode-normalization v0.1.24
+#21 4.530   Downloaded regex v1.11.1
+#21 4.549   Downloaded regex-syntax v0.6.29
+#21 4.558   Downloaded openssl v0.10.68
+#21 4.569   Downloaded tower-http v0.6.2
+#21 4.581   Downloaded opencv-binding-generator v0.93.0
+#21 4.596   Downloaded tower v0.5.2
+#21 4.612   Downloaded regex-syntax v0.8.5
+#21 4.621   Downloaded minimal-lexical v0.2.1
+#21 4.627   Downloaded tokio-util v0.7.13
+#21 4.637   Downloaded unicode_categories v0.1.1
+#21 4.639   Downloaded url v2.5.4
+#21 4.643   Downloaded tungstenite v0.24.0
+#21 4.648   Downloaded tracing-core v0.1.33
+#21 4.652   Downloaded tracing v0.1.41
+#21 4.657   Downloaded proc-macro2 v1.0.92
+#21 4.661   Downloaded openssl-sys v0.9.104
+#21 4.668   Downloaded unicode-bidi v0.3.17
+#21 4.671   Downloaded num-traits v0.2.19
+#21 4.675   Downloaded unicode-properties v0.1.3
+#21 4.678   Downloaded regex-automata v0.4.9
+#21 4.699   Downloaded typenum v1.17.0
+#21 4.702   Downloaded tower-sessions v0.13.0
+#21 4.706   Downloaded tracing-attributes v0.1.28
+#21 4.711   Downloaded pkcs8 v0.10.2
+#21 4.715   Downloaded password-hash v0.5.0
+#21 4.718   Downloaded pem-rfc7468 v0.7.0
+#21 4.721   Downloaded matchit v0.7.3
+#21 4.724   Downloaded yoke v0.7.5
+#21 4.727   Downloaded linux-raw-sys v0.4.14
+#21 4.775   Downloaded writeable v0.5.5
+#21 4.779   Downloaded tokio v1.42.0
+#21 4.833   Downloaded walkdir v2.5.0
+#21 4.838   Downloaded zerocopy-derive v0.7.35
+#21 4.844   Downloaded whoami v1.5.2
+#21 4.847   Downloaded rust-embed v8.5.0
+#21 4.857   Downloaded lock_api v0.4.12
+#21 4.859   Downloaded thread_local v1.1.8
+#21 4.861   Downloaded axum-embed v0.1.0
+#21 4.871   Downloaded tokio-stream v0.1.17
+#21 4.876   Downloaded powerfmt v0.2.0
+#21 4.878   Downloaded paste v1.0.15
+#21 4.882   Downloaded zeroize v1.8.1
+#21 4.883   Downloaded rand_core v0.6.4
+#21 4.885   Downloaded rand_chacha v0.3.1
+#21 4.886   Downloaded password-auth v1.0.0
+#21 4.888   Downloaded parking v2.2.1
+#21 4.889   Downloaded time-core v0.1.2
+#21 4.890   Downloaded tower-sessions-sqlx-store v0.14.2
+#21 4.892   Downloaded libc v0.2.168
+#21 4.932   Downloaded thiserror v1.0.69
+#21 4.939   Downloaded pkg-config v0.3.31
+#21 4.942   Downloaded sync_wrapper v1.0.2
+#21 4.943   Downloaded rust-embed-utils v8.5.0
+#21 4.944   Downloaded mime v0.3.17
+#21 4.945   Downloaded serde_json v1.0.133
+#21 4.955   Downloaded sqlx-postgres v0.8.2
+#21 4.964   Downloaded sqlx-core v0.8.2
+#21 4.975   Downloaded syn v2.0.90
+#21 4.988   Downloaded percent-encoding v2.3.1
+#21 4.990   Downloaded num-iter v0.1.45
+#21 4.991   Downloaded md-5 v0.10.6
+#21 4.994   Downloaded utf16_iter v1.0.5
+#21 4.995   Downloaded sqlx v0.8.2
+#21 5.016   Downloaded version_check v0.9.5
+#21 5.018   Downloaded utf8_iter v1.0.4
+#21 5.020   Downloaded tokio-macros v2.4.0
+#21 5.021   Downloaded icu_properties_data v1.5.0
+#21 5.033   Downloaded zerofrom-derive v0.1.5
+#21 5.035   Downloaded chrono v0.4.39
+#21 5.044   Downloaded stringprep v0.1.5
+#21 5.047   Downloaded stable_deref_trait v1.2.0
+#21 5.048   Downloaded socket2 v0.5.8
+#21 5.051   Downloaded opencv v0.93.5
+#21 5.097   Downloaded spin v0.9.8
+#21 5.101   Downloaded unicase v2.8.0
+#21 5.103   Downloaded tower-sessions-core v0.13.0
+#21 5.104   Downloaded tower-cookies v0.10.0
+#21 5.107   Downloaded aho-corasick v1.1.3
+#21 5.114   Downloaded signature v2.2.0
+#21 5.116   Downloaded zerovec-derive v0.10.3
+#21 5.118   Downloaded yoke-derive v0.7.5
+#21 5.120   Downloaded slab v0.4.9
+#21 5.123   Downloaded ryu v1.0.18
+#21 5.128   Downloaded rustversion v1.0.18
+#21 5.132   Downloaded idna v1.0.3
+#21 5.137   Downloaded hkdf v0.12.4
+#21 5.141   Downloaded futures-util v0.3.31
+#21 5.157   Downloaded libm v0.2.11
+#21 5.167   Downloaded hyper v1.5.1
+#21 5.176   Downloaded hashbrown v0.15.2
+#21 5.183   Downloaded hashbrown v0.14.5
+#21 5.191   Downloaded axum v0.7.9
+#21 5.202   Downloaded thiserror v2.0.6
+#21 5.210   Downloaded http v1.2.0
+#21 5.215   Downloaded openssl-macros v0.1.1
+#21 5.217   Downloaded icu_collections v1.5.0
+#21 5.225   Downloaded der v0.7.9
+#21 5.234   Downloaded indexmap v2.7.0
+#21 5.240   Downloaded futures-intrusive v0.5.0
+#21 5.247   Downloaded clang v2.0.0
+#21 5.251   Downloaded base64 v0.22.1
+#21 5.257   Downloaded allocator-api2 v0.2.21
+#21 5.261   Downloaded icu_normalizer v1.5.0
+#21 5.265   Downloaded icu_locid_transform_data v1.5.0
+#21 5.268   Downloaded hyper-util v0.1.10
+#21 5.274   Downloaded flume v0.11.1
+#21 5.279   Downloaded event-listener v5.3.1
+#21 5.282   Downloaded bytes v1.9.0
+#21 5.288   Downloaded same-file v1.0.6
+#21 5.290   Downloaded tower-sessions-memory-store v0.13.0
+#21 5.291   Downloaded hmac v0.12.1
+#21 5.294   Downloaded icu_provider v1.5.0
+#21 5.297   Downloaded icu_normalizer_data v1.5.0
+#21 5.300   Downloaded icu_locid v1.5.0
+#21 5.308   Downloaded futures v0.3.31
+#21 5.314   Downloaded getrandom v0.2.15
+#21 5.318   Downloaded crossbeam-utils v0.8.20
+#21 5.322   Downloaded cookie v0.18.1
+#21 5.326   Downloaded const-oid v0.9.6
+#21 5.329   Downloaded blake2 v0.10.6
+#21 5.334   Downloaded bitflags v2.6.0
+#21 5.339   Downloaded httparse v1.9.5
+#21 5.343   Downloaded futures-executor v0.3.31
+#21 5.345   Downloaded futures-channel v0.3.31
+#21 5.348   Downloaded icu_locid_transform v1.5.0
+#21 5.351   Downloaded iana-time-zone v0.1.61
+#21 5.355   Downloaded glob v0.3.1
+#21 5.358   Downloaded generic-array v0.14.7
+#21 5.359   Downloaded displaydoc v0.2.5
+#21 5.364   Downloaded ahash v0.8.11
+#21 5.368   Downloaded write16 v1.0.0
+#21 5.369   Downloaded either v1.13.0
+#21 5.372   Downloaded dotenvy v0.15.7
+#21 5.378   Downloaded concurrent-queue v2.5.0
+#21 5.381   Downloaded byteorder v1.5.0
+#21 5.384   Downloaded base64ct v1.6.0
+#21 5.388   Downloaded http-range-header v0.4.2
+#21 5.390   Downloaded futures-sink v0.3.31
+#21 5.392   Downloaded futures-macro v0.3.31
+#21 5.394   Downloaded futures-core v0.3.31
+#21 5.397   Downloaded form_urlencoded v1.2.1
+#21 5.399   Downloaded fastrand v2.3.0
+#21 5.402   Downloaded async-trait v0.1.83
+#21 5.408   Downloaded itoa v1.0.14
+#21 5.412   Downloaded hex v0.4.3
+#21 5.415   Downloaded futures-task v0.3.31
+#21 5.417   Downloaded http-body-util v0.1.2
+#21 5.419   Downloaded home v0.5.9
+#21 5.421   Downloaded heck v0.5.0
+#21 5.423   Downloaded futures-io v0.3.31
+#21 5.424   Downloaded fnv v1.0.7
+#21 5.425   Downloaded crossbeam-queue v0.3.11
+#21 5.427   Downloaded dunce v1.0.5
+#21 5.428   Downloaded digest v0.10.7
+#21 5.431   Downloaded deranged v0.3.11
+#21 5.433   Downloaded data-encoding v2.6.0
+#21 5.434   Downloaded crypto-common v0.1.6
+#21 5.436   Downloaded crc v3.2.1
+#21 5.441   Downloaded cpufeatures v0.2.16
+#21 5.443   Downloaded axum-core v0.4.5
+#21 5.446   Downloaded atoi v2.0.0
+#21 5.449   Downloaded libsqlite3-sys v0.30.1
+#21 5.675    Compiling proc-macro2 v1.0.92
+#21 5.675    Compiling unicode-ident v1.0.14
+#21 5.675    Compiling autocfg v1.4.0
+#21 5.675    Compiling libc v0.2.168
+#21 5.680    Compiling cfg-if v1.0.0
+#21 5.682    Compiling version_check v0.9.5
+#21 5.686    Compiling memchr v2.7.4
+#21 5.686    Compiling futures-core v0.3.31
+#21 5.688    Compiling pin-project-lite v0.2.15
+#21 5.691    Compiling typenum v1.17.0
+#21 5.695    Compiling itoa v1.0.14
+#21 5.695    Compiling bytes v1.9.0
+#21 5.702    Compiling futures-io v0.3.31
+#21 5.706    Compiling futures-task v0.3.31
+#21 5.710    Compiling once_cell v1.20.2
+#21 5.717    Compiling pin-utils v0.1.0
+#21 5.727    Compiling serde v1.0.216
+#21 5.755    Compiling cpufeatures v0.2.16
+#21 5.755    Compiling stable_deref_trait v1.2.0
+#21 5.765    Compiling futures-sink v0.3.31
+#21 5.806    Compiling scopeguard v1.2.0
+#21 5.816    Compiling percent-encoding v2.3.1
+#21 5.817    Compiling byteorder v1.5.0
+#21 5.822    Compiling subtle v2.6.1
+#21 5.837    Compiling parking_lot_core v0.9.10
+#21 5.857    Compiling litemap v0.7.4
+#21 5.894    Compiling writeable v0.5.5
+#21 5.895    Compiling smallvec v1.13.2
+#21 5.985    Compiling log v0.4.22
+#21 6.031    Compiling powerfmt v0.2.0
+#21 6.046    Compiling icu_locid_transform_data v1.5.0
+#21 6.062    Compiling generic-array v0.14.7
+#21 6.135    Compiling num-conv v0.1.0
+#21 6.158    Compiling fnv v1.0.7
+#21 6.176    Compiling icu_properties_data v1.5.0
+#21 6.181    Compiling ryu v1.0.18
+#21 6.189    Compiling time-core v0.1.2
+#21 6.217    Compiling thiserror v1.0.69
+#21 6.241    Compiling utf8_iter v1.0.4
+#21 6.249    Compiling slab v0.4.9
+#21 6.280    Compiling write16 v1.0.0
+#21 6.281    Compiling time-macros v0.2.19
+#21 6.295    Compiling serde_json v1.0.133
+#21 6.303    Compiling utf16_iter v1.0.5
+#21 6.310    Compiling icu_normalizer_data v1.5.0
+#21 6.354    Compiling http v1.2.0
+#21 6.363    Compiling lock_api v0.4.12
+#21 6.370    Compiling ahash v0.8.11
+#21 6.394    Compiling tracing-core v0.1.33
+#21 6.409    Compiling form_urlencoded v1.2.1
+#21 6.416    Compiling shlex v1.3.0
+#21 6.423    Compiling crossbeam-utils v0.8.20
+#21 6.609    Compiling num-traits v0.2.19
+#21 6.644    Compiling futures-channel v0.3.31
+#21 6.712    Compiling allocator-api2 v0.2.21
+#21 6.740    Compiling vcpkg v0.2.15
+#21 6.763    Compiling tower-service v0.3.3
+#21 6.820    Compiling pkg-config v0.3.31
+#21 6.833    Compiling paste v1.0.15
+#21 6.875    Compiling quote v1.0.37
+#21 6.958    Compiling tower-layer v0.3.3
+#21 7.048    Compiling mime v0.3.17
+#21 7.113    Compiling syn v2.0.90
+#21 7.132    Compiling mio v1.0.3
+#21 7.150    Compiling socket2 v0.5.8
+#21 7.162    Compiling signal-hook-registry v1.4.2
+#21 7.209    Compiling getrandom v0.2.15
+#21 7.226    Compiling jobserver v0.1.32
+#21 7.300    Compiling rustversion v1.0.18
+#21 7.437    Compiling rand_core v0.6.4
+#21 7.612    Compiling http-body v1.0.1
+#21 7.664    Compiling cc v1.2.3
+#21 7.755    Compiling sync_wrapper v1.0.2
+#21 7.813    Compiling minimal-lexical v0.2.1
+#21 7.833    Compiling concurrent-queue v2.5.0
+#21 7.851    Compiling zerocopy v0.7.35
+#21 7.880    Compiling crc-catalog v2.4.0
+#21 7.918    Compiling parking v2.2.1
+#21 7.920    Compiling equivalent v1.0.1
+#21 7.954    Compiling hashbrown v0.15.2
+#21 7.985    Compiling unicode_categories v0.1.1
+#21 7.996    Compiling crc v3.2.1
+#21 8.111    Compiling nom v7.1.3
+#21 8.120    Compiling event-listener v5.3.1
+#21 8.164    Compiling crossbeam-queue v0.3.11
+#21 8.237    Compiling block-buffer v0.10.4
+#21 8.258    Compiling crypto-common v0.1.6
+#21 8.304    Compiling httparse v1.9.5
+#21 8.351    Compiling digest v0.10.7
+#21 8.373    Compiling glob v0.3.1
+#21 8.386    Compiling base64 v0.22.1
+#21 8.536    Compiling hex v0.4.3
+#21 8.541    Compiling sha2 v0.10.8
+#21 8.560    Compiling parking_lot v0.12.3
+#21 8.618    Compiling hashbrown v0.14.5
+#21 8.704    Compiling futures-util v0.3.31
+#21 8.855    Compiling indexmap v2.7.0
+#21 8.898    Compiling tokio v1.42.0
+#21 8.905    Compiling deranged v0.3.11
+#21 8.958    Compiling rustix v0.38.42
+#21 9.008    Compiling clang-sys v1.8.1
+#21 9.074    Compiling futures-intrusive v0.5.0
+#21 9.161    Compiling spin v0.9.8
+#21 9.354    Compiling aho-corasick v1.1.3
+#21 9.406    Compiling bitflags v2.6.0
+#21 9.546    Compiling same-file v1.0.6
+#21 9.587    Compiling hashlink v0.9.1
+#21 9.648    Compiling regex-syntax v0.8.5
+#21 9.657    Compiling linux-raw-sys v0.4.14
+#21 9.711    Compiling walkdir v2.5.0
+#21 9.796    Compiling atoi v2.0.0
+#21 9.813    Compiling flume v0.11.1
+#21 9.821    Compiling cookie v0.18.1
+#21 9.936    Compiling semver v1.0.23
+#21 9.961    Compiling time v0.3.37
+#21 9.997    Compiling httpdate v1.0.3
+#21 10.10    Compiling unicase v2.8.0
+#21 10.15    Compiling fastrand v2.3.0
+#21 10.26    Compiling sha1 v0.10.6
+#21 10.29    Compiling hmac v0.12.1
+#21 10.33    Compiling dunce v1.0.5
+#21 10.36    Compiling mime_guess v2.0.5
+#21 10.39    Compiling dotenvy v0.15.7
+#21 10.39    Compiling data-encoding v2.6.0
+#21 10.43    Compiling utf-8 v0.7.6
+#21 10.44    Compiling heck v0.5.0
+#21 10.54    Compiling libsqlite3-sys v0.30.1
+#21 10.64    Compiling clang v2.0.0
+#21 10.72    Compiling rust-embed-utils v8.5.0
+#21 10.81    Compiling regex-syntax v0.6.29
+#21 10.98    Compiling sqlformat v0.2.6
+#21 11.04    Compiling base64ct v1.6.0
+#21 11.34    Compiling rmp v0.8.14
+#21 11.47    Compiling password-hash v0.5.0
+#21 11.70    Compiling blake2 v0.10.6
+#21 12.04    Compiling lazy_static v1.5.0
+#21 12.08    Compiling matchit v0.7.3
+#21 12.11    Compiling iana-time-zone v0.1.61
+#21 12.16    Compiling thiserror v2.0.6
+#21 12.30    Compiling chrono v0.4.39
+#21 12.32    Compiling sharded-slab v0.1.7
+#21 12.56    Compiling argon2 v0.5.3
+#21 12.57    Compiling thread_local v1.1.8
+#21 12.59    Compiling urlencoding v2.1.3
+#21 12.78    Compiling regex-automata v0.4.9
+#21 12.88    Compiling tempfile v3.14.0
+#21 12.95    Compiling http-range-header v0.4.2
+#21 13.22    Compiling futures-executor v0.3.31
+#21 13.33    Compiling oko v0.1.2 (/root/oko/backend)
+#21 13.38    Compiling password-auth v1.0.0
+#21 13.47    Compiling synstructure v0.13.1
+#21 13.57    Compiling regex-automata v0.1.10
+#21 14.55    Compiling serde_derive v1.0.216
+#21 14.55    Compiling zerofrom-derive v0.1.5
+#21 14.55    Compiling yoke-derive v0.7.5
+#21 14.56    Compiling zerovec-derive v0.10.3
+#21 14.56    Compiling futures-macro v0.3.31
+#21 14.56    Compiling displaydoc v0.2.5
+#21 14.56    Compiling zerocopy-derive v0.7.35
+#21 14.57    Compiling icu_provider_macros v1.5.0
+#21 14.57    Compiling tokio-macros v2.4.0
+#21 14.60    Compiling thiserror-impl v1.0.69
+#21 15.75    Compiling tracing-attributes v0.1.28
+#21 15.95    Compiling async-trait v0.1.83
+#21 16.15    Compiling tokio-stream v0.1.17
+#21 16.71    Compiling regex v1.11.1
+#21 16.73    Compiling rust-embed-impl v8.5.0
+#21 16.90    Compiling matchers v0.1.0
+#21 16.97    Compiling thiserror-impl v2.0.6
+#21 17.03    Compiling zerofrom v0.1.5
+#21 17.15    Compiling yoke v0.7.5
+#21 17.18    Compiling ppv-lite86 v0.2.20
+#21 17.31    Compiling opencv-binding-generator v0.93.0
+#21 17.36    Compiling zerovec v0.10.4
+#21 17.75    Compiling rand_chacha v0.3.1
+#21 18.01    Compiling rand v0.8.5
+#21 18.06    Compiling rust-embed v8.5.0
+#21 18.16    Compiling tracing v0.1.41
+#21 18.39    Compiling tracing-subscriber v0.3.19
+#21 18.68    Compiling tinystr v0.7.6
+#21 18.68    Compiling icu_collections v1.5.0
+#21 18.84    Compiling icu_locid v1.5.0
+#21 18.85    Compiling tungstenite v0.24.0
+#21 19.33    Compiling icu_provider v1.5.0
+#21 19.72    Compiling icu_locid_transform v1.5.0
+#21 19.81    Compiling http-body-util v0.1.2
+#21 19.81    Compiling futures v0.3.31
+#21 20.06    Compiling axum-core v0.4.5
+#21 20.44    Compiling icu_properties v1.5.1
+#21 21.34    Compiling hyper v1.5.1
+#21 21.34    Compiling tower v0.5.2
+#21 21.34    Compiling tokio-tungstenite v0.24.0
+#21 21.35    Compiling tokio-util v0.7.13
+#21 21.36    Compiling opencv v0.93.5
+#21 21.88    Compiling tower-http v0.6.2
+#21 22.04    Compiling either v1.13.0
+#21 22.04    Compiling serde_urlencoded v0.7.1
+#21 22.34    Compiling serde_path_to_error v0.1.16
+#21 22.35    Compiling rmp-serde v1.3.0
+#21 22.51    Compiling hyper-util v0.1.10
+#21 22.57    Compiling icu_normalizer v1.5.0
+#21 22.93    Compiling axum-embed v0.1.0
+#21 23.26    Compiling idna_adapter v1.2.0
+#21 23.32    Compiling idna v1.0.3
+#21 23.47    Compiling axum v0.7.9
+#21 23.65    Compiling url v2.5.4
+#21 24.15    Compiling sqlx-core v0.8.2
+#21 24.82    Compiling tower-sessions-core v0.13.0
+#21 25.18    Compiling tower-cookies v0.10.0
+#21 25.43    Compiling tower-sessions-memory-store v0.13.0
+#21 25.53    Compiling tower-sessions v0.13.0
+#21 26.34    Compiling sqlx-sqlite v0.8.2
+#21 27.12    Compiling axum-login v0.16.0
+#21 27.84    Compiling sqlx-macros-core v0.8.2
+#21 28.94    Compiling sqlx-macros v0.8.2
+#21 30.92    Compiling sqlx v0.8.2
+#21 30.99    Compiling tower-sessions-sqlx-store v0.14.2
+#21 48.86     Finished `dev` profile [unoptimized + debuginfo] target(s) in 48.17s
+#21 DONE 49.4s
+
+#22 [test  9/11] RUN set -xeu &&     DEBIAN_FRONTEND=noninteractive apt-get install -y libasound2 libatk-bridge2.0-0 libatk1.0-0 	libatspi2.0-0 libcairo2 libcups2 libdbus-1-3 libdrm2 libgbm1 libglib2.0-0 libnspr4 libnss3 	libpango-1.0-0 libwayland-client0 libx11-6 libxcb1 libxcomposite1 libxdamage1 libxext6 	libxfixes3 libxkbcommon0 libxrandr2 	pkg-config libssl-dev
+#22 0.323 + DEBIAN_FRONTEND=noninteractive apt-get install -y libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libdbus-1-3 libdrm2 libgbm1 libglib2.0-0 libnspr4 libnss3 libpango-1.0-0 libwayland-client0 libx11-6 libxcb1 libxcomposite1 libxdamage1 libxext6 libxfixes3 libxkbcommon0 libxrandr2 pkg-config libssl-dev
+#22 0.367 Reading package lists...
+#22 1.173 Building dependency tree...
+#22 1.337 Reading state information...
+#22 1.504 libcairo2 is already the newest version (1.16.0-5ubuntu2).
+#22 1.504 libcairo2 set to manually installed.
+#22 1.504 libxcb1 is already the newest version (1.14-3ubuntu3).
+#22 1.504 libxcb1 set to manually installed.
+#22 1.504 libxext6 is already the newest version (2:1.3.4-1build1).
+#22 1.504 libxext6 set to manually installed.
+#22 1.504 libxfixes3 is already the newest version (1:6.0.0-1).
+#22 1.504 libxfixes3 set to manually installed.
+#22 1.504 libdrm2 is already the newest version (2.4.113-2~ubuntu0.22.04.1).
+#22 1.504 libdrm2 set to manually installed.
+#22 1.504 libglib2.0-0 is already the newest version (2.72.4-0ubuntu2.4).
+#22 1.504 libglib2.0-0 set to manually installed.
+#22 1.504 libpango-1.0-0 is already the newest version (1.50.6+ds-2ubuntu1).
+#22 1.504 libpango-1.0-0 set to manually installed.
+#22 1.504 libx11-6 is already the newest version (2:1.7.5-1ubuntu0.3).
+#22 1.504 libx11-6 set to manually installed.
+#22 1.504 The following additional packages will be installed:
+#22 1.504   alsa-topology-conf alsa-ucm-conf at-spi2-core bzip2 dbus dbus-user-session
+#22 1.504   dconf-gsettings-backend dconf-service dmsetup gir1.2-glib-2.0
+#22 1.505   gsettings-desktop-schemas libapparmor1 libargon2-1 libasound2-data
+#22 1.505   libatk1.0-data libavahi-client3 libavahi-common-data libavahi-common3
+#22 1.505   libcryptsetup12 libdconf1 libdevmapper1.02.1 libdpkg-perl
+#22 1.505   libfile-fcntllock-perl libgdbm-compat4 libgdbm6 libgirepository-1.0-1
+#22 1.505   libip4tc2 libjson-c5 libkmod2 liblocale-gettext-perl libnss-systemd
+#22 1.506   libpam-systemd libperl5.34 libwayland-server0 libxcb-randr0 libxi6 libxtst6
+#22 1.506   netbase networkd-dispatcher perl perl-modules-5.34 python3-dbus python3-gi
+#22 1.506   session-migration systemd systemd-sysv systemd-timesyncd x11-common xkb-data
+#22 1.506   xz-utils
+#22 1.507 Suggested packages:
+#22 1.507   bzip2-doc libasound2-plugins alsa-utils cups-common debian-keyring gnupg
+#22 1.507   patch git bzr gdbm-l10n libssl-doc iw | wireless-tools perl-doc
+#22 1.507   libterm-readline-gnu-perl | libterm-readline-perl-perl
+#22 1.507   libtap-harness-archive-perl dpkg-dev python-dbus-doc systemd-container
+#22 1.507   libfido2-1 libtss2-esys-3.0.2-0 libtss2-mu0 libtss2-rc0 policykit-1
+#22 1.584 The following NEW packages will be installed:
+#22 1.584   alsa-topology-conf alsa-ucm-conf at-spi2-core bzip2 dbus dbus-user-session
+#22 1.585   dconf-gsettings-backend dconf-service dmsetup gir1.2-glib-2.0
+#22 1.585   gsettings-desktop-schemas libapparmor1 libargon2-1 libasound2
+#22 1.585   libasound2-data libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data libatspi2.0-0
+#22 1.585   libavahi-client3 libavahi-common-data libavahi-common3 libcryptsetup12
+#22 1.585   libcups2 libdbus-1-3 libdconf1 libdevmapper1.02.1 libdpkg-perl
+#22 1.585   libfile-fcntllock-perl libgbm1 libgdbm-compat4 libgdbm6
+#22 1.585   libgirepository-1.0-1 libip4tc2 libjson-c5 libkmod2 liblocale-gettext-perl
+#22 1.586   libnspr4 libnss-systemd libnss3 libpam-systemd libperl5.34 libssl-dev
+#22 1.586   libwayland-client0 libwayland-server0 libxcb-randr0 libxcomposite1
+#22 1.586   libxdamage1 libxi6 libxkbcommon0 libxrandr2 libxtst6 netbase
+#22 1.586   networkd-dispatcher perl perl-modules-5.34 pkg-config python3-dbus
+#22 1.586   python3-gi session-migration systemd systemd-sysv systemd-timesyncd
+#22 1.586   x11-common xkb-data xz-utils
+#22 1.871 0 upgraded, 66 newly installed, 0 to remove and 0 not upgraded.
+#22 1.871 Need to get 20.8 MB of archives.
+#22 1.871 After this operation, 103 MB of additional disk space will be used.
+#22 1.871 Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 liblocale-gettext-perl amd64 1.07-4build3 [17.1 kB]
+#22 2.096 Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libapparmor1 amd64 3.0.4-2ubuntu2.4 [39.7 kB]
+#22 2.223 Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libargon2-1 amd64 0~20171227-0.3 [19.5 kB]
+#22 2.276 Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdevmapper1.02.1 amd64 2:1.02.175-2.1ubuntu4 [139 kB]
+#22 2.450 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libjson-c5 amd64 0.15-3~ubuntu1.22.04.2 [33.5 kB]
+#22 2.472 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcryptsetup12 amd64 2:2.4.3-1ubuntu1.2 [211 kB]
+#22 2.570 Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libip4tc2 amd64 1.8.7-1ubuntu5.2 [19.9 kB]
+#22 2.578 Get:8 http://archive.ubuntu.com/ubuntu jammy/main amd64 libkmod2 amd64 29-1ubuntu1 [48.0 kB]
+#22 2.593 Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 systemd amd64 249.11-0ubuntu3.12 [4581 kB]
+#22 2.985 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 systemd-sysv amd64 249.11-0ubuntu3.12 [10.5 kB]
+#22 2.987 Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl-modules-5.34 all 5.34.0-3ubuntu1.3 [2976 kB]
+#22 3.055 Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm6 amd64 1.23-1 [33.9 kB]
+#22 3.056 Get:13 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm-compat4 amd64 1.23-1 [6606 B]
+#22 3.056 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libperl5.34 amd64 5.34.0-3ubuntu1.3 [4820 kB]
+#22 3.158 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl amd64 5.34.0-3ubuntu1.3 [232 kB]
+#22 3.161 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libdbus-1-3 amd64 1.12.20-2ubuntu4.1 [189 kB]
+#22 3.163 Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 dbus amd64 1.12.20-2ubuntu4.1 [158 kB]
+#22 3.166 Get:18 http://archive.ubuntu.com/ubuntu jammy/main amd64 dmsetup amd64 2:1.02.175-2.1ubuntu4 [81.7 kB]
+#22 3.168 Get:19 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgirepository-1.0-1 amd64 1.72.0-1 [55.6 kB]
+#22 3.168 Get:20 http://archive.ubuntu.com/ubuntu jammy/main amd64 gir1.2-glib-2.0 amd64 1.72.0-1 [164 kB]
+#22 3.171 Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnss-systemd amd64 249.11-0ubuntu3.12 [133 kB]
+#22 3.173 Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpam-systemd amd64 249.11-0ubuntu3.12 [203 kB]
+#22 3.176 Get:23 http://archive.ubuntu.com/ubuntu jammy/main amd64 netbase all 6.3 [12.9 kB]
+#22 3.269 Get:24 http://archive.ubuntu.com/ubuntu jammy/main amd64 python3-dbus amd64 1.2.18-3build1 [99.5 kB]
+#22 3.271 Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 python3-gi amd64 3.42.1-0ubuntu1 [229 kB]
+#22 3.275 Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 networkd-dispatcher all 2.1-2ubuntu0.22.04.2 [15.8 kB]
+#22 3.275 Get:27 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 systemd-timesyncd amd64 249.11-0ubuntu3.12 [31.2 kB]
+#22 3.281 Get:28 http://archive.ubuntu.com/ubuntu jammy/main amd64 xkb-data all 2.33-1 [394 kB]
+#22 3.287 Get:29 http://archive.ubuntu.com/ubuntu jammy/main amd64 xz-utils amd64 5.2.5-2ubuntu1 [84.8 kB]
+#22 3.289 Get:30 http://archive.ubuntu.com/ubuntu jammy/main amd64 alsa-topology-conf all 1.2.5.1-2 [15.5 kB]
+#22 3.290 Get:31 http://archive.ubuntu.com/ubuntu jammy/main amd64 libasound2-data all 1.2.6.1-1ubuntu1 [19.1 kB]
+#22 3.291 Get:32 http://archive.ubuntu.com/ubuntu jammy/main amd64 libasound2 amd64 1.2.6.1-1ubuntu1 [390 kB]
+#22 3.295 Get:33 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 alsa-ucm-conf all 1.2.6.3-1ubuntu1.12 [43.5 kB]
+#22 3.382 Get:34 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxi6 amd64 2:1.8-1build1 [32.6 kB]
+#22 3.383 Get:35 http://archive.ubuntu.com/ubuntu jammy/main amd64 libatspi2.0-0 amd64 2.44.0-3 [80.9 kB]
+#22 3.387 Get:36 http://archive.ubuntu.com/ubuntu jammy/main amd64 x11-common all 1:7.7+23ubuntu2 [23.4 kB]
+#22 3.388 Get:37 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxtst6 amd64 2:1.2.3-1build4 [13.4 kB]
+#22 3.399 Get:38 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 dbus-user-session amd64 1.12.20-2ubuntu4.1 [9442 B]
+#22 3.399 Get:39 http://archive.ubuntu.com/ubuntu jammy/main amd64 libdconf1 amd64 0.40.0-3 [40.5 kB]
+#22 3.405 Get:40 http://archive.ubuntu.com/ubuntu jammy/main amd64 dconf-service amd64 0.40.0-3 [28.5 kB]
+#22 3.405 Get:41 http://archive.ubuntu.com/ubuntu jammy/main amd64 dconf-gsettings-backend amd64 0.40.0-3 [22.8 kB]
+#22 3.406 Get:42 http://archive.ubuntu.com/ubuntu jammy/main amd64 session-migration amd64 0.3.6 [9774 B]
+#22 3.411 Get:43 http://archive.ubuntu.com/ubuntu jammy/main amd64 gsettings-desktop-schemas all 42.0-1ubuntu1 [31.1 kB]
+#22 3.496 Get:44 http://archive.ubuntu.com/ubuntu jammy/main amd64 at-spi2-core amd64 2.44.0-3 [54.4 kB]
+#22 3.496 Get:45 http://archive.ubuntu.com/ubuntu jammy/main amd64 bzip2 amd64 1.0.8-5build1 [34.8 kB]
+#22 3.502 Get:46 http://archive.ubuntu.com/ubuntu jammy/main amd64 libatk1.0-data all 2.36.0-3build1 [2824 B]
+#22 3.508 Get:47 http://archive.ubuntu.com/ubuntu jammy/main amd64 libatk1.0-0 amd64 2.36.0-3build1 [51.9 kB]
+#22 3.509 Get:48 http://archive.ubuntu.com/ubuntu jammy/main amd64 libatk-bridge2.0-0 amd64 2.38.0-3 [66.6 kB]
+#22 3.513 Get:49 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libavahi-common-data amd64 0.8-5ubuntu5.2 [23.8 kB]
+#22 3.520 Get:50 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libavahi-common3 amd64 0.8-5ubuntu5.2 [23.9 kB]
+#22 3.520 Get:51 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libavahi-client3 amd64 0.8-5ubuntu5.2 [28.0 kB]
+#22 3.521 Get:52 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcups2 amd64 2.4.1op1-1ubuntu4.11 [263 kB]
+#22 3.527 Get:53 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libdpkg-perl all 1.21.1ubuntu2.3 [237 kB]
+#22 3.606 Get:54 http://archive.ubuntu.com/ubuntu jammy/main amd64 libfile-fcntllock-perl amd64 0.22-3build7 [33.9 kB]
+#22 3.612 Get:55 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libwayland-server0 amd64 1.20.0-1ubuntu0.1 [34.3 kB]
+#22 3.612 Get:56 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcb-randr0 amd64 1.14-3ubuntu3 [18.3 kB]
+#22 3.618 Get:57 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgbm1 amd64 23.2.1-1ubuntu3.1~22.04.3 [33.5 kB]
+#22 3.619 Get:58 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnspr4 amd64 2:4.35-0ubuntu0.22.04.1 [119 kB]
+#22 3.623 Get:59 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnss3 amd64 2:3.98-0ubuntu0.22.04.2 [1347 kB]
+#22 3.645 Get:60 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libssl-dev amd64 3.0.2-0ubuntu1.18 [2375 kB]
+#22 3.684 Get:61 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libwayland-client0 amd64 1.20.0-1ubuntu0.1 [25.9 kB]
+#22 3.684 Get:62 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxcomposite1 amd64 1:0.4.5-1build2 [7192 B]
+#22 3.684 Get:63 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxdamage1 amd64 1:1.1.5-2build2 [7154 B]
+#22 3.719 Get:64 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxkbcommon0 amd64 1.4.0-1 [125 kB]
+#22 3.724 Get:65 http://archive.ubuntu.com/ubuntu jammy/main amd64 libxrandr2 amd64 2:1.5.2-1build1 [20.4 kB]
+#22 3.729 Get:66 http://archive.ubuntu.com/ubuntu jammy/main amd64 pkg-config amd64 0.29.2-1ubuntu3 [48.2 kB]
+#22 3.854 debconf: delaying package configuration, since apt-utils is not installed
+#22 3.890 Fetched 20.8 MB in 2s (9736 kB/s)
+#22 3.922 Selecting previously unselected package liblocale-gettext-perl.
+#22 3.922 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 21846 files and directories currently installed.)
+#22 3.934 Preparing to unpack .../0-liblocale-gettext-perl_1.07-4build3_amd64.deb ...
+#22 3.943 Unpacking liblocale-gettext-perl (1.07-4build3) ...
+#22 4.015 Selecting previously unselected package libapparmor1:amd64.
+#22 4.017 Preparing to unpack .../1-libapparmor1_3.0.4-2ubuntu2.4_amd64.deb ...
+#22 4.036 Unpacking libapparmor1:amd64 (3.0.4-2ubuntu2.4) ...
+#22 4.105 Selecting previously unselected package libargon2-1:amd64.
+#22 4.107 Preparing to unpack .../2-libargon2-1_0~20171227-0.3_amd64.deb ...
+#22 4.115 Unpacking libargon2-1:amd64 (0~20171227-0.3) ...
+#22 4.186 Selecting previously unselected package libdevmapper1.02.1:amd64.
+#22 4.188 Preparing to unpack .../3-libdevmapper1.02.1_2%3a1.02.175-2.1ubuntu4_amd64.deb ...
+#22 4.197 Unpacking libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu4) ...
+#22 4.266 Selecting previously unselected package libjson-c5:amd64.
+#22 4.268 Preparing to unpack .../4-libjson-c5_0.15-3~ubuntu1.22.04.2_amd64.deb ...
+#22 4.277 Unpacking libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+#22 4.345 Selecting previously unselected package libcryptsetup12:amd64.
+#22 4.347 Preparing to unpack .../5-libcryptsetup12_2%3a2.4.3-1ubuntu1.2_amd64.deb ...
+#22 4.357 Unpacking libcryptsetup12:amd64 (2:2.4.3-1ubuntu1.2) ...
+#22 4.429 Selecting previously unselected package libip4tc2:amd64.
+#22 4.431 Preparing to unpack .../6-libip4tc2_1.8.7-1ubuntu5.2_amd64.deb ...
+#22 4.440 Unpacking libip4tc2:amd64 (1.8.7-1ubuntu5.2) ...
+#22 4.508 Selecting previously unselected package libkmod2:amd64.
+#22 4.510 Preparing to unpack .../7-libkmod2_29-1ubuntu1_amd64.deb ...
+#22 4.519 Unpacking libkmod2:amd64 (29-1ubuntu1) ...
+#22 4.600 Selecting previously unselected package systemd.
+#22 4.602 Preparing to unpack .../8-systemd_249.11-0ubuntu3.12_amd64.deb ...
+#22 4.622 Unpacking systemd (249.11-0ubuntu3.12) ...
+#22 4.829 Setting up libapparmor1:amd64 (3.0.4-2ubuntu2.4) ...
+#22 4.856 Setting up libargon2-1:amd64 (0~20171227-0.3) ...
+#22 4.883 Setting up libdevmapper1.02.1:amd64 (2:1.02.175-2.1ubuntu4) ...
+#22 4.911 Setting up libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+#22 4.938 Setting up libcryptsetup12:amd64 (2:2.4.3-1ubuntu1.2) ...
+#22 4.965 Setting up libip4tc2:amd64 (1.8.7-1ubuntu5.2) ...
+#22 4.991 Setting up libkmod2:amd64 (29-1ubuntu1) ...
+#22 5.019 Setting up systemd (249.11-0ubuntu3.12) ...
+#22 5.114 Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+#22 5.117 Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+#22 5.119 Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+#22 5.119 Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+#22 5.123 ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+#22 5.126 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /lib/systemd/system/systemd-pstore.service.
+#22 5.129 Initializing machine ID from random generator.
+#22 5.554 Selecting previously unselected package systemd-sysv.
+#22 5.554 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 22675 files and directories currently installed.)
+#22 5.564 Preparing to unpack .../00-systemd-sysv_249.11-0ubuntu3.12_amd64.deb ...
+#22 5.574 Unpacking systemd-sysv (249.11-0ubuntu3.12) ...
+#22 5.630 Selecting previously unselected package perl-modules-5.34.
+#22 5.632 Preparing to unpack .../01-perl-modules-5.34_5.34.0-3ubuntu1.3_all.deb ...
+#22 5.642 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.3) ...
+#22 5.942 Selecting previously unselected package libgdbm6:amd64.
+#22 5.944 Preparing to unpack .../02-libgdbm6_1.23-1_amd64.deb ...
+#22 5.953 Unpacking libgdbm6:amd64 (1.23-1) ...
+#22 6.021 Selecting previously unselected package libgdbm-compat4:amd64.
+#22 6.023 Preparing to unpack .../03-libgdbm-compat4_1.23-1_amd64.deb ...
+#22 6.032 Unpacking libgdbm-compat4:amd64 (1.23-1) ...
+#22 6.102 Selecting previously unselected package libperl5.34:amd64.
+#22 6.104 Preparing to unpack .../04-libperl5.34_5.34.0-3ubuntu1.3_amd64.deb ...
+#22 6.112 Unpacking libperl5.34:amd64 (5.34.0-3ubuntu1.3) ...
+#22 6.326 Selecting previously unselected package perl.
+#22 6.328 Preparing to unpack .../05-perl_5.34.0-3ubuntu1.3_amd64.deb ...
+#22 6.340 Unpacking perl (5.34.0-3ubuntu1.3) ...
+#22 6.415 Selecting previously unselected package libdbus-1-3:amd64.
+#22 6.417 Preparing to unpack .../06-libdbus-1-3_1.12.20-2ubuntu4.1_amd64.deb ...
+#22 6.426 Unpacking libdbus-1-3:amd64 (1.12.20-2ubuntu4.1) ...
+#22 6.509 Selecting previously unselected package dbus.
+#22 6.511 Preparing to unpack .../07-dbus_1.12.20-2ubuntu4.1_amd64.deb ...
+#22 6.525 Unpacking dbus (1.12.20-2ubuntu4.1) ...
+#22 6.605 Selecting previously unselected package dmsetup.
+#22 6.607 Preparing to unpack .../08-dmsetup_2%3a1.02.175-2.1ubuntu4_amd64.deb ...
+#22 6.617 Unpacking dmsetup (2:1.02.175-2.1ubuntu4) ...
+#22 6.685 Selecting previously unselected package libgirepository-1.0-1:amd64.
+#22 6.687 Preparing to unpack .../09-libgirepository-1.0-1_1.72.0-1_amd64.deb ...
+#22 6.696 Unpacking libgirepository-1.0-1:amd64 (1.72.0-1) ...
+#22 6.750 Selecting previously unselected package gir1.2-glib-2.0:amd64.
+#22 6.752 Preparing to unpack .../10-gir1.2-glib-2.0_1.72.0-1_amd64.deb ...
+#22 6.761 Unpacking gir1.2-glib-2.0:amd64 (1.72.0-1) ...
+#22 6.836 Selecting previously unselected package libnss-systemd:amd64.
+#22 6.838 Preparing to unpack .../11-libnss-systemd_249.11-0ubuntu3.12_amd64.deb ...
+#22 6.847 Unpacking libnss-systemd:amd64 (249.11-0ubuntu3.12) ...
+#22 6.912 Selecting previously unselected package libpam-systemd:amd64.
+#22 6.914 Preparing to unpack .../12-libpam-systemd_249.11-0ubuntu3.12_amd64.deb ...
+#22 6.923 Unpacking libpam-systemd:amd64 (249.11-0ubuntu3.12) ...
+#22 6.992 Selecting previously unselected package netbase.
+#22 6.995 Preparing to unpack .../13-netbase_6.3_all.deb ...
+#22 7.003 Unpacking netbase (6.3) ...
+#22 7.066 Selecting previously unselected package python3-dbus.
+#22 7.068 Preparing to unpack .../14-python3-dbus_1.2.18-3build1_amd64.deb ...
+#22 7.078 Unpacking python3-dbus (1.2.18-3build1) ...
+#22 7.145 Selecting previously unselected package python3-gi.
+#22 7.147 Preparing to unpack .../15-python3-gi_3.42.1-0ubuntu1_amd64.deb ...
+#22 7.156 Unpacking python3-gi (3.42.1-0ubuntu1) ...
+#22 7.236 Selecting previously unselected package networkd-dispatcher.
+#22 7.238 Preparing to unpack .../16-networkd-dispatcher_2.1-2ubuntu0.22.04.2_all.deb ...
+#22 7.246 Unpacking networkd-dispatcher (2.1-2ubuntu0.22.04.2) ...
+#22 7.321 Selecting previously unselected package systemd-timesyncd.
+#22 7.323 Preparing to unpack .../17-systemd-timesyncd_249.11-0ubuntu3.12_amd64.deb ...
+#22 7.332 Unpacking systemd-timesyncd (249.11-0ubuntu3.12) ...
+#22 7.432 Selecting previously unselected package xkb-data.
+#22 7.434 Preparing to unpack .../18-xkb-data_2.33-1_all.deb ...
+#22 7.443 Unpacking xkb-data (2.33-1) ...
+#22 7.556 Selecting previously unselected package xz-utils.
+#22 7.559 Preparing to unpack .../19-xz-utils_5.2.5-2ubuntu1_amd64.deb ...
+#22 7.568 Unpacking xz-utils (5.2.5-2ubuntu1) ...
+#22 7.623 Selecting previously unselected package alsa-topology-conf.
+#22 7.625 Preparing to unpack .../20-alsa-topology-conf_1.2.5.1-2_all.deb ...
+#22 7.634 Unpacking alsa-topology-conf (1.2.5.1-2) ...
+#22 7.690 Selecting previously unselected package libasound2-data.
+#22 7.692 Preparing to unpack .../21-libasound2-data_1.2.6.1-1ubuntu1_all.deb ...
+#22 7.701 Unpacking libasound2-data (1.2.6.1-1ubuntu1) ...
+#22 7.778 Selecting previously unselected package libasound2:amd64.
+#22 7.780 Preparing to unpack .../22-libasound2_1.2.6.1-1ubuntu1_amd64.deb ...
+#22 7.789 Unpacking libasound2:amd64 (1.2.6.1-1ubuntu1) ...
+#22 7.847 Selecting previously unselected package alsa-ucm-conf.
+#22 7.849 Preparing to unpack .../23-alsa-ucm-conf_1.2.6.3-1ubuntu1.12_all.deb ...
+#22 7.858 Unpacking alsa-ucm-conf (1.2.6.3-1ubuntu1.12) ...
+#22 7.997 Selecting previously unselected package libxi6:amd64.
+#22 7.999 Preparing to unpack .../24-libxi6_2%3a1.8-1build1_amd64.deb ...
+#22 8.008 Unpacking libxi6:amd64 (2:1.8-1build1) ...
+#22 8.071 Selecting previously unselected package libatspi2.0-0:amd64.
+#22 8.073 Preparing to unpack .../25-libatspi2.0-0_2.44.0-3_amd64.deb ...
+#22 8.083 Unpacking libatspi2.0-0:amd64 (2.44.0-3) ...
+#22 8.151 Selecting previously unselected package x11-common.
+#22 8.153 Preparing to unpack .../26-x11-common_1%3a7.7+23ubuntu2_all.deb ...
+#22 8.163 Unpacking x11-common (1:7.7+23ubuntu2) ...
+#22 8.230 Selecting previously unselected package libxtst6:amd64.
+#22 8.233 Preparing to unpack .../27-libxtst6_2%3a1.2.3-1build4_amd64.deb ...
+#22 8.242 Unpacking libxtst6:amd64 (2:1.2.3-1build4) ...
+#22 8.301 Selecting previously unselected package dbus-user-session.
+#22 8.303 Preparing to unpack .../28-dbus-user-session_1.12.20-2ubuntu4.1_amd64.deb ...
+#22 8.312 Unpacking dbus-user-session (1.12.20-2ubuntu4.1) ...
+#22 8.380 Selecting previously unselected package libdconf1:amd64.
+#22 8.382 Preparing to unpack .../29-libdconf1_0.40.0-3_amd64.deb ...
+#22 8.391 Unpacking libdconf1:amd64 (0.40.0-3) ...
+#22 8.448 Selecting previously unselected package dconf-service.
+#22 8.450 Preparing to unpack .../30-dconf-service_0.40.0-3_amd64.deb ...
+#22 8.459 Unpacking dconf-service (0.40.0-3) ...
+#22 8.515 Selecting previously unselected package dconf-gsettings-backend:amd64.
+#22 8.517 Preparing to unpack .../31-dconf-gsettings-backend_0.40.0-3_amd64.deb ...
+#22 8.526 Unpacking dconf-gsettings-backend:amd64 (0.40.0-3) ...
+#22 8.601 Selecting previously unselected package session-migration.
+#22 8.603 Preparing to unpack .../32-session-migration_0.3.6_amd64.deb ...
+#22 8.613 Unpacking session-migration (0.3.6) ...
+#22 8.672 Selecting previously unselected package gsettings-desktop-schemas.
+#22 8.675 Preparing to unpack .../33-gsettings-desktop-schemas_42.0-1ubuntu1_all.deb ...
+#22 8.684 Unpacking gsettings-desktop-schemas (42.0-1ubuntu1) ...
+#22 8.768 Selecting previously unselected package at-spi2-core.
+#22 8.770 Preparing to unpack .../34-at-spi2-core_2.44.0-3_amd64.deb ...
+#22 8.780 Unpacking at-spi2-core (2.44.0-3) ...
+#22 8.838 Selecting previously unselected package bzip2.
+#22 8.840 Preparing to unpack .../35-bzip2_1.0.8-5build1_amd64.deb ...
+#22 8.849 Unpacking bzip2 (1.0.8-5build1) ...
+#22 8.909 Selecting previously unselected package libatk1.0-data.
+#22 8.912 Preparing to unpack .../36-libatk1.0-data_2.36.0-3build1_all.deb ...
+#22 8.921 Unpacking libatk1.0-data (2.36.0-3build1) ...
+#22 8.988 Selecting previously unselected package libatk1.0-0:amd64.
+#22 8.990 Preparing to unpack .../37-libatk1.0-0_2.36.0-3build1_amd64.deb ...
+#22 9.000 Unpacking libatk1.0-0:amd64 (2.36.0-3build1) ...
+#22 9.069 Selecting previously unselected package libatk-bridge2.0-0:amd64.
+#22 9.071 Preparing to unpack .../38-libatk-bridge2.0-0_2.38.0-3_amd64.deb ...
+#22 9.081 Unpacking libatk-bridge2.0-0:amd64 (2.38.0-3) ...
+#22 9.134 Selecting previously unselected package libavahi-common-data:amd64.
+#22 9.136 Preparing to unpack .../39-libavahi-common-data_0.8-5ubuntu5.2_amd64.deb ...
+#22 9.145 Unpacking libavahi-common-data:amd64 (0.8-5ubuntu5.2) ...
+#22 9.213 Selecting previously unselected package libavahi-common3:amd64.
+#22 9.216 Preparing to unpack .../40-libavahi-common3_0.8-5ubuntu5.2_amd64.deb ...
+#22 9.225 Unpacking libavahi-common3:amd64 (0.8-5ubuntu5.2) ...
+#22 9.294 Selecting previously unselected package libavahi-client3:amd64.
+#22 9.296 Preparing to unpack .../41-libavahi-client3_0.8-5ubuntu5.2_amd64.deb ...
+#22 9.306 Unpacking libavahi-client3:amd64 (0.8-5ubuntu5.2) ...
+#22 9.375 Selecting previously unselected package libcups2:amd64.
+#22 9.377 Preparing to unpack .../42-libcups2_2.4.1op1-1ubuntu4.11_amd64.deb ...
+#22 9.386 Unpacking libcups2:amd64 (2.4.1op1-1ubuntu4.11) ...
+#22 9.444 Selecting previously unselected package libdpkg-perl.
+#22 9.446 Preparing to unpack .../43-libdpkg-perl_1.21.1ubuntu2.3_all.deb ...
+#22 9.455 Unpacking libdpkg-perl (1.21.1ubuntu2.3) ...
+#22 9.523 Selecting previously unselected package libfile-fcntllock-perl.
+#22 9.526 Preparing to unpack .../44-libfile-fcntllock-perl_0.22-3build7_amd64.deb ...
+#22 9.536 Unpacking libfile-fcntllock-perl (0.22-3build7) ...
+#22 9.606 Selecting previously unselected package libwayland-server0:amd64.
+#22 9.608 Preparing to unpack .../45-libwayland-server0_1.20.0-1ubuntu0.1_amd64.deb ...
+#22 9.618 Unpacking libwayland-server0:amd64 (1.20.0-1ubuntu0.1) ...
+#22 9.687 Selecting previously unselected package libxcb-randr0:amd64.
+#22 9.689 Preparing to unpack .../46-libxcb-randr0_1.14-3ubuntu3_amd64.deb ...
+#22 9.698 Unpacking libxcb-randr0:amd64 (1.14-3ubuntu3) ...
+#22 9.766 Selecting previously unselected package libgbm1:amd64.
+#22 9.769 Preparing to unpack .../47-libgbm1_23.2.1-1ubuntu3.1~22.04.3_amd64.deb ...
+#22 9.778 Unpacking libgbm1:amd64 (23.2.1-1ubuntu3.1~22.04.3) ...
+#22 9.845 Selecting previously unselected package libnspr4:amd64.
+#22 9.847 Preparing to unpack .../48-libnspr4_2%3a4.35-0ubuntu0.22.04.1_amd64.deb ...
+#22 9.857 Unpacking libnspr4:amd64 (2:4.35-0ubuntu0.22.04.1) ...
+#22 9.923 Selecting previously unselected package libnss3:amd64.
+#22 9.926 Preparing to unpack .../49-libnss3_2%3a3.98-0ubuntu0.22.04.2_amd64.deb ...
+#22 9.935 Unpacking libnss3:amd64 (2:3.98-0ubuntu0.22.04.2) ...
+#22 10.07 Selecting previously unselected package libssl-dev:amd64.
+#22 10.08 Preparing to unpack .../50-libssl-dev_3.0.2-0ubuntu1.18_amd64.deb ...
+#22 10.09 Unpacking libssl-dev:amd64 (3.0.2-0ubuntu1.18) ...
+#22 10.43 Selecting previously unselected package libwayland-client0:amd64.
+#22 10.43 Preparing to unpack .../51-libwayland-client0_1.20.0-1ubuntu0.1_amd64.deb ...
+#22 10.44 Unpacking libwayland-client0:amd64 (1.20.0-1ubuntu0.1) ...
+#22 10.51 Selecting previously unselected package libxcomposite1:amd64.
+#22 10.51 Preparing to unpack .../52-libxcomposite1_1%3a0.4.5-1build2_amd64.deb ...
+#22 10.52 Unpacking libxcomposite1:amd64 (1:0.4.5-1build2) ...
+#22 10.59 Selecting previously unselected package libxdamage1:amd64.
+#22 10.59 Preparing to unpack .../53-libxdamage1_1%3a1.1.5-2build2_amd64.deb ...
+#22 10.60 Unpacking libxdamage1:amd64 (1:1.1.5-2build2) ...
+#22 10.67 Selecting previously unselected package libxkbcommon0:amd64.
+#22 10.67 Preparing to unpack .../54-libxkbcommon0_1.4.0-1_amd64.deb ...
+#22 10.68 Unpacking libxkbcommon0:amd64 (1.4.0-1) ...
+#22 10.75 Selecting previously unselected package libxrandr2:amd64.
+#22 10.75 Preparing to unpack .../55-libxrandr2_2%3a1.5.2-1build1_amd64.deb ...
+#22 10.76 Unpacking libxrandr2:amd64 (2:1.5.2-1build1) ...
+#22 10.83 Selecting previously unselected package pkg-config.
+#22 10.84 Preparing to unpack .../56-pkg-config_0.29.2-1ubuntu3_amd64.deb ...
+#22 10.85 Unpacking pkg-config (0.29.2-1ubuntu3) ...
+#22 10.92 Setting up libwayland-server0:amd64 (1.20.0-1ubuntu0.1) ...
+#22 10.94 Setting up session-migration (0.3.6) ...
+#22 11.06 Created symlink /etc/systemd/user/graphical-session-pre.target.wants/session-migration.service → /usr/lib/systemd/user/session-migration.service.
+#22 11.08 Setting up systemd-sysv (249.11-0ubuntu3.12) ...
+#22 11.11 Setting up libxdamage1:amd64 (1:1.1.5-2build2) ...
+#22 11.14 Setting up libxi6:amd64 (2:1.8-1build1) ...
+#22 11.17 Setting up x11-common (1:7.7+23ubuntu2) ...
+#22 11.39 invoke-rc.d: could not determine current runlevel
+#22 11.40 invoke-rc.d: policy-rc.d denied execution of start.
+#22 11.41 Setting up libnss-systemd:amd64 (249.11-0ubuntu3.12) ...
+#22 11.43 First installation detected...
+#22 11.43 Checking NSS setup...
+#22 11.44 Setting up xkb-data (2.33-1) ...
+#22 11.47 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.3) ...
+#22 11.50 Setting up bzip2 (1.0.8-5build1) ...
+#22 11.53 Setting up libdconf1:amd64 (0.40.0-3) ...
+#22 11.56 Setting up libasound2-data (1.2.6.1-1ubuntu1) ...
+#22 11.59 Setting up libnspr4:amd64 (2:4.35-0ubuntu0.22.04.1) ...
+#22 11.62 Setting up libavahi-common-data:amd64 (0.8-5ubuntu5.2) ...
+#22 11.65 Setting up libdbus-1-3:amd64 (1.12.20-2ubuntu4.1) ...
+#22 11.67 Setting up dbus (1.12.20-2ubuntu4.1) ...
+#22 11.88 Setting up xz-utils (5.2.5-2ubuntu1) ...
+#22 11.91 update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzma.1.gz because associated file /usr/share/man/man1/xz.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/unlzma.1.gz because associated file /usr/share/man/man1/unxz.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcat.1.gz because associated file /usr/share/man/man1/xzcat.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzmore.1.gz because associated file /usr/share/man/man1/xzmore.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzless.1.gz because associated file /usr/share/man/man1/xzless.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzdiff.1.gz because associated file /usr/share/man/man1/xzdiff.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzcmp.1.gz because associated file /usr/share/man/man1/xzcmp.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzgrep.1.gz because associated file /usr/share/man/man1/xzgrep.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzegrep.1.gz because associated file /usr/share/man/man1/xzegrep.1.gz (of link group lzma) doesn't exist
+#22 11.91 update-alternatives: warning: skip creation of /usr/share/man/man1/lzfgrep.1.gz because associated file /usr/share/man/man1/xzfgrep.1.gz (of link group lzma) doesn't exist
+#22 11.92 Setting up libssl-dev:amd64 (3.0.2-0ubuntu1.18) ...
+#22 11.95 Setting up systemd-timesyncd (249.11-0ubuntu3.12) ...
+#22 12.21 Created symlink /etc/systemd/system/dbus-org.freedesktop.timesync1.service → /lib/systemd/system/systemd-timesyncd.service.
+#22 12.21 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /lib/systemd/system/systemd-timesyncd.service.
+#22 12.22 Setting up libxrandr2:amd64 (2:1.5.2-1build1) ...
+#22 12.25 Setting up libatk1.0-data (2.36.0-3build1) ...
+#22 12.28 Setting up alsa-topology-conf (1.2.5.1-2) ...
+#22 12.31 Setting up dmsetup (2:1.02.175-2.1ubuntu4) ...
+#22 12.34 Setting up libxcb-randr0:amd64 (1.14-3ubuntu3) ...
+#22 12.37 Setting up libasound2:amd64 (1.2.6.1-1ubuntu1) ...
+#22 12.40 Setting up libpam-systemd:amd64 (249.11-0ubuntu3.12) ...
+#22 12.53 Setting up libgirepository-1.0-1:amd64 (1.72.0-1) ...
+#22 12.57 Setting up netbase (6.3) ...
+#22 12.64 Setting up libatk1.0-0:amd64 (2.36.0-3build1) ...
+#22 12.67 Setting up libxcomposite1:amd64 (1:0.4.5-1build2) ...
+#22 12.70 Setting up liblocale-gettext-perl (1.07-4build3) ...
+#22 12.73 Setting up libgdbm6:amd64 (1.23-1) ...
+#22 12.76 Setting up libxkbcommon0:amd64 (1.4.0-1) ...
+#22 12.79 Setting up libwayland-client0:amd64 (1.20.0-1ubuntu0.1) ...
+#22 12.82 Setting up python3-dbus (1.2.18-3build1) ...
+#22 12.95 Setting up libgbm1:amd64 (23.2.1-1ubuntu3.1~22.04.3) ...
+#22 12.98 Setting up alsa-ucm-conf (1.2.6.3-1ubuntu1.12) ...
+#22 13.01 Setting up libxtst6:amd64 (2:1.2.3-1build4) ...
+#22 13.03 Setting up libavahi-common3:amd64 (0.8-5ubuntu5.2) ...
+#22 13.06 Setting up libnss3:amd64 (2:3.98-0ubuntu0.22.04.2) ...
+#22 13.09 Setting up libatspi2.0-0:amd64 (2.44.0-3) ...
+#22 13.12 Setting up libatk-bridge2.0-0:amd64 (2.38.0-3) ...
+#22 13.15 Setting up dbus-user-session (1.12.20-2ubuntu4.1) ...
+#22 13.19 Setting up libgdbm-compat4:amd64 (1.23-1) ...
+#22 13.22 Setting up gir1.2-glib-2.0:amd64 (1.72.0-1) ...
+#22 13.25 Setting up libavahi-client3:amd64 (0.8-5ubuntu5.2) ...
+#22 13.27 Setting up libperl5.34:amd64 (5.34.0-3ubuntu1.3) ...
+#22 13.30 Setting up dconf-service (0.40.0-3) ...
+#22 13.33 Setting up perl (5.34.0-3ubuntu1.3) ...
+#22 13.37 Setting up python3-gi (3.42.1-0ubuntu1) ...
+#22 13.53 Setting up libdpkg-perl (1.21.1ubuntu2.3) ...
+#22 13.56 Setting up libcups2:amd64 (2.4.1op1-1ubuntu4.11) ...
+#22 13.59 Setting up networkd-dispatcher (2.1-2ubuntu0.22.04.2) ...
+#22 13.71 Created symlink /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service → /lib/systemd/system/networkd-dispatcher.service.
+#22 13.72 Setting up dconf-gsettings-backend:amd64 (0.40.0-3) ...
+#22 13.75 Setting up libfile-fcntllock-perl (0.22-3build7) ...
+#22 13.78 Setting up pkg-config (0.29.2-1ubuntu3) ...
+#22 13.84 Setting up gsettings-desktop-schemas (42.0-1ubuntu1) ...
+#22 13.87 Processing triggers for libglib2.0-0:amd64 (2.72.4-0ubuntu2.4) ...
+#22 13.90 Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+#22 13.94 Setting up at-spi2-core (2.44.0-3) ...
+#22 DONE 14.2s
+
+#23 [test 10/11] RUN set -xu && 	cd /root/oko/backend && 	cargo test; exit 0
+#23 0.464 + cd /root/oko/backend
+#23 0.464 + cargo test
+#23 0.677  Downloading crates ...
+#23 1.032   Downloaded adler2 v2.0.0
+#23 1.074   Downloaded bzip2 v0.4.4
+#23 1.079   Downloaded crc32fast v1.4.2
+#23 1.082   Downloaded dirs v3.0.2
+#23 1.114   Downloaded darling_macro v0.13.4
+#23 1.121   Downloaded ident_case v1.0.1
+#23 1.123   Downloaded want v0.3.1
+#23 1.124   Downloaded sync_wrapper v0.1.2
+#23 1.129   Downloaded try-lock v0.2.5
+#23 1.141   Downloaded http-body v0.4.6
+#23 1.149   Downloaded strong v0.3.4
+#23 1.164   Downloaded dirs-sys v0.3.7
+#23 1.166   Downloaded hyper-tls v0.5.0
+#23 1.168   Downloaded strsim v0.10.0
+#23 1.171   Downloaded serde_with_macros v1.5.2
+#23 1.173   Downloaded rustls-pemfile v1.0.4
+#23 1.180   Downloaded darling v0.13.4
+#23 1.187   Downloaded ipnet v2.10.1
+#23 1.194   Downloaded base64 v0.13.1
+#23 1.204   Downloaded time v0.1.45
+#23 1.207   Downloaded zip v0.5.13
+#23 1.213   Downloaded miniz_oxide v0.8.0
+#23 1.217   Downloaded darling_core v0.13.4
+#23 1.224   Downloaded base64 v0.21.7
+#23 1.230   Downloaded http v0.2.12
+#23 1.235   Downloaded flate2 v1.0.35
+#23 1.243   Downloaded serde_with v1.14.0
+#23 1.251   Downloaded itertools v0.10.5
+#23 1.260   Downloaded reqwest v0.11.27
+#23 1.270   Downloaded hyper v0.14.31
+#23 1.281   Downloaded h2 v0.3.26
+#23 1.290   Downloaded syn v1.0.109
+#23 1.303   Downloaded playwright v0.0.20
+#23 1.318   Downloaded bzip2-sys v0.1.11+1.0.8
+#23 1.332   Downloaded encoding_rs v0.8.35
+#23 1.437    Compiling bitflags v2.6.0
+#23 1.441    Compiling futures-util v0.3.31
+#23 1.441    Compiling openssl-sys v0.9.104
+#23 1.444    Compiling foreign-types-shared v0.1.1
+#23 1.447    Compiling openssl v0.10.68
+#23 1.449    Compiling openssl-macros v0.1.1
+#23 1.449    Compiling native-tls v0.2.12
+#23 1.453    Compiling openssl-probe v0.1.5
+#23 1.461    Compiling idna v1.0.3
+#23 1.466    Compiling rustix v0.38.42
+#23 1.470    Compiling tokio-stream v0.1.17
+#23 1.470    Compiling http v0.2.12
+#23 1.478    Compiling syn v1.0.109
+#23 1.478    Compiling linux-raw-sys v0.4.14
+#23 1.478    Compiling flume v0.11.1
+#23 1.515    Compiling foreign-types v0.3.2
+#23 1.531    Compiling tokio-util v0.7.13
+#23 1.565    Compiling try-lock v0.2.5
+#23 1.642    Compiling fastrand v2.3.0
+#23 1.649    Compiling want v0.3.1
+#23 1.655    Compiling strsim v0.10.0
+#23 1.749    Compiling ident_case v1.0.1
+#23 1.779    Compiling bzip2-sys v0.1.11+1.0.8
+#23 1.781    Compiling base64 v0.21.7
+#23 1.839    Compiling encoding_rs v0.8.35
+#23 1.851    Compiling sync_wrapper v0.1.2
+#23 1.908    Compiling url v2.5.4
+#23 1.935    Compiling adler2 v2.0.0
+#23 2.009    Compiling ipnet v2.10.1
+#23 2.056    Compiling miniz_oxide v0.8.0
+#23 2.085    Compiling crc32fast v1.4.2
+#23 2.213    Compiling rustls-pemfile v1.0.4
+#23 2.239    Compiling time v0.1.45
+#23 2.315    Compiling dirs-sys v0.3.7
+#23 2.407    Compiling itertools v0.10.5
+#23 2.416    Compiling strong v0.3.4
+#23 2.453    Compiling base64 v0.13.1
+#23 2.585    Compiling http-body v0.4.6
+#23 2.630    Compiling dirs v3.0.2
+#23 2.717    Compiling flate2 v1.0.35
+#23 3.205    Compiling bzip2 v0.4.4
+#23 3.326    Compiling zip v0.5.13
+#23 3.823    Compiling tempfile v3.14.0
+#23 4.202    Compiling sqlx-core v0.8.2
+#23 4.202    Compiling futures-executor v0.3.31
+#23 4.202    Compiling h2 v0.3.26
+#23 4.334    Compiling http-body-util v0.1.2
+#23 4.334    Compiling hyper v1.5.1
+#23 4.334    Compiling tower v0.5.2
+#23 4.443    Compiling futures v0.3.31
+#23 4.545    Compiling axum-core v0.4.5
+#23 4.733    Compiling tower-http v0.6.2
+#23 4.780    Compiling darling_core v0.13.4
+#23 5.112    Compiling hyper-util v0.1.10
+#23 6.122    Compiling darling_macro v0.13.4
+#23 6.322    Compiling tungstenite v0.24.0
+#23 6.322    Compiling tokio-native-tls v0.3.1
+#23 6.412    Compiling tower-sessions-core v0.13.0
+#23 6.412    Compiling tower-cookies v0.10.0
+#23 6.412    Compiling axum-embed v0.1.0
+#23 6.463    Compiling sqlx-sqlite v0.8.2
+#23 6.950    Compiling darling v0.13.4
+#23 6.985    Compiling serde_with_macros v1.5.2
+#23 7.078    Compiling tower-sessions-memory-store v0.13.0
+#23 7.099    Compiling tokio-tungstenite v0.24.0
+#23 7.187    Compiling tower-sessions v0.13.0
+#23 7.366    Compiling axum v0.7.9
+#23 7.366    Compiling ws-utils v0.0.0 (/root/oko/backend/utils/ws-utils)
+#23 7.812    Compiling serde_with v1.14.0
+#23 8.195    Compiling hyper v0.14.31
+#23 8.409    Compiling sqlx-macros-core v0.8.2
+#23 9.440    Compiling sqlx-macros v0.8.2
+#23 10.52    Compiling axum-login v0.16.0
+#23 10.58    Compiling hyper-tls v0.5.0
+#23 10.69    Compiling reqwest v0.11.27
+#23 11.05    Compiling sqlx v0.8.2
+#23 11.11    Compiling tower-sessions-sqlx-store v0.14.2
+#23 11.49    Compiling oko v0.1.2 (/root/oko/backend)
+#23 12.11    Compiling playwright v0.0.20
+#23 29.75     Finished `test` profile [unoptimized + debuginfo] target(s) in 29.01s
+#23 29.82      Running unittests src/lib.rs (target/debug/deps/oko-07c82b928d3a393e)
+#23 29.82 
+#23 29.82 running 28 tests
+#23 30.05 test db::camera::tests::get_using_ip ... ok
+#23 30.05 test db::camera::tests::get ... ok
+#23 30.06 test db::camera::tests::update ... ok
+#23 30.08 test db::camera::tests::delete ... ok
+#23 30.08 test db::camera::tests::create ... ok
+#23 30.10 test db::camera_permission::tests::list_for_camera ... ok
+#23 30.10 test db::camera_permission::tests::list_for_camera_with_username ... ok
+#23 30.12 test db::camera_setting::tests::get ... ok
+#23 30.12 test db::camera_permission::tests::get ... ok
+#23 30.12 test db::camera::tests::list_accessible_to_user ... ok
+#23 30.16 test db::camera_setting::tests::update ... ok
+#23 30.16 test db::camera_permission::tests::update ... ok
+#23 30.16 test db::camera_setting::tests::delete ... ok
+#23 30.16 test db::camera_setting::tests::create ... ok
+#23 30.16 test db::camera_permission::tests::delete ... ok
+#23 30.16 test db::camera_permission::tests::create ... ok
+#23 30.20 test db::user::tests::create_existing ... ok
+#23 30.22 test db::user::tests::get ... ok
+#23 30.23 test db::user::tests::create ... ok
+#23 30.23 test db::user::tests::get_using_username ... ok
+#23 30.25 test db::user::tests::delete ... ok
+#23 30.26 test db::user::tests::to_redacted_clone ... ok
+#23 30.28 test db::video::tests::get ... ok
+#23 30.28 test db::user::tests::update ... ok
+#23 30.30 test db::video::tests::list_for_camera ... ok
+#23 30.30 test db::video::tests::create ... ok
+#23 30.30 test db::video::tests::delete ... ok
+#23 30.32 test db::video::tests::update ... ok
+#23 30.32 
+#23 30.32 test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s
+#23 30.32 
+#23 30.32      Running unittests src/main.rs (target/debug/deps/oko-13b09a8f75ca55e6)
+#23 30.33 
+#23 30.33 running 0 tests
+#23 30.33 
+#23 30.33 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#23 30.33 
+#23 30.33      Running tests/api.rs (target/debug/deps/api-6237c0663de291ee)
+#23 30.33 
+#23 30.33 running 0 tests
+#23 30.33 
+#23 30.33 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#23 30.33 
+#23 30.33      Running tests/app.rs (target/debug/deps/app-ea0acbeb6ae336a8)
+#23 30.33 
+#23 30.33 running 0 tests
+#23 30.33 
+#23 30.33 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#23 30.33 
+#23 30.33      Running tests/db.rs (target/debug/deps/db-cf395a4adede822c)
+#23 30.34 
+#23 30.34 running 2 tests
+#23 30.50 test user_on_delete ... ok
+#23 30.52 test camera_on_delete ... ok
+#23 30.52 
+#23 30.52 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+#23 30.52 
+#23 30.52      Running tests/utils.rs (target/debug/deps/utils-746b119b2fa42b62)
+#23 30.52 
+#23 30.52 running 0 tests
+#23 30.52 
+#23 30.52 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#23 30.52 
+#23 30.52      Running tests/web.rs (target/debug/deps/web-30f027e0f8f401f7)
+#23 30.57 
+#23 30.57 running 10 tests
+#23 30.80 test live_feed ... FAILED
+#23 30.80 test camera_add_remove ... FAILED
+#23 36.38 
+#23 41.30 chromium v878941 downloaded to /root/.cache/ms-playwright/chromium-878941
+#23 41.61 
+#23 41.69 ffmpeg v1005 downloaded to /root/.cache/ms-playwright/ffmpeg-1005
+#23 41.80 test login_and_logout ... FAILED
+#23 41.80 test camera_user_can_view ... FAILED
+#23 41.80 test home_feeds ... FAILED
+#23 41.83 test record ... FAILED
+#23 41.83 test multi_camera_record ... FAILED
+#23 41.84 test download_video ... FAILED
+#23 42.09 test home_redirect ... ok
+#23 43.66 test camera_user_permission_updates ... ok
+#23 43.66 
+#23 43.66 failures:
+#23 43.66 
+#23 43.66 ---- live_feed stdout ----
+#23 43.66 Error: Io(Os { code: 2, kind: NotFound, message: "No such file or directory" })
+#23 43.66 
+#23 43.66 ---- camera_add_remove stdout ----
+#23 43.66 Error: Io(Os { code: 2, kind: NotFound, message: "No such file or directory" })
+#23 43.66 
+#23 43.66 ---- login_and_logout stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 ---- camera_user_can_view stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 ---- home_feeds stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 ---- record stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 ---- multi_camera_record stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 ---- download_video stdout ----
+#23 43.66 Error: InitializationError
+#23 43.66 
+#23 43.66 
+#23 43.66 failures:
+#23 43.66     camera_add_remove
+#23 43.66     camera_user_can_view
+#23 43.66     download_video
+#23 43.66     home_feeds
+#23 43.66     live_feed
+#23 43.66     login_and_logout
+#23 43.66     multi_camera_record
+#23 43.66     record
+#23 43.66 
+#23 43.66 test result: FAILED. 2 passed; 8 failed; 0 ignored; 0 measured; 0 filtered out; finished in 13.09s
+#23 43.66 
+#23 43.69 error: test failed, to rerun pass `--test web`
+#23 43.71 + exit 0
+#23 DONE 44.5s
+
+#24 [test 11/11] RUN set -xeu && 	cd /root/oko/backend && 	cargo test
+#24 0.576 + cd /root/oko/backend
+#24 0.576 + cargo test
+#24 1.450     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.71s
+#24 1.464      Running unittests src/lib.rs (target/debug/deps/oko-07c82b928d3a393e)
+#24 1.466 
+#24 1.466 running 28 tests
+#24 1.960 test db::camera::tests::get ... ok
+#24 1.960 test db::camera::tests::get_using_ip ... ok
+#24 2.010 test db::camera::tests::update ... ok
+#24 2.029 test db::camera::tests::create ... ok
+#24 2.029 test db::camera::tests::delete ... ok
+#24 2.119 test db::camera::tests::list_accessible_to_user ... ok
+#24 2.163 test db::camera_permission::tests::get ... ok
+#24 2.163 test db::camera_permission::tests::list_for_camera ... ok
+#24 2.163 test db::camera_permission::tests::list_for_camera_with_username ... ok
+#24 2.163 test db::camera_setting::tests::get ... ok
+#24 2.260 test db::camera_permission::tests::update ... ok
+#24 2.260 test db::camera_setting::tests::update ... ok
+#24 2.264 test db::camera_setting::tests::create ... ok
+#24 2.264 test db::camera_setting::tests::delete ... ok
+#24 2.264 test db::camera_permission::tests::delete ... ok
+#24 2.264 test db::camera_permission::tests::create ... ok
+#24 2.373 test db::user::tests::create_existing ... ok
+#24 2.442 test db::user::tests::create ... ok
+#24 2.443 test db::user::tests::get_using_username ... ok
+#24 2.443 test db::user::tests::get ... ok
+#24 2.515 test db::user::tests::delete ... ok
+#24 2.515 test db::user::tests::to_redacted_clone ... ok
+#24 2.600 test db::user::tests::update ... ok
+#24 2.600 test db::video::tests::get ... ok
+#24 2.668 test db::video::tests::delete ... ok
+#24 2.680 test db::video::tests::create ... ok
+#24 2.695 test db::video::tests::list_for_camera ... ok
+#24 2.737 test db::video::tests::update ... ok
+#24 2.737 
+#24 2.737 test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.27s
+#24 2.737 
+#24 2.739      Running unittests src/main.rs (target/debug/deps/oko-13b09a8f75ca55e6)
+#24 2.741 
+#24 2.741 running 0 tests
+#24 2.741 
+#24 2.741 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#24 2.741 
+#24 2.741      Running tests/api.rs (target/debug/deps/api-6237c0663de291ee)
+#24 2.742 
+#24 2.742 running 0 tests
+#24 2.743 
+#24 2.743 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#24 2.743 
+#24 2.743      Running tests/app.rs (target/debug/deps/app-ea0acbeb6ae336a8)
+#24 2.744 
+#24 2.744 running 0 tests
+#24 2.744 
+#24 2.744 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#24 2.744 
+#24 2.744      Running tests/db.rs (target/debug/deps/db-cf395a4adede822c)
+#24 2.747 
+#24 2.747 running 2 tests
+#24 3.193 test user_on_delete ... ok
+#24 3.251 test camera_on_delete ... ok
+#24 3.251 
+#24 3.251 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s
+#24 3.251 
+#24 3.252      Running tests/utils.rs (target/debug/deps/utils-746b119b2fa42b62)
+#24 3.254 
+#24 3.254 running 0 tests
+#24 3.254 
+#24 3.254 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#24 3.254 
+#24 3.254      Running tests/web.rs (target/debug/deps/web-30f027e0f8f401f7)
+#24 3.273 
+#24 3.273 running 10 tests
+#24 5.746 test login_and_logout ... ok
+#24 5.824 test home_feeds ... ok
+#24 5.847 test home_redirect ... ok
+#24 6.303 test camera_add_remove ... ok
+#24 6.396 test camera_user_permission_updates ... ok
+#24 6.556 test camera_user_can_view ... ok
+#24 6.597 test record ... ok
+#24 7.542 test multi_camera_record ... ok
+#24 7.817 test live_feed ... ok
+#24 8.311 test download_video ... ok
+#24 8.311 
+#24 8.311 test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.04s
+#24 8.311 
+#24 8.324    Doc-tests oko
+#24 8.696 
+#24 8.696 running 0 tests
+#24 8.696 
+#24 8.696 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+#24 8.696 
+#24 DONE 8.8s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 12.6s done
+#25 writing image sha256:e6d2ca8fee9860a598d0876120624f050a10391e883bf1eb30f0ee065820f06e done
+#25 DONE 12.6s
