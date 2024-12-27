@@ -21,7 +21,7 @@ RUN set -xeu && \
 
 RUN set -xeu && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev cmake \
-    python3-numpy libatlas-base-dev libceres-dev libeigen3-dev libprotobuf-dev protobuf-compiler libva-dev \
+    libatlas-base-dev libceres-dev libeigen3-dev libprotobuf-dev protobuf-compiler libva-dev \
     libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
 
 ARG OPENCV_VERSION=4.8.0
