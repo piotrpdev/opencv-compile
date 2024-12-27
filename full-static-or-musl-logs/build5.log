@@ -1,0 +1,681 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ubuntu-22.04-opencv-full-build.Dockerfile
+#1 transferring dockerfile: 6.20kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [backend 1/4] FROM docker.io/library/ubuntu:22.04
+#4 DONE 0.0s
+
+#5 [backend 2/4] RUN set -xeu && 	DEBIAN_FRONTEND=noninteractive apt-get update && 	DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev cmake
+#5 CACHED
+
+#6 [backend 3/4] RUN set -xeu &&     mkdir -p /root/dist &&     curl -sSfL "https://github.com/opencv/opencv/archive/refs/tags/4.8.0.tar.gz" | tar xz -C /root/dist
+#6 CACHED
+
+#7 [backend 4/4] RUN set -xeu &&     mkdir -p /root/build &&     cmake -B /root/build -S "/root/dist/opencv-4.8.0" -D CMAKE_INSTALL_PREFIX=/opt/opencv     	-D BUILD_CUDA_STUBS=OFF     	-D BUILD_DOCS=OFF     	-D BUILD_EXAMPLES=OFF     	-D BUILD_IPP_IW=OFF     	-D BUILD_ITT=OFF     	-D BUILD_JASPER=OFF     	-D BUILD_JAVA=OFF     	-D BUILD_JPEG=OFF     	-D BUILD_OPENEXR=OFF     	-D BUILD_PERF_TESTS=OFF     	-D BUILD_PNG=OFF     	-D BUILD_PROTOBUF=OFF     	-D BUILD_SHARED_LIBS=OFF     	-D BUILD_TBB=OFF     	-D BUILD_TESTS=OFF     	-D BUILD_TIFF=OFF     	-D BUILD_WEBP=OFF     	-D BUILD_WITH_DYNAMIC_IPP=OFF     	-D BUILD_ZLIB=OFF 		-D PARALLEL_ENABLE_PLUGINS=OFF 		-D OPJ_USE_THREAD=OFF 		-D BUILD_opencv_alphamat=OFF 		-D BUILD_opencv_aruco=OFF 		-D BUILD_opencv_bgsegm=OFF 		-D BUILD_opencv_bioinspired=OFF 		-D BUILD_opencv_calib3d=OFF 		-D BUILD_opencv_ccalib=OFF 		-D BUILD_opencv_core=ON 		-D BUILD_opencv_datasets=OFF 		-D BUILD_opencv_dnn=OFF 		-D BUILD_opencv_dnn_objdetect=OFF 		-D BUILD_opencv_dnn_superres=OFF 		-D BUILD_opencv_dpm=OFF 		-D BUILD_opencv_face=OFF 		-D BUILD_opencv_features2d=OFF 		-D BUILD_opencv_flann=OFF 		-D BUILD_opencv_fuzzy=OFF 		-D BUILD_opencv_gapi=OFF 		-D BUILD_opencv_hfs=OFF 		-D BUILD_opencv_highgui=OFF 		-D BUILD_opencv_img_hash=OFF 		-D BUILD_opencv_imgcodecs=OFF 		-D BUILD_opencv_imgproc=OFF 		-D BUILD_opencv_intensity_transform=OFF 		-D BUILD_opencv_java_bindings_generator=OFF 		-D BUILD_opencv_js_bindings_generator=OFF 		-D BUILD_opencv_line_descriptor=OFF 		-D BUILD_opencv_mcc=OFF 		-D BUILD_opencv_ml=OFF 		-D BUILD_opencv_objc_bindings_generator=OFF 		-D BUILD_opencv_objdetect=OFF 		-D BUILD_opencv_optflow=OFF 		-D BUILD_opencv_phase_unwrapping=OFF 		-D BUILD_opencv_photo=OFF 		-D BUILD_opencv_plot=OFF 		-D BUILD_opencv_python_bindings_generator=OFF 		-D BUILD_opencv_python_tests=OFF 		-D BUILD_opencv_quality=OFF 		-D BUILD_opencv_rapid=OFF 		-D BUILD_opencv_reg=OFF 		-D BUILD_opencv_rgbd=OFF 		-D BUILD_opencv_saliency=OFF 		-D BUILD_opencv_sfm=OFF 		-D BUILD_opencv_shape=OFF 		-D BUILD_opencv_stereo=OFF 		-D BUILD_opencv_stitching=OFF 		-D BUILD_opencv_structured_light=OFF 		-D BUILD_opencv_superres=OFF 		-D BUILD_opencv_surface_matching=OFF 		-D BUILD_opencv_text=OFF 		-D BUILD_opencv_tracking=OFF 		-D BUILD_opencv_video=OFF 		-D BUILD_opencv_videoio=OFF 		-D BUILD_opencv_videostab=OFF 		-D BUILD_opencv_wechat_qrcode=OFF 		-D BUILD_opencv_xfeatures2d=OFF 		-D BUILD_opencv_ximgproc=OFF 		-D BUILD_opencv_xobjdetect=OFF 		-D BUILD_opencv_xphoto=OFF 		-D BUILD_opencv_freetype=OFF     	-D BUILD_opencv_apps=OFF     	-D BUILD_opencv_python2=OFF     	-D BUILD_opencv_python3=OFF     	-D CMAKE_BUILD_TYPE=Release     	-D ENABLE_CONFIG_VERIFICATION=OFF     	-D CV_ENABLE_INTRINSICS=ON     	-D ENABLE_PIC=ON     	-D INSTALL_CREATE_DISTRIB=OFF     	-D INSTALL_PYTHON_EXAMPLES=OFF     	-D INSTALL_C_EXAMPLES=OFF     	-D INSTALL_TESTS=OFF     	-D OPENCV_ENABLE_NONFREE=OFF     	-D OPENCV_FORCE_3RDPARTY_BUILD=OFF     	-D OPENCV_GENERATE_PKGCONFIG=OFF     	-D PROTOBUF_UPDATE_FILES=OFF 		-D OPENCV_DNN_OPENCL=OFF 		-D OPENCV_DNN_TFLITE=OFF 		-D OPENCV_TEST_DNN_TFLITE=OFF     	-D WITH_1394=OFF     	-D WITH_ADE=OFF     	-D WITH_ARAVIS=OFF     	-D WITH_CLP=OFF     	-D WITH_CUBLAS=OFF     	-D WITH_CUDA=OFF     	-D WITH_CUFFT=OFF     	-D WITH_EIGEN=OFF     	-D WITH_FFMPEG=OFF 		-D WITH_FLATBUFFERS=OFF 		-D WITH_FREETYPE=OFF     	-D WITH_GDAL=OFF     	-D WITH_GDCM=OFF     	-D WITH_GIGEAPI=OFF     	-D WITH_GPHOTO2=OFF     	-D WITH_GSTREAMER=OFF     	-D WITH_GSTREAMER_0_10=OFF     	-D WITH_GTK=OFF     	-D WITH_GTK_2_X=OFF     	-D WITH_HALIDE=OFF     	-D WITH_IMGCODEC_HDcR=OFF 		-D WITH_IMGCODEC_HDR=OFF     	-D WITH_IMGCODEC_PXM=OFF 		-D WITH_IMGCODEC_PFM=OFF     	-D WITH_IMGCODEC_SUNRASTER=OFF     	-D WITH_INF_ENGINE=OFF     	-D WITH_IPP=OFF     	-D WITH_ITT=OFF     	-D WITH_JASPER=OFF     	-D WITH_JPEG=OFF     	-D WITH_LAPACK=OFF     	-D WITH_LIBV4L=OFF     	-D WITH_MATLAB=OFF     	-D WITH_MFX=OFF     	-D WITH_NVCUVID=OFF     	-D WITH_OPENCL=OFF     	-D WITH_OPENCLAMDBLAS=OFF     	-D WITH_OPENCLAMDFFT=OFF     	-D WITH_OPENCL_SVM=OFF     	-D WITH_OPENEXR=OFF     	-D WITH_OPENGL=OFF     	-D WITH_OPENMP=OFF     	-D WITH_OPENNI2=OFF     	-D WITH_OPENNI=OFF     	-D WITH_OPENVX=OFF 		-D WITH_OBSENSOR=OFF 		-D WITH_OPENJPEG=OFF     	-D WITH_PNG=OFF     	-D WITH_PROTOBUF=OFF     	-D WITH_PTHREADS_PF=OFF     	-D WITH_PVAPI=OFF 		-D WITH_TESSERACT=OFF     	-D WITH_QT=OFF     	-D WITH_QUIRC=OFF     	-D WITH_TBB=OFF     	-D WITH_TIFF=OFF 		-D WITH_ZLIB=OFF     	-D WITH_UNICAP=OFF     	-D WITH_V4L=OFF     	-D WITH_VA=OFF     	-D WITH_VA_INTEL=OFF     	-D WITH_VTK=OFF     	-D WITH_WEBP=OFF     	-D WITH_XIMEA=OFF     	-D WITH_XINE=OFF &&     make -C /root/build -j`nproc` install
+#7 0.255 + mkdir -p /root/build
+#7 0.256 + cmake -B /root/build -S /root/dist/opencv-4.8.0 -D CMAKE_INSTALL_PREFIX=/opt/opencv -D BUILD_CUDA_STUBS=OFF -D BUILD_DOCS=OFF -D BUILD_EXAMPLES=OFF -D BUILD_IPP_IW=OFF -D BUILD_ITT=OFF -D BUILD_JASPER=OFF -D BUILD_JAVA=OFF -D BUILD_JPEG=OFF -D BUILD_OPENEXR=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_PNG=OFF -D BUILD_PROTOBUF=OFF -D BUILD_SHARED_LIBS=OFF -D BUILD_TBB=OFF -D BUILD_TESTS=OFF -D BUILD_TIFF=OFF -D BUILD_WEBP=OFF -D BUILD_WITH_DYNAMIC_IPP=OFF -D BUILD_ZLIB=OFF -D PARALLEL_ENABLE_PLUGINS=OFF -D OPJ_USE_THREAD=OFF -D BUILD_opencv_alphamat=OFF -D BUILD_opencv_aruco=OFF -D BUILD_opencv_bgsegm=OFF -D BUILD_opencv_bioinspired=OFF -D BUILD_opencv_calib3d=OFF -D BUILD_opencv_ccalib=OFF -D BUILD_opencv_core=ON -D BUILD_opencv_datasets=OFF -D BUILD_opencv_dnn=OFF -D BUILD_opencv_dnn_objdetect=OFF -D BUILD_opencv_dnn_superres=OFF -D BUILD_opencv_dpm=OFF -D BUILD_opencv_face=OFF -D BUILD_opencv_features2d=OFF -D BUILD_opencv_flann=OFF -D BUILD_opencv_fuzzy=OFF -D BUILD_opencv_gapi=OFF -D BUILD_opencv_hfs=OFF -D BUILD_opencv_highgui=OFF -D BUILD_opencv_img_hash=OFF -D BUILD_opencv_imgcodecs=OFF -D BUILD_opencv_imgproc=OFF -D BUILD_opencv_intensity_transform=OFF -D BUILD_opencv_java_bindings_generator=OFF -D BUILD_opencv_js_bindings_generator=OFF -D BUILD_opencv_line_descriptor=OFF -D BUILD_opencv_mcc=OFF -D BUILD_opencv_ml=OFF -D BUILD_opencv_objc_bindings_generator=OFF -D BUILD_opencv_objdetect=OFF -D BUILD_opencv_optflow=OFF -D BUILD_opencv_phase_unwrapping=OFF -D BUILD_opencv_photo=OFF -D BUILD_opencv_plot=OFF -D BUILD_opencv_python_bindings_generator=OFF -D BUILD_opencv_python_tests=OFF -D BUILD_opencv_quality=OFF -D BUILD_opencv_rapid=OFF -D BUILD_opencv_reg=OFF -D BUILD_opencv_rgbd=OFF -D BUILD_opencv_saliency=OFF -D BUILD_opencv_sfm=OFF -D BUILD_opencv_shape=OFF -D BUILD_opencv_stereo=OFF -D BUILD_opencv_stitching=OFF -D BUILD_opencv_structured_light=OFF -D BUILD_opencv_superres=OFF -D BUILD_opencv_surface_matching=OFF -D BUILD_opencv_text=OFF -D BUILD_opencv_tracking=OFF -D BUILD_opencv_video=OFF -D BUILD_opencv_videoio=OFF -D BUILD_opencv_videostab=OFF -D BUILD_opencv_wechat_qrcode=OFF -D BUILD_opencv_xfeatures2d=OFF -D BUILD_opencv_ximgproc=OFF -D BUILD_opencv_xobjdetect=OFF -D BUILD_opencv_xphoto=OFF -D BUILD_opencv_freetype=OFF -D BUILD_opencv_apps=OFF -D BUILD_opencv_python2=OFF -D BUILD_opencv_python3=OFF -D CMAKE_BUILD_TYPE=Release -D ENABLE_CONFIG_VERIFICATION=OFF -D CV_ENABLE_INTRINSICS=ON -D ENABLE_PIC=ON -D INSTALL_CREATE_DISTRIB=OFF -D INSTALL_PYTHON_EXAMPLES=OFF -D INSTALL_C_EXAMPLES=OFF -D INSTALL_TESTS=OFF -D OPENCV_ENABLE_NONFREE=OFF -D OPENCV_FORCE_3RDPARTY_BUILD=OFF -D OPENCV_GENERATE_PKGCONFIG=OFF -D PROTOBUF_UPDATE_FILES=OFF -D OPENCV_DNN_OPENCL=OFF -D OPENCV_DNN_TFLITE=OFF -D OPENCV_TEST_DNN_TFLITE=OFF -D WITH_1394=OFF -D WITH_ADE=OFF -D WITH_ARAVIS=OFF -D WITH_CLP=OFF -D WITH_CUBLAS=OFF -D WITH_CUDA=OFF -D WITH_CUFFT=OFF -D WITH_EIGEN=OFF -D WITH_FFMPEG=OFF -D WITH_FLATBUFFERS=OFF -D WITH_FREETYPE=OFF -D WITH_GDAL=OFF -D WITH_GDCM=OFF -D WITH_GIGEAPI=OFF -D WITH_GPHOTO2=OFF -D WITH_GSTREAMER=OFF -D WITH_GSTREAMER_0_10=OFF -D WITH_GTK=OFF -D WITH_GTK_2_X=OFF -D WITH_HALIDE=OFF -D WITH_IMGCODEC_HDcR=OFF -D WITH_IMGCODEC_HDR=OFF -D WITH_IMGCODEC_PXM=OFF -D WITH_IMGCODEC_PFM=OFF -D WITH_IMGCODEC_SUNRASTER=OFF -D WITH_INF_ENGINE=OFF -D WITH_IPP=OFF -D WITH_ITT=OFF -D WITH_JASPER=OFF -D WITH_JPEG=OFF -D WITH_LAPACK=OFF -D WITH_LIBV4L=OFF -D WITH_MATLAB=OFF -D WITH_MFX=OFF -D WITH_NVCUVID=OFF -D WITH_OPENCL=OFF -D WITH_OPENCLAMDBLAS=OFF -D WITH_OPENCLAMDFFT=OFF -D WITH_OPENCL_SVM=OFF -D WITH_OPENEXR=OFF -D WITH_OPENGL=OFF -D WITH_OPENMP=OFF -D WITH_OPENNI2=OFF -D WITH_OPENNI=OFF -D WITH_OPENVX=OFF -D WITH_OBSENSOR=OFF -D WITH_OPENJPEG=OFF -D WITH_PNG=OFF -D WITH_PROTOBUF=OFF -D WITH_PTHREADS_PF=OFF -D WITH_PVAPI=OFF -D WITH_TESSERACT=OFF -D WITH_QT=OFF -D WITH_QUIRC=OFF -D WITH_TBB=OFF -D WITH_TIFF=OFF -D WITH_ZLIB=OFF -D WITH_UNICAP=OFF -D WITH_V4L=OFF -D WITH_VA=OFF -D WITH_VA_INTEL=OFF -D WITH_VTK=OFF -D WITH_WEBP=OFF -D WITH_XIMEA=OFF -D WITH_XINE=OFF
+#7 0.354 -- The CXX compiler identification is Clang 14.0.0
+#7 0.388 -- The C compiler identification is GNU 11.4.0
+#7 0.395 -- Detecting CXX compiler ABI info
+#7 0.491 -- Detecting CXX compiler ABI info - done
+#7 0.496 -- Check for working CXX compiler: /usr/bin/c++ - skipped
+#7 0.497 -- Detecting CXX compile features
+#7 0.497 -- Detecting CXX compile features - done
+#7 0.499 -- Detecting C compiler ABI info
+#7 0.548 -- Detecting C compiler ABI info - done
+#7 0.554 -- Check for working C compiler: /usr/bin/cc - skipped
+#7 0.554 -- Detecting C compile features
+#7 0.555 -- Detecting C compile features - done
+#7 0.557 -- ocv_init_download: OpenCV source tree is not fetched as git repository. 3rdparty resources will be downloaded from github.com by default.
+#7 0.558 -- Detected processor: x86_64
+#7 0.573 -- Could NOT find PythonInterp (missing: PYTHON_EXECUTABLE) (Required is at least version "2.7")
+#7 0.585 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.2") 
+#7 0.590 -- Could NOT find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required is exact version "3.10.12")
+#7 0.610 Traceback (most recent call last):
+#7 0.610   File "<string>", line 1, in <module>
+#7 0.610 ModuleNotFoundError: No module named 'numpy'
+#7 0.615 -- Looking for ccache - not found
+#7 0.615 -- Performing Test HAVE_CXX_FSIGNED_CHAR
+#7 0.726 -- Performing Test HAVE_CXX_FSIGNED_CHAR - Success
+#7 0.727 -- Performing Test HAVE_C_FSIGNED_CHAR
+#7 0.779 -- Performing Test HAVE_C_FSIGNED_CHAR - Success
+#7 0.779 -- Performing Test HAVE_CXX_W
+#7 0.900 -- Performing Test HAVE_CXX_W - Success
+#7 0.900 -- Performing Test HAVE_C_W
+#7 0.955 -- Performing Test HAVE_C_W - Success
+#7 0.955 -- Performing Test HAVE_CXX_WALL
+#7 1.065 -- Performing Test HAVE_CXX_WALL - Success
+#7 1.065 -- Performing Test HAVE_C_WALL
+#7 1.117 -- Performing Test HAVE_C_WALL - Success
+#7 1.117 -- Performing Test HAVE_CXX_WRETURN_TYPE
+#7 1.225 -- Performing Test HAVE_CXX_WRETURN_TYPE - Success
+#7 1.226 -- Performing Test HAVE_C_WRETURN_TYPE
+#7 1.278 -- Performing Test HAVE_C_WRETURN_TYPE - Success
+#7 1.278 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR
+#7 1.387 -- Performing Test HAVE_CXX_WNON_VIRTUAL_DTOR - Success
+#7 1.387 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR
+#7 1.439 -- Performing Test HAVE_C_WNON_VIRTUAL_DTOR - Failed
+#7 1.440 -- Performing Test HAVE_CXX_WADDRESS
+#7 1.553 -- Performing Test HAVE_CXX_WADDRESS - Success
+#7 1.553 -- Performing Test HAVE_C_WADDRESS
+#7 1.605 -- Performing Test HAVE_C_WADDRESS - Success
+#7 1.605 -- Performing Test HAVE_CXX_WSEQUENCE_POINT
+#7 1.716 -- Performing Test HAVE_CXX_WSEQUENCE_POINT - Success
+#7 1.717 -- Performing Test HAVE_C_WSEQUENCE_POINT
+#7 1.780 -- Performing Test HAVE_C_WSEQUENCE_POINT - Success
+#7 1.780 -- Performing Test HAVE_CXX_WFORMAT
+#7 1.937 -- Performing Test HAVE_CXX_WFORMAT - Success
+#7 1.937 -- Performing Test HAVE_C_WFORMAT
+#7 1.994 -- Performing Test HAVE_C_WFORMAT - Success
+#7 1.995 -- Performing Test HAVE_CXX_WFORMAT_SECURITY
+#7 2.122 -- Performing Test HAVE_CXX_WFORMAT_SECURITY - Success
+#7 2.122 -- Performing Test HAVE_C_WFORMAT_SECURITY
+#7 2.174 -- Performing Test HAVE_C_WFORMAT_SECURITY - Success
+#7 2.175 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS
+#7 2.289 -- Performing Test HAVE_CXX_WMISSING_DECLARATIONS - Success
+#7 2.289 -- Performing Test HAVE_C_WMISSING_DECLARATIONS
+#7 2.341 -- Performing Test HAVE_C_WMISSING_DECLARATIONS - Success
+#7 2.342 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES
+#7 2.458 -- Performing Test HAVE_CXX_WMISSING_PROTOTYPES - Success
+#7 2.458 -- Performing Test HAVE_C_WMISSING_PROTOTYPES
+#7 2.509 -- Performing Test HAVE_C_WMISSING_PROTOTYPES - Success
+#7 2.509 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES
+#7 2.626 -- Performing Test HAVE_CXX_WSTRICT_PROTOTYPES - Success
+#7 2.626 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES
+#7 2.679 -- Performing Test HAVE_C_WSTRICT_PROTOTYPES - Success
+#7 2.679 -- Performing Test HAVE_CXX_WUNDEF
+#7 2.803 -- Performing Test HAVE_CXX_WUNDEF - Success
+#7 2.803 -- Performing Test HAVE_C_WUNDEF
+#7 2.853 -- Performing Test HAVE_C_WUNDEF - Success
+#7 2.854 -- Performing Test HAVE_CXX_WINIT_SELF
+#7 2.951 -- Performing Test HAVE_CXX_WINIT_SELF - Success
+#7 2.952 -- Performing Test HAVE_C_WINIT_SELF
+#7 3.000 -- Performing Test HAVE_C_WINIT_SELF - Success
+#7 3.000 -- Performing Test HAVE_CXX_WPOINTER_ARITH
+#7 3.109 -- Performing Test HAVE_CXX_WPOINTER_ARITH - Success
+#7 3.109 -- Performing Test HAVE_C_WPOINTER_ARITH
+#7 3.162 -- Performing Test HAVE_C_WPOINTER_ARITH - Success
+#7 3.162 -- Performing Test HAVE_CXX_WSHADOW
+#7 3.278 -- Performing Test HAVE_CXX_WSHADOW - Success
+#7 3.278 -- Performing Test HAVE_C_WSHADOW
+#7 3.341 -- Performing Test HAVE_C_WSHADOW - Success
+#7 3.341 -- Performing Test HAVE_CXX_WSIGN_PROMO
+#7 3.457 -- Performing Test HAVE_CXX_WSIGN_PROMO - Success
+#7 3.457 -- Performing Test HAVE_C_WSIGN_PROMO
+#7 3.509 -- Performing Test HAVE_C_WSIGN_PROMO - Failed
+#7 3.509 -- Performing Test HAVE_CXX_WUNINITIALIZED
+#7 3.622 -- Performing Test HAVE_CXX_WUNINITIALIZED - Success
+#7 3.622 -- Performing Test HAVE_C_WUNINITIALIZED
+#7 3.674 -- Performing Test HAVE_C_WUNINITIALIZED - Success
+#7 3.674 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE
+#7 3.788 -- Performing Test HAVE_CXX_WINCONSISTENT_MISSING_OVERRIDE - Success
+#7 3.788 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE
+#7 3.812 -- Performing Test HAVE_C_WINCONSISTENT_MISSING_OVERRIDE - Failed
+#7 3.813 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR
+#7 3.920 -- Performing Test HAVE_CXX_WNO_DELETE_NON_VIRTUAL_DTOR - Success
+#7 3.920 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR
+#7 3.972 -- Performing Test HAVE_C_WNO_DELETE_NON_VIRTUAL_DTOR - Failed
+#7 3.973 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#7 4.081 -- Performing Test HAVE_CXX_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Success
+#7 4.081 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS
+#7 4.129 -- Performing Test HAVE_C_WNO_UNNAMED_TYPE_TEMPLATE_ARGS - Failed
+#7 4.129 -- Performing Test HAVE_CXX_WNO_COMMENT
+#7 4.225 -- Performing Test HAVE_CXX_WNO_COMMENT - Success
+#7 4.225 -- Performing Test HAVE_C_WNO_COMMENT
+#7 4.274 -- Performing Test HAVE_C_WNO_COMMENT - Success
+#7 4.275 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#7 4.379 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Success
+#7 4.379 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION
+#7 4.431 -- Performing Test HAVE_C_WNO_DEPRECATED_ENUM_ENUM_CONVERSION - Failed
+#7 4.431 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#7 4.554 -- Performing Test HAVE_CXX_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Success
+#7 4.554 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION
+#7 4.610 -- Performing Test HAVE_C_WNO_DEPRECATED_ANON_ENUM_ENUM_CONVERSION - Failed
+#7 4.610 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION
+#7 4.733 -- Performing Test HAVE_CXX_FDIAGNOSTICS_SHOW_OPTION - Success
+#7 4.734 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION
+#7 4.790 -- Performing Test HAVE_C_FDIAGNOSTICS_SHOW_OPTION - Success
+#7 4.790 -- Performing Test HAVE_CXX_WNO_LONG_LONG
+#7 4.923 -- Performing Test HAVE_CXX_WNO_LONG_LONG - Success
+#7 4.923 -- Performing Test HAVE_C_WNO_LONG_LONG
+#7 4.978 -- Performing Test HAVE_C_WNO_LONG_LONG - Success
+#7 4.979 -- Performing Test HAVE_CXX_PTHREAD
+#7 5.120 -- Performing Test HAVE_CXX_PTHREAD - Success
+#7 5.120 -- Performing Test HAVE_C_PTHREAD
+#7 5.177 -- Performing Test HAVE_C_PTHREAD - Success
+#7 5.177 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS
+#7 5.295 -- Performing Test HAVE_CXX_QUNUSED_ARGUMENTS - Success
+#7 5.295 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS
+#7 5.317 -- Performing Test HAVE_C_QUNUSED_ARGUMENTS - Failed
+#7 5.318 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS
+#7 5.435 -- Performing Test HAVE_CXX_FFUNCTION_SECTIONS - Success
+#7 5.435 -- Performing Test HAVE_C_FFUNCTION_SECTIONS
+#7 5.489 -- Performing Test HAVE_C_FFUNCTION_SECTIONS - Success
+#7 5.490 -- Performing Test HAVE_CXX_FDATA_SECTIONS
+#7 5.604 -- Performing Test HAVE_CXX_FDATA_SECTIONS - Success
+#7 5.604 -- Performing Test HAVE_C_FDATA_SECTIONS
+#7 5.652 -- Performing Test HAVE_C_FDATA_SECTIONS - Success
+#7 5.655 -- Performing Test HAVE_CXX_MSSE (check file: cmake/checks/cpu_sse.cpp)
+#7 5.788 -- Performing Test HAVE_CXX_MSSE - Success
+#7 5.788 -- Performing Test HAVE_CXX_MSSE2 (check file: cmake/checks/cpu_sse2.cpp)
+#7 5.920 -- Performing Test HAVE_CXX_MSSE2 - Success
+#7 5.921 -- Performing Test HAVE_CXX_MSSE3 (check file: cmake/checks/cpu_sse3.cpp)
+#7 6.061 -- Performing Test HAVE_CXX_MSSE3 - Success
+#7 6.061 -- Performing Test HAVE_CXX_MSSSE3 (check file: cmake/checks/cpu_ssse3.cpp)
+#7 6.203 -- Performing Test HAVE_CXX_MSSSE3 - Success
+#7 6.203 -- Performing Test HAVE_CXX_MSSE4_1 (check file: cmake/checks/cpu_sse41.cpp)
+#7 6.341 -- Performing Test HAVE_CXX_MSSE4_1 - Success
+#7 6.342 -- Performing Test HAVE_CXX_MPOPCNT (check file: cmake/checks/cpu_popcnt.cpp)
+#7 6.439 -- Performing Test HAVE_CXX_MPOPCNT - Success
+#7 6.439 -- Performing Test HAVE_CXX_MSSE4_2 (check file: cmake/checks/cpu_sse42.cpp)
+#7 6.581 -- Performing Test HAVE_CXX_MSSE4_2 - Success
+#7 6.581 -- Performing Test HAVE_CXX_MF16C (check file: cmake/checks/cpu_fp16.cpp)
+#7 6.926 -- Performing Test HAVE_CXX_MF16C - Success
+#7 6.926 -- Performing Test HAVE_CXX_MFMA
+#7 7.022 -- Performing Test HAVE_CXX_MFMA - Success
+#7 7.022 -- Performing Test HAVE_CXX_MAVX (check file: cmake/checks/cpu_avx.cpp)
+#7 7.361 -- Performing Test HAVE_CXX_MAVX - Success
+#7 7.362 -- Performing Test HAVE_CXX_MAVX2 (check file: cmake/checks/cpu_avx2.cpp)
+#7 7.700 -- Performing Test HAVE_CXX_MAVX2 - Success
+#7 7.701 -- Performing Test HAVE_CXX_MAVX512F (check file: cmake/checks/cpu_avx512.cpp)
+#7 8.038 -- Performing Test HAVE_CXX_MAVX512F - Success
+#7 8.039 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD (check file: cmake/checks/cpu_avx512common.cpp)
+#7 8.375 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD - Success
+#7 8.376 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ (check file: cmake/checks/cpu_avx512skx.cpp)
+#7 8.716 -- Performing Test HAVE_CXX_MAVX512F_MAVX512CD_MAVX512VL_MAVX512BW_MAVX512DQ - Success
+#7 8.718 -- Performing Test HAVE_CPU_BASELINE_FLAGS
+#7 8.814 -- Performing Test HAVE_CPU_BASELINE_FLAGS - Success
+#7 8.817 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1
+#7 8.930 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_1 - Success
+#7 8.933 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2
+#7 9.054 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_SSE4_2 - Success
+#7 9.057 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16
+#7 9.179 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_FP16 - Success
+#7 9.183 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX
+#7 9.299 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX - Success
+#7 9.302 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2
+#7 9.417 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX2 - Success
+#7 9.420 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX
+#7 9.532 -- Performing Test HAVE_CPU_DISPATCH_FLAGS_AVX512_SKX - Success
+#7 9.533 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN
+#7 9.640 -- Performing Test HAVE_CXX_FVISIBILITY_HIDDEN - Success
+#7 9.641 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN
+#7 9.692 -- Performing Test HAVE_C_FVISIBILITY_HIDDEN - Success
+#7 9.692 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN
+#7 9.790 -- Performing Test HAVE_CXX_FVISIBILITY_INLINES_HIDDEN - Success
+#7 9.791 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN
+#7 9.837 -- Performing Test HAVE_C_FVISIBILITY_INLINES_HIDDEN - Failed
+#7 9.838 -- Performing Test HAVE_LINK_AS_NEEDED
+#7 9.922 -- Performing Test HAVE_LINK_AS_NEEDED - Success
+#7 9.922 -- Performing Test HAVE_LINK_NO_UNDEFINED
+#7 10.02 -- Performing Test HAVE_LINK_NO_UNDEFINED - Success
+#7 10.03 -- Looking for pthread.h
+#7 10.08 -- Looking for pthread.h - found
+#7 10.08 -- Looking for posix_memalign
+#7 10.14 -- Looking for posix_memalign - found
+#7 10.14 -- Looking for malloc.h
+#7 10.19 -- Looking for malloc.h - found
+#7 10.19 -- Looking for memalign
+#7 10.25 -- Looking for memalign - found
+#7 10.25 -- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) (Required is at least version "1.2.3")
+#7 10.26 -- Looking for fseeko
+#7 10.31 -- Looking for fseeko - found
+#7 10.31 -- Looking for unistd.h
+#7 10.36 -- Looking for unistd.h - found
+#7 10.36 -- Looking for sys/types.h
+#7 10.42 -- Looking for sys/types.h - found
+#7 10.42 -- Looking for stdint.h
+#7 10.47 -- Looking for stdint.h - found
+#7 10.47 -- Looking for stddef.h
+#7 10.52 -- Looking for stddef.h - found
+#7 10.52 -- Check size of off64_t
+#7 10.54 -- Check size of off64_t - failed
+#7 10.55 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32
+#7 10.60 -- Performing Test HAVE_C_WNO_SHORTEN_64_TO_32 - Failed
+#7 10.60 -- Performing Test HAVE_C_WNO_ATTRIBUTES
+#7 10.65 -- Performing Test HAVE_C_WNO_ATTRIBUTES - Success
+#7 10.65 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES
+#7 10.71 -- Performing Test HAVE_C_WNO_STRICT_PROTOTYPES - Success
+#7 10.71 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES
+#7 10.76 -- Performing Test HAVE_C_WNO_MISSING_PROTOTYPES - Success
+#7 10.76 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS
+#7 10.81 -- Performing Test HAVE_C_WNO_MISSING_DECLARATIONS - Success
+#7 10.81 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE
+#7 10.87 -- Performing Test HAVE_C_WNO_SHIFT_NEGATIVE_VALUE - Success
+#7 10.87 -- Performing Test HAVE_C_WNO_UNDEF
+#7 10.92 -- Performing Test HAVE_C_WNO_UNDEF - Success
+#7 10.92 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH
+#7 10.97 -- Performing Test HAVE_C_WNO_IMPLICIT_FALLTHROUGH - Success
+#7 11.02 -- Allocator metrics storage type: 'long long'
+#7 11.04 -- 
+#7 11.04 -- General configuration for OpenCV 4.8.0 =====================================
+#7 11.04 --   Version control:               unknown
+#7 11.04 -- 
+#7 11.04 --   Platform:
+#7 11.04 --     Timestamp:                   2024-12-27T19:29:01Z
+#7 11.04 --     Host:                        Linux 5.15.167.4-microsoft-standard-WSL2 x86_64
+#7 11.04 --     CMake:                       3.22.1
+#7 11.04 --     CMake generator:             Unix Makefiles
+#7 11.04 --     CMake build tool:            /usr/bin/gmake
+#7 11.04 --     Configuration:               Release
+#7 11.04 -- 
+#7 11.04 --   CPU/HW features:
+#7 11.04 --     Baseline:                    SSE SSE2 SSE3
+#7 11.04 --       requested:                 SSE3
+#7 11.04 --     Dispatched code generation:  SSE4_1 SSE4_2 FP16 AVX AVX2 AVX512_SKX
+#7 11.04 --       requested:                 SSE4_1 SSE4_2 AVX FP16 AVX2 AVX512_SKX
+#7 11.04 --       SSE4_1 (2 files):          + SSSE3 SSE4_1
+#7 11.04 --       SSE4_2 (1 files):          + SSSE3 SSE4_1 POPCNT SSE4_2
+#7 11.04 --       FP16 (0 files):            + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 AVX
+#7 11.04 --       AVX (1 files):             + SSSE3 SSE4_1 POPCNT SSE4_2 AVX
+#7 11.04 --       AVX2 (12 files):           + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2
+#7 11.04 --       AVX512_SKX (1 files):      + SSSE3 SSE4_1 POPCNT SSE4_2 FP16 FMA3 AVX AVX2 AVX_512F AVX512_COMMON AVX512_SKX
+#7 11.04 -- 
+#7 11.04 --   C/C++:
+#7 11.04 --     Built as dynamic libs?:      NO
+#7 11.04 --     C++ standard:                11
+#7 11.04 --     C++ Compiler:                /usr/bin/c++  (ver 14.0.0)
+#7 11.04 --     C++ flags (Release):         -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -O3 -DNDEBUG  -DNDEBUG
+#7 11.04 --     C++ flags (Debug):           -fsigned-char -W -Wall -Wreturn-type -Wnon-virtual-dtor -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wuninitialized -Winconsistent-missing-override -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -Wno-comment -Wno-deprecated-enum-enum-conversion -Wno-deprecated-anon-enum-enum-conversion -fdiagnostics-show-option -Wno-long-long -pthread -Qunused-arguments -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -fvisibility-inlines-hidden -g  -O0 -DDEBUG -D_DEBUG
+#7 11.04 --     C Compiler:                  /usr/bin/cc
+#7 11.04 --     C flags (Release):           -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -O3 -DNDEBUG  -DNDEBUG
+#7 11.04 --     C flags (Debug):             -fsigned-char -W -Wall -Wreturn-type -Waddress -Wsequence-point -Wformat -Wformat-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wuninitialized -Wno-comment -fdiagnostics-show-option -Wno-long-long -pthread -ffunction-sections -fdata-sections  -msse -msse2 -msse3 -fvisibility=hidden -g  -O0 -DDEBUG -D_DEBUG
+#7 11.04 --     Linker flags (Release):      -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#7 11.04 --     Linker flags (Debug):        -Wl,--gc-sections -Wl,--as-needed -Wl,--no-undefined  
+#7 11.04 --     ccache:                      NO
+#7 11.04 --     Precompiled headers:         NO
+#7 11.04 --     Extra dependencies:          dl m pthread rt
+#7 11.04 --     3rdparty dependencies:       zlib
+#7 11.04 -- 
+#7 11.04 --   OpenCV modules:
+#7 11.04 --     To be built:                 core
+#7 11.04 --     Disabled:                    calib3d dnn features2d flann highgui imgcodecs imgproc java_bindings_generator js_bindings_generator ml objc_bindings_generator objdetect photo python_bindings_generator python_tests stitching video videoio world
+#7 11.04 --     Disabled by dependency:      -
+#7 11.04 --     Unavailable:                 gapi java python2 python3 ts
+#7 11.04 --     Applications:                -
+#7 11.04 --     Documentation:               NO
+#7 11.04 --     Non-free algorithms:         NO
+#7 11.04 -- 
+#7 11.04 --   GUI: 
+#7 11.04 -- 
+#7 11.05 --   Media I/O: 
+#7 11.05 --     ZLib:                        build (ver 1.2.13)
+#7 11.05 --     HDR:                         NO
+#7 11.05 --     SUNRASTER:                   NO
+#7 11.05 --     PXM:                         NO
+#7 11.05 --     PFM:                         NO
+#7 11.05 -- 
+#7 11.05 --   Video I/O:
+#7 11.05 -- 
+#7 11.05 --   Parallel framework:            none
+#7 11.05 -- 
+#7 11.05 --   Trace:                         YES (built-in)
+#7 11.05 -- 
+#7 11.05 --   Other third-party libraries:
+#7 11.05 --     Custom HAL:                  NO
+#7 11.05 -- 
+#7 11.05 --   Python (for build):            /usr/bin/python3
+#7 11.05 -- 
+#7 11.05 --   Install to:                    /opt/opencv
+#7 11.05 -- -----------------------------------------------------------------
+#7 11.05 -- 
+#7 11.15 -- Configuring done
+#7 11.20 -- Generating done
+#7 11.20 -- Build files have been written to: /root/build
+#7 11.21 + nproc
+#7 11.21 + make -C /root/build -j16 install
+#7 11.22 make: Entering directory '/root/build'
+#7 11.23 make[1]: Entering directory '/root/build'
+#7 11.23 make[2]: Entering directory '/root/build'
+#7 11.23 make[2]: Entering directory '/root/build'
+#7 11.23 make[2]: Entering directory '/root/build'
+#7 11.23 make[2]: Entering directory '/root/build'
+#7 11.24 make[2]: Leaving directory '/root/build'
+#7 11.24 make[2]: Leaving directory '/root/build'
+#7 11.24 make[2]: Leaving directory '/root/build'
+#7 11.24 make[2]: Leaving directory '/root/build'
+#7 11.24 make[2]: Entering directory '/root/build'
+#7 11.25 [  2%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/crc32.c.o
+#7 11.25 [  1%] Built target opencv_highgui_plugins
+#7 11.25 [  2%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/compress.c.o
+#7 11.25 [  2%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/adler32.c.o
+#7 11.25 [  1%] Built target opencv_dnn_plugins
+#7 11.25 [  2%] Built target opencv_videoio_plugins
+#7 11.25 [  3%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/deflate.c.o
+#7 11.25 [  4%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzclose.c.o
+#7 11.25 [  5%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzlib.c.o
+#7 11.25 [  6%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inflate.c.o
+#7 11.25 [  7%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzwrite.c.o
+#7 11.25 [  8%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inftrees.c.o
+#7 11.25 [  9%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/infback.c.o
+#7 11.25 [  9%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/gzread.c.o
+#7 11.25 [  9%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/inffast.c.o
+#7 11.26 [ 10%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/trees.c.o
+#7 11.26 [ 11%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/uncompr.c.o
+#7 11.26 [ 12%] Building C object 3rdparty/zlib/CMakeFiles/zlib.dir/zutil.c.o
+#7 11.69 [ 13%] Linking C static library ../lib/libzlib.a
+#7 11.74 make[2]: Leaving directory '/root/build'
+#7 11.75 [ 13%] Built target zlib
+#7 11.75 make[2]: Entering directory '/root/build'
+#7 11.76 [ 13%] Processing OpenCL kernels (core)
+#7 11.78 make[2]: Leaving directory '/root/build'
+#7 11.78 make[2]: Entering directory '/root/build'
+#7 11.79 [ 13%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.dispatch.cpp.o
+#7 11.79 [ 17%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/array.cpp.o
+#7 11.79 [ 18%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/algorithm.cpp.o
+#7 11.79 [ 18%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/arithm.cpp.o
+#7 11.79 [ 20%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/batch_distance.cpp.o
+#7 11.79 [ 20%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/async.cpp.o
+#7 11.79 [ 20%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/alloc.cpp.o
+#7 11.79 [ 20%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/bindings_utils.cpp.o
+#7 11.79 [ 20%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/buffer_area.cpp.o
+#7 11.80 [ 21%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/check.cpp.o
+#7 11.80 [ 22%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/command_line_parser.cpp.o
+#7 11.80 [ 23%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/conjugate_gradient.cpp.o
+#7 11.80 [ 23%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert.dispatch.cpp.o
+#7 11.80 [ 24%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/channels.cpp.o
+#7 11.80 [ 25%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_scale.dispatch.cpp.o
+#7 11.80 [ 26%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/convert_c.cpp.o
+#7 13.24 [ 27%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/copy.cpp.o
+#7 13.54 [ 28%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/count_non_zero.dispatch.cpp.o
+#7 13.61 [ 28%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat.cpp.o
+#7 13.68 [ 29%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_gpu_mat_nd.cpp.o
+#7 13.72 [ 30%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_host_mem.cpp.o
+#7 13.81 [ 31%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_info.cpp.o
+#7 13.92 [ 32%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/cuda_stream.cpp.o
+#7 13.93 [ 32%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/datastructs.cpp.o
+#7 14.04 [ 33%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/directx.cpp.o
+#7 14.05 [ 34%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/downhill_simplex.cpp.o
+#7 14.87 [ 35%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/dxt.cpp.o
+#7 14.92 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/gl_core_3_1.cpp.o
+#7 14.94 [ 36%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/glob.cpp.o
+#7 15.32 [ 37%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/hal_internal.cpp.o
+#7 15.35 [ 38%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/has_non_zero.dispatch.cpp.o
+#7 15.41 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/kmeans.cpp.o
+#7 15.42 [ 39%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lapack.cpp.o
+#7 15.51 [ 40%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lda.cpp.o
+#7 15.58 [ 41%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/logger.cpp.o
+#7 15.60 [ 42%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lpsolver.cpp.o
+#7 15.68 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/lut.cpp.o
+#7 15.76 [ 43%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs.cpp.o
+#7 15.99 [ 44%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mathfuncs_core.dispatch.cpp.o
+#7 16.02 [ 45%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matmul.dispatch.cpp.o
+#7 16.74 [ 46%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix.cpp.o
+#7 16.80 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_c.cpp.o
+#7 16.94 [ 47%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_decomp.cpp.o
+#7 16.97 [ 48%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_expressions.cpp.o
+#7 17.02 [ 49%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_iterator.cpp.o
+#7 17.44 [ 50%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_operations.cpp.o
+#7 17.44 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_sparse.cpp.o
+#7 17.45 [ 51%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_transform.cpp.o
+#7 17.71 [ 52%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/matrix_wrap.cpp.o
+#7 18.01 [ 53%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/mean.dispatch.cpp.o
+#7 18.37 [ 54%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/merge.dispatch.cpp.o
+#7 18.58 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/minmax.cpp.o
+#7 18.61 [ 55%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/norm.cpp.o
+#7 18.72 [ 56%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ocl.cpp.o
+#7 18.88 [ 57%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clblas.cpp.o
+#7 19.36 [ 58%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_clfft.cpp.o
+#7 19.47 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opencl/runtime/opencl_core.cpp.o
+#7 19.69 [ 59%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/opengl.cpp.o
+#7 19.79 [ 60%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/out.cpp.o
+#7 20.46 [ 61%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/ovx.cpp.o
+#7 20.49 [ 62%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel.cpp.o
+#7 20.54 [ 63%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel.cpp.o
+#7 20.62 [ 63%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_openmp.cpp.o
+#7 20.92 [ 64%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel/parallel_tbb.cpp.o
+#7 20.95 [ 65%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/parallel_impl.cpp.o
+#7 21.01 [ 66%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/pca.cpp.o
+#7 21.13 [ 66%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence.cpp.o
+#7 21.38 [ 67%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_base64_encoding.cpp.o
+#7 21.48 [ 68%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_json.cpp.o
+#7 21.57 [ 69%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_types.cpp.o
+#7 21.83 [ 70%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_xml.cpp.o
+#7 21.95 [ 70%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/persistence_yml.cpp.o
+#7 22.10 [ 71%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/rand.cpp.o
+#7 22.19 [ 72%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/softfloat.cpp.o
+#7 22.24 [ 73%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/split.dispatch.cpp.o
+#7 22.43 [ 74%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat.dispatch.cpp.o
+#7 22.50 [ 74%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stat_c.cpp.o
+#7 22.56 [ 75%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/stl.cpp.o
+#7 22.93 [ 76%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/sum.dispatch.cpp.o
+#7 23.36 [ 77%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/system.cpp.o
+#7 23.37 [ 78%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/tables.cpp.o
+#7 23.58 [ 78%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/trace.cpp.o
+#7 23.90 [ 79%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/types.cpp.o
+#7 24.02 [ 80%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/umatrix.cpp.o
+#7 24.06 [ 81%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/datafile.cpp.o
+#7 24.09 [ 82%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/filesystem.cpp.o
+#7 24.11 [ 82%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagconfigparser.cpp.o
+#7 24.14 [ 83%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/logtagmanager.cpp.o
+#7 24.36 [ 84%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/utils/samples.cpp.o
+#7 24.76 [ 85%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/src/va_intel.cpp.o
+#7 24.91 [ 86%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/opencl_kernels_core.cpp.o
+#7 24.95 [ 86%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.sse4_1.cpp.o
+#7 25.06 [ 87%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.sse4_1.cpp.o
+#7 25.46 [ 88%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.sse4_2.cpp.o
+#7 25.70 [ 89%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx.cpp.o
+#7 26.00 [ 89%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mathfuncs_core.avx2.cpp.o
+#7 26.05 [ 90%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/stat.avx2.cpp.o
+#7 26.08 [ 91%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/arithm.avx2.cpp.o
+#7 26.21 [ 92%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert.avx2.cpp.o
+#7 26.23 [ 93%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/convert_scale.avx2.cpp.o
+#7 26.29 [ 93%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/count_non_zero.avx2.cpp.o
+#7 26.30 [ 94%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/has_non_zero.avx2.cpp.o
+#7 26.33 [ 95%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx2.cpp.o
+#7 26.35 [ 96%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/mean.avx2.cpp.o
+#7 26.68 [ 97%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/merge.avx2.cpp.o
+#7 26.91 [ 97%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/split.avx2.cpp.o
+#7 27.13 [ 98%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/sum.avx2.cpp.o
+#7 28.12 [ 99%] Building CXX object modules/core/CMakeFiles/opencv_core.dir/matmul.avx512_skx.cpp.o
+#7 32.66 [100%] Linking CXX static library ../../lib/libopencv_core.a
+#7 32.80 make[2]: Leaving directory '/root/build'
+#7 32.81 [100%] Built target opencv_core
+#7 32.81 make[1]: Leaving directory '/root/build'
+#7 32.83 Install the project...
+#7 32.84 -- Install configuration: "Release"
+#7 32.84 -- Installing: /opt/opencv/include/opencv4/opencv2/cvconfig.h
+#7 32.84 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv_modules.hpp
+#7 32.84 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules.cmake
+#7 32.84 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVModules-release.cmake
+#7 32.84 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig-version.cmake
+#7 32.84 -- Installing: /opt/opencv/lib/cmake/opencv4/OpenCVConfig.cmake
+#7 32.84 -- Installing: /opt/opencv/bin/setup_vars_opencv4.sh
+#7 32.84 -- Installing: /opt/opencv/share/opencv4/valgrind.supp
+#7 32.84 -- Installing: /opt/opencv/share/opencv4/valgrind_3rdparty.supp
+#7 32.84 -- Installing: /opt/opencv/lib/opencv4/3rdparty/libzlib.a
+#7 32.84 -- Installing: /opt/opencv/share/licenses/opencv4/zlib-LICENSE
+#7 32.84 -- Installing: /opt/opencv/include/opencv4/opencv2/opencv.hpp
+#7 32.85 -- Installing: /opt/opencv/lib/libopencv_core.a
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/affine.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/async.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/base.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bindings_utils.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/bufferpool.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/check.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/core_c.h
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda.inl.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/block.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/border_interpolate.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/color.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/common.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/datamov_utils.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/color_detail.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/reduce_key_val.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/transform_detail.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/type_traits_detail.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/detail/vec_distance_detail.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/dynamic_smem.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/emulation.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/filters.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/funcattrib.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/functional.hpp
+#7 32.86 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/limits.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/reduce.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/saturate_cast.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/scan.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/simd_functions.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/transform.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/type_traits.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/utility.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_distance.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_math.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/vec_traits.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_reduce.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda/warp_shuffle.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_stream_accessor.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cuda_types.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_dispatch.h
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cv_cpu_helper.h
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvdef.h
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd.inl.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/async_promise.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/dispatch_helper.impl.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/detail/exception_ptr.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/directx.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/dualquaternion.inl.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/eigen.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/fast_math.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/hal.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/interface.h
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_avx512.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_cpp.hpp
+#7 32.87 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_forward.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_lasx.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_msa.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_neon.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv071.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_non-policy.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_010_compat_overloaded-non-policy.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_compat_overloaded.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_rvv_scalable.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_sse_em.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_vsx.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/intrin_wasm.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/msa_macros.h
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/hal/simd_utils.impl.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/mat.inl.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/matx.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/neon_utils.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ocl_genbase.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/ocl_defs.hpp
+#7 32.88 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_info.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/opencl_svm.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clblas.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_clfft.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_core_wrappers.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/autogenerated/opencl_gl_wrappers.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clblas.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_clfft.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_core_wrappers.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_gl_wrappers.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_20.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_definitions.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opencl/runtime/opencl_svm_hsa_extension.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/opengl.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/operations.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/optim.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/ovx.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.openmp.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/backend/parallel_for.tbb.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/parallel/parallel_backend.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/persistence.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/quaternion.inl.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/saturate.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/simd_intrinsics.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/softfloat.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/sse_utils.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/traits.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types.hpp
+#7 32.89 -- Installing: /opt/opencv/include/opencv4/opencv2/core/types_c.h
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utility.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/allocator_stats.impl.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/filesystem.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/fp_control_utils.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/instrumentation.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.defines.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logger.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/logtag.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/tls.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/utils/trace.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/va_intel.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/version.hpp
+#7 32.90 -- Installing: /opt/opencv/include/opencv4/opencv2/core/vsx_utils.hpp
+#7 32.90 -- Installing: /opt/opencv/share/licenses/opencv4/SoftFloat-COPYING.txt
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_eye_tree_eyeglasses.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalcatface_extended.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt2.xml
+#7 32.90 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_alt_tree.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_frontalface_default.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_fullbody.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lefteye_2splits.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_license_plate_rus_16stages.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_lowerbody.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_profileface.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_righteye_2splits.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_russian_plate_number.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_smile.xml
+#7 32.91 -- Installing: /opt/opencv/share/opencv4/haarcascades/haarcascade_upperbody.xml
+#7 32.92 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalcatface.xml
+#7 32.92 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface.xml
+#7 32.92 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_frontalface_improved.xml
+#7 32.92 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_profileface.xml
+#7 32.92 -- Installing: /opt/opencv/share/opencv4/lbpcascades/lbpcascade_silverware.xml
+#7 32.92 make: Leaving directory '/root/build'
+#7 DONE 33.0s
+
+#8 [test 2/6] RUN set -xeu && 	DEBIAN_FRONTEND=noninteractive apt-get update && 	DEBIAN_FRONTEND=noninteractive apt-get install -y curl clang libclang-dev cmake
+#8 CACHED
+
+#9 [test 3/6] RUN set -xeu &&     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
+#9 CACHED
+
+#10 [test 4/6] RUN set -xeu && 	cargo new /root/app
+#10 CACHED
+
+#11 [test 5/6] COPY --from=backend /opt/opencv /opt/opencv
+#11 DONE 0.1s
+
+#12 [test 6/6] RUN set -xeu && 	cd /root/app && 	cargo build
+#12 0.403 + cd /root/app
+#12 0.403 + cargo build
+#12 0.491    Compiling app v0.1.0 (/root/app)
+#12 0.605     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.17s
+#12 DONE 0.7s
+
+#13 exporting to image
+#13 exporting layers 0.1s done
+#13 writing image sha256:5eb07cf89491e8a8c2aa0e3241ed3f5479dfe9179437b0adc97397c5d8512067 0.0s done
+#13 DONE 0.2s
