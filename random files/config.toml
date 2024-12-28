@@ -1,0 +1,6 @@
+[target.x86_64-unknown-linux-musl]
+linker="/root/x86_64-linux-musl-cross/bin/x86_64-linux-musl-ld"
+
+[env]
+CC_x86_64-unknown-linux-musl="/root/x86_64-linux-musl-cross/bin/x86_64-linux-musl-gcc"
+CXX_x86_64-unknown-linux-musl="/root/x86_64-linux-musl-cross/bin/x86_64-linux-musl-g++"
