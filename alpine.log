@@ -1,0 +1,1438 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from alpine.Dockerfile
+#1 transferring dockerfile: 446B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/rust:alpine3.21
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/4] FROM docker.io/library/rust:alpine3.21
+#4 CACHED
+
+#5 [2/4] RUN set -xeu &&     apk add build-base clang-dev opencv-dev
+#5 0.268 + apk add build-base clang-dev opencv-dev
+#5 0.273 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+#5 0.625 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+#5 1.046 (1/602) Installing libmagic (5.46-r2)
+#5 1.110 (2/602) Installing file (5.46-r2)
+#5 1.148 (3/602) Installing libstdc++-dev (14.2.0-r4)
+#5 1.351 (4/602) Installing musl-dev (1.2.5-r9)
+#5 1.469 (5/602) Installing g++ (14.2.0-r4)
+#5 1.793 (6/602) Installing make (4.4.1-r2)
+#5 1.841 (7/602) Installing fortify-headers (1.1-r5)
+#5 1.880 (8/602) Installing patch (2.7.6-r10)
+#5 1.925 (9/602) Installing build-base (0.5-r3)
+#5 1.925 (10/602) Installing clang19-headers (19.1.4-r0)
+#5 2.026 (11/602) Installing libffi (3.4.7-r0)
+#5 2.073 (12/602) Installing xz-libs (5.6.3-r1)
+#5 2.117 (13/602) Installing libxml2 (2.13.4-r5)
+#5 2.173 (14/602) Installing llvm19-libs (19.1.4-r1)
+#5 3.263 (15/602) Installing clang19-libs (19.1.4-r0)
+#5 3.953 (16/602) Installing llvm19-linker-tools (19.1.4-r1)
+#5 3.997 (17/602) Installing clang19 (19.1.4-r0)
+#5 4.058 (18/602) Installing clang19-libclang (19.1.4-r0)
+#5 4.473 (19/602) Installing clang19-extra-tools (19.1.4-r0)
+#5 5.189 (20/602) Installing clang19-dev (19.1.4-r0)
+#5 5.441 (21/602) Installing libquadmath (14.2.0-r4)
+#5 5.488 (22/602) Installing libgfortran (14.2.0-r4)
+#5 5.551 (23/602) Installing gfortran (14.2.0-r4)
+#5 5.899 (24/602) Installing openblas (0.3.28-r0)
+#5 6.127 (25/602) Installing liblapack (0.3.28-r0)
+#5 6.225 (26/602) Installing liblapacke (0.3.28-r0)
+#5 6.286 (27/602) Installing openblas-ilp64 (0.3.28-r0)
+#5 6.520 (28/602) Installing pkgconf (2.3.0-r0)
+#5 6.560 (29/602) Installing openblas-dev (0.3.28-r0)
+#5 6.611 (30/602) Installing eigen-dev (3.4.0-r10)
+#5 6.751 (31/602) Installing libSvtAv1Enc (2.2.1-r0)
+#5 6.845 (32/602) Installing aom-libs (3.11.0-r0)
+#5 6.942 (33/602) Installing libxau (1.0.11-r4)
+#5 6.985 (34/602) Installing libmd (1.1.0-r0)
+#5 7.029 (35/602) Installing libbsd (0.12.2-r0)
+#5 7.069 (36/602) Installing libxdmcp (1.1.5-r1)
+#5 7.109 (37/602) Installing libxcb (1.16.1-r0)
+#5 7.163 (38/602) Installing libx11 (1.8.10-r0)
+#5 7.312 (39/602) Installing hwdata-pci (0.393-r0)
+#5 7.359 (40/602) Installing libpciaccess (0.18.1-r0)
+#5 7.402 (41/602) Installing libdrm (2.4.123-r1)
+#5 7.450 (42/602) Installing libxext (1.3.6-r2)
+#5 7.486 (43/602) Installing libxfixes (6.0.1-r4)
+#5 7.529 (44/602) Installing wayland-libs-client (1.23.1-r0)
+#5 7.576 (45/602) Installing libva (2.22.0-r1)
+#5 7.620 (46/602) Installing libvdpau (1.5-r4)
+#5 7.661 (47/602) Installing onevpl-libs (2023.3.1-r2)
+#5 7.704 (48/602) Installing ffmpeg-libavutil (6.1.2-r1)
+#5 7.750 (49/602) Installing libdav1d (1.5.0-r0)
+#5 7.805 (50/602) Installing openexr-libiex (3.3.2-r0)
+#5 7.852 (51/602) Installing openexr-libilmthread (3.3.2-r0)
+#5 7.889 (52/602) Installing imath (3.1.12-r0)
+#5 7.932 (53/602) Installing libdeflate (1.22-r0)
+#5 7.971 (54/602) Installing openexr-libopenexrcore (3.3.2-r0)
+#5 8.024 (55/602) Installing openexr-libopenexr (3.3.2-r0)
+#5 8.073 (56/602) Installing brotli-libs (1.1.0-r2)
+#5 8.121 (57/602) Installing giflib (5.2.2-r1)
+#5 8.161 (58/602) Installing libhwy (1.0.7-r0)
+#5 8.208 (59/602) Installing libjpeg-turbo (3.0.4-r0)
+#5 8.257 (60/602) Installing lcms2 (2.16-r0)
+#5 8.302 (61/602) Installing libpng (1.6.47-r0)
+#5 8.344 (62/602) Installing libjxl (0.10.4-r0)
+#5 8.426 (63/602) Installing lame-libs (3.100-r5)
+#5 8.473 (64/602) Installing opus (1.5.2-r1)
+#5 8.523 (65/602) Installing rav1e-libs (0.7.1-r0)
+#5 8.583 (66/602) Installing soxr (0.1.3-r7)
+#5 8.625 (67/602) Installing ffmpeg-libswresample (6.1.2-r1)
+#5 8.668 (68/602) Installing libogg (1.3.5-r5)
+#5 8.705 (69/602) Installing libtheora (1.1.1-r18)
+#5 8.752 (70/602) Installing libvorbis (1.3.7-r2)
+#5 8.798 (71/602) Installing libvpx (1.15.0-r0)
+#5 8.869 (72/602) Installing libsharpyuv (1.4.0-r0)
+#5 8.911 (73/602) Installing libwebp (1.4.0-r0)
+#5 8.957 (74/602) Installing libwebpmux (1.4.0-r0)
+#5 8.998 (75/602) Installing x264-libs (0.164.3108-r0)
+#5 9.061 (76/602) Installing numactl (2.0.18-r0)
+#5 9.101 (77/602) Installing x265-libs (3.6-r0)
+#5 9.215 (78/602) Installing xvidcore (1.3.7-r2)
+#5 9.258 (79/602) Installing ffmpeg-libavcodec (6.1.2-r1)
+#5 9.420 (80/602) Installing sdl2 (2.30.9-r0)
+#5 9.474 (81/602) Installing alsa-lib (1.2.12-r0)
+#5 9.532 (82/602) Installing libexpat (2.7.0-r0)
+#5 9.573 (83/602) Installing libbz2 (1.0.8-r6)
+#5 9.610 (84/602) Installing freetype (2.13.3-r0)
+#5 9.658 (85/602) Installing fontconfig (2.15.0-r1)
+#5 9.714 (86/602) Installing fribidi (1.0.16-r0)
+#5 9.754 (87/602) Installing libintl (0.22.5-r0)
+#5 9.796 (88/602) Installing libeconf (0.6.3-r0)
+#5 9.836 (89/602) Installing libblkid (2.40.4-r0)
+#5 9.878 (90/602) Installing libmount (2.40.4-r0)
+#5 9.921 (91/602) Installing pcre2 (10.43-r0)
+#5 9.970 (92/602) Installing glib (2.82.5-r0)
+#5 10.05 (93/602) Installing graphite2 (1.3.14-r6)
+#5 10.10 (94/602) Installing harfbuzz (9.0.0-r1)
+#5 8.483 (95/602) Installing libunibreak (6.1-r0)
+#5 8.527 (96/602) Installing libass (0.17.3-r0)
+#5 8.570 (97/602) Installing libbluray (1.3.4-r1)
+#5 8.614 (98/602) Installing mpg123-libs (1.32.9-r0)
+#5 8.660 (99/602) Installing libopenmpt (0.7.12-r0)
+#5 8.713 (100/602) Installing cjson (1.7.18-r0)
+#5 8.755 (101/602) Installing mbedtls (3.6.3-r0)
+#5 8.805 (102/602) Installing librist (0.2.10-r1)
+#5 8.845 (103/602) Installing libsrt (1.5.3-r0)
+#5 8.894 (104/602) Installing libssh (0.11.1-r0)
+#5 8.942 (105/602) Installing libsodium (1.0.20-r0)
+#5 8.988 (106/602) Installing libzmq (4.3.5-r2)
+#5 9.038 (107/602) Installing ffmpeg-libavformat (6.1.2-r1)
+#5 9.106 (108/602) Installing serd-libs (0.32.2-r0)
+#5 9.148 (109/602) Installing zix-libs (0.4.2-r0)
+#5 9.190 (110/602) Installing sord-libs (0.16.16-r0)
+#5 9.231 (111/602) Installing sratom (0.6.16-r0)
+#5 9.272 (112/602) Installing lilv-libs (0.24.24-r1)
+#5 9.314 (113/602) Installing libdovi (3.3.1-r0)
+#5 9.361 (114/602) Installing spirv-tools (1.3.296.0-r0)
+#5 9.437 (115/602) Installing glslang-libs (1.3.296.0-r0)
+#5 9.495 (116/602) Installing shaderc (2024.0-r2)
+#5 9.536 (117/602) Installing vulkan-loader (1.3.296.0-r0)
+#5 9.578 (118/602) Installing libplacebo (6.338.2-r3)
+#5 9.624 (119/602) Installing ffmpeg-libpostproc (6.1.2-r1)
+#5 9.665 (120/602) Installing ffmpeg-libswscale (6.1.2-r1)
+#5 9.711 (121/602) Installing vidstab (1.1.1-r0)
+#5 9.752 (122/602) Installing zimg (3.0.5-r2)
+#5 9.800 (123/602) Installing ffmpeg-libavfilter (6.1.2-r1)
+#5 9.877 (124/602) Installing libasyncns (0.8-r4)
+#5 9.917 (125/602) Installing dbus-libs (1.14.10-r4)
+#5 9.961 (126/602) Installing libltdl (2.4.7-r3)
+#5 10.00 (127/602) Installing orc (0.4.40-r1)
+#5 10.05 (128/602) Installing libflac (1.4.3-r1)
+#5 10.10 (129/602) Installing libsndfile (1.2.2-r2)
+#5 10.15 (130/602) Installing speexdsp (1.2.1-r2)
+#5 10.19 (131/602) Installing tdb-libs (1.4.12-r0)
+#5 10.23 (132/602) Installing libpulse (17.0-r4)
+#5 10.29 (133/602) Installing v4l-utils-libs (1.28.1-r1)
+#5 10.33 (134/602) Installing ffmpeg-libavdevice (6.1.2-r1)
+#5 10.37 (135/602) Installing ffmpeg-dev (6.1.2-r1)
+#5 10.44 (136/602) Installing bzip2-dev (1.0.8-r6)
+#5 10.48 (137/602) Installing brotli (1.1.0-r2)
+#5 10.52 (138/602) Installing brotli-dev (1.1.0-r2)
+#5 10.56 (139/602) Installing zlib-dev (1.3.1-r2)
+#5 10.61 (140/602) Installing libpng-dev (1.6.47-r0)
+#5 10.66 (141/602) Installing freetype-dev (2.13.3-r0)
+#5 10.71 (142/602) Installing libuuid (2.40.4-r0)
+#5 10.75 (143/602) Installing libfdisk (2.40.4-r0)
+#5 10.79 (144/602) Installing libsmartcols (2.40.4-r0)
+#5 10.84 (145/602) Installing ncurses-terminfo-base (6.5_p20241006-r3)
+#5 10.88 (146/602) Installing libncursesw (6.5_p20241006-r3)
+#5 10.93 (147/602) Installing readline (8.2.13-r0)
+#5 10.97 (148/602) Installing sqlite (3.48.0-r0)
+#5 11.03 (149/602) Installing sqlite-libs (3.48.0-r0)
+#5 11.09 (150/602) Installing sqlite-dev (3.48.0-r0)
+#5 11.14 (151/602) Installing util-linux (2.40.4-r0)
+#5 11.18 (152/602) Installing dmesg (2.40.4-r0)
+#5 11.23 (153/602) Installing setarch (2.40.4-r0)
+#5 11.27 (154/602) Installing skalibs-libs (2.14.3.0-r0)
+#5 11.31 (155/602) Installing utmps-libs (0.1.2.3-r2)
+#5 11.35 (156/602) Installing util-linux-misc (2.40.4-r0)
+#5 11.42 (157/602) Installing linux-pam (1.6.1-r1)
+#5 11.47 (158/602) Installing runuser (2.40.4-r0)
+#5 11.50 (159/602) Installing mount (2.40.4-r0)
+#5 11.54 (160/602) Installing losetup (2.40.4-r0)
+#5 11.59 (161/602) Installing hexdump (2.40.4-r0)
+#5 11.63 (162/602) Installing uuidgen (2.40.4-r0)
+#5 11.67 (163/602) Installing blkid (2.40.4-r0)
+#5 11.71 (164/602) Installing sfdisk (2.40.4-r0)
+#5 11.76 (165/602) Installing mcookie (2.40.4-r0)
+#5 11.80 (166/602) Installing agetty (2.40.4-r0)
+#5 11.84 (167/602) Installing wipefs (2.40.4-r0)
+#5 11.88 (168/602) Installing cfdisk (2.40.4-r0)
+#5 11.93 (169/602) Installing umount (2.40.4-r0)
+#5 11.97 (170/602) Installing flock (2.40.4-r0)
+#5 12.01 (171/602) Installing lsblk (2.40.4-r0)
+#5 12.05 (172/602) Installing libcap-ng (0.8.5-r0)
+#5 12.09 (173/602) Installing setpriv (2.40.4-r0)
+#5 12.14 (174/602) Installing lscpu (2.40.4-r0)
+#5 12.19 (175/602) Installing logger (2.40.4-r0)
+#5 12.22 (176/602) Installing partx (2.40.4-r0)
+#5 12.27 (177/602) Installing fstrim (2.40.4-r0)
+#5 12.31 (178/602) Installing findmnt (2.40.4-r0)
+#5 12.35 (179/602) Installing util-linux-dev (2.40.4-r0)
+#5 12.40 (180/602) Installing libice (1.1.1-r6)
+#5 12.44 (181/602) Installing libsm (1.2.4-r4)
+#5 12.48 (182/602) Installing libxt (1.3.1-r0)
+#5 12.52 (183/602) Installing libxmu (1.2.1-r0)
+#5 12.56 (184/602) Installing xorgproto (2024.1-r0)
+#5 12.63 (185/602) Installing libxau-dev (1.0.11-r4)
+#5 12.67 (186/602) Installing gdbm (1.24-r0)
+#5 12.71 (187/602) Installing mpdecimal (4.0.0-r0)
+#5 12.75 (188/602) Installing libpanelw (6.5_p20241006-r3)
+#5 12.79 (189/602) Installing python3 (3.12.10-r0)
+#5 13.04 (190/602) Installing python3-pycache-pyc0 (3.12.10-r0)
+#5 13.22 (191/602) Installing pyc (3.12.10-r0)
+#5 13.22 (192/602) Installing xcb-proto-pyc (1.17.0-r0)
+#5 13.26 (193/602) Installing python3-pyc (3.12.10-r0)
+#5 13.26 (194/602) Installing xcb-proto (1.17.0-r0)
+#5 13.32 (195/602) Installing libxdmcp-dev (1.1.5-r1)
+#5 13.36 (196/602) Installing libxcb-dev (1.16.1-r0)
+#5 13.41 (197/602) Installing xtrans (1.5.2-r0)
+#5 13.46 (198/602) Installing libx11-dev (1.8.10-r0)
+#5 13.50 (199/602) Installing libxext-dev (1.3.6-r2)
+#5 13.53 (200/602) Installing libice-dev (1.1.1-r6)
+#5 13.58 (201/602) Installing libsm-dev (1.2.4-r4)
+#5 13.62 (202/602) Installing libxt-dev (1.3.1-r0)
+#5 13.66 (203/602) Installing libxmu-dev (1.2.1-r0)
+#5 13.71 (204/602) Installing libxi (1.8.2-r0)
+#5 13.75 (205/602) Installing libxfixes-dev (6.0.1-r4)
+#5 13.80 (206/602) Installing libxi-dev (1.8.2-r0)
+#5 13.84 (207/602) Installing linux-headers (6.6-r1)
+#5 13.99 (208/602) Installing libpciaccess-dev (0.18.1-r0)
+#5 14.04 (209/602) Installing libdrm-dev (2.4.123-r1)
+#5 14.09 (210/602) Installing libxdamage (1.1.6-r5)
+#5 14.13 (211/602) Installing libxdamage-dev (1.1.6-r5)
+#5 14.18 (212/602) Installing libxshmfence (1.3.2-r6)
+#5 14.22 (213/602) Installing libxshmfence-dev (1.3.2-r6)
+#5 14.26 (214/602) Installing libelf (0.191-r0)
+#5 14.31 (215/602) Installing mesa-glapi (24.2.8-r0)
+#5 14.35 (216/602) Installing mesa (24.2.8-r0)
+#5 15.28 (217/602) Installing wayland-libs-server (1.23.1-r0)
+#5 15.32 (218/602) Installing mesa-gbm (24.2.8-r0)
+#5 15.37 (219/602) Installing mesa-egl (24.2.8-r0)
+#5 15.41 (220/602) Installing libxxf86vm (1.1.5-r6)
+#5 15.45 (221/602) Installing mesa-gl (24.2.8-r0)
+#5 15.50 (222/602) Installing mesa-gles (24.2.8-r0)
+#5 15.54 (223/602) Installing mesa-osmesa (24.2.8-r0)
+#5 15.68 (224/602) Installing libclc (19.1.4-r0)
+#5 16.48 (225/602) Installing spirv-llvm-translator-libs (19.1.2-r0)
+#5 16.55 (226/602) Installing mesa-rusticl (24.2.8-r0)
+#5 16.76 (227/602) Installing mesa-xatracker (24.2.8-r0)
+#5 16.86 (228/602) Installing libxxf86vm-dev (1.1.5-r6)
+#5 16.90 (229/602) Installing mesa-dev (24.2.8-r0)
+#5 16.96 (230/602) Installing glu (9.0.3-r3)
+#5 17.00 (231/602) Installing glu-dev (9.0.3-r3)
+#5 17.04 (232/602) Installing glew (2.2.0-r5)
+#5 17.09 (233/602) Installing glew-dev (2.2.0-r5)
+#5 17.15 (234/602) Installing expat (2.7.0-r0)
+#5 17.19 (235/602) Installing expat-dev (2.7.0-r0)
+#5 17.23 (236/602) Installing libffi-dev (3.4.7-r0)
+#5 17.27 (237/602) Installing wayland-libs-cursor (1.23.1-r0)
+#5 17.31 (238/602) Installing wayland-libs-egl (1.23.1-r0)
+#5 17.35 (239/602) Installing wayland-dev (1.23.1-r0)
+#5 17.40 (240/602) Installing libxv (1.0.12-r5)
+#5 17.44 (241/602) Installing libxrender (0.9.11-r5)
+#5 17.48 (242/602) Installing pixman (0.43.4-r1)
+#5 17.53 (243/602) Installing cairo (1.18.2-r1)
+#5 17.58 (244/602) Installing cdparanoia-libs (10.2-r14)
+#5 17.62 (245/602) Installing graphene (1.10.8-r5)
+#5 17.66 (246/602) Installing gstreamer (1.24.11-r0)
+#5 17.73 (247/602) Installing libcap2 (2.71-r0)
+#5 17.77 (248/602) Installing gstreamer-ptp-helper (1.24.11-r0)
+#5 17.82 (249/602) Installing libxft (2.3.8-r3)
+#5 17.86 (250/602) Installing pango (1.54.0-r1)
+#5 17.91 (251/602) Installing gst-plugins-base (1.24.11-r0)
+#5 18.00 (252/602) Installing libxml2-utils (2.13.4-r5)
+#5 18.04 (253/602) Installing docbook-xml (4.5-r9)
+#5 18.14 Executing docbook-xml-4.5-r9.post-install
+#5 18.15 (254/602) Installing libgpg-error (1.51-r0)
+#5 18.19 (255/602) Installing libgcrypt (1.10.3-r1)
+#5 18.24 (256/602) Installing libxslt (1.1.42-r2)
+#5 18.29 (257/602) Installing docbook-xsl-ns (1.79.2-r11)
+#5 18.48 Executing docbook-xsl-ns-1.79.2-r11.post-install
+#5 18.51 (258/602) Installing docbook-xsl-nons (1.79.2-r11)
+#5 18.70 Executing docbook-xsl-nons-1.79.2-r11.post-install
+#5 18.72 (259/602) Installing docbook-xsl (1.79.2-r11)
+#5 18.76 (260/602) Installing xz (5.6.3-r1)
+#5 18.80 (261/602) Installing gettext-asprintf (0.22.5-r0)
+#5 18.84 (262/602) Installing libunistring (1.2-r0)
+#5 18.89 (263/602) Installing gettext-libs (0.22.5-r0)
+#5 18.94 (264/602) Installing gettext-envsubst (0.22.5-r0)
+#5 18.98 (265/602) Installing gettext (0.22.5-r0)
+#5 19.04 (266/602) Installing gettext-dev (0.22.5-r0)
+#5 19.10 (267/602) Installing py3-parsing (3.1.4-r0)
+#5 19.14 (268/602) Installing py3-parsing-pyc (3.1.4-r0)
+#5 19.19 (269/602) Installing py3-packaging (24.2-r0)
+#5 19.23 (270/602) Installing py3-packaging-pyc (24.2-r0)
+#5 19.28 (271/602) Installing bsd-compat-headers (0.7.2-r6)
+#5 19.32 (272/602) Installing libformw (6.5_p20241006-r3)
+#5 19.36 (273/602) Installing libmenuw (6.5_p20241006-r3)
+#5 19.40 (274/602) Installing libncurses++ (6.5_p20241006-r3)
+#5 19.45 (275/602) Installing ncurses-dev (6.5_p20241006-r3)
+#5 19.50 (276/602) Installing libedit (20240808.3.1-r0)
+#5 19.54 (277/602) Installing libedit-dev (20240808.3.1-r0)
+#5 19.58 (278/602) Installing libpcre2-16 (10.43-r0)
+#5 19.62 (279/602) Installing libpcre2-32 (10.43-r0)
+#5 19.67 (280/602) Installing pcre2-dev (10.43-r0)
+#5 19.73 (281/602) Installing glib-dev (2.82.5-r0)
+#5 19.85 (282/602) Installing xz-dev (5.6.3-r1)
+#5 19.89 (283/602) Installing libxml2-dev (2.13.4-r5)
+#5 19.94 (284/602) Installing gstreamer-dev (1.24.11-r0)
+#5 20.01 (285/602) Installing orc-compiler (0.4.40-r1)
+#5 20.05 (286/602) Installing orc-dev (0.4.40-r1)
+#5 20.10 (287/602) Installing gst-plugins-base-dev (1.24.11-r0)
+#5 20.19 (288/602) Installing harfbuzz-cairo (9.0.0-r1)
+#5 20.23 (289/602) Installing harfbuzz-gobject (9.0.0-r1)
+#5 20.27 (290/602) Installing icu-data-full (74.2-r0)
+#5 20.52 (291/602) Installing icu-libs (74.2-r0)
+#5 20.59 (292/602) Installing harfbuzz-icu (9.0.0-r1)
+#5 20.63 (293/602) Installing harfbuzz-subset (9.0.0-r1)
+#5 20.68 (294/602) Installing cairo-tools (1.18.2-r1)
+#5 20.72 (295/602) Installing fontconfig-dev (2.15.0-r1)
+#5 20.76 (296/602) Installing libxrender-dev (0.9.11-r5)
+#5 20.81 (297/602) Installing pixman-dev (0.43.4-r1)
+#5 20.85 (298/602) Installing util-macros (1.20.1-r0)
+#5 20.89 (299/602) Installing xcb-util (0.4.1-r3)
+#5 20.93 (300/602) Installing xcb-util-dev (0.4.1-r3)
+#5 20.98 (301/602) Installing cairo-gobject (1.18.2-r1)
+#5 21.02 (302/602) Installing cairo-dev (1.18.2-r1)
+#5 21.06 (303/602) Installing graphite2-dev (1.3.14-r6)
+#5 21.10 (304/602) Installing icu (74.2-r0)
+#5 21.15 (305/602) Installing icu-dev (74.2-r0)
+#5 21.23 (306/602) Installing harfbuzz-dev (9.0.0-r1)
+#5 21.28 (307/602) Installing libsz (1.1.3-r0)
+#5 21.32 (308/602) Installing hdf5 (1.14.4.2-r1)
+#5 21.39 (309/602) Installing hdf5-cpp (1.14.4.2-r1)
+#5 21.44 (310/602) Installing hdf5-fortran (1.14.4.2-r1)
+#5 21.48 (311/602) Installing hdf5-hl (1.14.4.2-r1)
+#5 21.53 (312/602) Installing hdf5-hl-cpp (1.14.4.2-r1)
+#5 21.57 (313/602) Installing hdf5-hl-fortran (1.14.4.2-r1)
+#5 21.62 (314/602) Installing hdf5-dev (1.14.4.2-r1)
+#5 21.69 (315/602) Installing libusb (1.0.27-r0)
+#5 21.73 (316/602) Installing libusb-dev (1.0.27-r0)
+#5 21.77 (317/602) Installing libraw1394 (2.1.2-r5)
+#5 21.81 (318/602) Installing libraw1394-dev (2.1.2-r5)
+#5 21.86 (319/602) Installing libdc1394 (2.2.7-r0)
+#5 21.90 (320/602) Installing libdc1394-dev (2.2.7-r0)
+#5 21.97 (321/602) Installing libexif (0.6.24-r2)
+#5 22.01 (322/602) Installing libexif-dev (0.6.24-r2)
+#5 22.05 (323/602) Installing libgphoto2 (2.5.31-r2)
+#5 22.10 Executing libgphoto2-2.5.31-r2.pre-install
+#5 22.14 (324/602) Installing libgphoto2-dev (2.5.31-r2)
+#5 22.18 (325/602) Installing libva-dev (2.22.0-r1)
+#5 22.22 (326/602) Installing libva-glx (2.20.0-r0)
+#5 22.26 (327/602) Installing libva-glx-dev (2.20.0-r0)
+#5 22.30 (328/602) Installing eudev-libs (3.2.14-r5)
+#5 22.34 (329/602) Installing hwloc (2.11.2-r0)
+#5 22.39 (330/602) Installing onetbb (2022.0.0-r0)
+#5 22.44 (331/602) Installing onetbb-dev (2022.0.0-r0)
+#5 22.50 (332/602) Installing libdeflate-static (1.22-r0)
+#5 22.54 (333/602) Installing openexr-libopenexrutil (3.3.2-r0)
+#5 22.58 (334/602) Installing boost1.84-python3 (1.84.0-r2)
+#5 22.63 (335/602) Installing py3-imath (3.1.12-r0)
+#5 22.76 (336/602) Installing imath-dev (3.1.12-r0)
+#5 22.82 (337/602) Installing libdeflate-dev (1.22-r0)
+#5 22.86 (338/602) Installing openexr-dev (3.3.2-r0)
+#5 22.92 (339/602) Installing openjpeg (2.5.2-r0)
+#5 22.96 (340/602) Installing tiff (4.7.0-r0)
+#5 23.00 (341/602) Installing openjpeg-tools (2.5.2-r0)
+#5 23.05 (342/602) Installing openjpeg-dev (2.5.2-r0)
+#5 23.10 (343/602) Installing py3-setuptools (70.3.0-r0)
+#5 23.18 (344/602) Installing py3-setuptools-pyc (70.3.0-r0)
+#5 23.26 (345/602) Installing tzdata (2025b-r0)
+#5 23.36 (346/602) Installing libb2 (0.98.1-r3)
+#5 23.40 (347/602) Installing double-conversion (3.3.0-r0)
+#5 23.44 (348/602) Installing c-ares (1.34.5-r0)
+#5 23.48 (349/602) Installing libidn2 (2.3.7-r0)
+#5 23.52 (350/602) Installing nghttp2-libs (1.64.0-r0)
+#5 23.56 (351/602) Installing libpsl (0.21.5-r3)
+#5 23.60 (352/602) Installing libcurl (8.12.1-r1)
+#5 23.65 (353/602) Installing duktape (2.7.0-r1)
+#5 23.70 (354/602) Installing libproxy (0.5.9-r0)
+#5 23.74 (355/602) Installing qt6-qtbase (6.8.0-r1)
+#5 23.89 (356/602) Installing mariadb-connector-c (3.3.10-r0)
+#5 23.95 (357/602) Installing qt6-qtbase-mysql (6.8.0-r1)
+#5 23.99 (358/602) Installing unixodbc (2.3.12-r0)
+#5 24.04 (359/602) Installing qt6-qtbase-odbc (6.8.0-r1)
+#5 24.08 (360/602) Installing libpq (17.4-r0)
+#5 24.13 (361/602) Installing qt6-qtbase-postgresql (6.8.0-r1)
+#5 24.18 (362/602) Installing qt6-qtbase-sqlite (6.8.0-r1)
+#5 24.22 (363/602) Installing hicolor-icon-theme (0.18-r0)
+#5 24.38 (364/602) Installing xprop (1.2.8-r0)
+#5 24.41 (365/602) Installing xset (1.2.5-r1)
+#5 24.46 (366/602) Installing xdg-utils (1.2.1-r1)
+#5 24.50 (367/602) Installing avahi-libs (0.8-r19)
+#5 24.54 (368/602) Installing nettle (3.10-r1)
+#5 24.59 (369/602) Installing libtasn1 (4.20.0-r0)
+#5 24.63 (370/602) Installing p11-kit (0.25.5-r2)
+#5 24.68 (371/602) Installing gnutls (3.8.8-r0)
+#5 24.74 (372/602) Installing cups-libs (2.4.11-r0)
+#5 24.79 (373/602) Installing shared-mime-info (2.4-r2)
+#5 24.84 (374/602) Installing gdk-pixbuf (2.42.12-r1)
+#5 24.89 (375/602) Installing gtk-update-icon-cache (3.24.49-r0)
+#5 24.93 (376/602) Installing libxcomposite (0.4.6-r5)
+#5 24.97 (377/602) Installing libxcursor (1.2.3-r0)
+#5 25.02 (378/602) Installing libxinerama (1.1.5-r4)
+#5 25.06 (379/602) Installing libxrandr (1.5.4-r1)
+#5 25.10 (380/602) Installing libatk-1.0 (2.54.1-r0)
+#5 25.15 (381/602) Installing libxtst (1.2.5-r0)
+#5 25.19 (382/602) Installing at-spi2-core (2.54.1-r0)
+#5 25.24 (383/602) Installing libatk-bridge-2.0 (2.54.1-r0)
+#5 25.29 (384/602) Installing libepoxy (1.5.10-r1)
+#5 25.33 (385/602) Installing xkeyboard-config (2.43-r0)
+#5 25.41 (386/602) Installing libxkbcommon (1.7.0-r1)
+#5 25.45 (387/602) Installing gtk+3.0 (3.24.49-r0)
+#5 25.57 (388/602) Installing libevdev (1.13.3-r0)
+#5 25.61 (389/602) Installing mtdev (1.1.7-r0)
+#5 25.66 (390/602) Installing libinput-libs (1.27.0-r0)
+#5 25.71 (391/602) Installing tslib (1.23-r0)
+#5 25.75 (392/602) Installing xcb-util-image (0.4.1-r0)
+#5 25.79 (393/602) Installing xcb-util-renderutil (0.3.10-r0)
+#5 25.83 (394/602) Installing xcb-util-cursor (0.1.5-r0)
+#5 25.88 (395/602) Installing xcb-util-wm (0.4.2-r0)
+#5 25.92 (396/602) Installing xcb-util-keysyms (0.4.1-r0)
+#5 25.96 (397/602) Installing libxkbcommon-x11 (1.7.0-r1)
+#5 26.00 (398/602) Installing qt6-qtbase-x11 (6.8.0-r1)
+#5 26.22 (399/602) Installing qt6-qtdeclarative (6.8.0-r0)
+#5 26.66 (400/602) Installing qt6-qtwayland (6.8.0-r1)
+#5 26.74 (401/602) Installing libgpg-error-dev (1.51-r0)
+#5 26.78 (402/602) Installing libgcrypt-dev (1.10.3-r1)
+#5 26.82 (403/602) Installing gnutls-c++ (3.8.8-r0)
+#5 26.86 (404/602) Installing libgmpxx (6.3.0-r2)
+#5 26.90 (405/602) Installing gmp-dev (6.3.0-r2)
+#5 26.99 (406/602) Installing nettle-dev (3.10-r1)
+#5 27.04 (407/602) Installing libidn2-dev (2.3.7-r0)
+#5 27.07 (408/602) Installing libtasn1-progs (4.20.0-r0)
+#5 27.12 (409/602) Installing libtasn1-dev (4.20.0-r0)
+#5 27.16 (410/602) Installing p11-kit-dev (0.25.5-r2)
+#5 27.20 (411/602) Installing gnutls-dev (3.8.8-r0)
+#5 27.24 (412/602) Installing gdbm-tools (1.24-r0)
+#5 27.28 (413/602) Installing gdbm-dev (1.24-r0)
+#5 27.33 (414/602) Installing avahi-compat-howl (0.8-r19)
+#5 27.37 (415/602) Installing avahi-compat-libdns_sd (0.8-r19)
+#5 27.41 (416/602) Installing avahi-glib (0.8-r19)
+#5 27.45 (417/602) Installing libdaemon (0.14-r5)
+#5 27.49 (418/602) Installing libevent (2.1.12-r7)
+#5 27.54 (419/602) Installing avahi (0.8-r19)
+#5 27.58 Executing avahi-0.8-r19.pre-install
+#5 27.63 (420/602) Installing libevent-dev (2.1.12-r7)
+#5 27.67 (421/602) Installing avahi-dev (0.8-r19)
+#5 27.73 (422/602) Installing cups-dev (2.4.11-r0)
+#5 27.77 (423/602) Installing dbus-dev (1.14.10-r4)
+#5 27.84 (424/602) Installing double-conversion-dev (3.3.0-r0)
+#5 27.89 (425/602) Installing eudev-dev (3.2.14-r5)
+#5 27.94 (426/602) Installing libturbojpeg (3.0.4-r0)
+#5 27.99 (427/602) Installing libjpeg-turbo-dev (3.0.4-r0)
+#5 28.04 (428/602) Installing libtiffxx (4.7.0-r0)
+#5 28.07 (429/602) Installing libwebpdecoder (1.4.0-r0)
+#5 28.12 (430/602) Installing libwebpdemux (1.4.0-r0)
+#5 28.16 (431/602) Installing libwebp-dev (1.4.0-r0)
+#5 28.21 (432/602) Installing zstd (1.5.6-r2)
+#5 28.25 (433/602) Installing zstd-dev (1.5.6-r2)
+#5 28.29 (434/602) Installing tiff-dev (4.7.0-r0)
+#5 28.34 (435/602) Installing gdk-pixbuf-dev (2.42.12-r1)
+#5 28.39 (436/602) Installing libepoxy-dev (1.5.10-r1)
+#5 28.43 (437/602) Installing libxinerama-dev (1.1.5-r4)
+#5 28.48 (438/602) Installing libxkbcommon-dev (1.7.0-r1)
+#5 28.52 (439/602) Installing wayland-protocols (1.38-r0)
+#5 28.59 (440/602) Installing libxtst-dev (1.2.5-r0)
+#5 28.63 (441/602) Installing at-spi2-core-dev (2.54.1-r0)
+#5 28.68 (442/602) Installing fribidi-dev (1.0.16-r0)
+#5 28.72 (443/602) Installing pango-tools (1.54.0-r1)
+#5 28.76 (444/602) Installing libxft-dev (2.3.8-r3)
+#5 28.80 (445/602) Installing pango-dev (1.54.0-r1)
+#5 28.85 (446/602) Installing libxcomposite-dev (0.4.6-r5)
+#5 28.89 (447/602) Installing libxcursor-dev (1.2.3-r0)
+#5 28.93 (448/602) Installing libxrandr-dev (1.5.4-r1)
+#5 28.97 (449/602) Installing gtk+3.0-dev (3.24.49-r0)
+#5 29.12 (450/602) Installing libb2-dev (0.98.1-r3)
+#5 29.16 (451/602) Installing libinput-dev (1.27.0-r0)
+#5 29.20 (452/602) Installing openssl-dev (3.3.3-r0)
+#5 29.26 (453/602) Installing libpq-dev (17.4-r0)
+#5 29.32 (454/602) Installing libproxy-dev (0.5.9-r0)
+#5 29.36 (455/602) Installing fmt (10.2.1-r2)
+#5 29.40 (456/602) Installing fmt-dev (10.2.1-r2)
+#5 29.45 (457/602) Installing mariadb-connector-c-dev (3.3.10-r0)
+#5 29.49 (458/602) Installing mariadb-common (11.4.5-r0)
+#5 29.56 (459/602) Installing libaio (0.3.113-r2)
+#5 29.59 (460/602) Installing mariadb-embedded (11.4.5-r0)
+#5 29.76 (461/602) Installing mariadb-dev (11.4.5-r0)
+#5 29.87 (462/602) Installing tslib-dev (1.23-r0)
+#5 29.91 (463/602) Installing unixodbc-dev (2.3.12-r0)
+#5 29.95 (464/602) Installing vulkan-headers (1.3.296.0-r0)
+#5 30.07 (465/602) Installing vulkan-loader-dev (1.3.296.0-r0)
+#5 30.11 (466/602) Installing xcb-util-image-dev (0.4.1-r0)
+#5 30.16 (467/602) Installing xcb-util-renderutil-dev (0.3.10-r0)
+#5 30.20 (468/602) Installing xcb-util-cursor-dev (0.1.5-r0)
+#5 30.24 (469/602) Installing xcb-util-keysyms-dev (0.4.1-r0)
+#5 30.28 (470/602) Installing xcb-util-wm-dev (0.4.2-r0)
+#5 30.32 (471/602) Installing qt6-qtbase-dev (6.8.0-r1)
+#5 30.96 (472/602) Installing boost1.84-atomic (1.84.0-r2)
+#5 31.00 (473/602) Installing boost1.84-chrono (1.84.0-r2)
+#5 31.04 (474/602) Installing boost1.84-container (1.84.0-r2)
+#5 31.08 (475/602) Installing boost1.84-context (1.84.0-r2)
+#5 31.12 (476/602) Installing boost1.84-contract (1.84.0-r2)
+#5 31.17 (477/602) Installing boost1.84-coroutine (1.84.0-r2)
+#5 31.21 (478/602) Installing boost1.84-date_time (1.84.0-r2)
+#5 31.25 (479/602) Installing boost1.84-fiber (1.84.0-r2)
+#5 31.30 (480/602) Installing boost1.84-filesystem (1.84.0-r2)
+#5 31.34 (481/602) Installing boost1.84-graph (1.84.0-r2)
+#5 31.38 (482/602) Installing boost1.84-iostreams (1.84.0-r2)
+#5 31.43 (483/602) Installing boost1.84-thread (1.84.0-r2)
+#5 31.47 (484/602) Installing boost1.84-locale (1.84.0-r2)
+#5 31.52 (485/602) Installing boost1.84-log (1.84.0-r2)
+#5 31.57 (486/602) Installing boost1.84-log_setup (1.84.0-r2)
+#5 31.62 (487/602) Installing boost1.84-math (1.84.0-r2)
+#5 31.67 (488/602) Installing boost1.84-prg_exec_monitor (1.84.0-r2)
+#5 31.71 (489/602) Installing boost1.84-program_options (1.84.0-r2)
+#5 31.76 (490/602) Installing boost1.84-random (1.84.0-r2)
+#5 31.80 (491/602) Installing boost1.84-regex (1.84.0-r2)
+#5 31.85 (492/602) Installing boost1.84-serialization (1.84.0-r2)
+#5 31.90 (493/602) Installing boost1.84-stacktrace_basic (1.84.0-r2)
+#5 31.94 (494/602) Installing boost1.84-stacktrace_noop (1.84.0-r2)
+#5 31.98 (495/602) Installing boost1.84-system (1.84.0-r2)
+#5 32.02 (496/602) Installing boost1.84-timer (1.84.0-r2)
+#5 32.06 (497/602) Installing boost1.84-type_erasure (1.84.0-r2)
+#5 32.11 (498/602) Installing boost1.84-unit_test_framework (1.84.0-r2)
+#5 32.16 (499/602) Installing boost1.84-url (1.84.0-r2)
+#5 32.20 (500/602) Installing boost1.84-wave (1.84.0-r2)
+#5 32.25 (501/602) Installing boost1.84-wserialization (1.84.0-r2)
+#5 32.30 (502/602) Installing boost1.84-json (1.84.0-r2)
+#5 32.34 (503/602) Installing boost1.84-nowide (1.84.0-r2)
+#5 32.39 (504/602) Installing boost1.84-libs (1.84.0-r2)
+#5 32.43 (505/602) Installing boost1.84 (1.84.0-r2)
+#5 32.49 (506/602) Installing boost1.84-dev (1.84.0-r2)
+#5 34.62 (507/602) Installing boost-dev (1.84.0-r2)
+#5 34.62 (508/602) Installing c-ares-dev (1.34.5-r0)
+#5 34.78 (509/602) Installing libpsl-utils (0.21.5-r3)
+#5 34.82 (510/602) Installing libpsl-dev (0.21.5-r3)
+#5 34.86 (511/602) Installing nghttp2-dev (1.64.0-r0)
+#5 34.90 (512/602) Installing curl-dev (8.12.1-r1)
+#5 34.95 (513/602) Installing doxygen (1.12.0-r0)
+#5 35.10 (514/602) Installing lerc (4.0.0-r0)
+#5 35.15 (515/602) Installing libqb3 (1.2.0-r0)
+#5 35.19 (516/602) Installing sfcgal (2.0.0-r0)
+#5 35.30 (517/602) Installing libaec (1.1.3-r0)
+#5 35.34 (518/602) Installing acl-libs (2.3.2-r1)
+#5 35.39 (519/602) Installing lz4-libs (1.10.0-r0)
+#5 35.43 (520/602) Installing libarchive (3.7.9-r0)
+#5 35.47 (521/602) Installing arpack (3.8.0-r3)
+#5 35.52 (522/602) Installing armadillo (14.2.1-r0)
+#5 35.56 (523/602) Installing blosc (1.21.6-r0)
+#5 35.60 (524/602) Installing brunsli-libs (0.1-r1)
+#5 35.65 (525/602) Installing geos (3.13.0-r0)
+#5 35.71 (526/602) Installing gnu-libiconv-libs (1.17-r2)
+#5 35.77 (527/602) Installing json-c (0.18-r0)
+#5 35.81 (528/602) Installing proj (9.5.0-r0)
+#5 35.92 (529/602) Installing qhull (2020.2-r3)
+#5 36.02 (530/602) Installing libgeotiff (1.7.3-r1)
+#5 36.06 (531/602) Installing minizip (1.3.1-r0)
+#5 36.10 (532/602) Installing librttopo (1.1.0-r6)
+#5 36.15 (533/602) Installing libspatialite (5.1.0-r3)
+#5 36.28 (534/602) Installing librasterlite2 (1.1.0_beta1-r7)
+#5 36.33 (535/602) Installing xerces-c (3.2.5-r0)
+#5 36.39 (536/602) Installing gdal (3.10.2-r0)
+#5 36.58 (537/602) Installing gdal-dev (3.10.2-r0)
+#5 36.63 (538/602) Installing jpeg-dev (9f-r0)
+#5 36.63 (539/602) Installing libaec-dev (1.1.3-r0)
+#5 36.67 (540/602) Installing netcdf (4.9.2-r5)
+#5 36.72 (541/602) Installing netcdf-dev (4.9.2-r5)
+#5 36.77 (542/602) Installing openmpi (4.1.6-r1)
+#5 36.89 (543/602) Installing openmpi-dev (4.1.6-r1)
+#5 36.93 (544/602) Installing pdal (2.8.1-r1)
+#5 37.05 (545/602) Installing fgt (0.4.11-r0)
+#5 37.09 (546/602) Installing cpd (0.5.5-r1)
+#5 37.14 (547/602) Installing openscenegraph (3.6.5-r16)
+#5 37.35 (548/602) Installing libpdal-plugins (2.8.1-r1)
+#5 37.41 (549/602) Installing pdal-dev (2.8.1-r1)
+#5 37.49 (550/602) Installing proj-dev (9.5.0-r0)
+#5 37.53 (551/602) Installing qt5-qtbase (5.15.10_git20230714-r3)
+#5 37.78 (552/602) Installing qt5-qtbase-sqlite (5.15.10_git20230714-r3)
+#5 37.82 (553/602) Installing qt5-qtbase-odbc (5.15.10_git20230714-r3)
+#5 37.86 (554/602) Installing qt5-qtbase-postgresql (5.15.10_git20230714-r3)
+#5 37.91 (555/602) Installing qt5-qtbase-mysql (5.15.10_git20230714-r3)
+#5 37.95 (556/602) Installing freetds (1.4.23-r0)
+#5 38.01 (557/602) Installing qt5-qtbase-tds (5.15.10_git20230714-r3)
+#5 38.05 (558/602) Installing qt5-qtbase-x11 (5.15.10_git20230714-r3)
+#5 38.21 (559/602) Installing qt5-qtdeclarative (5.15.10_git20230629-r0)
+#5 38.38 (560/602) Installing qt5-qtwayland (5.15.10_git20230714-r0)
+#5 38.44 (561/602) Installing perl (5.40.1-r0)
+#5 37.19 (562/602) Installing qt5-qtbase-dev (5.15.10_git20230714-r3)
+#5 37.79 (563/602) Installing qt5-qttools (5.15.10_git20230612-r2)
+#5 37.84 (564/602) Installing libqt5designer (5.15.10_git20230612-r2)
+#5 37.93 (565/602) Installing libqt5designercomponents (5.15.10_git20230612-r2)
+#5 37.99 (566/602) Installing libqt5help (5.15.10_git20230612-r2)
+#5 38.03 (567/602) Installing clang18-headers (18.1.8-r2)
+#5 38.14 (568/602) Installing llvm18-libs (18.1.8-r2)
+#5 39.19 (569/602) Installing clang18-libclang (18.1.8-r2)
+#5 39.79 (570/602) Installing qt5-qttools-dev (5.15.10_git20230612-r2)
+#5 39.92 (571/602) Installing qt5-qtx11extras (5.15.10_git20230424-r1)
+#5 39.96 (572/602) Installing qt5-qtx11extras-dev (5.15.10_git20230424-r1)
+#5 40.00 (573/602) Installing tcl (8.6.15-r0)
+#5 40.09 (574/602) Installing tcl-dev (8.6.15-r0)
+#5 40.14 (575/602) Installing tk (8.6.15-r0)
+#5 40.21 (576/602) Installing tk-dev (8.6.15-r0)
+#5 40.25 (577/602) Installing vtk (9.3.1-r0)
+#5 41.09 (578/602) Installing vtk-dev (9.3.1-r0)
+#5 41.63 (579/602) Installing libopencv_core (4.10.0-r3)
+#5 41.70 (580/602) Installing libopencv_flann (4.10.0-r3)
+#5 41.75 (581/602) Installing libopencv_imgproc (4.10.0-r3)
+#5 41.83 (582/602) Installing libopencv_features2d (4.10.0-r3)
+#5 41.88 (583/602) Installing libopencv_calib3d (4.10.0-r3)
+#5 41.94 (584/602) Installing libopencv_dnn (4.10.0-r3)
+#5 42.04 (585/602) Installing libopencv_objdetect (4.10.0-r3)
+#5 42.10 (586/602) Installing libopencv_aruco (4.10.0-r3)
+#5 42.14 (587/602) Installing libopencv_face (4.10.0-r3)
+#5 42.19 (588/602) Installing libopencv_highgui (4.10.0-r3)
+#5 42.24 (589/602) Installing libopencv_imgcodecs (4.10.0-r3)
+#5 42.28 (590/602) Installing libopencv_ml (4.10.0-r3)
+#5 42.33 (591/602) Installing libopencv_video (4.10.0-r3)
+#5 42.38 (592/602) Installing libopencv_ximgproc (4.10.0-r3)
+#5 42.43 (593/602) Installing libopencv_optflow (4.10.0-r3)
+#5 42.47 (594/602) Installing libopencv_photo (4.10.0-r3)
+#5 42.52 (595/602) Installing libopencv_plot (4.10.0-r3)
+#5 42.57 (596/602) Installing libopencv_shape (4.10.0-r3)
+#5 42.61 (597/602) Installing libopencv_stitching (4.10.0-r3)
+#5 42.66 (598/602) Installing libopencv_videoio (4.10.0-r3)
+#5 42.71 (599/602) Installing libopencv_superres (4.10.0-r3)
+#5 42.75 (600/602) Installing libopencv_tracking (4.10.0-r3)
+#5 42.82 (601/602) Installing libopencv_videostab (4.10.0-r3)
+#5 42.86 (602/602) Installing opencv-dev (4.10.0-r3)
+#5 42.98 Executing busybox-1.37.0-r12.trigger
+#5 42.99 Executing glib-2.82.5-r0.trigger
+#5 42.99 Executing shared-mime-info-2.4-r2.trigger
+#5 43.35 Executing gdk-pixbuf-2.42.12-r1.trigger
+#5 43.36 Executing gtk-update-icon-cache-3.24.49-r0.trigger
+#5 43.46 Executing gtk+3.0-3.24.49-r0.trigger
+#5 43.49 OK: 2519 MiB in 630 packages
+#5 DONE 45.6s
+
+#6 [3/4] RUN set -xeu && 	cargo new /root/app && 	echo "opencv = { version = "0.94.4", default-features = false }" >> /root/app/Cargo.toml && 	echo "use opencv::prelude::*; use opencv::core; fn main() {}" > /root/app/src/main.rs
+#6 0.786 + cargo new /root/app
+#6 0.807     Creating binary (application) `app` package
+#6 1.859 note: see more `Cargo.toml` keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+#6 1.860 + echo 'opencv = { version = "0.94.4", default-features = false }'
+#6 1.860 + echo 'use opencv::prelude::*; use opencv::core; fn main() {}'
+#6 DONE 2.0s
+
+#7 [4/4] RUN set -xu && 	cd /root/app &&     RUST_BACKTRACE=full cargo build -vv --release
+#7 0.909 + cd /root/app
+#7 0.909 + RUST_BACKTRACE=full cargo build -vv --release
+#7 1.017     Updating crates.io index
+#7 1.627      Locking 48 packages to latest Rust 1.86.0 compatible versions
+#7 1.655  Downloading crates ...
+#7 1.855   Downloaded clang v2.0.0
+#7 1.865   Downloaded clang-sys v1.8.1
+#7 1.870   Downloaded dunce v1.0.5
+#7 1.874   Downloaded glob v0.3.2
+#7 1.883   Downloaded jobserver v0.1.33
+#7 1.887   Downloaded once_cell v1.21.3
+#7 1.892   Downloaded autocfg v1.4.0
+#7 1.910   Downloaded num-traits v0.2.19
+#7 1.915   Downloaded shlex v1.3.0
+#7 1.918   Downloaded percent-encoding v2.3.1
+#7 1.921   Downloaded semver v1.0.26
+#7 1.927   Downloaded pkg-config v0.3.32
+#7 1.930   Downloaded memchr v2.7.4
+#7 1.941   Downloaded cc v1.2.19
+#7 1.949   Downloaded aho-corasick v1.1.3
+#7 1.960   Downloaded libc v0.2.171
+#7 2.014   Downloaded regex-automata v0.4.9
+#7 2.045   Downloaded regex-syntax v0.8.5
+#7 2.056   Downloaded regex v1.11.1
+#7 2.081   Downloaded opencv v0.94.4
+#7 2.144   Downloaded opencv-binding-generator v0.96.1
+#7 2.163   Downloaded vcpkg v0.2.15
+#7 2.365    Compiling libc v0.2.171
+#7 2.365    Compiling glob v0.3.2
+#7 2.365    Compiling memchr v2.7.4
+#7 2.365    Compiling regex-syntax v0.8.5
+#7 2.365    Compiling shlex v1.3.0
+#7 2.366    Compiling semver v1.0.26
+#7 2.367    Compiling dunce v1.0.5
+#7 2.367    Compiling autocfg v1.4.0
+#7 2.368    Compiling once_cell v1.21.3
+#7 2.368    Compiling percent-encoding v2.3.1
+#7 2.369    Compiling vcpkg v0.2.15
+#7 2.370    Compiling pkg-config v0.3.32
+#7 2.371      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=build_script_build CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Raw FFI bindings to platform libraries like libc.
+#7 2.371 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/libc' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=libc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/libc' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.2.171 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=171 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name build_script_build --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("align", "const-extern-fn", "default", "extra_traits", "rustc-dep-of-std", "rustc-std-workspace-core", "std", "use_std"))' -C metadata=e0b5a165c8d2eedf -C extra-filename=-9c0b58bba3455a89 --out-dir /root/app/target/release/build/libc-9c0b58bba3455a89 -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.371      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=glob CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/glob-0.3.2 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/glob-0.3.2/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Support for matching file paths against Unix shell style patterns.
+#7 2.371 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/glob' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=glob CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/glob' CARGO_PKG_RUST_VERSION=1.23.0 CARGO_PKG_VERSION=0.3.2 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=3 CARGO_PKG_VERSION_PATCH=2 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name glob --edition=2015 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/glob-0.3.2/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=b6ad29de8e2d7a9d -C extra-filename=-8413cb3df9a0c44f --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.372      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=memchr CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.7.4 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.7.4/Cargo.toml CARGO_PKG_AUTHORS='Andrew Gallant <jamslam@gmail.com>:bluss' CARGO_PKG_DESCRIPTION='Provides extremely fast (uses SIMD on x86_64, aarch64 and wasm32) routines for
+#7 2.372 1, 2 or 3 byte search and single substring search.
+#7 2.372 ' CARGO_PKG_HOMEPAGE='https://github.com/BurntSushi/memchr' CARGO_PKG_LICENSE='Unlicense OR MIT' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=memchr CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/BurntSushi/memchr' CARGO_PKG_RUST_VERSION=1.61 CARGO_PKG_VERSION=2.7.4 CARGO_PKG_VERSION_MAJOR=2 CARGO_PKG_VERSION_MINOR=7 CARGO_PKG_VERSION_PATCH=4 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name memchr --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.7.4/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="alloc"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("alloc", "compiler_builtins", "core", "default", "libc", "logging", "rustc-dep-of-std", "std", "use_std"))' -C metadata=554cfb901ccf8bb0 -C extra-filename=-945841bf2a4fde69 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.373      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=regex_syntax CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-syntax-0.8.5 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-syntax-0.8.5/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers:Andrew Gallant <jamslam@gmail.com>' CARGO_PKG_DESCRIPTION='A regular expression parser.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=regex-syntax CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/regex/tree/master/regex-syntax' CARGO_PKG_RUST_VERSION=1.65 CARGO_PKG_VERSION=0.8.5 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=8 CARGO_PKG_VERSION_PATCH=5 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name regex_syntax --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-syntax-0.8.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --cfg 'feature="unicode"' --cfg 'feature="unicode-age"' --cfg 'feature="unicode-bool"' --cfg 'feature="unicode-case"' --cfg 'feature="unicode-gencat"' --cfg 'feature="unicode-perl"' --cfg 'feature="unicode-script"' --cfg 'feature="unicode-segment"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("arbitrary", "default", "std", "unicode", "unicode-age", "unicode-bool", "unicode-case", "unicode-gencat", "unicode-perl", "unicode-script", "unicode-segment"))' -C metadata=041c813a1a03e549 -C extra-filename=-8a0c85e8a1fa9e4c --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.373      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=shlex CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/shlex-1.3.0 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/shlex-1.3.0/Cargo.toml CARGO_PKG_AUTHORS='comex <comexk@gmail.com>:Fenhl <fenhl@fenhl.net>:Adrian Taylor <adetaylor@chromium.org>:Alex Touchet <alextouchet@outlook.com>:Daniel Parks <dp+git@oxidized.org>:Garrett Berg <googberg@gmail.com>' CARGO_PKG_DESCRIPTION='Split a string into shell words, like Python'\''s shlex.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=shlex CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/comex/rust-shlex' CARGO_PKG_RUST_VERSION=1.46.0 CARGO_PKG_VERSION=1.3.0 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=3 CARGO_PKG_VERSION_PATCH=0 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name shlex --edition=2015 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/shlex-1.3.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "std"))' -C metadata=7e71e2af33737fc6 -C extra-filename=-0b1e92f2df0d3dc0 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.374      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=build_script_build CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26/Cargo.toml CARGO_PKG_AUTHORS='David Tolnay <dtolnay@gmail.com>' CARGO_PKG_DESCRIPTION='Parser and evaluator for Cargo'\''s flavor of Semantic Versioning' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=semver CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/dtolnay/semver' CARGO_PKG_RUST_VERSION=1.31 CARGO_PKG_VERSION=1.0.26 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=0 CARGO_PKG_VERSION_PATCH=26 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name build_script_build --edition=2018 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "serde", "std"))' -C metadata=fb1ec00339612de7 -C extra-filename=-a810111df3e9bf1a --out-dir /root/app/target/release/build/semver-a810111df3e9bf1a -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.374      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=dunce CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dunce-1.0.5 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dunce-1.0.5/Cargo.toml CARGO_PKG_AUTHORS='Kornel <kornel@geekhood.net>' CARGO_PKG_DESCRIPTION='Normalize Windows paths to the most compatible format, avoiding UNC where possible' CARGO_PKG_HOMEPAGE='https://lib.rs/crates/dunce' CARGO_PKG_LICENSE='CC0-1.0 OR MIT-0 OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=dunce CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://gitlab.com/kornelski/dunce' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=1.0.5 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=0 CARGO_PKG_VERSION_PATCH=5 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name dunce --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/dunce-1.0.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=f5c8c771f468f226 -C extra-filename=-044feb78a0b4038e --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.375      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=once_cell CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3/Cargo.toml CARGO_PKG_AUTHORS='Aleksey Kladov <aleksey.kladov@gmail.com>' CARGO_PKG_DESCRIPTION='Single assignment cells and lazy values.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=once_cell CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/matklad/once_cell' CARGO_PKG_RUST_VERSION=1.65 CARGO_PKG_VERSION=1.21.3 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=21 CARGO_PKG_VERSION_PATCH=3 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name once_cell --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="alloc"' --cfg 'feature="default"' --cfg 'feature="race"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("alloc", "atomic-polyfill", "critical-section", "default", "parking_lot", "portable-atomic", "race", "std", "unstable"))' -C metadata=b3232fa21766c596 -C extra-filename=-f6f16b091899587d --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.375      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=autocfg CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.4.0 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.4.0/Cargo.toml CARGO_PKG_AUTHORS='Josh Stone <cuviper@gmail.com>' CARGO_PKG_DESCRIPTION='Automatic cfg for Rust compiler features' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='Apache-2.0 OR MIT' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=autocfg CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/cuviper/autocfg' CARGO_PKG_RUST_VERSION=1.0 CARGO_PKG_VERSION=1.4.0 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=4 CARGO_PKG_VERSION_PATCH=0 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name autocfg --edition=2015 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/autocfg-1.4.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=08630a94e2ae69fb -C extra-filename=-b7786a39efcad052 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.375      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=percent_encoding CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/percent-encoding-2.3.1 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/percent-encoding-2.3.1/Cargo.toml CARGO_PKG_AUTHORS='The rust-url developers' CARGO_PKG_DESCRIPTION='Percent encoding and decoding' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=percent-encoding CARGO_PKG_README='' CARGO_PKG_REPOSITORY='https://github.com/servo/rust-url/' CARGO_PKG_RUST_VERSION=1.51 CARGO_PKG_VERSION=2.3.1 CARGO_PKG_VERSION_MAJOR=2 CARGO_PKG_VERSION_MINOR=3 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name percent_encoding --edition=2018 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/percent-encoding-2.3.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("alloc", "default", "std"))' -C metadata=abd26749a3f889b0 -C extra-filename=-f65cc90f3dc80dd4 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.376      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=vcpkg CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vcpkg-0.2.15 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vcpkg-0.2.15/Cargo.toml CARGO_PKG_AUTHORS='Jim McGrath <jimmc2@gmail.com>' CARGO_PKG_DESCRIPTION='A library to find native dependencies in a vcpkg tree at build
+#7 2.376 time in order to be used in Cargo build scripts.
+#7 2.376 ' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=MIT/Apache-2.0 CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=vcpkg CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/mcgoo/vcpkg-rs' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=0.2.15 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=15 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name vcpkg --edition=2015 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/vcpkg-0.2.15/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=b059074d56c59f19 -C extra-filename=-067becc704ac26b9 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.376      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=pkg_config CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pkg-config-0.3.32 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pkg-config-0.3.32/Cargo.toml CARGO_PKG_AUTHORS='Alex Crichton <alex@alexcrichton.com>' CARGO_PKG_DESCRIPTION='A library to run the pkg-config system tool at build time in order to be used in
+#7 2.376 Cargo build scripts.
+#7 2.376 ' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=pkg-config CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/pkg-config-rs' CARGO_PKG_RUST_VERSION=1.31 CARGO_PKG_VERSION=0.3.32 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=3 CARGO_PKG_VERSION_PATCH=32 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name pkg_config --edition=2018 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pkg-config-0.3.32/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=c0f580e7591ff3a7 -C extra-filename=-9d339ac994e654f9 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.383      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=once_cell CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3/Cargo.toml CARGO_PKG_AUTHORS='Aleksey Kladov <aleksey.kladov@gmail.com>' CARGO_PKG_DESCRIPTION='Single assignment cells and lazy values.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=once_cell CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/matklad/once_cell' CARGO_PKG_RUST_VERSION=1.65 CARGO_PKG_VERSION=1.21.3 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=21 CARGO_PKG_VERSION_PATCH=3 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name once_cell --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/once_cell-1.21.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C opt-level=3 -C embed-bitcode=no --cfg 'feature="alloc"' --cfg 'feature="default"' --cfg 'feature="race"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("alloc", "atomic-polyfill", "critical-section", "default", "parking_lot", "portable-atomic", "race", "std", "unstable"))' -C metadata=b71e78f7fc6f11d4 -C extra-filename=-d06bead48ec3a817 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn`
+#7 2.439 warning: unexpected `cfg` condition name: `manual_codegen_check`
+#7 2.439    --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/shlex-1.3.0/src/bytes.rs:353:12
+#7 2.439     |
+#7 2.439 353 | #[cfg_attr(manual_codegen_check, inline(never))]
+#7 2.439     |            ^^^^^^^^^^^^^^^^^^^^
+#7 2.439     |
+#7 2.439     = help: expected names are: `docsrs`, `feature`, and `test` and 31 more
+#7 2.439     = help: consider using a Cargo feature instead
+#7 2.439     = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+#7 2.439              [lints.rust]
+#7 2.439              unexpected_cfgs = { level = "warn", check-cfg = ['cfg(manual_codegen_check)'] }
+#7 2.439     = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(manual_codegen_check)");` to the top of the `build.rs`
+#7 2.439     = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+#7 2.439     = note: `#[warn(unexpected_cfgs)]` on by default
+#7 2.439 
+#7 2.653 warning: `shlex` (lib) generated 1 warning
+#7 2.740      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE=default,std CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_FEATURE_DEFAULT=1 CARGO_FEATURE_STD=1 CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26/Cargo.toml CARGO_PKG_AUTHORS='David Tolnay <dtolnay@gmail.com>' CARGO_PKG_DESCRIPTION='Parser and evaluator for Cargo'\''s flavor of Semantic Versioning' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=semver CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/dtolnay/semver' CARGO_PKG_RUST_VERSION=1.31 CARGO_PKG_VERSION=1.0.26 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=0 CARGO_PKG_VERSION_PATCH=26 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=0 OUT_DIR=/root/app/target/release/build/semver-1d08bd52ac39f72c/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/semver-a810111df3e9bf1a/build-script-build`
+#7 2.743 [semver 1.0.26] cargo:rerun-if-changed=build.rs
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_alloc_crate)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_const_vec_new)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_exhaustive_int_match)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_non_exhaustive)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_nonzero_bitscan)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_str_strip_prefix)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_track_caller)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(no_unsafe_op_in_unsafe_fn_lint)
+#7 2.772 [semver 1.0.26] cargo:rustc-check-cfg=cfg(test_node_semver)
+#7 2.773      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=semver CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26/Cargo.toml CARGO_PKG_AUTHORS='David Tolnay <dtolnay@gmail.com>' CARGO_PKG_DESCRIPTION='Parser and evaluator for Cargo'\''s flavor of Semantic Versioning' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=semver CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/dtolnay/semver' CARGO_PKG_RUST_VERSION=1.31 CARGO_PKG_VERSION=1.0.26 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=0 CARGO_PKG_VERSION_PATCH=26 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' OUT_DIR=/root/app/target/release/build/semver-1d08bd52ac39f72c/out /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name semver --edition=2018 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/semver-1.0.26/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "serde", "std"))' -C metadata=d6955d0a9cd655ec -C extra-filename=-c95561f1f0dfdb9e --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn --check-cfg 'cfg(no_alloc_crate)' --check-cfg 'cfg(no_const_vec_new)' --check-cfg 'cfg(no_exhaustive_int_match)' --check-cfg 'cfg(no_non_exhaustive)' --check-cfg 'cfg(no_nonzero_bitscan)' --check-cfg 'cfg(no_str_strip_prefix)' --check-cfg 'cfg(no_track_caller)' --check-cfg 'cfg(no_unsafe_op_in_unsafe_fn_lint)' --check-cfg 'cfg(test_node_semver)'`
+#7 2.845      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE=default,std CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_FEATURE_DEFAULT=1 CARGO_FEATURE_STD=1 CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Raw FFI bindings to platform libraries like libc.
+#7 2.845 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/libc' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=libc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/libc' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.2.171 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=171 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=0 OUT_DIR=/root/app/target/release/build/libc-08302dc65755919e/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/libc-9c0b58bba3455a89/build-script-build`
+#7 2.845      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE=default,std CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_FEATURE_DEFAULT=1 CARGO_FEATURE_STD=1 CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Raw FFI bindings to platform libraries like libc.
+#7 2.845 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/libc' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=libc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/libc' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.2.171 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=171 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=3 OUT_DIR=/root/app/target/release/build/libc-f01cf38b52c9dafa/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/libc-9c0b58bba3455a89/build-script-build`
+#7 2.848 [libc 0.2.171] cargo:rerun-if-changed=build.rs
+#7 2.849 [libc 0.2.171] cargo:rerun-if-changed=build.rs
+#7 2.874 [libc 0.2.171] cargo:rerun-if-env-changed=RUST_LIBC_UNSTABLE_FREEBSD_VERSION
+#7 2.874 [libc 0.2.171] cargo:rustc-cfg=freebsd11
+#7 2.875 [libc 0.2.171] cargo:rerun-if-env-changed=RUST_LIBC_UNSTABLE_FREEBSD_VERSION
+#7 2.875 [libc 0.2.171] cargo:rustc-cfg=freebsd11
+#7 2.875 [libc 0.2.171] cargo:rerun-if-env-changed=RUST_LIBC_UNSTABLE_LINUX_TIME_BITS64
+#7 2.876 [libc 0.2.171] cargo:rustc-cfg=libc_const_extern_fn
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(emscripten_old_stat_abi)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(espidf_time32)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd10)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd11)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd12)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd13)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd14)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd15)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_const_extern_fn)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_deny_warnings)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_thread_local)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_ctest)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(linux_time_bits64)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_os,values("switch","aix","ohos","hurd","rtems","visionos","nuttx","cygwin"))
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_env,values("illumos","wasi","aix","ohos"))
+#7 2.876 [libc 0.2.171] cargo:rerun-if-env-changed=RUST_LIBC_UNSTABLE_LINUX_TIME_BITS64
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_arch,values("loongarch64","mips32r6","mips64r6","csky"))
+#7 2.876 [libc 0.2.171] cargo:rustc-cfg=libc_const_extern_fn
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(emscripten_old_stat_abi)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(espidf_time32)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd10)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd11)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd12)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd13)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd14)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(freebsd15)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_const_extern_fn)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_deny_warnings)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_thread_local)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(libc_ctest)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(linux_time_bits64)
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_os,values("switch","aix","ohos","hurd","rtems","visionos","nuttx","cygwin"))
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_env,values("illumos","wasi","aix","ohos"))
+#7 2.876 [libc 0.2.171] cargo:rustc-check-cfg=cfg(target_arch,values("loongarch64","mips32r6","mips64r6","csky"))
+#7 2.877      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=libc CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Raw FFI bindings to platform libraries like libc.
+#7 2.877 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/libc' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=libc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/libc' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.2.171 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=171 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' OUT_DIR=/root/app/target/release/build/libc-08302dc65755919e/out /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name libc --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("align", "const-extern-fn", "default", "extra_traits", "rustc-dep-of-std", "rustc-std-workspace-core", "std", "use_std"))' -C metadata=72f75a66f57d0ea7 -C extra-filename=-250e493854822f42 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn --cfg freebsd11 --cfg libc_const_extern_fn --check-cfg 'cfg(emscripten_old_stat_abi)' --check-cfg 'cfg(espidf_time32)' --check-cfg 'cfg(freebsd10)' --check-cfg 'cfg(freebsd11)' --check-cfg 'cfg(freebsd12)' --check-cfg 'cfg(freebsd13)' --check-cfg 'cfg(freebsd14)' --check-cfg 'cfg(freebsd15)' --check-cfg 'cfg(libc_const_extern_fn)' --check-cfg 'cfg(libc_deny_warnings)' --check-cfg 'cfg(libc_thread_local)' --check-cfg 'cfg(libc_ctest)' --check-cfg 'cfg(linux_time_bits64)' --check-cfg 'cfg(target_os,values("switch","aix","ohos","hurd","rtems","visionos","nuttx","cygwin"))' --check-cfg 'cfg(target_env,values("illumos","wasi","aix","ohos"))' --check-cfg 'cfg(target_arch,values("loongarch64","mips32r6","mips64r6","csky"))'`
+#7 2.877      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=libc CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Raw FFI bindings to platform libraries like libc.
+#7 2.877 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/libc' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=libc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/libc' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.2.171 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=171 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' OUT_DIR=/root/app/target/release/build/libc-f01cf38b52c9dafa/out /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name libc --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libc-0.2.171/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C opt-level=3 -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("align", "const-extern-fn", "default", "extra_traits", "rustc-dep-of-std", "rustc-std-workspace-core", "std", "use_std"))' -C metadata=8c1ef03707039be0 -C extra-filename=-83a74dd1144da059 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn --cfg freebsd11 --cfg libc_const_extern_fn --check-cfg 'cfg(emscripten_old_stat_abi)' --check-cfg 'cfg(espidf_time32)' --check-cfg 'cfg(freebsd10)' --check-cfg 'cfg(freebsd11)' --check-cfg 'cfg(freebsd12)' --check-cfg 'cfg(freebsd13)' --check-cfg 'cfg(freebsd14)' --check-cfg 'cfg(freebsd15)' --check-cfg 'cfg(libc_const_extern_fn)' --check-cfg 'cfg(libc_deny_warnings)' --check-cfg 'cfg(libc_thread_local)' --check-cfg 'cfg(libc_ctest)' --check-cfg 'cfg(linux_time_bits64)' --check-cfg 'cfg(target_os,values("switch","aix","ohos","hurd","rtems","visionos","nuttx","cygwin"))' --check-cfg 'cfg(target_env,values("illumos","wasi","aix","ohos"))' --check-cfg 'cfg(target_arch,values("loongarch64","mips32r6","mips64r6","csky"))'`
+#7 2.879    Compiling clang-sys v1.8.1
+#7 2.881      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=build_script_build CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/Cargo.toml CARGO_PKG_AUTHORS='Kyle Mayes <kyle@mayeses.com>' CARGO_PKG_DESCRIPTION='Rust bindings for libclang.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=Apache-2.0 CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=clang-sys CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/KyleMayes/clang-sys' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=1.8.1 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=8 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name build_script_build --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="clang_3_5"' --cfg 'feature="clang_3_6"' --cfg 'feature="clang_3_7"' --cfg 'feature="clang_3_8"' --cfg 'feature="clang_3_9"' --cfg 'feature="clang_4_0"' --cfg 'feature="clang_5_0"' --cfg 'feature="clang_6_0"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("clang_10_0", "clang_11_0", "clang_12_0", "clang_13_0", "clang_14_0", "clang_15_0", "clang_16_0", "clang_17_0", "clang_18_0", "clang_3_5", "clang_3_6", "clang_3_7", "clang_3_8", "clang_3_9", "clang_4_0", "clang_5_0", "clang_6_0", "clang_7_0", "clang_8_0", "clang_9_0", "libcpp", "libloading", "runtime", "static"))' -C metadata=f3649b7efa784248 -C extra-filename=-1336dc67a7dc3f03 --out-dir /root/app/target/release/build/clang-sys-1336dc67a7dc3f03 -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern glob=/root/app/target/release/deps/libglob-8413cb3df9a0c44f.rlib --cap-lints warn`
+#7 2.901    Compiling num-traits v0.2.19
+#7 2.902      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=build_script_build CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Numeric traits for generic mathematics' CARGO_PKG_HOMEPAGE='https://github.com/rust-num/num-traits' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=num-traits CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-num/num-traits' CARGO_PKG_RUST_VERSION=1.60 CARGO_PKG_VERSION=0.2.19 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=19 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name build_script_build --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "i128", "libm", "std"))' -C metadata=0fdd37204d4d54a2 -C extra-filename=-0af71e961e691200 --out-dir /root/app/target/release/build/num-traits-0af71e961e691200 -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern autocfg=/root/app/target/release/deps/libautocfg-b7786a39efcad052.rlib --cap-lints warn`
+#7 3.167      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE=default,std CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_FEATURE_DEFAULT=1 CARGO_FEATURE_STD=1 CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Numeric traits for generic mathematics' CARGO_PKG_HOMEPAGE='https://github.com/rust-num/num-traits' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=num-traits CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-num/num-traits' CARGO_PKG_RUST_VERSION=1.60 CARGO_PKG_VERSION=0.2.19 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=19 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=3 OUT_DIR=/root/app/target/release/build/num-traits-74212e326324bdbd/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/num-traits-0af71e961e691200/build-script-build`
+#7 3.251 [num-traits 0.2.19] cargo:rustc-check-cfg=cfg(has_total_cmp)
+#7 3.297 [num-traits 0.2.19] cargo:rustc-cfg=has_total_cmp
+#7 3.297 [num-traits 0.2.19] cargo:rerun-if-changed=build.rs
+#7 3.298      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=num_traits CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers' CARGO_PKG_DESCRIPTION='Numeric traits for generic mathematics' CARGO_PKG_HOMEPAGE='https://github.com/rust-num/num-traits' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=num-traits CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-num/num-traits' CARGO_PKG_RUST_VERSION=1.60 CARGO_PKG_VERSION=0.2.19 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=19 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' OUT_DIR=/root/app/target/release/build/num-traits-74212e326324bdbd/out /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name num_traits --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/num-traits-0.2.19/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C opt-level=3 -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "i128", "libm", "std"))' -C metadata=f6c9f5865dcc9762 -C extra-filename=-1659ac48ee180f5d --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --cap-lints warn --cfg has_total_cmp --check-cfg 'cfg(has_total_cmp)'`
+#7 3.393    Compiling aho-corasick v1.1.3
+#7 3.393      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=aho_corasick CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aho-corasick-1.1.3 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aho-corasick-1.1.3/Cargo.toml CARGO_PKG_AUTHORS='Andrew Gallant <jamslam@gmail.com>' CARGO_PKG_DESCRIPTION='Fast multiple substring searching.' CARGO_PKG_HOMEPAGE='https://github.com/BurntSushi/aho-corasick' CARGO_PKG_LICENSE='Unlicense OR MIT' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=aho-corasick CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/BurntSushi/aho-corasick' CARGO_PKG_RUST_VERSION=1.60.0 CARGO_PKG_VERSION=1.1.3 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=1 CARGO_PKG_VERSION_PATCH=3 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name aho_corasick --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/aho-corasick-1.1.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="perf-literal"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "logging", "perf-literal", "std"))' -C metadata=8ae4078572a882f0 -C extra-filename=-d93a1e2306558c4b --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern memchr=/root/app/target/release/deps/libmemchr-945841bf2a4fde69.rmeta --cap-lints warn`
+#7 3.724      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE=clang_3_5,clang_3_6,clang_3_7,clang_3_8,clang_3_9,clang_4_0,clang_5_0,clang_6_0 CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_FEATURE_CLANG_3_5=1 CARGO_FEATURE_CLANG_3_6=1 CARGO_FEATURE_CLANG_3_7=1 CARGO_FEATURE_CLANG_3_8=1 CARGO_FEATURE_CLANG_3_9=1 CARGO_FEATURE_CLANG_4_0=1 CARGO_FEATURE_CLANG_5_0=1 CARGO_FEATURE_CLANG_6_0=1 CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1 CARGO_MANIFEST_LINKS=clang CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/Cargo.toml CARGO_PKG_AUTHORS='Kyle Mayes <kyle@mayeses.com>' CARGO_PKG_DESCRIPTION='Rust bindings for libclang.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=Apache-2.0 CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=clang-sys CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/KyleMayes/clang-sys' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=1.8.1 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=8 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=0 OUT_DIR=/root/app/target/release/build/clang-sys-5afa9b1078990172/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/clang-sys-1336dc67a7dc3f03/build-script-build`
+#7 3.835 [clang-sys 1.8.1] cargo:rustc-link-search=/usr/lib/llvm18/lib
+#7 3.835 [clang-sys 1.8.1] cargo:rustc-link-lib=dylib=clang
+#7 4.106    Compiling jobserver v0.1.33
+#7 4.106      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=clang_sys CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/Cargo.toml CARGO_PKG_AUTHORS='Kyle Mayes <kyle@mayeses.com>' CARGO_PKG_DESCRIPTION='Rust bindings for libclang.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=Apache-2.0 CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=clang-sys CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/KyleMayes/clang-sys' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=1.8.1 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=8 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' OUT_DIR=/root/app/target/release/build/clang-sys-5afa9b1078990172/out /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name clang_sys --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="clang_3_5"' --cfg 'feature="clang_3_6"' --cfg 'feature="clang_3_7"' --cfg 'feature="clang_3_8"' --cfg 'feature="clang_3_9"' --cfg 'feature="clang_4_0"' --cfg 'feature="clang_5_0"' --cfg 'feature="clang_6_0"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("clang_10_0", "clang_11_0", "clang_12_0", "clang_13_0", "clang_14_0", "clang_15_0", "clang_16_0", "clang_17_0", "clang_18_0", "clang_3_5", "clang_3_6", "clang_3_7", "clang_3_8", "clang_3_9", "clang_4_0", "clang_5_0", "clang_6_0", "clang_7_0", "clang_8_0", "clang_9_0", "libcpp", "libloading", "runtime", "static"))' -C metadata=0d84ac2c83e12c6d -C extra-filename=-425725385e02cd2d --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern glob=/root/app/target/release/deps/libglob-8413cb3df9a0c44f.rmeta --extern libc=/root/app/target/release/deps/liblibc-250e493854822f42.rmeta --cap-lints warn -L /usr/lib/llvm18/lib -l dylib=clang`
+#7 4.106      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=jobserver CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jobserver-0.1.33 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jobserver-0.1.33/Cargo.toml CARGO_PKG_AUTHORS='Alex Crichton <alex@alexcrichton.com>' CARGO_PKG_DESCRIPTION='An implementation of the GNU Make jobserver for Rust.
+#7 4.106 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/jobserver-rs' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=jobserver CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/jobserver-rs' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=0.1.33 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=1 CARGO_PKG_VERSION_PATCH=33 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name jobserver --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/jobserver-0.1.33/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=655b62c7d1f24557 -C extra-filename=-c34295d7e67e16e1 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern libc=/root/app/target/release/deps/liblibc-250e493854822f42.rmeta --cap-lints warn`
+#7 4.276 warning: unexpected `cfg` condition value: `cargo-clippy`
+#7 4.276   --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:23:13
+#7 4.276    |
+#7 4.276 23 | #![cfg_attr(feature = "cargo-clippy", allow(clippy::unreadable_literal))]
+#7 4.276    |             ^^^^^^^^^^^^^^^^^^^^^^^^
+#7 4.276    |
+#7 4.276    = note: expected values for `feature` are: `clang_10_0`, `clang_11_0`, `clang_12_0`, `clang_13_0`, `clang_14_0`, `clang_15_0`, `clang_16_0`, `clang_17_0`, `clang_18_0`, `clang_3_5`, `clang_3_6`, `clang_3_7`, `clang_3_8`, `clang_3_9`, `clang_4_0`, `clang_5_0`, `clang_6_0`, `clang_7_0`, `clang_8_0`, `clang_9_0`, `libcpp`, `libloading`, `runtime`, and `static`
+#7 4.276    = help: consider adding `cargo-clippy` as a feature in `Cargo.toml`
+#7 4.276    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+#7 4.276    = note: `#[warn(unexpected_cfgs)]` on by default
+#7 4.276 
+#7 4.280 warning: extern declarations without an explicit ABI are deprecated
+#7 4.280     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/link.rs:308:9
+#7 4.280      |
+#7 4.280 308  |           extern {
+#7 4.280      |           ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+#7 4.280      |
+#7 4.280     ::: /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:1859:1
+#7 4.280      |
+#7 4.280 1859 | / link! {
+#7 4.280 1860 | |     pub fn clang_CXCursorSet_contains(set: CXCursorSet, cursor: CXCursor) -> c_uint;
+#7 4.280 1861 | |     pub fn clang_CXCursorSet_insert(set: CXCursorSet, cursor: CXCursor) -> c_uint;
+#7 4.280 1862 | |     pub fn clang_CXIndex_getGlobalOptions(index: CXIndex) -> CXGlobalOptFlags;
+#7 4.280 ...    |
+#7 4.280 2432 | |     pub fn clang_VerbatimLineComment_getText(comment: CXComment) -> CXString;
+#7 4.280 2433 | | }
+#7 4.280      | |_- in this macro invocation
+#7 4.280      |
+#7 4.280      = note: `#[warn(missing_abi)]` on by default
+#7 4.280      = note: this warning originates in the macro `link` (in Nightly builds, run with -Z macro-backtrace for more info)
+#7 4.280 
+#7 4.280 warning: extern declarations without an explicit ABI are deprecated
+#7 4.280     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:2166:44
+#7 4.280      |
+#7 4.280 2166 |     pub fn clang_executeOnThread(function: extern fn(*mut c_void), data: *mut c_void, stack: c_uint);
+#7 4.280      |                                            ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+#7 4.280 
+#7 4.317 warning: use of deprecated type alias `libc::time_t`: This type is changed to 64-bit in musl 1.2.0, we'll follow that change in the future release. See #1848 for more info.
+#7 4.317     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-sys-1.8.1/src/lib.rs:2279:47
+#7 4.317      |
+#7 4.317 2279 |     pub fn clang_getFileTime(file: CXFile) -> time_t;
+#7 4.317      |                                               ^^^^^^
+#7 4.317      |
+#7 4.317      = note: `#[warn(deprecated)]` on by default
+#7 4.317 
+#7 4.410    Compiling cc v1.2.19
+#7 4.411      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=cc CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cc-1.2.19 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cc-1.2.19/Cargo.toml CARGO_PKG_AUTHORS='Alex Crichton <alex@alexcrichton.com>' CARGO_PKG_DESCRIPTION='A build-time dependency for Cargo build scripts to assist in invoking the native
+#7 4.411 C compiler to compile native C code into a static archive to be linked into Rust
+#7 4.411 code.
+#7 4.411 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/cc-rs' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=cc CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/cc-rs' CARGO_PKG_RUST_VERSION=1.63 CARGO_PKG_VERSION=1.2.19 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=2 CARGO_PKG_VERSION_PATCH=19 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name cc --edition=2018 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/cc-1.2.19/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="parallel"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("jobserver", "parallel"))' -C metadata=91e6e67ba8de6aff -C extra-filename=-d267d901e6c313b7 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern jobserver=/root/app/target/release/deps/libjobserver-c34295d7e67e16e1.rmeta --extern libc=/root/app/target/release/deps/liblibc-250e493854822f42.rmeta --extern shlex=/root/app/target/release/deps/libshlex-0b1e92f2df0d3dc0.rmeta --cap-lints warn`
+#7 4.684    Compiling clang v2.0.0
+#7 4.685      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=clang CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/Cargo.toml CARGO_PKG_AUTHORS='Kyle Mayes <kyle@mayeses.com>' CARGO_PKG_DESCRIPTION='A somewhat idiomatic Rust wrapper for libclang.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=Apache-2.0 CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=clang CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/KyleMayes/clang-rs' CARGO_PKG_RUST_VERSION='' CARGO_PKG_VERSION=2.0.0 CARGO_PKG_VERSION_MAJOR=2 CARGO_PKG_VERSION_MINOR=0 CARGO_PKG_VERSION_PATCH=0 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name clang --edition=2015 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="clang_3_5"' --cfg 'feature="clang_3_6"' --cfg 'feature="clang_3_7"' --cfg 'feature="clang_3_8"' --cfg 'feature="clang_3_9"' --cfg 'feature="clang_4_0"' --cfg 'feature="clang_5_0"' --cfg 'feature="clang_6_0"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("clang_10_0", "clang_3_5", "clang_3_6", "clang_3_7", "clang_3_8", "clang_3_9", "clang_4_0", "clang_5_0", "clang_6_0", "clang_7_0", "clang_8_0", "clang_9_0", "runtime", "static"))' -C metadata=930e4cb61c7ab47e -C extra-filename=-4eb1644ce67d88a3 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern clang_sys=/root/app/target/release/deps/libclang_sys-425725385e02cd2d.rmeta --extern libc=/root/app/target/release/deps/liblibc-250e493854822f42.rmeta --cap-lints warn -L /usr/lib/llvm18/lib`
+#7 4.884 warning: `clang-sys` (lib) generated 4 warnings
+#7 4.893 warning: unexpected `cfg` condition value: `cargo-clippy`
+#7 4.893     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/lib.rs:1095:12
+#7 4.893      |
+#7 4.893 1095 | #[cfg_attr(feature="cargo-clippy", allow(clippy::enum_variant_names))]
+#7 4.893      |            ^^^^^^^^^^^^^^^^^^^^^^
+#7 4.893      |
+#7 4.893      = note: expected values for `feature` are: `clang_10_0`, `clang_3_5`, `clang_3_6`, `clang_3_7`, `clang_3_8`, `clang_3_9`, `clang_4_0`, `clang_5_0`, `clang_6_0`, `clang_7_0`, `clang_8_0`, `clang_9_0`, `runtime`, and `static`
+#7 4.893      = help: consider adding `cargo-clippy` as a feature in `Cargo.toml`
+#7 4.893      = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+#7 4.893      = note: `#[warn(unexpected_cfgs)]` on by default
+#7 4.893 
+#7 4.895 warning: extern declarations without an explicit ABI are deprecated
+#7 4.895    --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/source.rs:499:5
+#7 4.895     |
+#7 4.895 499 |     extern fn visit(data: CXClientData, cursor: CXCursor, range: CXSourceRange) -> CXVisitorResult {
+#7 4.895     |     ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+#7 4.895     |
+#7 4.895     = note: `#[warn(missing_abi)]` on by default
+#7 4.895 
+#7 4.897 warning: extern declarations without an explicit ABI are deprecated
+#7 4.897     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/lib.rs:2521:9
+#7 4.897      |
+#7 4.897 2521 |         extern fn visit(
+#7 4.897      |         ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+#7 4.897 
+#7 4.898 warning: extern declarations without an explicit ABI are deprecated
+#7 4.898     --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/lib.rs:3443:9
+#7 4.898      |
+#7 4.898 3443 |         extern fn visit(cursor: CXCursor, data: CXClientData) -> CXVisitorResult {
+#7 4.898      |         ^^^^^^ help: explicitly specify the "C" ABI: `extern "C"`
+#7 4.898 
+#7 4.946 warning: use of deprecated type alias `libc::time_t`: This type is changed to 64-bit in musl 1.2.0, we'll follow that change in the future release. See #1848 for more info.
+#7 4.946   --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/source.rs:26:20
+#7 4.946    |
+#7 4.946 26 | use libc::{c_uint, time_t};
+#7 4.946    |                    ^^^^^^
+#7 4.946    |
+#7 4.946    = note: `#[warn(deprecated)]` on by default
+#7 4.946 
+#7 4.946 warning: use of deprecated type alias `libc::time_t`: This type is changed to 64-bit in musl 1.2.0, we'll follow that change in the future release. See #1848 for more info.
+#7 4.946   --> /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clang-2.0.0/src/source.rs:62:31
+#7 4.946    |
+#7 4.946 62 |     pub fn get_time(&self) -> time_t {
+#7 4.946    |                               ^^^^^^
+#7 4.946 
+#7 5.750    Compiling regex-automata v0.4.9
+#7 5.750      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=regex_automata CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-automata-0.4.9 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-automata-0.4.9/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers:Andrew Gallant <jamslam@gmail.com>' CARGO_PKG_DESCRIPTION='Automata construction and matching using regular expressions.' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=regex-automata CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/regex/tree/master/regex-automata' CARGO_PKG_RUST_VERSION=1.65 CARGO_PKG_VERSION=0.4.9 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=4 CARGO_PKG_VERSION_PATCH=9 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name regex_automata --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-automata-0.4.9/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="alloc"' --cfg 'feature="dfa-onepass"' --cfg 'feature="hybrid"' --cfg 'feature="meta"' --cfg 'feature="nfa-backtrack"' --cfg 'feature="nfa-pikevm"' --cfg 'feature="nfa-thompson"' --cfg 'feature="perf-inline"' --cfg 'feature="perf-literal"' --cfg 'feature="perf-literal-multisubstring"' --cfg 'feature="perf-literal-substring"' --cfg 'feature="std"' --cfg 'feature="syntax"' --cfg 'feature="unicode"' --cfg 'feature="unicode-age"' --cfg 'feature="unicode-bool"' --cfg 'feature="unicode-case"' --cfg 'feature="unicode-gencat"' --cfg 'feature="unicode-perl"' --cfg 'feature="unicode-script"' --cfg 'feature="unicode-segment"' --cfg 'feature="unicode-word-boundary"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("alloc", "default", "dfa", "dfa-build", "dfa-onepass", "dfa-search", "hybrid", "internal-instrument", "internal-instrument-pikevm", "logging", "meta", "nfa", "nfa-backtrack", "nfa-pikevm", "nfa-thompson", "perf", "perf-inline", "perf-literal", "perf-literal-multisubstring", "perf-literal-substring", "std", "syntax", "unicode", "unicode-age", "unicode-bool", "unicode-case", "unicode-gencat", "unicode-perl", "unicode-script", "unicode-segment", "unicode-word-boundary"))' -C metadata=b79f0680b91b96a3 -C extra-filename=-0e619ba71e601091 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern aho_corasick=/root/app/target/release/deps/libaho_corasick-d93a1e2306558c4b.rmeta --extern memchr=/root/app/target/release/deps/libmemchr-945841bf2a4fde69.rmeta --extern regex_syntax=/root/app/target/release/deps/libregex_syntax-8a0c85e8a1fa9e4c.rmeta --cap-lints warn`
+#7 6.627 warning: `clang` (lib) generated 6 warnings
+#7 8.923    Compiling regex v1.11.1
+#7 8.923      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=regex CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-1.11.1 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-1.11.1/Cargo.toml CARGO_PKG_AUTHORS='The Rust Project Developers:Andrew Gallant <jamslam@gmail.com>' CARGO_PKG_DESCRIPTION='An implementation of regular expressions for Rust. This implementation uses
+#7 8.923 finite automata and guarantees linear time matching on all inputs.
+#7 8.923 ' CARGO_PKG_HOMEPAGE='https://github.com/rust-lang/regex' CARGO_PKG_LICENSE='MIT OR Apache-2.0' CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=regex CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/rust-lang/regex' CARGO_PKG_RUST_VERSION=1.65 CARGO_PKG_VERSION=1.11.1 CARGO_PKG_VERSION_MAJOR=1 CARGO_PKG_VERSION_MINOR=11 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name regex --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/regex-1.11.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --cfg 'feature="default"' --cfg 'feature="perf"' --cfg 'feature="perf-backtrack"' --cfg 'feature="perf-cache"' --cfg 'feature="perf-dfa"' --cfg 'feature="perf-inline"' --cfg 'feature="perf-literal"' --cfg 'feature="perf-onepass"' --cfg 'feature="std"' --cfg 'feature="unicode"' --cfg 'feature="unicode-age"' --cfg 'feature="unicode-bool"' --cfg 'feature="unicode-case"' --cfg 'feature="unicode-gencat"' --cfg 'feature="unicode-perl"' --cfg 'feature="unicode-script"' --cfg 'feature="unicode-segment"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("default", "logging", "pattern", "perf", "perf-backtrack", "perf-cache", "perf-dfa", "perf-dfa-full", "perf-inline", "perf-literal", "perf-onepass", "std", "unicode", "unicode-age", "unicode-bool", "unicode-case", "unicode-gencat", "unicode-perl", "unicode-script", "unicode-segment", "unstable", "use_std"))' -C metadata=28f50184b60c04e8 -C extra-filename=-bfb0cc6dc0812f07 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern aho_corasick=/root/app/target/release/deps/libaho_corasick-d93a1e2306558c4b.rmeta --extern memchr=/root/app/target/release/deps/libmemchr-945841bf2a4fde69.rmeta --extern regex_automata=/root/app/target/release/deps/libregex_automata-0e619ba71e601091.rmeta --extern regex_syntax=/root/app/target/release/deps/libregex_syntax-8a0c85e8a1fa9e4c.rmeta --cap-lints warn`
+#7 9.367    Compiling opencv-binding-generator v0.96.1
+#7 9.367      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=opencv_binding_generator CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-binding-generator-0.96.1 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-binding-generator-0.96.1/Cargo.toml CARGO_PKG_AUTHORS='Pro <twisted.fall@gmail.com>' CARGO_PKG_DESCRIPTION='Binding generator for opencv crate' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=MIT CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=opencv-binding-generator CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/twistedfall/opencv-rust' CARGO_PKG_RUST_VERSION=1.77.0 CARGO_PKG_VERSION=0.96.1 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=96 CARGO_PKG_VERSION_PATCH=1 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name opencv_binding_generator --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-binding-generator-0.96.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("clang-runtime"))' -C metadata=10ab32e3bf919d9d -C extra-filename=-e7846f9427e6cd86 --out-dir /root/app/target/release/deps -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern clang=/root/app/target/release/deps/libclang-4eb1644ce67d88a3.rmeta --extern clang_sys=/root/app/target/release/deps/libclang_sys-425725385e02cd2d.rmeta --extern dunce=/root/app/target/release/deps/libdunce-044feb78a0b4038e.rmeta --extern once_cell=/root/app/target/release/deps/libonce_cell-f6f16b091899587d.rmeta --extern percent_encoding=/root/app/target/release/deps/libpercent_encoding-f65cc90f3dc80dd4.rmeta --extern regex=/root/app/target/release/deps/libregex-bfb0cc6dc0812f07.rmeta --extern shlex=/root/app/target/release/deps/libshlex-0b1e92f2df0d3dc0.rmeta --cap-lints warn -L /usr/lib/llvm18/lib`
+#7 14.03    Compiling opencv v0.94.4
+#7 14.03      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CRATE_NAME=build_script_build CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/Cargo.toml CARGO_PKG_AUTHORS='Pro <twisted.fall@gmail.com>:Mathieu Poumeyrol <kali@zoy.org>' CARGO_PKG_DESCRIPTION='Rust bindings for OpenCV' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=MIT CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=opencv CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/twistedfall/opencv-rust' CARGO_PKG_RUST_VERSION=1.77.0 CARGO_PKG_VERSION=0.94.4 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=94 CARGO_PKG_VERSION_PATCH=4 CARGO_PKG_VERSION_PRE='' LD_LIBRARY_PATH='/root/app/target/release/deps:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' /usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc --crate-name build_script_build --edition=2021 /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debug-assertions=off --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("3d", "alphamat", "aruco", "aruco_detector", "barcode", "bgsegm", "bioinspired", "calib", "calib3d", "ccalib", "clang-runtime", "cudaarithm", "cudabgsegm", "cudacodec", "cudafeatures2d", "cudafilters", "cudaimgproc", "cudalegacy", "cudaobjdetect", "cudaoptflow", "cudastereo", "cudawarping", "cvv", "default", "dnn", "dnn_superres", "dpm", "f16", "face", "features", "features2d", "flann", "freetype", "fuzzy", "gapi", "hdf", "hfs", "highgui", "img_hash", "imgcodecs", "imgproc", "intensity_transform", "line_descriptor", "mcc", "ml", "objdetect", "optflow", "ovis", "phase_unwrapping", "photo", "plot", "quality", "rapid", "rgb", "rgbd", "saliency", "sfm", "shape", "signal", "stereo", "stitching", "structured_light", "superres", "surface_matching", "text", "tracking", "video", "videoio", "videostab", "viz", "wechat_qrcode", "xfeatures2d", "ximgproc", "xobjdetect", "xphoto", "xstereo"))' -C metadata=427ad8274f6cdf6a -C extra-filename=-1048a545d52c30a1 --out-dir /root/app/target/release/build/opencv-1048a545d52c30a1 -C strip=debuginfo -L dependency=/root/app/target/release/deps --extern cc=/root/app/target/release/deps/libcc-d267d901e6c313b7.rlib --extern dunce=/root/app/target/release/deps/libdunce-044feb78a0b4038e.rlib --extern jobserver=/root/app/target/release/deps/libjobserver-c34295d7e67e16e1.rlib --extern once_cell=/root/app/target/release/deps/libonce_cell-f6f16b091899587d.rlib --extern opencv_binding_generator=/root/app/target/release/deps/libopencv_binding_generator-e7846f9427e6cd86.rlib --extern pkg_config=/root/app/target/release/deps/libpkg_config-9d339ac994e654f9.rlib --extern semver=/root/app/target/release/deps/libsemver-c95561f1f0dfdb9e.rlib --extern shlex=/root/app/target/release/deps/libshlex-0b1e92f2df0d3dc0.rlib --extern vcpkg=/root/app/target/release/deps/libvcpkg-067becc704ac26b9.rlib --cap-lints warn -L /usr/lib/llvm18/lib`
+#7 16.21      Running `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE='' CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/Cargo.toml CARGO_PKG_AUTHORS='Pro <twisted.fall@gmail.com>:Mathieu Poumeyrol <kali@zoy.org>' CARGO_PKG_DESCRIPTION='Rust bindings for OpenCV' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=MIT CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=opencv CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/twistedfall/opencv-rust' CARGO_PKG_RUST_VERSION=1.77.0 CARGO_PKG_VERSION=0.94.4 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=94 CARGO_PKG_VERSION_PATCH=4 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=3 OUT_DIR=/root/app/target/release/build/opencv-0f8315cf000ead96/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/opencv-1048a545d52c30a1/build-script-build`
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_34)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_4)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_5)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_3d)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_alphamat)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_aruco)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_aruco_detector)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_barcode)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_bgsegm)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_bioinspired)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_calib)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_calib3d)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_ccalib)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_core)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaarithm)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudabgsegm)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudacodec)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudafeatures2d)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudafilters)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaimgproc)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudalegacy)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaobjdetect)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaoptflow)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudastereo)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudawarping)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_cvv)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_dnn)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_dnn_superres)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_dpm)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_face)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_features)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_features2d)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_flann)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_freetype)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_fuzzy)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_gapi)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_hdf)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_hfs)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_highgui)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_img_hash)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_imgcodecs)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_imgproc)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_intensity_transform)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_line_descriptor)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_mcc)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_ml)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_objdetect)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_optflow)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_ovis)
+#7 16.21 [opencv 0.94.4] === Crate version: 0.94.4
+#7 16.21 [opencv 0.94.4] === Environment configuration:
+#7 16.21 [opencv 0.94.4] ===   OPENCV_PACKAGE_NAME = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_PKGCONFIG_NAME = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_CMAKE_NAME = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_CMAKE_BIN = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_VCPKG_NAME = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_LINK_LIBS = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_LINK_PATHS = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_INCLUDE_PATHS = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_DISABLE_PROBES = None
+#7 16.21 [opencv 0.94.4] ===   OPENCV_MSVC_CRT = None
+#7 16.21 [opencv 0.94.4] ===   CMAKE_PREFIX_PATH = None
+#7 16.21 [opencv 0.94.4] ===   OpenCV_DIR = None
+#7 16.21 [opencv 0.94.4] ===   PKG_CONFIG_PATH = None
+#7 16.21 [opencv 0.94.4] ===   VCPKG_ROOT = None
+#7 16.21 [opencv 0.94.4] ===   VCPKGRS_DYNAMIC = None
+#7 16.21 [opencv 0.94.4] ===   VCPKGRS_TRIPLET = None
+#7 16.21 [opencv 0.94.4] ===   OCVRS_DOCS_GENERATE_DIR = None
+#7 16.21 [opencv 0.94.4] ===   DOCS_RS = None
+#7 16.21 [opencv 0.94.4] ===   PATH = Some("/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin")
+#7 16.21 [opencv 0.94.4] === Enabled features:
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_phase_unwrapping)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_photo)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_plot)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_quality)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_rapid)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_rgbd)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_saliency)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_sfm)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_shape)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_signal)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_stereo)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_stitching)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_structured_light)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_superres)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_surface_matching)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_text)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_tracking)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_video)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_videoio)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_videostab)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_viz)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_wechat_qrcode)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_xfeatures2d)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_ximgproc)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_xobjdetect)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_xphoto)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_module_xstereo)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_inherent_feature_hfloat)
+#7 16.21 [opencv 0.94.4] cargo::rustc-check-cfg=cfg(ocvrs_has_inherent_feature_opencl)
+#7 16.21 [opencv 0.94.4] === Detected probe priority boost based on environment vars: pkg_config: false, cmake: false, vcpkg: false
+#7 16.21 [opencv 0.94.4] === Probing the OpenCV library in the following order: environment, pkg_config, cmake, vcpkg_cmake, vcpkg
+#7 16.21 [opencv 0.94.4] === Can't probe using: environment, continuing with other methods because: Some environment variables are missing
+#7 16.21 [opencv 0.94.4] === Probing OpenCV library using pkg_config
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_NO_PKG_CONFIG
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=SYSROOT
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_musl
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+#7 16.21 [opencv 0.94.4] cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.21 [opencv 0.94.4] === Successfully probed using: pkg_config
+#7 16.21 [opencv 0.94.4] === OpenCV library configuration: Library {
+#7 16.21 [opencv 0.94.4]     include_paths: [
+#7 16.21 [opencv 0.94.4]         "/usr/include/opencv4",
+#7 16.21 [opencv 0.94.4]     ],
+#7 16.21 [opencv 0.94.4]     version: Version {
+#7 16.21 [opencv 0.94.4]         major: 4,
+#7 16.21 [opencv 0.94.4]         minor: 10,
+#7 16.21 [opencv 0.94.4]         patch: 0,
+#7 16.21 [opencv 0.94.4]     },
+#7 16.21 [opencv 0.94.4]     enabled_features: [
+#7 16.21 [opencv 0.94.4]         "eigen",
+#7 16.21 [opencv 0.94.4]         "vulkan",
+#7 16.21 [opencv 0.94.4]         "openjpeg",
+#7 16.21 [opencv 0.94.4]         "jpeg",
+#7 16.21 [opencv 0.94.4]         "opencl",
+#7 16.21 [opencv 0.94.4]         "openexr",
+#7 16.21 [opencv 0.94.4]         "opengl",
+#7 16.21 [opencv 0.94.4]         "png",
+#7 16.21 [opencv 0.94.4]         "pthread",
+#7 16.21 [opencv 0.94.4]         "pthreads_pf",
+#7 16.21 [opencv 0.94.4]         "tbb",
+#7 16.21 [opencv 0.94.4]         "tiff",
+#7 16.21 [opencv 0.94.4]         "va",
+#7 16.21 [opencv 0.94.4]         "va_intel",
+#7 16.21 [opencv 0.94.4]         "lapack",
+#7 16.21 [opencv 0.94.4]     ],
+#7 16.21 [opencv 0.94.4]     cargo_metadata: [
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-search=/usr/lib",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_aruco",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_face",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_ml",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_objdetect",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_shape",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_stitching",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_superres",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_optflow",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_tracking",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_highgui",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_plot",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_videostab",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_videoio",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_photo",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_ximgproc",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_video",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_calib3d",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_imgcodecs",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_features2d",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_dnn",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_imgproc",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_flann",
+#7 16.21 [opencv 0.94.4]         "cargo::rustc-link-lib=opencv_core",
+#7 16.21 [opencv 0.94.4]     ],
+#7 16.21 [opencv 0.94.4] }
+#7 16.21 [opencv 0.94.4] === Found OpenCV version: 4.10.0 in headers located at: /usr/include/opencv4
+#7 16.21 [opencv 0.94.4] === Detected OpenCV module header dir at: /usr/include/opencv4/opencv2
+#7 16.21 [opencv 0.94.4] cargo::rustc-cfg=ocvrs_opencv_branch_4
+#7 16.21 [opencv 0.94.4] cargo::rustc-cfg=ocvrs_has_module_core
+#7 16.21 [opencv 0.94.4] cargo::rustc-cfg=ocvrs_has_inherent_feature_hfloat
+#7 16.21 [opencv 0.94.4] cargo::rustc-cfg=ocvrs_has_inherent_feature_opencl
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_PACKAGE_NAME
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_PKGCONFIG_NAME
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_CMAKE_NAME
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_CMAKE_BIN
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_VCPKG_NAME
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_LINK_LIBS
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_LINK_PATHS
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_INCLUDE_PATHS
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_DISABLE_PROBES
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OPENCV_MSVC_CRT
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=CMAKE_PREFIX_PATH
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OpenCV_DIR
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=VCPKG_ROOT
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=VCPKGRS_DYNAMIC
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=VCPKGRS_TRIPLET
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=OCVRS_DOCS_GENERATE_DIR
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-env-changed=DOCS_RS
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/ocvrs_common.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/photo.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/ccalib.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/core.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/face.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/bioinspired.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/videoio.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/dnn.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/aruco.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/sfm.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/xfeatures2d.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/alphamat.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/gapi.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/manual-core.cpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/hdf.hpp
+#7 16.21 [opencv 0.94.4] cargo::rerun-if-changed=Cargo.toml
+#7 16.21 [opencv 0.94.4] === Generating code in: /root/app/target/release/build/opencv-0f8315cf000ead96/out
+#7 16.21 [opencv 0.94.4] === Placing generated bindings into: /root/app/target/release/build/opencv-0f8315cf000ead96/out/opencv
+#7 16.21 [opencv 0.94.4] === Using OpenCV headers from: /usr/include/opencv4
+#7 16.31 error: failed to run custom build command for `opencv v0.94.4`
+#7 16.31 note: To improve backtraces for build dependencies, set the CARGO_PROFILE_RELEASE_BUILD_OVERRIDE_DEBUG=true environment variable to enable debug information generation.
+#7 16.31 
+#7 16.31 Caused by:
+#7 16.32   process didn't exit successfully: `CARGO=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/cargo CARGO_CFG_FEATURE='' CARGO_CFG_PANIC=unwind CARGO_CFG_TARGET_ABI='' CARGO_CFG_TARGET_ARCH=x86_64 CARGO_CFG_TARGET_ENDIAN=little CARGO_CFG_TARGET_ENV=musl CARGO_CFG_TARGET_FAMILY=unix CARGO_CFG_TARGET_FEATURE=fxsr,sse,sse2 CARGO_CFG_TARGET_HAS_ATOMIC=16,32,64,8,ptr CARGO_CFG_TARGET_OS=linux CARGO_CFG_TARGET_POINTER_WIDTH=64 CARGO_CFG_TARGET_VENDOR=unknown CARGO_CFG_UNIX='' CARGO_ENCODED_RUSTFLAGS='' CARGO_MANIFEST_DIR=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4 CARGO_MANIFEST_PATH=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/Cargo.toml CARGO_PKG_AUTHORS='Pro <twisted.fall@gmail.com>:Mathieu Poumeyrol <kali@zoy.org>' CARGO_PKG_DESCRIPTION='Rust bindings for OpenCV' CARGO_PKG_HOMEPAGE='' CARGO_PKG_LICENSE=MIT CARGO_PKG_LICENSE_FILE='' CARGO_PKG_NAME=opencv CARGO_PKG_README=README.md CARGO_PKG_REPOSITORY='https://github.com/twistedfall/opencv-rust' CARGO_PKG_RUST_VERSION=1.77.0 CARGO_PKG_VERSION=0.94.4 CARGO_PKG_VERSION_MAJOR=0 CARGO_PKG_VERSION_MINOR=94 CARGO_PKG_VERSION_PATCH=4 CARGO_PKG_VERSION_PRE='' DEBUG=false HOST=x86_64-unknown-linux-musl LD_LIBRARY_PATH='/root/app/target/release/deps:/root/app/target/release:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib/rustlib/x86_64-unknown-linux-musl/lib:/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/lib' NUM_JOBS=16 OPT_LEVEL=3 OUT_DIR=/root/app/target/release/build/opencv-0f8315cf000ead96/out PROFILE=release RUSTC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustc RUSTDOC=/usr/local/rustup/toolchains/1.86.0-x86_64-unknown-linux-musl/bin/rustdoc TARGET=x86_64-unknown-linux-musl /root/app/target/release/build/opencv-1048a545d52c30a1/build-script-build` (signal: 11, SIGSEGV: invalid memory reference)
+#7 16.32   --- stdout
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_34)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_4)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_opencv_branch_5)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_3d)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_alphamat)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_aruco)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_aruco_detector)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_barcode)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_bgsegm)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_bioinspired)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_calib)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_calib3d)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_ccalib)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_core)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaarithm)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudabgsegm)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudacodec)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudafeatures2d)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudafilters)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaimgproc)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudalegacy)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaobjdetect)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudaoptflow)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudastereo)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cudawarping)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_cvv)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_dnn)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_dnn_superres)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_dpm)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_face)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_features)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_features2d)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_flann)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_freetype)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_fuzzy)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_gapi)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_hdf)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_hfs)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_highgui)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_img_hash)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_imgcodecs)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_imgproc)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_intensity_transform)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_line_descriptor)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_mcc)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_ml)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_objdetect)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_optflow)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_ovis)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_phase_unwrapping)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_photo)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_plot)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_quality)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_rapid)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_rgbd)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_saliency)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_sfm)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_shape)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_signal)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_stereo)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_stitching)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_structured_light)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_superres)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_surface_matching)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_text)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_tracking)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_video)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_videoio)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_videostab)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_viz)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_wechat_qrcode)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_xfeatures2d)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_ximgproc)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_xobjdetect)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_xphoto)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_module_xstereo)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_inherent_feature_hfloat)
+#7 16.32   cargo::rustc-check-cfg=cfg(ocvrs_has_inherent_feature_opencl)
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_NO_PKG_CONFIG
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.32   cargo:rerun-if-env-changed=SYSROOT
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_STATIC
+#7 16.32   cargo:rerun-if-env-changed=OPENCV4_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-unknown-linux-musl
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_unknown_linux_musl
+#7 16.32   cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+#7 16.32   cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+#7 16.32   cargo::rustc-cfg=ocvrs_opencv_branch_4
+#7 16.32   cargo::rustc-cfg=ocvrs_has_module_core
+#7 16.32   cargo::rustc-cfg=ocvrs_has_inherent_feature_hfloat
+#7 16.32   cargo::rustc-cfg=ocvrs_has_inherent_feature_opencl
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_PACKAGE_NAME
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_PKGCONFIG_NAME
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_CMAKE_NAME
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_CMAKE_BIN
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_VCPKG_NAME
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_LINK_LIBS
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_LINK_PATHS
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_INCLUDE_PATHS
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_DISABLE_PROBES
+#7 16.32   cargo::rerun-if-env-changed=OPENCV_MSVC_CRT
+#7 16.32   cargo::rerun-if-env-changed=CMAKE_PREFIX_PATH
+#7 16.32   cargo::rerun-if-env-changed=OpenCV_DIR
+#7 16.32   cargo::rerun-if-env-changed=PKG_CONFIG_PATH
+#7 16.32   cargo::rerun-if-env-changed=VCPKG_ROOT
+#7 16.32   cargo::rerun-if-env-changed=VCPKGRS_DYNAMIC
+#7 16.32   cargo::rerun-if-env-changed=VCPKGRS_TRIPLET
+#7 16.32   cargo::rerun-if-env-changed=OCVRS_DOCS_GENERATE_DIR
+#7 16.32   cargo::rerun-if-env-changed=DOCS_RS
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/ocvrs_common.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/photo.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/ccalib.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/core.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/face.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/bioinspired.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/videoio.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/dnn.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/aruco.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/sfm.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/xfeatures2d.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/alphamat.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/gapi.hpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/manual-core.cpp
+#7 16.32   cargo::rerun-if-changed=/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/opencv-0.94.4/src_cpp/hdf.hpp
+#7 16.32   cargo::rerun-if-changed=Cargo.toml
+#7 16.32 
+#7 16.32   --- stderr
+#7 16.32   === Crate version: 0.94.4
+#7 16.32   === Environment configuration:
+#7 16.32   ===   OPENCV_PACKAGE_NAME = None
+#7 16.32   ===   OPENCV_PKGCONFIG_NAME = None
+#7 16.32   ===   OPENCV_CMAKE_NAME = None
+#7 16.32   ===   OPENCV_CMAKE_BIN = None
+#7 16.32   ===   OPENCV_VCPKG_NAME = None
+#7 16.32   ===   OPENCV_LINK_LIBS = None
+#7 16.32   ===   OPENCV_LINK_PATHS = None
+#7 16.32   ===   OPENCV_INCLUDE_PATHS = None
+#7 16.32   ===   OPENCV_DISABLE_PROBES = None
+#7 16.32   ===   OPENCV_MSVC_CRT = None
+#7 16.32   ===   CMAKE_PREFIX_PATH = None
+#7 16.32   ===   OpenCV_DIR = None
+#7 16.32   ===   PKG_CONFIG_PATH = None
+#7 16.32   ===   VCPKG_ROOT = None
+#7 16.32   ===   VCPKGRS_DYNAMIC = None
+#7 16.32   ===   VCPKGRS_TRIPLET = None
+#7 16.32   ===   OCVRS_DOCS_GENERATE_DIR = None
+#7 16.32   ===   DOCS_RS = None
+#7 16.32   ===   PATH = Some("/usr/local/cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin")
+#7 16.32   === Enabled features:
+#7 16.32   === Detected probe priority boost based on environment vars: pkg_config: false, cmake: false, vcpkg: false
+#7 16.32   === Probing the OpenCV library in the following order: environment, pkg_config, cmake, vcpkg_cmake, vcpkg
+#7 16.32   === Can't probe using: environment, continuing with other methods because: Some environment variables are missing
+#7 16.32   === Probing OpenCV library using pkg_config
+#7 16.32   === Successfully probed using: pkg_config
+#7 16.32   === OpenCV library configuration: Library {
+#7 16.32       include_paths: [
+#7 16.32           "/usr/include/opencv4",
+#7 16.32       ],
+#7 16.32       version: Version {
+#7 16.32           major: 4,
+#7 16.32           minor: 10,
+#7 16.32           patch: 0,
+#7 16.32       },
+#7 16.32       enabled_features: [
+#7 16.32           "eigen",
+#7 16.32           "vulkan",
+#7 16.32           "openjpeg",
+#7 16.32           "jpeg",
+#7 16.32           "opencl",
+#7 16.32           "openexr",
+#7 16.32           "opengl",
+#7 16.32           "png",
+#7 16.32           "pthread",
+#7 16.32           "pthreads_pf",
+#7 16.32           "tbb",
+#7 16.32           "tiff",
+#7 16.32           "va",
+#7 16.32           "va_intel",
+#7 16.32           "lapack",
+#7 16.32       ],
+#7 16.32       cargo_metadata: [
+#7 16.32           "cargo::rustc-link-search=/usr/lib",
+#7 16.32           "cargo::rustc-link-lib=opencv_aruco",
+#7 16.32           "cargo::rustc-link-lib=opencv_face",
+#7 16.32           "cargo::rustc-link-lib=opencv_ml",
+#7 16.32           "cargo::rustc-link-lib=opencv_objdetect",
+#7 16.32           "cargo::rustc-link-lib=opencv_shape",
+#7 16.32           "cargo::rustc-link-lib=opencv_stitching",
+#7 16.32           "cargo::rustc-link-lib=opencv_superres",
+#7 16.32           "cargo::rustc-link-lib=opencv_optflow",
+#7 16.32           "cargo::rustc-link-lib=opencv_tracking",
+#7 16.32           "cargo::rustc-link-lib=opencv_highgui",
+#7 16.32           "cargo::rustc-link-lib=opencv_plot",
+#7 16.32           "cargo::rustc-link-lib=opencv_videostab",
+#7 16.32           "cargo::rustc-link-lib=opencv_videoio",
+#7 16.32           "cargo::rustc-link-lib=opencv_photo",
+#7 16.32           "cargo::rustc-link-lib=opencv_ximgproc",
+#7 16.32           "cargo::rustc-link-lib=opencv_video",
+#7 16.32           "cargo::rustc-link-lib=opencv_calib3d",
+#7 16.32           "cargo::rustc-link-lib=opencv_imgcodecs",
+#7 16.32           "cargo::rustc-link-lib=opencv_features2d",
+#7 16.32           "cargo::rustc-link-lib=opencv_dnn",
+#7 16.32           "cargo::rustc-link-lib=opencv_imgproc",
+#7 16.32           "cargo::rustc-link-lib=opencv_flann",
+#7 16.32           "cargo::rustc-link-lib=opencv_core",
+#7 16.32       ],
+#7 16.32   }
+#7 16.32   === Found OpenCV version: 4.10.0 in headers located at: /usr/include/opencv4
+#7 16.32   === Detected OpenCV module header dir at: /usr/include/opencv4/opencv2
+#7 16.32   === Generating code in: /root/app/target/release/build/opencv-0f8315cf000ead96/out
+#7 16.32   === Placing generated bindings into: /root/app/target/release/build/opencv-0f8315cf000ead96/out/opencv
+#7 16.32   === Using OpenCV headers from: /usr/include/opencv4
+#7 ERROR: process "/bin/sh -c set -xu && \tcd /root/app &&     RUST_BACKTRACE=full cargo build -vv --release" did not complete successfully: exit code: 101
+------
+ > [4/4] RUN set -xu && 	cd /root/app &&     RUST_BACKTRACE=full cargo build -vv --release:
+16.32           "cargo::rustc-link-lib=opencv_imgproc",
+16.32           "cargo::rustc-link-lib=opencv_flann",
+16.32           "cargo::rustc-link-lib=opencv_core",
+16.32       ],
+16.32   }
+16.32   === Found OpenCV version: 4.10.0 in headers located at: /usr/include/opencv4
+16.32   === Detected OpenCV module header dir at: /usr/include/opencv4/opencv2
+16.32   === Generating code in: /root/app/target/release/build/opencv-0f8315cf000ead96/out
+16.32   === Placing generated bindings into: /root/app/target/release/build/opencv-0f8315cf000ead96/out/opencv
+16.32   === Using OpenCV headers from: /usr/include/opencv4
+------
+alpine.Dockerfile:11
+--------------------
+  10 |     
+  11 | >>> RUN set -xu && \
+  12 | >>> 	cd /root/app && \
+  13 | >>>     RUST_BACKTRACE=full cargo build -vv --release
+  14 |     
+--------------------
+ERROR: failed to solve: process "/bin/sh -c set -xu && \tcd /root/app &&     RUST_BACKTRACE=full cargo build -vv --release" did not complete successfully: exit code: 101

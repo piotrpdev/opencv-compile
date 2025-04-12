@@ -2,7 +2,7 @@ FROM ubuntu:22.04 AS backend
 
 RUN set -xeu && \
 	DEBIAN_FRONTEND=noninteractive apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl clang libclang-dev cmake pkg-config musl-tools musl-dev libstdc++-12-dev
+	DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl clang libclang-dev cmake
 
 RUN set -xeu && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile=minimal
@@ -203,4 +203,8 @@ ENV OPENCV_INCLUDE_PATHS=/opt/opencv/include,/opt/opencv/include/opencv4,/root/x
 
 RUN set -xu && \
 	cd /root/app && \
-	RUSTFLAGS="-C linker=/root/x86_64-linux-musl-cross/bin/x86_64-linux-musl-ld" cargo build --release --target=x86_64-unknown-linux-musl
+	RUSTFLAGS="-C linker=/root/x86_64-linux-musl-cross/bin/x86_64-linux-musl-ld -C link-args=-lstdc++" cargo build --release --target=x86_64-unknown-linux-musl
+
+RUN set -xu && \
+	cd /root/app && \
+	ldd target/x86_64-unknown-linux-musl/release/app
